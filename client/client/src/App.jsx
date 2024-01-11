@@ -6,7 +6,7 @@ const App = () => {
 
   return (
 <div>
-HOliii
+<h1>HOliii como estas</h1>
 </div>
   )
 }
