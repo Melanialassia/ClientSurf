@@ -38,7 +38,7 @@ const Details = () => {
             </div>
         </div>
             <div>
-                <p>Politicas de Cambio</p>
+                <p>Politicas de Cambioo</p>
             </div>
 
     </div>
