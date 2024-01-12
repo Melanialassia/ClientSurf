@@ -1,6 +1,6 @@
 import Footer from "../../Footer/roots/Footer";
 import Header from "../../Header/roots/Header";
-import Carrousel from "../components/Carrousel/Carrousel";
+import CarrouselContainer from "../components/Carousel/CarouselContainer";
 import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";
 import ProductFilter from "../components/ProductFilter/ProductFilter";
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
@@ -14,8 +14,8 @@ const Home = () => {
         <Header />
       </div>
 
-      <div className={styles.carrousel}>
-        <Carrousel />
+      <div>
+        <CarrouselContainer />
       </div>
 
       <div className={styles.productFilter}>
