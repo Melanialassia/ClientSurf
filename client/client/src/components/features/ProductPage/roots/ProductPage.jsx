@@ -19,6 +19,13 @@ const ProductPage = () => {
 
             </aside>
             <main className={style.main}>
+                <div className={style.priceSection}>
+                    <h4>Ordenar por</h4>
+                    <select className={style.select}>
+                        <option>Menor Precio</option>
+                        <option>Mayor Precio</option>
+                    </select>
+                </div>
                 <Product />
             </main>
         </div>
