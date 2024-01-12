@@ -1,0 +1,43 @@
+.detailsContainer{
+    display: flex;
+    flex-direction: row;
+    
+    justify-content: space-around;
+    height: 100vh;
+    width: 80vw;
+}
+
+.detailsContainer img {
+    width: 500px;
+    height: 900px;
+}
+
+.favButton {
+        background-color: transparent;
+        border: none; 
+        padding: 10px 20px;
+        color: white;
+        cursor: pointer; 
+        transition: background-color 0.3s ease; 
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    justify-content: space-around;
+    margin-right: 200px;
+    height: 90vh;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: left;
+  margin-right: 500px;
+}
+
+.subInfoContainer1 {
+    display: flex;
+    flex-direction: column;
+    
+}

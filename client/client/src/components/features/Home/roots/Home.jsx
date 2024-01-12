@@ -6,6 +6,7 @@ import ProductFilter from "../components/ProductFilter/ProductFilter";
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
 
 const Home = () => {
+
   return (
     <div>
       <div>
