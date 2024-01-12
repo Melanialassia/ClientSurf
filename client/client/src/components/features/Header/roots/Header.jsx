@@ -6,26 +6,41 @@ import {
 } from "@ant-design/icons";
 import NavBar from "../components/NavBar";
 import { Link } from "react-router-dom";
+import styles from "./Header.module.css";
 
 const Header = () => {
   return (
-    <div>
+    <div className={styles.headerContainer}>
       <div>
-        <img src="/assets/images/LaOlaUrbanaLogo.png" alt="Logo" />
+        <img
+          className={styles.logo}
+          src="/assets/images/LaOlaUrbanaLogo.png"
+          alt="Logo"
+        />
       </div>
 
-      <div>
+      <div className={styles.navbar}>
         <NavBar />
       </div>
 
       <div>
-        <div>
+        <div className={styles.iconButton}>
           <Link>
-            <HeartFilled />
+            <HeartFilled
+              style={{
+                color: "red",
+                fontSize: "25px",
+              }}
+            />
           </Link>
 
           <Link to="/login">
-            <UserOutlined />
+            <UserOutlined
+              style={{
+                color: "black",
+                fontSize: "25px",
+              }}
+            />
           </Link>
         </div>
 
@@ -34,7 +49,12 @@ const Header = () => {
 
       <div>
         <Link to="/Home">
-          <ShoppingCartOutlined />
+          <ShoppingCartOutlined
+            style={{
+              color: "blue",
+              fontSize: "35px",
+            }}
+          />
         </Link>
       </div>
     </div>

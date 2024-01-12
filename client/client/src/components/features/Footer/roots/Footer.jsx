@@ -1,26 +1,41 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { InstagramFilled, FacebookFilled } from "@ant-design/icons";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <div>
+    <div className={styles.footerContainer}>
       <div>
-        <img src="/assets/images/LaOlaUrbanaLogo.png" alt="Logo" />
+        <img
+          className={styles.logo}
+          src="/assets/images/LaOlaUrbanaLogo.png"
+          alt="Logo"
+        />
       </div>
 
-      <div>
+      <div className={styles.policies}>
         <p>Politica de cambio</p>
         <p>Contacto</p>
       </div>
 
-      <div>
+      <div className={styles.socialMedia}>
         <Link>
-          <FacebookFilled />
+          <InstagramFilled
+            style={{
+              color: "purple",
+              fontSize: "50px",
+            }}
+          />
         </Link>
 
         <Link>
-          <InstagramFilled />
+          <FacebookFilled
+            style={{
+              color: "blue",
+              fontSize: "50px",
+            }}
+          />
         </Link>
       </div>
     </div>
