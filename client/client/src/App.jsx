@@ -8,9 +8,8 @@ import Details from './components/features/Details/roots/Details';
 import ProductPage from './components/features/ProductPage/roots/ProductPage';
 
 const App = () => {
-
-
   return (
+
 <div>
 <Routes>
   <Route path='/' element={<Home/>}/>
@@ -22,4 +21,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;
