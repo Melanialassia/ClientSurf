@@ -9,13 +9,9 @@ const NavBar = () => {
     <div>
       <nav>
         <Flex gap="small" wrap="wrap">
-          <NavBarButton link="/home" text="Home"/>
-          <NavBarButton link="/home" text="Surfboards"/>
-          <NavBarButton link="/home" text="Clothing"/>
-          <NavBarButton link="/home" text="Accessories"/>
-          <NavBarButton link="/home" text="Services"/>
-          <NavBarButton link="/home" text="How to buy"/>
-          <NavBarButton link="/home" text="About us"/>
+          <NavBarButton link="/" text="Home"/>
+          <NavBarButton link="/products" text="Productos"/>
+          <NavBarButton link="/" text="Como comprar"/>
         </Flex>
       </nav>
     </div>
