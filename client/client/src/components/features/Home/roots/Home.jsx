@@ -19,9 +19,9 @@ const Home = () => {
       </div>
 
       <div className={styles.productFilter}>
-        <ProductFilter link="/home" text="Filter by surfboards" />
+        <ProductFilter link="/" text="Filter by surfboards" />
 
-        <ProductFilter link="/home" text="Filter by clothing" />
+        <ProductFilter link="/" text="Filter by clothing" />
       </div>
 
       <div >
