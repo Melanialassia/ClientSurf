@@ -1,9 +1,10 @@
 import Footer from "../../Footer/roots/Footer";
 import Header from "../../Header/roots/Header";
-import Carrousel from "../components/Carrousel/Carrousel";
+import CarrouselContainer from "../components/Carousel/CarouselContainer";
 import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";
 import ProductFilter from "../components/ProductFilter/ProductFilter";
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
+import styles from "./Home.module.css"
 
 const Home = () => {
 
@@ -13,25 +14,24 @@ const Home = () => {
   }
 
   return (
-    <div>
-      
+    <div className={styles.homeContainer}>
       <div>
         <Header />
         <button onClick={logOut}>Logout</button>
       </div>
 
       <div>
-        <Carrousel />
+        <CarrouselContainer />
       </div>
 
-      <div>
+      <div className={styles.productFilter}>
         <ProductFilter link="/home" text="Filter by surfboards" />
 
         <ProductFilter link="/home" text="Filter by clothing" />
       </div>
 
-      <div>
-        <p>
+      <div >
+        <p className={styles.aboutUs}>
           La Ola Urbana was born from the desire to promote and enrich the
           surfing experience to the community of Rosario and its surroundings.
           🤙🤙 Therefore, our commitment is focused on equipping and advising
@@ -41,15 +41,15 @@ const Home = () => {
         </p>
       </div>
 
-      <div>
+      <div className={styles.highlights}>
         <ProductHighlights />
       </div>
 
-      <div>
+      <div className={styles.newsletter}>
         <NewsletterSubscribe />
       </div>
 
-      <div>
+      <div className={styles.footer}>
         <Footer />
       </div>
     </div>

@@ -1,0 +1,8 @@
+.socialMedia {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    width: 250px;
+  }
