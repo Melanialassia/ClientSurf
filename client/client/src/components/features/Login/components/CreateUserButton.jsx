@@ -1,10 +1,10 @@
+import React from 'react';
+import { createAnAccount } from '../utils/constants';
 
-import React from 'react'
-
-const CreateUserButton = ({onClick}) => {
+const CreateUserButton = () => {
   return (
     <div>
-      <button onClick={onClick}>Crear una cuenta</button>
+      <button>{createAnAccount}</button>
     </div>
   )
 };

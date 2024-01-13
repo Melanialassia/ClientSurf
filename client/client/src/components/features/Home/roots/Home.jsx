@@ -8,10 +8,16 @@ import styles from "./Home.module.css"
 
 const Home = () => {
 
+  const logOut = () => {
+    localStorage.clear();
+    window.location.reload()
+  }
+
   return (
     <div className={styles.homeContainer}>
       <div>
         <Header />
+        <button onClick={logOut}>Logout</button>
       </div>
 
       <div>
