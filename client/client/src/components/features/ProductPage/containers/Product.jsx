@@ -1,13 +1,12 @@
 import Cards from "../components/Cards";
-import products from "../db/db";
 import style from './Product.module.css';
 
-const Product = () => {
+const Product = ({ allProducts }) => {
     return (
         <div className={style.contenedorproductos}>
             {
-                products.map((product) => (
-                    <Cards product={product} key={product.id} />
+                allProducts.map((product) => (
+                    <Cards product={product} key={product.idProduct} />
                 ))
             }
         </div>
