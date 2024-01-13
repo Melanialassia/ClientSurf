@@ -3,6 +3,7 @@ import {
   ALL_CATEGORYS,
   FILTER_BY_CATEGORY,
   FILTER_ORDER,
+  PAGINATE,
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -45,8 +46,18 @@ export const filterProductsByCategory = (selectedCategory) => {
 };
 
 export const filterProducts = (selectedOrder) => {
-  return{
+  return {
     type: FILTER_ORDER,
-    payload: selectedOrder
-  }
+    payload: selectedOrder,
+  };
+};
+
+export const pageChange = (payload) => {
+  // ACCION PARA CAMBIAR LA PAGINA DE LA LISTA DE PERROS
+  return function (dispatch) {
+    dispatch({
+      type: PAGINATE,
+      payload: payload,
+    });
+  };
 };
