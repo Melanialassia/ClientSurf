@@ -25,19 +25,60 @@
     display: flex;
     flex-direction: column;
     margin-left: 30px;
-    justify-content: space-around;
+    margin-top: 60px;
     margin-right: 200px;
     height: 90vh;
+    font-size: montserrat-bold;
+    align-items: flex-start;
+    
 }
 
 .imgContainer {
   display: flex;
   justify-content: left;
-  margin-right: 500px;
+  margin-right: 300px;
 }
 
 .subInfoContainer1 {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     
 }
+
+.cartButton {
+    margin-left: 150px;
+    margin-top: 80px;
+}
+
+.description{
+    text-align: left;
+}
+
+.characteristics {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0;
+  }
+
+  .characteristics ul {
+    list-style-type: none; 
+    padding: 0; 
+  }
+  
+  .characteristics li {
+    margin-bottom: 8px; 
+    text-align: left; 
+  }
+
+  .botonColor {
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+  }
+

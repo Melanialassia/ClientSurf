@@ -7,19 +7,19 @@ import styles from './details.module.css';
 const Details = () => {
     const { id } = useParams();
     const [product, setProduct] = useState({});
-    const [cart, setCart] = useState([]);
+    const [selectedSize, setSelectedSize] = useState('');
+    const [selectedColor, setSelectedColor] = useState('');
+
+    
     console.log(id);
     useEffect(() => {
         const fetchData = async () => {
             try {
-              const response = await axios(`http://localhost:3001/surf/detail/${id}`);
+              const response = await axios(`http://localhost:3001/surf/product/${id}`);
               const { data } = response;
-              console.log(data);
-
-              if (data.name) {
-                setProduct(data);
-              }
-        
+                
+                setProduct(data.listProducts[0]);
+             
               
             } catch (error) {
               
@@ -28,22 +28,44 @@ const Details = () => {
 
         fetchData(); }, [id]);
 
-        const addToCart = () => {
-          // Check if the product is already in the cart
-          const isInCart = cart.some(item => item.id === product.id);
-  
-          if (!isInCart) {
-              // If not, add it to the cart
-              const newCart = [...cart, product];
-              setCart(newCart);
-  
-              // Store the updated cart in localStorage
-              localStorage.setItem('cart', JSON.stringify(newCart));
-          } else {
-              console.warn('Product is already in the cart.');
-          }
+        console.log(product);
+
+        const filteredCharacteristics = Object.entries(product.characteristics || {})
+    .filter(([key, value]) => value !== true);
+        
+    const translateColor = (spanishColor) => {
+      const colorMap = {
+        gris: 'grey',
+        azul: 'blue',
+        verde:'green',
+        negro:'black'
+        // Agrega más traducciones según sea necesario
       };
-       console.log(localStorage.getItem('cart'));
+    
+      // Devuelve el color traducido o el color original si no hay traducción disponible
+      return colorMap[spanishColor.toLowerCase()] || spanishColor;
+    };
+
+    const handleSizeSelect = (size) => {
+      setSelectedSize(size);
+    };
+  
+    const handleColorSelect = (color) => {
+      setSelectedColor(color);
+    };
+  
+    const addToCart = () => {
+      // Aquí puedes enviar el producto al carrito con las tallas y colores seleccionados
+      console.log('Producto agregado al carrito:', {
+        ...product,
+        selectedSize,
+        selectedColor,
+      });
+      // Resto de la lógica para agregar al carrito...
+    };
+ 
+    console.log(selectedColor);
+    console.log(selectedSize);
   return (
     <div>
         <div className={styles.detailsContainer}>
@@ -53,13 +75,70 @@ const Details = () => {
             <div className={styles.infoContainer}>
            
             <div className={styles.subInfoContainer1}>
-              <h1>ESPERANDO RUTAS DE BACK DETAIL</h1>
-            <h2>Nombre de producto</h2>
-                <h3>Precio</h3>
+              
+            <h2>{product.name}</h2>
+                <h2>${product.priceProduct}</h2>
+                <div className={styles.characteristics}>
+                <h3>Características:</h3>
+                <ul>
+                {filteredCharacteristics.map(([key, value]) => (
+  <li key={key}>
+    {key === 'Talla' ? (
+      // Si la característica es "Talla", renderiza botones
+      <>
+        <strong>{key}:</strong> {value.split(',').map((talla) => (
+          <button
+          key={talla}
+          style={{
+            marginRight: '5px',
+            border: talla === selectedSize ? '2px solid lightblue' : '2px solid transparent',
+          }}
+          onClick={() => handleSizeSelect(talla)}
+        >
+          {talla}
+        </button>
+        ))}
+      </>
+    ) : key === 'Color' ? (
+      // Si la característica es "Color", renderiza botones
+      <>
+        <strong>{key}:</strong> {value.split('/').map((color) => (
+          <button
+          key={color}
+          style={{
+            backgroundColor: translateColor(color),
+            marginRight: '5px',
+            width: '20px',
+            height: '20px',
+            border: `4px solid ${translateColor(color) === selectedColor ? 'lightblue' : 'transparent'}`,
+          }}
+          onClick={() => handleColorSelect(translateColor(color))}
+        >
+          {/* Puedes agregar aquí el texto o icono que desees */}
+        </button>
+        ))}
+      </>
+    ) : (
+      // Si no es "Talla" ni "Color", renderiza como texto
+      <>
+        <strong>{key}:</strong> {value}
+      </>
+    )}
+  </li>
+))}
+              </ul>
+              
             </div>
-            <h2>talle/medida</h2>
-            <p>Detalle de producto</p>
-                <button onClick={addToCart}>Añadir al carrito</button>
+          </div>
+        
+            <div className={styles.description}>
+            <p>{product.description}</p>
+            </div>
+            <div className={styles.cartButton}>
+              <Link to='/cart'>
+                <button>Añadir al carrito</button>
+                </Link>
+            </div>
             </div>
         </div>
             <div>
