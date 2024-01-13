@@ -1,10 +1,10 @@
-
 import React from 'react'
+import { login } from '../utils/constants';
 
-const LoginButton = ({onClick}) => {
+const LoginButton = () => {
   return (
     <div>
-        <button onClick={onClick}>Iniciar sesión</button>
+        <button >{login}</button>
     </div>
   )
 };

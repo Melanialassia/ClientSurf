@@ -4,14 +4,19 @@ import CarrouselContainer from "../components/Carousel/CarouselContainer";
 import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";
 import ProductFilter from "../components/ProductFilter/ProductFilter";
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
-import styles from "./Home.module.css"
+import styles from "./Home.module.css";
 
 const Home = () => {
+  const logOut = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
 
   return (
     <div className={styles.homeContainer}>
       <div>
         <Header />
+        <button onClick={logOut}>Logout</button>
       </div>
 
       <div>
@@ -19,19 +24,19 @@ const Home = () => {
       </div>
 
       <div className={styles.productFilter}>
-        <ProductFilter link="/home" text="Filter by surfboards" />
+        <ProductFilter link="/" text="Filtrar por tablas" />
 
-        <ProductFilter link="/home" text="Filter by clothing" />
+        <ProductFilter link="/" text="Filtrar por indumentaria" />
       </div>
 
-      <div >
+      <div>
         <p className={styles.aboutUs}>
-          La Ola Urbana was born from the desire to promote and enrich the
-          surfing experience to the community of Rosario and its surroundings.
-          🤙🤙 Therefore, our commitment is focused on equipping and advising
-          you, but also in facilitating and solving everything you need at the
-          time to take route to the sea. The sea is far away, but we bring you
-          closer. We are La Ola Urbana.
+          La Ola Urbana nace a partir del deseo de fomentar y enriquecer la
+          experiencia del Surfing a la comunidad de Rosario y alrededores.. 🤙🤙
+          Por eso, nuestro compromiso está enfocado en equiparte y asesorarte,
+          pero también en facilitar y resolver todo lo que necesitas al momento
+          de emprender ruta hacia el mar. El mar está lejos, pero nosotros te
+          acercamos. Somos la Ola Urbana
         </p>
       </div>
 

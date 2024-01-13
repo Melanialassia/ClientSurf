@@ -1,6 +1,7 @@
 import style from "./Cards.module.css";
 import { Link } from "react-router-dom";
 
+
 const Cards = ({ product }) => {
   return (
     <div>

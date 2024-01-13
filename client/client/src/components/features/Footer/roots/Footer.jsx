@@ -28,15 +28,6 @@ const Footer = () => {
             }}
           />
         </Link>
-
-        <Link>
-          <FacebookFilled
-            style={{
-              color: "blue",
-              fontSize: "50px",
-            }}
-          />
-        </Link>
       </div>
     </div>
   );

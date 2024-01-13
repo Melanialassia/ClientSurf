@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { name, lastName, email, password } from "../utils/constants";
 import SaveButton from "../components/SaveButton";
 import validation from "../utils/helpers/validation";
 
@@ -35,10 +36,22 @@ const FormContainer = () => {
     event.preventDefault(), login(userData);
   };
 
+  const handleDisable = () => {
+    let hasErrors = false;
+
+    for (let err in errors) {
+      if (errors[err] !== "") {
+        hasErrors = true;
+        break;
+      }
+    }
+    return hasErrors;
+  };
+
   return (
     <div>
-      <form>
-        <label htmlFor="name">Nombre</label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="name">{name}</label>
         <input
           type="name"
           value={userData.name}
@@ -47,7 +60,7 @@ const FormContainer = () => {
         />
         {errors.name !== "" && <p>{errors.name}</p>}
 
-        <label htmlFor="lastName">Apellidos</label>
+        <label htmlFor="lastName">{lastName}</label>
         <input
           type="lastName"
           value={userData.lastName}
@@ -56,7 +69,7 @@ const FormContainer = () => {
         />
         {errors.lastName !== "" && <p>{errors.lastName}</p>}
 
-        <label htmlFor="email">Correo electrónico</label>
+        <label htmlFor="email">{email}</label>
         <input
           type="email"
           value={userData.email}
@@ -65,7 +78,7 @@ const FormContainer = () => {
         />
         {errors.email !== "" && <p>{errors.email}</p>}
 
-        <label htmlFor="password">Contraseña</label>
+        <label htmlFor="password">{password}</label>
         <input
           type="password"
           value={userData.password}
@@ -74,7 +87,7 @@ const FormContainer = () => {
         />
         {errors.password !== "" && <p>{errors.password}</p>}
 
-        <SaveButton onClick={handleSubmit} />
+        <SaveButton type='submit' disable={handleDisable()} />
       </form>
     </div>
   );
