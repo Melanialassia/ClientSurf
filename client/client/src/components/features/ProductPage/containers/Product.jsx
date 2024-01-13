@@ -1,10 +1,10 @@
 import Cards from "../components/Cards";
 import style from "./Product.module.css";
 
-const Product = ({ allProducts }) => {
+const Product = ({ currentProducts }) => {
   return (
     <div className={style.contenedorproductos}>
-      {allProducts.map((product) => (
+      {currentProducts.map((product) => (
         <Cards product={product} key={product.idProduct} />
       ))}
     </div>

@@ -3,12 +3,15 @@ import {
   ALL_CATEGORYS,
   FILTER_BY_CATEGORY,
   FILTER_ORDER,
+  PAGINATE
 } from "../actions-types/actions-types";
 
 const initialState = {
   allProducts: [],
   allCategorys: [],
   filter: [],
+  currentPage: 1,
+  productPerPage: 10
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +54,9 @@ const reducer = (state = initialState, action) => {
         };
       }
 
+      case PAGINATE:
+
+      
     default:
       return {
         ...state,
