@@ -1,10 +1,10 @@
+import React from 'react';
+import { createAccount } from '../utils/constants';
 
-import React from 'react'
-
-const SaveButton = ({onClick}) => {
+const SaveButton = ({handleDisable}) => {
   return (
     <div>
-        <button onClick={onClick}>Crear cuenta</button>
+        <button type= 'submit' disabled={handleDisable}>{createAccount}</button>
     </div>
   )
 };

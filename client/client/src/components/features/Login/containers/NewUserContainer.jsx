@@ -1,11 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { newCustomers, textnewCustomers } from '../utils/constants';
 import CreateUserButton from '../components/CreateUserButton';
 
+
 const NewUserContainer = () => {
+
+
   return (
     <div>
-     <CreateUserButton/> //este componente tiene que tener el onclick de el botón
+
+      <h2>{newCustomers}</h2>
+      <h4>{textnewCustomers}</h4>
+      <Link to={'/account/create'}>
+     <CreateUserButton/>
+      </Link>
+
     </div>
+
+    
   )
 };
 

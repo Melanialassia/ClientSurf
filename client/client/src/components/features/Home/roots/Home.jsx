@@ -7,10 +7,17 @@ import ProductHighlights from "../components/ProductHighlights/ProductHighlights
 
 const Home = () => {
 
+  const logOut = () => {
+    localStorage.clear();
+    window.location.reload()
+  }
+
   return (
     <div>
+      
       <div>
         <Header />
+        <button onClick={logOut}>Logout</button>
       </div>
 
       <div>
