@@ -4,6 +4,7 @@ import {
   UserOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
+import { Avatar } from "antd";
 import NavBar from "../components/NavBar";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
@@ -29,17 +30,25 @@ const Header = () => {
             <HeartFilled
               style={{
                 color: "red",
-                fontSize: "25px",
+                fontSize: "30px",
               }}
             />
           </Link>
 
           <Link to="/login">
-            <UserOutlined
+            <Avatar
               style={{
-                color: "black",
-                fontSize: "25px",
+                backgroundColor: "#28445c",
               }}
+              size={30}
+              icon={
+                <UserOutlined
+                  style={{
+                    color: "white",
+                    fontSize: "20px",
+                  }}
+                />
+              }
             />
           </Link>
         </div>
@@ -48,10 +57,10 @@ const Header = () => {
       </div>
 
       <div>
-        <Link to="/Home">
+        <Link to="/">
           <ShoppingCartOutlined
             style={{
-              color: "blue",
+              color: "#28445c",
               fontSize: "35px",
             }}
           />
