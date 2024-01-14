@@ -1,0 +1,22 @@
+/* Styles.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > div:first-child {
+  font-weight: 800;
+  height: 20%;
+}
+
+.container > div:last-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container > div:last-child img {
+  width: 19%; /* Esto dividirá el ancho total de la pantalla entre las 5 imágenes, dejando un 1% para los espacios entre imágenes */
+  height: auto;
+  border-radius: 10px; /* Esto hará que los bordes de las imágenes sean curvos */
+  padding: 5px;
+}
