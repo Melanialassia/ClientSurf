@@ -2,9 +2,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: gray;
+  background-color: #2D4056;
   padding: 10px;
-  border-radius: 10px;
+  width: 100%;
+  margin-bottom: -20px;
+  margin-left: -10px;
+  margin-right: -10px;
+  border-radius: 20px;
 }
 
 .logo {

@@ -3,12 +3,12 @@
 .container {
   width: 90%;
   max-width: 570px;
-  margin: auto;
+ margin-top: 70px;
+ margin-bottom: 70px;
   height: auto;
   background-color: #2d4056;
-  margin-right: 20px;
+  margin-left: 350px;
   padding: 20px;
-  position: fixed;
   right: 30%;
   top: 20%;
   bottom: 20%;

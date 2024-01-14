@@ -15,8 +15,8 @@ const Home = () => {
   return (
     <div className={styles.homeContainer}>
       <div>
-        <Header />
-        <button onClick={logOut}>Logout</button>
+        {/* <Header />
+        <button onClick={logOut}>Logout</button> */}
       </div>
 
       <div>
@@ -49,7 +49,7 @@ const Home = () => {
       </div>
 
       <div className={styles.footer}>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );
