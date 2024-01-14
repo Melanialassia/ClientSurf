@@ -10,6 +10,10 @@ body {
     padding-bottom: 20px;
 }
 
+.price {
+  text-align: left;
+  font-size: x-large;
+}
 
 
 .favButton {
@@ -28,7 +32,6 @@ body {
     margin-top: 80px;
     margin-right: 200px;
     height: 90vh;
-    
     align-items: flex-start;
     color: #2D4056;
     
@@ -48,11 +51,11 @@ body {
   width: 600px;
   height: 800px;
   transition: transform 0.3s ease;
-  cursor: zoom-in; /* Set the cursor to zoom-in */
+  cursor: zoom-in; 
 }
 
 .imgContainer img:hover {
-  transform: scale(1.1); /* Example: Zoom in on hover */
+  transform: scale(1.1); 
 }
 
 .cartButton button {
@@ -76,9 +79,7 @@ body {
 
 .description{
     text-align: left;
-    
-    
-
+  
 }
 
 .characteristics {

@@ -110,7 +110,9 @@ const Details = () => {
             <div className={styles.subInfoContainer1}>
               
             <h2>{product.name}</h2>
-                <h1>${product.priceProduct}</h1>
+            <div className={styles.price}>
+                <h2>${product.priceProduct}</h2>
+                </div>
                 
                 <div className={styles.characteristics}>
                 <h3>Características:</h3>
