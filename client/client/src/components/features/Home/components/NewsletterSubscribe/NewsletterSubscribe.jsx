@@ -12,7 +12,7 @@ const NewsletterSubscribe = () => {
         }}
         />
 
-        <p>Subscribe to the newsletter</p>
+        <p>Subscribirse al Newsletter</p>
       </div>
     </div>
   );
