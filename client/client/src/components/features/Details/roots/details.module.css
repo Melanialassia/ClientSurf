@@ -1,16 +1,16 @@
+body {
+  overflow: visible; 
+}
+
 .detailsContainer{
     display: flex;
     flex-direction: row;
-    
-    justify-content: space-around;
     height: 100vh;
     width: 80vw;
+    padding-bottom: 20px;
 }
 
-.detailsContainer img {
-    width: 500px;
-    height: 900px;
-}
+
 
 .favButton {
         background-color: transparent;
@@ -24,20 +24,99 @@
 .infoContainer {
     display: flex;
     flex-direction: column;
-    margin-left: 30px;
-    justify-content: space-around;
+    margin-left: 300px;
+    margin-top: 80px;
     margin-right: 200px;
     height: 90vh;
+    
+    align-items: flex-start;
+    color: #2D4056;
+    
+    
 }
 
-.imgContainer {
-  display: flex;
-  justify-content: left;
-  margin-right: 500px;
+.imgContainer img {
+  width: 600px;
+  height: 800px;
+  transition: transform 0.3s ease; 
+  
 }
 
-.subInfoContainer1 {
+
+
+.imgContainer img {
+  width: 600px;
+  height: 800px;
+  transition: transform 0.3s ease;
+  cursor: zoom-in; /* Set the cursor to zoom-in */
+}
+
+.imgContainer img:hover {
+  transform: scale(1.1); /* Example: Zoom in on hover */
+}
+
+.cartButton button {
+  padding: 10px 20px;
+  background-color: #2D4056; 
+  color: #fff; 
+  border: 2px solid #2D4056; 
+  border-radius: 5px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 130px;
+  margin-top: 40px;
+}
+
+.cartButton button:hover {
+  background-color: rgb(84, 121, 133); 
+  border-color: rgb(84, 121, 133); 
+  transform: scale(1.05);
+}
+
+
+.description{
+    text-align: left;
+    
+    
+
+}
+
+.characteristics {
+
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0;
+   
     
+  }
+
+  .characteristics ul {
+    list-style-type: none; 
+    padding: 0; 
+    
+  }
+  
+  .characteristics li {
+    margin-bottom: 8px; 
+    text-align: left; 
+  }
+
+  .subInfoContainer1 h2 {
+    margin-bottom: 5px; 
+    margin-top: 0; 
+    color: #2D4056;
+}
+
+.politicas{
+  margin-bottom: 100px
+  
+}
+
+.politicas p {
+  color: #2D4056;
+}
+
+.zoom img {
+  transition: transform 0.5s ease;
 }
