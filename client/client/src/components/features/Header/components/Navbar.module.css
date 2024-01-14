@@ -1,0 +1,9 @@
+@import url("https://fonts.cdnfonts.com/css/montserrat");
+.container {
+    font-family: "Montserrat", sans-serif;
+    
+}
+
+.text {
+    color: #30445c
+}

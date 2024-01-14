@@ -1,0 +1,58 @@
+@import url("https://fonts.cdnfonts.com/css/montserrat");
+
+.container {
+  width: 90%;
+  max-width: 570px;
+ margin-top: 70px;
+ margin-bottom: 70px;
+  height: auto;
+  background-color: #2d4056;
+  margin-left: 350px;
+  padding: 20px;
+  right: 30%;
+  top: 20%;
+  bottom: 20%;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.label-input-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  margin-bottom: -5px;
+}
+
+.label-input-group label {
+  margin-top: -10px;
+  margin-right: 10px;
+}
+
+.input-container {
+  flex-grow: 1;
+}
+
+input {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+h2 {
+  color: #e2dcd1;
+}
+
+h4 {
+  color: #e2dcd1;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 20px;
+}

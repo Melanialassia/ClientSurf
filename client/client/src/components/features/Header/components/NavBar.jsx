@@ -1,21 +1,20 @@
 import React from "react";
 import { Flex } from "antd";
 import NavBarButton from "./NavBarButton";
+import style from './NavBar.module.css';
+
 
 const NavBar = () => {
 
     // TODO: Actualizar rutas y agregar estilos
   return (
-    <div>
-      <nav>
-        <Flex gap="small" wrap="wrap">
-          <NavBarButton link="/home" text="Home"/>
-          <NavBarButton link="/home" text="Surfboards"/>
-          <NavBarButton link="/home" text="Clothing"/>
-          <NavBarButton link="/home" text="Accessories"/>
-          <NavBarButton link="/home" text="Services"/>
-          <NavBarButton link="/home" text="How to buy"/>
-          <NavBarButton link="/home" text="About us"/>
+    <div className={style.container} >
+      <nav >
+        <Flex gap="small" wrap="wrap" >
+          <NavBarButton link="/" text="HOME" />
+          <NavBarButton link="/products" text="PRODUCTOS"/>
+          <NavBarButton link="/" text="COMO COMPRAR"/>
+          <NavBarButton link="/" text="QUIENES SOMOS" />
         </Flex>
       </nav>
     </div>

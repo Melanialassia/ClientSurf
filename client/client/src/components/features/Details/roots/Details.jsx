@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import styles from './details.module.css';
 
 const Details = () => {
+
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState('');
@@ -27,12 +28,10 @@ const Details = () => {
   useEffect(() => {
     if (imgRef.current) {
         const img = imgRef.current;
-
         const handleMouseMove = (e) => {
             const { left, top, width, height } = e.target.getBoundingClientRect();
             const x = ((e.pageX - left) / width) * 100;
             const y = ((e.pageY - top) / height) * 100;
-
             // Adjust the scale factor for zooming
             const scaleFactor = 1.4; // You can adjust this value as needed
             img.style.transformOrigin = `${x}% ${y}%`;
@@ -93,7 +92,8 @@ const Details = () => {
     console.log(selectedColor);
     console.log(selectedSize);
 
-    
+
+  
   return (
     <div>
         <div className={styles.detailsContainer}>
@@ -114,6 +114,7 @@ const Details = () => {
                 <h2>${product.priceProduct}</h2>
                 </div>
                 
+
                 <div className={styles.characteristics}>
                 <h3>Características:</h3>
                 <ul>
@@ -169,6 +170,7 @@ const Details = () => {
         
             <div className={styles.description}>
               <h3>Descripcion:</h3>
+
             <p>{product.description}</p>
             </div>
             <div className={styles.cartButton}>

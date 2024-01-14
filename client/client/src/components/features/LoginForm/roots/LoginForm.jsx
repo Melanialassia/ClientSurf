@@ -1,12 +1,12 @@
-import React from 'react';
-import FormContainer from '../containers/FormContainer';
+import React from "react";
+import FormContainer from "../containers/FormContainer";
 
 const LoginForm = () => {
   return (
     <div>
-     <FormContainer/>
+      <FormContainer />
     </div>
-  )
+  );
 };
 
 export default LoginForm;
