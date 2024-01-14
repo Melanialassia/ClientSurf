@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import CategoryFilter from "../containers/CategoryFilter";
 import Product from "../containers/Product";
 import Paginate from "../containers/Paginate";
+import Price from "../components/Price";
 //ACTIONS
 import {
   getAllCategorys,
@@ -15,7 +16,7 @@ import {
   filterProducts,
 } from "../../../../redux/actions/action";
 //STYLE
-import style from "./PropductPage.module.css";
+import style from "./ProductPage.module.css";
 
 const ProductPage = () => {
   const dispatch = useDispatch();
@@ -75,10 +76,9 @@ const ProductPage = () => {
           <option value="">Categorias</option>
           <CategoryFilter allCategorys={allCategorys} />
         </select>
-        <ul className={style.filtro}>
-          <h3>Precio</h3>
-          <button>Se muestran todos los colores(hacer mapeo)</button>
-        </ul>
+        <div className={style.filtro}>
+          <Price/>
+        </div>
       </aside>
       <main className={style.main}>
         <div className={style.priceSection}>

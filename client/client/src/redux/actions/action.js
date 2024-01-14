@@ -4,6 +4,7 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_ORDER,
   PAGINATE,
+  FILTER_PRICE
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -60,4 +61,12 @@ export const pageChange = (payload) => {
       payload: payload,
     });
   };
+};
+
+export const filterProductsByPrice = (minPrice, maxPrice) => {
+  console.log(minPrice, maxPrice);
+  return {
+  type: FILTER_PRICE,
+  payload: { minPrice, maxPrice },
+};
 };
