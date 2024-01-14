@@ -4,6 +4,7 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_ORDER,
   PAGINATE,
+  FILTER_PRICE,
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
   filter: [],
   logedUser: false,
   currentPage: 1,
-  productPerPage: 10
+  productPerPage: 10,
 };
 
 const reducer = (state = initialState, action) => {
@@ -55,9 +56,22 @@ const reducer = (state = initialState, action) => {
         };
       };
 
-      case PAGINATE:
+    case PAGINATE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
 
-      
+      case FILTER_PRICE:
+        const { minPrice, maxPrice } = action.payload;
+        const filteredByPrice = [...state.filter].filter(
+          (product) => product.priceProduct >= minPrice && product.priceProduct <= maxPrice
+        );
+        return {
+          ...state,
+          filter: [...filteredByPrice],
+        };
+
     default:
       return {
         ...state,

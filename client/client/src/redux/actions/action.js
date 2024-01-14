@@ -5,6 +5,7 @@ import {
   FILTER_ORDER,
   PAGINATE,
   CREATE_USER
+  FILTER_PRICE
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -62,7 +63,6 @@ export const pageChange = (payload) => {
     });
   };
 };
-
 export const postUser = (userdata) => {
   return async function (dispatch) {
     try {
@@ -81,3 +81,12 @@ export const postUser = (userdata) => {
 export const isUserLoged = () => {
 
 }
+
+export const filterProductsByPrice = (minPrice, maxPrice) => {
+  console.log(minPrice, maxPrice);
+  return {
+  type: FILTER_PRICE,
+  payload: { minPrice, maxPrice },
+};
+};
+
