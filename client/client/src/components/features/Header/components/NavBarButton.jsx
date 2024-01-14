@@ -4,14 +4,17 @@ import { Button } from "antd";
 const NavBarButton = ({ link, text }) => {
   return (
     <Link to={link}>
-      <Button
+      {/* <Button
         style={{
-          color: "white",
+          color: "#2D4056",
+          fontSize:"x-large",
+          marginTop: "-10px",
         }}
         type="text"
       >
-        {text}
-      </Button>
+        
+      </Button> */}
+      {text}
     </Link>
   );
 };

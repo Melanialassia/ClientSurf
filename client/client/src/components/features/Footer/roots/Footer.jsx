@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { InstagramFilled, FacebookFilled } from "@ant-design/icons";
+import { InstagramFilled } from "@ant-design/icons";
 import styles from "./Footer.module.css";
 
 const Footer = () => {

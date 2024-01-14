@@ -13,11 +13,15 @@ const Header = () => {
   return (
     <div className={styles.headerContainer}>
       <div>
+        <a href="/">
         <img
           className={styles.logo}
-          src="/assets/images/LaOlaUrbanaLogo.png"
+          src="/assets/images/LogoOla.png"
           alt="Logo"
+         
         />
+
+        </a>
       </div>
 
       <div className={styles.navbar}>
