@@ -1,12 +1,12 @@
-import React from 'react'
-import { loginWithGoogle } from '../utils/constants';
+import React from "react";
+import { loginWithGoogle } from "../utils/constants";
 
-const LoginWithGoogleButton = ({handleClick}) => {
+const LoginWithGoogleButton = ({ handleClick }) => {
   return (
     <div>
-     <button onClick={handleClick}>{loginWithGoogle}</button>
+      <button onClick={handleClick}>{loginWithGoogle}</button>
     </div>
-  )
+  );
 };
 
 export default LoginWithGoogleButton;

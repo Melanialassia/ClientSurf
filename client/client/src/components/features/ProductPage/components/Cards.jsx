@@ -12,6 +12,7 @@ const Cards = ({ product }) => {
             />
             <h3>{product.idProduct}.{product.name}</h3>
             <h4>${product.priceProduct}</h4>
+            </Link>
 
 
         </div>
