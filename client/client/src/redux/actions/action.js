@@ -4,6 +4,7 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_ORDER,
   PAGINATE,
+  CREATE_USER
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -61,3 +62,22 @@ export const pageChange = (payload) => {
     });
   };
 };
+
+export const postUser = (userdata) => {
+  return async function (dispatch) {
+    try {
+        const response = await axios.post('http://localhost:3001/surf/user', userdata);  // ENVIA LOS DATOS 
+        dispatch({
+            type: CREATE_USER,
+            payload: response.data
+        });
+    } catch (error) {
+        throw Error ('No se pudo crear la cuenta de usuario con éxito:', error)
+  
+    }
+}
+}
+
+export const isUserLoged = () => {
+
+}

@@ -1,3 +1,5 @@
+@import url("https://fonts.cdnfonts.com/css/montserrat");
+
 /* Styles.module.css */
 .container {
   display: flex;
@@ -8,6 +10,8 @@
   margin-top: 10px;
   align-items: center;
   justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
 }
 
 .container > div:first-child {

@@ -14,20 +14,21 @@ const Footer = () => {
         />
       </div>
 
-      <div className={styles.policies}>
-        <p>Politica de cambio</p>
-        <p>Contacto</p>
+      <div >
+        <p>MI CUENTA</p>
+        <p>POLITICA DE CAMBIO</p>
+        <p>CONTACTO</p>
       </div>
 
       <div className={styles.socialMedia}>
-        <Link>
+        <a href="https://www.instagram.com/laolaurbana.ros/" target="_blank" rel="noopener noreferrer">
           <InstagramFilled
             style={{
               color: "purple",
               fontSize: "50px",
             }}
           />
-        </Link>
+        </a>
       </div>
     </div>
   );
