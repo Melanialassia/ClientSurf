@@ -4,7 +4,7 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_ORDER,
   PAGINATE,
-  CREATE_USER
+  CREATE_USER,
   FILTER_PRICE
 } from "../actions-types/actions-types";
 import axios from "axios";

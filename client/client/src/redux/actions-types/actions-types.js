@@ -5,5 +5,4 @@ export const PAGINATE = "PAGINATE";
 export const CREATE_USER = "CREATE_USER";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";
 export const FILTER_PRICE = "FILTER_PRICE";
-export const PAGINATE = "PAGINATE";
 
