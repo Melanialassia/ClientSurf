@@ -1,0 +1,10 @@
+.photoBannerContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 350px;
+  margin-top: 20px;
+}
+
+.photoBannerContainer img {
+  width: 20%;
+}

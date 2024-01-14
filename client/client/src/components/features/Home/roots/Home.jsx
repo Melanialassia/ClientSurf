@@ -1,8 +1,9 @@
 import Footer from "../../Footer/roots/Footer";
 import Header from "../../Header/roots/Header";
 import CarrouselContainer from "../components/Carousel/CarouselContainer";
+import HowToBuyContainer from "../components/HowToBuy/HowToBuyContainer";
 import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";
-import ProductFilter from "../components/ProductFilter/ProductFilter";
+import PhotoBannerContainer from "../components/PhotoBanner/PhotoBannerContainer";
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
 import styles from "./Home.module.css";
 
@@ -23,21 +24,18 @@ const Home = () => {
         <CarrouselContainer />
       </div>
 
-      <div className={styles.productFilter}>
+      {/*  <div className={styles.productFilter}>
         <ProductFilter link="/" text="Filtrar por tablas" />
 
         <ProductFilter link="/" text="Filtrar por indumentaria" />
+      </div> */}
+
+      <div>
+        <PhotoBannerContainer />
       </div>
 
       <div>
-        <p className={styles.aboutUs}>
-          La Ola Urbana nace a partir del deseo de fomentar y enriquecer la
-          experiencia del Surfing a la comunidad de Rosario y alrededores.. 🤙🤙
-          Por eso, nuestro compromiso está enfocado en equiparte y asesorarte,
-          pero también en facilitar y resolver todo lo que necesitas al momento
-          de emprender ruta hacia el mar. El mar está lejos, pero nosotros te
-          acercamos. Somos la Ola Urbana
-        </p>
+        <HowToBuyContainer />
       </div>
 
       <div className={styles.highlights}>
