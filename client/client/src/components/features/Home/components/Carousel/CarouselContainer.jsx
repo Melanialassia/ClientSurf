@@ -12,8 +12,10 @@ const CarouselContainer = () => {
 
   return (
 
+
     <Carousel autoplay>
       <div>
+
         <h3 style={contentStyle}>Image 1</h3>
 
       </div>

@@ -1,11 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { name, lastName, email, password, infoLogin } from "../utils/constants";
+import { postUser } from "../../../../redux/actions/action";
 import validation from "../utils/helpers/validation";
 import style from "./FormContainer.module.css";
 
 const FormContainer = () => {
   const [userData, setUserData] = useState({
+
     idLevel: 1,
     nameUser: "",
     lastName: "",
@@ -13,7 +17,13 @@ const FormContainer = () => {
     password: "",
   });
 
+  const dispatch = useDispatch();
+
+  const [isUserCreated, setIsUserCreated] = useState(false);
+
   const [errors, setErrors] = useState({});
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setUserData({
@@ -38,22 +48,24 @@ const FormContainer = () => {
     try {
       dispatch(postUser(userData));
       setIsUserCreated(true);
+
+
       navigate("/login");
     } catch (error) {
       console.error("No se pudo crear la cuenta de usuario con éxito:", error);
     }
-    if(setIsUserCreated === true){alert("Usuario creado con éxito");} //este alert está mal.
   };
 
-  const handleDisabled = () => {
-    return Object.values(errors).some((error) => error !== "");
-  };
+  // const handleDisabled = () => {
+  //   return Object.values(errors).some((error) => error !== "");
+  // };
 
   return (
     <div className={style.container}>
+      <h3>{infoLogin}</h3>
       <form onSubmit={handleSubmit}>
-
       <input type="hidden" name="idLevel" value={userData.idLevel} />
+
 
         <div>
           <label htmlFor="nameUser" className={style["label-input-group"]}>
@@ -69,9 +81,7 @@ const FormContainer = () => {
             onChange={handleChange}
           />
           {errors.nameUser !== "" && <p>{errors.nameUser}</p>}
-
         </div>
-
         <div>
           <label htmlFor="lastName" className={style["label-input-group"]}>
             {lastName}
@@ -80,12 +90,11 @@ const FormContainer = () => {
         <div className={style["input-container"]}>
           <input
             type="lastName"
-
             value={userData.lastName}
             name="lastName"
             onChange={handleChange}
           />
-          {errors.lastName !== "" && <p>{errors.lastName}</p>}
+          {/* {errors.lastName !== "" && <p>{errors.lastName}</p>} */}
         </div>
 
         <div>
@@ -117,9 +126,7 @@ const FormContainer = () => {
           />
           {errors.password !== "" && <p>{errors.password}</p>}
         </div>
-
         <button type="submit" disabled={handleDisabled}>Crear mi cuenta</button>
-
       </form>
     </div>
   );

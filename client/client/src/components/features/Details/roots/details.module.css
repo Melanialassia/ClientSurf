@@ -1,16 +1,20 @@
+body {
+  overflow: visible; 
+}
+
 .detailsContainer{
     display: flex;
     flex-direction: row;
-    
-    justify-content: space-around;
     height: 100vh;
     width: 80vw;
+    padding-bottom: 20px;
 }
 
-.detailsContainer img {
-    width: 500px;
-    height: 900px;
+.price {
+  text-align: left;
+  font-size: x-large;
 }
+
 
 .favButton {
         background-color: transparent;
@@ -24,35 +28,58 @@
 .infoContainer {
     display: flex;
     flex-direction: column;
-    margin-left: 30px;
-    margin-top: 60px;
+    margin-left: 300px;
+    margin-top: 80px;
     margin-right: 200px;
     height: 90vh;
-    font-size: montserrat-bold;
     align-items: flex-start;
+    color: #2D4056;
+    
     
 }
 
-.imgContainer {
-  display: flex;
-  justify-content: left;
-  margin-right: 300px;
+.imgContainer img {
+  width: 600px;
+  height: 800px;
+  transition: transform 0.3s ease; 
+ 
 }
 
-.subInfoContainer1 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    
+
+
+.imgContainer img {
+  width: 600px;
+  height: 800px;
+  transition: transform 0.3s ease;
+  cursor: zoom-in; 
 }
 
-.cartButton {
-    margin-left: 150px;
-    margin-top: 80px;
+.imgContainer img:hover {
+  transform: scale(1.1); 
 }
+
+.cartButton button {
+  padding: 10px 20px;
+  background-color: #2D4056; 
+  color: #fff; 
+  border: 2px solid #2D4056; 
+  border-radius: 5px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 130px;
+  margin-top: 40px;
+}
+
+.cartButton button:hover {
+  background-color: rgb(84, 121, 133); 
+  border-color: rgb(84, 121, 133); 
+  transform: scale(1.05);
+}
+
 
 .description{
     text-align: left;
+  
 }
 
 .characteristics {
@@ -60,12 +87,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     padding-left: 0;
+   
+    
   }
 
   .characteristics ul {
     list-style-type: none; 
     padding: 0; 
+   
   }
   
   .characteristics li {
@@ -73,12 +104,22 @@
     text-align: left; 
   }
 
-  .botonColor {
-    border: none;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    outline: none;
-  }
+  .subInfoContainer1 h2 {
+    margin-bottom: 5px; 
+    margin-top: 0; 
+    color: #2D4056;
+}
+
+.politicas{
+  margin-bottom: 100px
+  
+}
+
+.politicas p {
+  color: #2D4056;
+}
+
+.zoom img {
+  transition: transform 0.5s ease;
+}
 

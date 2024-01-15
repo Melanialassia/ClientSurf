@@ -11,6 +11,7 @@ const initialState = {
   allProducts: [],
   allCategorys: [],
   filter: [],
+  logedUser: false,
   currentPage: 1,
   productPerPage: 10,
 };
@@ -53,7 +54,7 @@ const reducer = (state = initialState, action) => {
           ...state,
           filter: [...response],
         };
-      }
+      };
 
     case PAGINATE:
       return {

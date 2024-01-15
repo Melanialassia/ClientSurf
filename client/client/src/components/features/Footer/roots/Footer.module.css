@@ -1,4 +1,7 @@
+@import url("https://fonts.cdnfonts.com/css/montserrat");
+
 .footerContainer {
+  
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -9,6 +12,8 @@
   margin-left: -10px;
   margin-right: -10px;
   border-radius: 20px;
+  font-family: "Montserrat", sans-serif;
+  color: #e2dcd1;
 }
 
 .logo {
@@ -19,6 +24,7 @@
 }
 
 .policies {
+
   border: 3px solid white;
   border-radius: 10px;
   height: 180px;

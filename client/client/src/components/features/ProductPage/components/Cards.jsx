@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 
 
 const Cards = ({ product }) => {
+
   return (
     <div>
-      <Link to={`/details${product.idProduct}`}>
+      <Link to={`/details/${product.idProduct}`}>
         <img
           src={product.image}
           alt="nombredelproducto"

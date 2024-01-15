@@ -1,6 +1,9 @@
+@import url("https://fonts.cdnfonts.com/css/montserrat");
+
 .container {
   display: flex;
   justify-content: space-between;
+  font-family: "Montserrat", sans-serif;
 }
 
 .container > div {

@@ -12,10 +12,12 @@ const NavBar = () => {
       <nav >
         <Flex gap="small" wrap="wrap" >
 
+
           <NavBarButton link="/" text="HOME" />
           <NavBarButton link="/products" text="PRODUCTOS"/>   
           <NavBarButton link='/#como-comprar' text="COMO COMPRAR"/>
           <NavBarButton link="/aboutus" text="QUIENES SOMOS" />
+
 
         </Flex>
       </nav>
