@@ -7,6 +7,7 @@ import {
   CREATE_USER,
   FILTER_PRICE,
   FILTER_COLOR
+
 } from "../actions-types/actions-types";
 import axios from "axios";
 
