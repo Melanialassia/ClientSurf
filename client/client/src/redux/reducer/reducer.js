@@ -71,6 +71,8 @@ const reducer = (state = initialState, action) => {
         filter: [...filteredByColor]
       };
 
+
+
     default:
       return {
         ...state,

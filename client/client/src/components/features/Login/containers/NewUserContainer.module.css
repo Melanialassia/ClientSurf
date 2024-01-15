@@ -4,7 +4,7 @@
   height: 500px;
   margin-top: 80px;
   background-color: #2d4056;
-  margin-right: 20px;
+  margin-left: 100px;
   padding: 20px;
   box-sizing: border-box;
   left: 10%;
@@ -15,6 +15,7 @@
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
+  align-items: center;
   font-family: "Montserrat", sans-serif;
 }
 

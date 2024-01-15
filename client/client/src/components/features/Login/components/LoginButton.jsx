@@ -4,7 +4,7 @@ import { login } from "../utils/constants";
 const LoginButton = () => {
   return (
     <div>
-      <button>{login}</button>
+      <button type="submit">{login}</button>
     </div>
   );
 };
