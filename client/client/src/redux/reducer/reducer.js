@@ -2,9 +2,8 @@ import {
   ALL_PRODUCTS,
   ALL_CATEGORYS,
   FILTER_BY_CATEGORY,
-  FILTER_ORDER,
   PAGINATE,
-  FILTER_PRICE,
+  FILTER_PRICE
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -36,10 +35,10 @@ const reducer = (state = initialState, action) => {
         filter: action.payload,
       };
 
-    case FILTER_ORDER:
+    case FILTER_PRICE:
       if (action.payload === "ASC") {
         const response = [...state.filter].sort((a, b) =>
-          a.name.localeCompare(b.name)
+          a.priceProduc.localeCompare(b.priceProduct)
         );
         return {
           ...state,
@@ -47,7 +46,7 @@ const reducer = (state = initialState, action) => {
         };
       } else if (action.payload === "DESC") {
         const response = [...state.filter].sort((a, b) =>
-          b.name.localeCompare(a.name)
+          b.priceProduct.localeCompare(a.priceProduct)
         );
         return {
           ...state,
@@ -60,16 +59,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentPage: action.payload,
       };
-
-      case FILTER_PRICE:
-        const { minPrice, maxPrice } = action.payload;
-        const filteredByPrice = [...state.filter].filter(
-          (product) => product.priceProduct >= minPrice && product.priceProduct <= maxPrice
-        );
-        return {
-          ...state,
-          filter: [...filteredByPrice],
-        };
 
     default:
       return {

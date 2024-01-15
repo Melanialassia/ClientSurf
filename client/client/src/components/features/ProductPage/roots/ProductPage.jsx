@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import CategoryFilter from "../containers/CategoryFilter";
 import Product from "../containers/Product";
 import Paginate from "../containers/Paginate";
-import Price from "../components/Price";
+
 //ACTIONS
 import {
   getAllCategorys,
@@ -13,7 +13,7 @@ import {
 } from "../../../../redux/actions/action";
 import {
   filterProductsByCategory,
-  filterProducts,
+  filterPrice,
 } from "../../../../redux/actions/action";
 //STYLE
 import style from "./ProductPage.module.css";
@@ -24,8 +24,8 @@ const ProductPage = () => {
   console.log("product", allProducts);
   const allCategorys = useSelector((s) => s.allCategorys);
 
-  const [category, setCategory] = useState("");
   const [productOrder, setProductOrder] = useState("");
+  const [category, setCategory] = useState("");
 
   //PAGINADO
   const currentPage = useSelector((s) => s.currentPage);
@@ -55,11 +55,11 @@ const ProductPage = () => {
     dispatch(filterProductsByCategory(selectedCategory));
   };
 
-  const handleProductChange = (event) => {
+  const handlePriceChange = (event) => {
     const selectPrice = event.target.value;
     setProductOrder(selectPrice);
     dispatch(pageChange(1));
-    dispatch(filterProducts(selectPrice));
+    dispatch(filterPrice(selectPrice));
   };
 
   return (
@@ -68,16 +68,16 @@ const ProductPage = () => {
         <header className={style.titulo}>
           <h2>Filtros</h2>
         </header>
-        <select
-          className={style.filtro}
-          onChange={handleCategoryChange}
-          value={category}
-        >
-          <option value="">Categorias</option>
-          <CategoryFilter allCategorys={allCategorys} />
-        </select>
+        <h3>Categoria</h3>
         <div className={style.filtro}>
-          <Price/>
+          <select onChange={handleCategoryChange} value={category}>
+            <option value="">TODAS</option>
+            <CategoryFilter allCategorys={allCategorys} />
+          </select>
+        </div>
+
+        <div className={style.filtro}>
+          <h3>Precio</h3>
         </div>
       </aside>
       <main className={style.main}>
@@ -85,11 +85,11 @@ const ProductPage = () => {
           <h4>Ordenar por</h4>
           <select
             className={style.select}
-            onChange={handleProductChange}
+            onChange={handlePriceChange}
             value={productOrder}
           >
-            <option value="DESC">Menor a mayor</option>
-            <option value="ASC">Mayor a menor</option>
+            <option value="DESC">Menor precio</option>
+            <option value="ASC">Mayor precio</option>
           </select>
         </div>
         <Product currentProducts={currentProducts} />

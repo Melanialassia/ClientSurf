@@ -2,7 +2,6 @@ import {
   ALL_PRODUCTS,
   ALL_CATEGORYS,
   FILTER_BY_CATEGORY,
-  FILTER_ORDER,
   PAGINATE,
   FILTER_PRICE
 } from "../actions-types/actions-types";
@@ -46,9 +45,9 @@ export const filterProductsByCategory = (selectedCategory) => {
   };
 };
 
-export const filterProducts = (selectedOrder) => {
+export const filterPrice = (selectedOrder) => {
   return {
-    type: FILTER_ORDER,
+    type: FILTER_PRICE,
     payload: selectedOrder,
   };
 };
@@ -63,10 +62,4 @@ export const pageChange = (payload) => {
   };
 };
 
-export const filterProductsByPrice = (minPrice, maxPrice) => {
-  console.log(minPrice, maxPrice);
-  return {
-  type: FILTER_PRICE,
-  payload: { minPrice, maxPrice },
-};
-};
+

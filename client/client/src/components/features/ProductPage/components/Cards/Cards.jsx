@@ -1,8 +1,5 @@
-
 import style from "./Cards.module.css";
 import { Link } from "react-router-dom";
-
-
 
 const Cards = ({ product }) => {
   return (
@@ -13,9 +10,7 @@ const Cards = ({ product }) => {
           alt="nombredelproducto"
           className={style.productimage}
         />
-        <h3>
-          {product.idProduct}.{product.name}
-        </h3>
+        <h3>{product.name}</h3>
         <h4>${product.priceProduct}</h4>
       </Link>
     </div>
