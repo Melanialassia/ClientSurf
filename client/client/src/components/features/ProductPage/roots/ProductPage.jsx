@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import CategoryFilter from "../containers/CategoryFilter";
 import Product from "../containers/Product";
 import Paginate from "../containers/Paginate";
-import Price from "../components/Price";
 //ACTIONS
 import {
   getAllCategorys,
@@ -13,7 +12,7 @@ import {
 } from "../../../../redux/actions/action";
 import {
   filterProductsByCategory,
-  filterProducts,
+  filterPrice,
 } from "../../../../redux/actions/action";
 //STYLE
 import style from "./ProductPage.module.css";
@@ -55,11 +54,11 @@ const ProductPage = () => {
     dispatch(filterProductsByCategory(selectedCategory));
   };
 
-  const handleProductChange = (event) => {
+  const handlePriceChange = (event) => {
     const selectPrice = event.target.value;
     setProductOrder(selectPrice);
     dispatch(pageChange(1));
-    dispatch(filterProducts(selectPrice));
+    dispatch(filterPrice(selectPrice));
   };
 
   return (
@@ -77,7 +76,7 @@ const ProductPage = () => {
           <CategoryFilter allCategorys={allCategorys} />
         </select>
         <div className={style.filtro}>
-          <Price/>
+          
         </div>
       </aside>
       <main className={style.main}>
@@ -85,11 +84,11 @@ const ProductPage = () => {
           <h4>Ordenar por</h4>
           <select
             className={style.select}
-            onChange={handleProductChange}
+            onChange={handlePriceChange}
             value={productOrder}
           >
-            <option value="DESC">Menor a mayor</option>
-            <option value="ASC">Mayor a menor</option>
+            <option value="DESC">Menor precio</option>
+            <option value="ASC">Mayor precio</option>
           </select>
         </div>
         <Product currentProducts={currentProducts} />
