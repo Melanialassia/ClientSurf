@@ -1,12 +1,12 @@
 const validation = (userData) => {
   let errors = {};
 
-  if (!userData.name) {
-    errors.name = "Campo obligatorio";
+  if (!userData.nameUser) {
+    errors.nameUser = "Campo obligatorio";
   } else if (!/^[a-zA-Z]+$/.test(userData.name)) {
-    errors.name = "Solo se permiten letras en el nombre";
-  } else if (userData.name.length > 20) {
-    errors.name = "Máximo 20 caracteres";
+    errors.nameUser = "Solo se permiten letras en el nombre";
+  } else if (userData.nameUser.length > 20) {
+    errors.nameUser = "Máximo 20 caracteres";
   }
 
   if (!userData.lastName) {
@@ -17,16 +17,16 @@ const validation = (userData) => {
     errors.lastName = "Máximo 40 caracteres";
   }
 
-  if (!/\S+@\S+\.\S+/.test(userData.email)) {
-    errors.email = "Dirección de correo inválida";
+  if (!/\S+@\S+\.\S+/.test(userData.emailUser)) {
+    errors.emailUser = "Dirección de correo inválida";
   }
 
-  if (!userData.email) {
-    errors.email = "Campo obligatorio";
+  if (!userData.emailUser) {
+    errors.emailUser = "Campo obligatorio";
   }
 
-  if (userData.email.length > 35) {
-    errors.email = "Máximo 35 caracteres";
+  if (userData.emailUser.length > 35) {
+    errors.emailUser = "Máximo 35 caracteres";
   }
 
   if (!userData.password) {
