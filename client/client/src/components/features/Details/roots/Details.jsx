@@ -9,7 +9,9 @@ const Details = () => {
   const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
-  const imgRef = useRef(null); // Referencia para el elemento de imagen
+  const imgRef = useRef(null);
+
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +27,8 @@ const Details = () => {
     fetchData();
   }, [id]);
 
+  console.log(product);
+
   useEffect(() => {
     if (imgRef.current) {
         const img = imgRef.current;
@@ -32,8 +36,8 @@ const Details = () => {
             const { left, top, width, height } = e.target.getBoundingClientRect();
             const x = ((e.pageX - left) / width) * 100;
             const y = ((e.pageY - top) / height) * 100;
-            // Adjust the scale factor for zooming
-            const scaleFactor = 1.4; // You can adjust this value as needed
+            
+            const scaleFactor = 1.4;
             img.style.transformOrigin = `${x}% ${y}%`;
             img.style.transform = `scale(${scaleFactor})`;
         };
@@ -89,8 +93,7 @@ const Details = () => {
       // Resto de la lógica para agregar al carrito...
     };
  
-    console.log(selectedColor);
-    console.log(selectedSize);
+    
 
 
   
