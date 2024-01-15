@@ -56,9 +56,9 @@ const FormContainer = () => {
     }
   };
 
-  // const handleDisabled = () => {
-  //   return Object.values(errors).some((error) => error !== "");
-  // };
+  const handleDisabled = () => {
+    return Object.values(errors).some((error) => error !== "");
+  };
 
   return (
     <div className={style.container}>
@@ -94,7 +94,7 @@ const FormContainer = () => {
             name="lastName"
             onChange={handleChange}
           />
-          {/* {errors.lastName !== "" && <p>{errors.lastName}</p>} */}
+          {errors.lastName !== "" && <p>{errors.lastName}</p>}
         </div>
 
         <div>

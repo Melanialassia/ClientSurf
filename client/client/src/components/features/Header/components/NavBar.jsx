@@ -10,7 +10,7 @@ const NavBar = () => {
   return (
     <div className={style.container} >
       <nav >
-        <Flex gap="small" wrap="wrap" >
+        <Flex gap="large" wrap="wrap" >
 
 
           <NavBarButton link="/" text="HOME" />
