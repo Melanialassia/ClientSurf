@@ -1,14 +1,17 @@
 import {
   ALL_PRODUCTS,
   ALL_CATEGORYS,
+  ALL_COLORS,
   FILTER_BY_CATEGORY,
   PAGINATE,
   FILTER_PRICE,
+  FILTER_COLOR,
 } from "../actions-types/actions-types";
 
 const initialState = {
   allProducts: [],
   allCategorys: [],
+  allColors: [],
   filter: [],
   logedUser: false,
   currentPage: 1,
@@ -30,6 +33,12 @@ const reducer = (state = initialState, action) => {
         allCategorys: action.payload,
       };
 
+    case ALL_COLORS:
+      return {
+        ...state,
+        allColors: action.payload,
+      };
+
     case FILTER_BY_CATEGORY:
       return {
         ...state,
@@ -38,21 +47,31 @@ const reducer = (state = initialState, action) => {
 
     case FILTER_PRICE:
       if (action.payload === "ASC") {
-        const response = [...state.filter].sort((a, b) =>
-          a.priceProduct.localeCompare(b.priceProduct)
+        const response = [...state.filter].sort(
+          (a, b) => a.priceProduct - b.priceProduct
         );
         return {
           ...state,
           filter: [...response],
         };
       } else if (action.payload === "DESC") {
-        const response = [...state.filter].sort((a, b) =>
-          b.priceProduct.localeCompare(a.priceProduct)
+        const response = [...state.filter].sort(
+          (a, b) => b.priceProduct - a.priceProduct
         );
         return {
           ...state,
           filter: [...response],
         };
+      }
+
+    case FILTER_COLOR:
+      const selectedColor = action.payload;
+      const filteredByColor = [...state.filter].filter(
+        (product) => product.nameColor === selectedColor
+      );
+      return {
+        ...state,
+        filter: [...filteredByColor]
       };
 
     case PAGINATE:

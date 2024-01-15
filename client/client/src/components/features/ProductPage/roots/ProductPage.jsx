@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 //COMPONENTS
 import CategoryFilter from "../containers/CategoryFilter";
+import ColorFilter from "../containers/ColorFilter";
 import Product from "../containers/Product";
 import Paginate from "../containers/Paginate";
 //ACTIONS
@@ -9,10 +10,12 @@ import {
   getAllCategorys,
   getAllProducts,
   pageChange,
+  getAllColors
 } from "../../../../redux/actions/action";
 import {
   filterProductsByCategory,
   filterPrice,
+  filterColor
 } from "../../../../redux/actions/action";
 //STYLE
 import style from "./ProductPage.module.css";
@@ -22,9 +25,12 @@ const ProductPage = () => {
   const allProducts = useSelector((s) => s.filter);
   console.log("product", allProducts);
   const allCategorys = useSelector((s) => s.allCategorys);
+  const allColors = useSelector((s) => s.allColors);
 
   const [category, setCategory] = useState("");
   const [productOrder, setProductOrder] = useState("");
+  const [color, setColor] = useState("");
+  const [brand, setBrand] = useState("");
 
   //PAGINADO
   const currentPage = useSelector((s) => s.currentPage);
@@ -40,6 +46,7 @@ const ProductPage = () => {
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getAllCategorys());
+    dispatch(getAllColors())
   }, []);
 
   const handlePageChange = (pageNumber) => {
@@ -61,23 +68,37 @@ const ProductPage = () => {
     dispatch(filterPrice(selectPrice));
   };
 
+  const handlerColorChange= (event) => {
+    const selectColor = event.target.value;
+    setColor(selectColor);
+    dispatch(pageChange(1));
+    dispatch(filterColor(selectColor));
+  }
+
   return (
     <div className={style.wrapper}>
       <aside className={style.aside}>
         <header className={style.titulo}>
           <h2>Filtros</h2>
         </header>
+        <h3>Categoria</h3>
         <select
           className={style.filtro}
           onChange={handleCategoryChange}
           value={category}
         >
-          <option value="">Categorias</option>
+          <option value="">TODAS</option>
           <CategoryFilter allCategorys={allCategorys} />
         </select>
-        <div className={style.filtro}>
-          
-        </div>
+          <h3>Color</h3>
+          <select
+          className={style.filtro}
+          onChange={handlerColorChange}
+          value={color}
+          >
+           <option value="">TODAS</option>
+          <ColorFilter allColors={allColors}/>
+            </select>   
       </aside>
       <main className={style.main}>
         <div className={style.priceSection}>

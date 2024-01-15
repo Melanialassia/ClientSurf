@@ -1,10 +1,12 @@
 import {
   ALL_PRODUCTS,
   ALL_CATEGORYS,
+  ALL_COLORS,
   FILTER_BY_CATEGORY,
   PAGINATE,
   CREATE_USER,
   FILTER_PRICE,
+  FILTER_COLOR
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -26,6 +28,18 @@ export const getAllCategorys = () => {
       const { data } = await axios.get("http://localhost:3001/surf/category/");
       const result = data.data;
       return dispatch({ type: ALL_CATEGORYS, payload: result });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getAllColors = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/surf/color/");
+      const result = data.data;
+      return dispatch({ type: ALL_COLORS, payload: result });
     } catch (error) {
       console.log(error);
     }
@@ -80,5 +94,12 @@ export const postUser = (userdata) => {
 };
 
 export const isUserLoged = () => {};
+
+export const filterColor = (payload) => {
+  return {
+    type: FILTER_COLOR,
+    payload: payload
+  }
+};
 
 
