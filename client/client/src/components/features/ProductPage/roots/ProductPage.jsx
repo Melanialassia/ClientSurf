@@ -9,13 +9,12 @@ import Paginate from "../containers/Paginate";
 import {
   getAllCategorys,
   getAllProducts,
-  pageChange,
-  getAllColors
+  getAllColors,
 } from "../../../../redux/actions/action";
 import {
   filterProductsByCategory,
   filterPrice,
-  filterColor
+  filterColor,
 } from "../../../../redux/actions/action";
 //STYLE
 import style from "./ProductPage.module.css";
@@ -23,57 +22,49 @@ import style from "./ProductPage.module.css";
 const ProductPage = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((s) => s.filter);
-  console.log("product", allProducts);
   const allCategorys = useSelector((s) => s.allCategorys);
   const allColors = useSelector((s) => s.allColors);
 
   const [category, setCategory] = useState("");
   const [productOrder, setProductOrder] = useState("");
   const [color, setColor] = useState("");
-  const [brand, setBrand] = useState("");
 
   //PAGINADO
-  const currentPage = useSelector((s) => s.currentPage);
-  const productPerPage = useSelector((s) => s.productPerPage);
+  const [productPerPage, setProductPerPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  // CALCULACION DE PRODUCTOS QUE SE MUESTRA POR PÁGINA Y CANTIDAD DE PAGINAS
-  const indexOfLastPage = currentPage * productPerPage;
-  const indexOfFirstPage = indexOfLastPage - productPerPage;
-  const currentProducts = allProducts.slice(indexOfFirstPage, indexOfLastPage);
+  const lastIndex = currentPage * productPerPage;
+  const firstIndex = lastIndex - productPerPage;
   const totalProducts = allProducts.length;
-  const totalPages = Math.ceil(totalProducts / productPerPage);
 
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getAllCategorys());
-    dispatch(getAllColors())
+    dispatch(getAllColors());
+    console.log("Entre", currentPage);
   }, []);
-
-  const handlePageChange = (pageNumber) => {
-    // PARA CAMBIAR LA PAGINA
-    dispatch(pageChange(pageNumber));
-  };
 
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
-    dispatch(pageChange(1));
+
     dispatch(filterProductsByCategory(selectedCategory));
   };
 
   const handlePriceChange = (event) => {
     const selectPrice = event.target.value;
     setProductOrder(selectPrice);
-    dispatch(pageChange(1));
+
     dispatch(filterPrice(selectPrice));
   };
 
-  const handlerColorChange= (event) => {
+  const handlerColorChange = (event) => {
     const selectColor = event.target.value;
     setColor(selectColor);
-    dispatch(pageChange(1));
+
     dispatch(filterColor(selectColor));
-  }
+  };
+
 
   return (
     <div className={style.wrapper}>
@@ -90,15 +81,15 @@ const ProductPage = () => {
           <option value="">TODAS</option>
           <CategoryFilter allCategorys={allCategorys} />
         </select>
-          <h3>Color</h3>
-          <select
+        <h3>Color</h3>
+        <select
           className={style.filtro}
           onChange={handlerColorChange}
           value={color}
-          >
-           <option value="">TODAS</option>
-          <ColorFilter allColors={allColors}/>
-            </select>   
+        >
+          <option value="">TODAS</option>
+          <ColorFilter allColors={allColors} />
+        </select>
       </aside>
       <main className={style.main}>
         <div className={style.priceSection}>
@@ -112,15 +103,18 @@ const ProductPage = () => {
             <option value="ASC">Mayor precio</option>
           </select>
         </div>
-        <Product currentProducts={currentProducts} />
-      </main>
-      <>
-        <Paginate
-          currentPage={currentPage}
-          totalPages={totalPages}
-          handlePageChange={handlePageChange}
+        <Product
+          allProducts={allProducts}
+          lastIndex={lastIndex}
+          firstIndex={firstIndex}
         />
-      </>
+        <Paginate
+          productPerPage={productPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          totalProducts={totalProducts}
+        />
+      </main>
     </div>
   );
 };

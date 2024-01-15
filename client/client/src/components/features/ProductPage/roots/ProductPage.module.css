@@ -53,3 +53,7 @@ h4 {
     /* Ajusta según sea necesario, también puedes probar sin la propiedad margin-left */
     margin-left: 0; 
 }
+
+.derecha{
+    margin-left: 300px;
+}
