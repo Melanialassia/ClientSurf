@@ -15,9 +15,10 @@ const Cards = ({ product }) => {
           className={style.productimage}
         />
         <h3>
-          {product.idProduct}.{product.name}
+          {product.name}
         </h3>
         <h4>${product.priceProduct}</h4>
+        <h4>{product.nameColor}</h4>
       </Link>
     </div>
   );

@@ -1,10 +1,12 @@
 import {
   ALL_PRODUCTS,
   ALL_CATEGORYS,
+  ALL_COLORS,
   FILTER_BY_CATEGORY,
-  PAGINATE,
   CREATE_USER,
   FILTER_PRICE,
+  FILTER_COLOR
+
 
 } from "../actions-types/actions-types";
 import axios from "axios";
@@ -33,6 +35,18 @@ export const getAllCategorys = () => {
   };
 };
 
+export const getAllColors = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/surf/color/");
+      const result = data.data;
+      return dispatch({ type: ALL_COLORS, payload: result });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const filterProductsByCategory = (selectedCategory) => {
   return async (dispatch) => {
     try {
@@ -54,15 +68,6 @@ export const filterPrice = (selectedPrice) => {
   };
 };
 
-export const pageChange = (payload) => {
-  // ACCION PARA CAMBIAR LA PAGINA DE LA LISTA DE PERROS
-  return function (dispatch) {
-    dispatch({
-      type: PAGINATE,
-      payload: payload,
-    });
-  };
-};
 export const postUser = (userdata) => {
   return async function (dispatch) {
     try {
@@ -87,5 +92,12 @@ export const postUser = (userdata) => {
 
 
 
+
+export const filterColor = (payload) => {
+  return {
+    type: FILTER_COLOR,
+    payload: payload
+  }
+};
 
 
