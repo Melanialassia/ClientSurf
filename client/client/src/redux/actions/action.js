@@ -3,7 +3,6 @@ import {
   ALL_CATEGORYS,
   ALL_COLORS,
   FILTER_BY_CATEGORY,
-  PAGINATE,
   CREATE_USER,
   FILTER_PRICE,
   FILTER_COLOR
@@ -68,15 +67,6 @@ export const filterPrice = (selectedPrice) => {
   };
 };
 
-export const pageChange = (payload) => {
-  // ACCION PARA CAMBIAR LA PAGINA DE LA LISTA DE PERROS
-  return function (dispatch) {
-    dispatch({
-      type: PAGINATE,
-      payload: payload,
-    });
-  };
-};
 export const postUser = (userdata) => {
   return async function (dispatch) {
     try {

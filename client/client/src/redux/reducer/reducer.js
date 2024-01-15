@@ -3,7 +3,6 @@ import {
   ALL_CATEGORYS,
   ALL_COLORS,
   FILTER_BY_CATEGORY,
-  PAGINATE,
   FILTER_PRICE,
   FILTER_COLOR,
 } from "../actions-types/actions-types";
@@ -13,10 +12,8 @@ const initialState = {
   allCategorys: [],
   allColors: [],
   filter: [],
-  logedUser: false,
-  currentPage: 1,
-  productPerPage: 10,
-};
+  logedUser: false
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -67,17 +64,11 @@ const reducer = (state = initialState, action) => {
     case FILTER_COLOR:
       const selectedColor = action.payload;
       const filteredByColor = [...state.filter].filter(
-        (product) => product.nameColor === selectedColor
+        (product) => product.nameColor.includes(selectedColor)
       );
       return {
         ...state,
         filter: [...filteredByColor]
-      };
-
-    case PAGINATE:
-      return {
-        ...state,
-        currentPage: action.payload,
       };
 
     default:
