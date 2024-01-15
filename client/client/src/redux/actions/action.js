@@ -70,3 +70,21 @@ export const filterProductsByPrice = (minPrice, maxPrice) => {
   payload: { minPrice, maxPrice },
 };
 };
+export const postUser = (userdata) => {
+  return async function (dispatch) {
+    try {
+        const response = await axios.post('http://localhost:3001/surf/user', userdata); 
+        dispatch({
+            type: CREATE_USER,
+            payload: response.data
+        });
+    } catch (error) {
+        console.error(error)
+  
+    }
+}
+}
+
+export const isUserLoged = () => {
+
+}

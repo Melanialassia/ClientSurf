@@ -11,10 +11,12 @@ const NavBar = () => {
     <div className={style.container} >
       <nav >
         <Flex gap="small" wrap="wrap" >
-          <NavBarButton link="/" text="Home" />
-          <NavBarButton link="/products" text="Productos"/>
-          <NavBarButton link="/" text="Como comprar"/>
-          <NavBarButton link="/" text="Quienes somos" />
+
+          <NavBarButton link="/" text="HOME" />
+          <NavBarButton link="/products" text="PRODUCTOS"/>   
+          <NavBarButton link='/#como-comprar' text="COMO COMPRAR"/>
+          <NavBarButton link="/aboutus" text="QUIENES SOMOS" />
+
         </Flex>
       </nav>
     </div>

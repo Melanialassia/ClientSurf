@@ -16,19 +16,12 @@ const Home = () => {
   return (
     <div className={styles.homeContainer}>
       <div>
-        {/* <Header />
-        <button onClick={logOut}>Logout</button> */}
+        <button onClick={logOut}>Logout</button>
       </div>
 
       <div>
         <CarrouselContainer />
       </div>
-
-      {/*  <div className={styles.productFilter}>
-        <ProductFilter link="/" text="Filtrar por tablas" />
-
-        <ProductFilter link="/" text="Filtrar por indumentaria" />
-      </div> */}
 
       <div>
         <PhotoBannerContainer />
@@ -47,7 +40,6 @@ const Home = () => {
       </div>
 
       <div className={styles.footer}>
-        {/* <Footer /> */}
       </div>
     </div>
   );
