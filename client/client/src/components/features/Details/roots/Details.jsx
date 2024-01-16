@@ -1,17 +1,27 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import styles from './details.module.css';
+import { useDispatch } from 'react-redux';
+import { addToCart } from "../../../../redux/actions/action"
+
+
 
 const Details = () => {
-
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const idUser = 1
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const imgRef = useRef(null);
-
+  const [quantity, setQuantity] = useState(1);
+ 
   
+ 
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,14 +93,20 @@ const Details = () => {
       setSelectedColor(color);
     };
   
-    const addToCart = () => {
-      // Aquí puedes enviar el producto al carrito con las tallas y colores seleccionados
-      console.log('Producto agregado al carrito:', {
-        ...product,
-        selectedSize,
-        selectedColor,
-      });
-      // Resto de la lógica para agregar al carrito...
+    const handleQuantityChange = (event) => {
+      setQuantity(Number(event.target.value));
+    };
+
+    const addToCartHandler = async () => {
+      
+      try {
+        console.log("idUser:", idUser); 
+         await dispatch(addToCart(product.idProduct, 1, quantity));
+
+        
+      } catch (error) {
+        console.error('Error al agregar al carrito:', error);
+      }
     };
  
     
@@ -98,14 +114,15 @@ const Details = () => {
 
   
   return (
+    
     <div>
         <div className={styles.detailsContainer}>
         <div className={styles.imgContainer}>
           <img
             ref={imgRef}
-            src="https://http2.mlstatic.com/D_NQ_NP_756414-MLA48403444692_122021-O.webp"
+            src={product.image}
             alt="ej"
-            style={{ transform: 'scale(1.2)' }} // Asegúrate de que la imagen tenga un tamaño inicial más grande
+            style={{ transform: 'scale(1.2)' }} 
           />
         </div>
             <div className={styles.infoContainer}>
@@ -177,9 +194,19 @@ const Details = () => {
             <p>{product.description}</p>
             </div>
             <div className={styles.cartButton}>
-              <Link to='/cart'>
-                <button>Añadir al carrito</button>
-                </Link>
+            <label htmlFor="quantityInput">Cantidad:</label>
+        <input className={styles.quantityLabel}
+          type="number"
+          id="quantityInput"
+          name="quantityInput"
+          min="1"
+          max={product.stock}
+          value={quantity}
+          onChange={handleQuantityChange}
+        />
+        <Link to="/cart">
+              <button type="primary" onClick={addToCartHandler}>Añadir al carrito</button>
+              </Link>
             </div>
             </div>
         </div>
@@ -188,6 +215,7 @@ const Details = () => {
             </div>
 
     </div>
+    
   )
 }
 

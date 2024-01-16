@@ -5,6 +5,7 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_PRICE,
   FILTER_COLOR,
+  ADD_TO_CART
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -12,8 +13,14 @@ const initialState = {
   allCategorys: [],
   allColors: [],
   filter: [],
+
+  logedUser: false,
+  cart: [],
+ 
+
   filteredProducts: [],
   logedUser: false
+
 }
 
 const reducer = (state = initialState, action) => {
@@ -71,6 +78,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         filter: filteredByColor
+      };
+      case ADD_TO_CART:
+      return {
+        ...state,
+        cart: [...state.cart, action.payload],
+        
       };
 
 
