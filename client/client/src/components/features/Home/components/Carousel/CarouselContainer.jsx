@@ -11,19 +11,18 @@ const CarouselContainer = () => {
   };
 
   return (
-    
-    <Carousel autoplay >
-      <div >
-        <h3 style={contentStyle}>Image 1</h3>
+    <Carousel autoplay>
+      <div>
+        <h3 style={contentStyle}>Aqui va la 1ra imagen</h3>
       </div>
       <div>
-        <h3 style={contentStyle}>Image 2</h3>
+        <h3 style={contentStyle}>Aqui va la 2da imagen</h3>
       </div>
       <div>
-        <h3 style={contentStyle}>Image 3</h3>
+        <h3 style={contentStyle}>Aqui va la 3ra imagen</h3>
       </div>
       <div>
-        <h3 style={contentStyle}>Image 4</h3>
+        <h3 style={contentStyle}>Aqui va la 4ta imagen</h3>
       </div>
     </Carousel>
   );

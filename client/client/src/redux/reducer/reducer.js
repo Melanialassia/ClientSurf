@@ -66,7 +66,7 @@ const reducer = (state = initialState, action) => {
         const { minPrice, maxPrice } = action.payload;
         const filteredByPrice = [...state.filter].filter(
           (product) => product.priceProduct >= minPrice && product.priceProduct <= maxPrice
-        );
+        ); //escribi cualquier cosa
         return {
           ...state,
           filter: [...filteredByPrice],
