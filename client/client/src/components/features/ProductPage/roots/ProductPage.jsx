@@ -30,7 +30,7 @@ const ProductPage = () => {
   const [color, setColor] = useState("");
 
   //PAGINADO
-  const [productPerPage, setProductPerPage] = useState(3);
+  const [productPerPage, setProductPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
 
   const lastIndex = currentPage * productPerPage;
@@ -47,7 +47,6 @@ const ProductPage = () => {
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
-
     dispatch(filterProductsByCategory(selectedCategory));
   };
 
