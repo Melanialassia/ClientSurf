@@ -1,16 +1,14 @@
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 .container {
+  color: #e2dcd1;
   width: 570px;
   height: 500px;
   margin-top: -500px;
   margin-bottom: 80px;
   background-color: #2d4056;
-  margin-left: 680px;
-  margin-right: 20px;
+  margin-left: 850px;
+  margin-right: -10px;
   padding: 20px;
-  right: 10%;
-  top: 20%;
-  bottom: 20%;
   border-radius: 20px;
   box-sizing: border-box;
   display: flex;
@@ -21,6 +19,7 @@
 }
 
 .label-input-group {
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -45,12 +44,19 @@ input {
 }
 
 h2 {
+  margin-bottom: 120px;
   color: #e2dcd1;
 }
 
 h4 {
   color: #e2dcd1;
   margin-bottom: 10px;
+
+}
+
+h4 + a {
+  margin-top: auto;
+  margin-bottom: 15px;
 }
 
 button {

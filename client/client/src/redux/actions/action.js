@@ -1,11 +1,13 @@
 import {
   ALL_PRODUCTS,
   ALL_CATEGORYS,
+  ALL_COLORS,
   FILTER_BY_CATEGORY,
-  FILTER_ORDER,
-  PAGINATE,
   CREATE_USER,
-  FILTER_PRICE
+  FILTER_PRICE,
+  FILTER_COLOR
+
+
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -33,6 +35,18 @@ export const getAllCategorys = () => {
   };
 };
 
+export const getAllColors = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/surf/color/");
+      const result = data.data;
+      return dispatch({ type: ALL_COLORS, payload: result });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const filterProductsByCategory = (selectedCategory) => {
   return async (dispatch) => {
     try {
@@ -47,46 +61,43 @@ export const filterProductsByCategory = (selectedCategory) => {
   };
 };
 
-export const filterProducts = (selectedOrder) => {
+export const filterPrice = (selectedPrice) => {
   return {
-    type: FILTER_ORDER,
-    payload: selectedOrder,
+    type: FILTER_PRICE,
+    payload: selectedPrice,
   };
 };
 
-export const pageChange = (payload) => {
-  // ACCION PARA CAMBIAR LA PAGINA DE LA LISTA DE PERROS
-  return function (dispatch) {
-    dispatch({
-      type: PAGINATE,
-      payload: payload,
-    });
-  };
-};
 export const postUser = (userdata) => {
   return async function (dispatch) {
     try {
-        const response = await axios.post('http://localhost:3001/surf/user', userdata);  // ENVIA LOS DATOS 
-        dispatch({
-            type: CREATE_USER,
-            payload: response.data
-        });
+      const response = await axios.post(
+        "http://localhost:3001/surf/user",
+        userdata
+      ); // ENVIA LOS DATOS
+      dispatch({
+        type: CREATE_USER,
+        payload: response.data,
+      });
     } catch (error) {
-        throw Error ('No se pudo crear la cuenta de usuario con éxito:', error)
-  
+      throw Error("No se pudo crear la cuenta de usuario con éxito:", error);
     }
-}
-}
+  };
+};
 
-export const isUserLoged = () => {
 
-}
 
-export const filterProductsByPrice = (minPrice, maxPrice) => {
-  console.log(minPrice, maxPrice);
+
+
+
+
+
+
+export const filterColor = (payload) => {
   return {
-  type: FILTER_PRICE,
-  payload: { minPrice, maxPrice },
+    type: FILTER_COLOR,
+    payload: payload
+  }
 };
-};
+
 

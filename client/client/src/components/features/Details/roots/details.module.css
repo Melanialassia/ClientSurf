@@ -8,6 +8,8 @@ body {
     height: 100vh;
     width: 80vw;
     padding-bottom: 20px;
+    margin-left: 300px;
+    
 }
 
 .price {
@@ -28,9 +30,8 @@ body {
 .infoContainer {
     display: flex;
     flex-direction: column;
-    margin-left: 300px;
     margin-top: 80px;
-    margin-right: 200px;
+    margin-right: 380px;
     height: 90vh;
     align-items: flex-start;
     color: #2D4056;
@@ -38,24 +39,22 @@ body {
     
 }
 
-.imgContainer img {
-  width: 600px;
-  height: 800px;
-  transition: transform 0.3s ease; 
- 
+.imgContainer {
+  margin-top: 30px;
+  width: 130%;
+  height: 1200px; /* O un valor específico en píxeles */
+  overflow: hidden;
 }
-
-
 
 .imgContainer img {
   width: 600px;
   height: 800px;
   transition: transform 0.3s ease;
-  cursor: zoom-in; 
+  cursor: zoom-in;
 }
 
 .imgContainer img:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .cartButton button {
@@ -113,10 +112,12 @@ body {
 .politicas{
   margin-bottom: 100px
   
+  
 }
 
 .politicas p {
   color: #2D4056;
+  margin-left: 850px;
 }
 
 .zoom img {

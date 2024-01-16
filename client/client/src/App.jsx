@@ -11,6 +11,7 @@ import Footer from './components/features/Footer/roots/Footer';
 import Login from './components/features/Login/roots/Login';
 import Home from './components/features/Home/roots/Home';
 import Cart from './components/features/Cart/roots/Cart';
+import AboutUs from './components/features/About/roots/AboutUs';
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/details/:id' element={<Details />} />
         <Route path='/products' element={<ProductPage />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/aboutus' element= {<AboutUs/>} />
       </Routes>
       <Footer />
 

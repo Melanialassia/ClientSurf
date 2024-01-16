@@ -9,10 +9,11 @@ import style from "./FormContainer.module.css";
 
 const FormContainer = () => {
   const [userData, setUserData] = useState({
-    idLevel: 2,
+
+    idLevel: 1,
     nameUser: "",
-    user: "",
-    email: "",
+    lastName: "",
+    emailUser: "",
     password: "",
   });
 
@@ -33,9 +34,9 @@ const FormContainer = () => {
 
   useEffect(() => {
     if (
-      userData.name !== "" ||
+      userData.nameUser !== "" ||
       userData.lastName !== "" ||
-      userData.email !== "" ||
+      userData.emailUser !== "" ||
       userData.password !== ""
     ) {
       setErrors(validation(userData));
@@ -47,53 +48,40 @@ const FormContainer = () => {
     try {
       dispatch(postUser(userData));
       setIsUserCreated(true);
-      alert("Usuario creado con éxito"); //este alert está mal.
+
+
       navigate("/login");
     } catch (error) {
       console.error("No se pudo crear la cuenta de usuario con éxito:", error);
     }
   };
 
-  // const handleDisabled = () => {
-  //   return Object.values(errors).some((error) => error !== "");
-  // };
+  const handleDisabled = () => {
+    return Object.values(errors).some((error) => error !== "");
+  };
 
   return (
     <div className={style.container}>
       <h3>{infoLogin}</h3>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name" className={style["label-input-group"]}>
-            idLevel
-          </label>
-        </div>
+      <input type="hidden" name="idLevel" value={userData.idLevel} />
 
-        <div className={style["input-container"]}>
-          <input
-            type="text"
-            value={userData.idLevel}
-            name="idLevel"
-            onChange={handleChange}
-          />
-          {/* {errors.name !== "" && <p>{errors.name}</p>} */}
-        </div>
 
         <div>
-          <label htmlFor="name" className={style["label-input-group"]}>
+          <label htmlFor="nameUser" className={style["label-input-group"]}>
             {name}
           </label>
         </div>
 
         <div className={style["input-container"]}>
           <input
-            type="text"
+            type="nameUser"
             value={userData.nameUser}
             name="nameUser"
             onChange={handleChange}
           />
-          {/* {errors.name !== "" && <p>{errors.name}</p>} */}
+          {errors.nameUser !== "" && <p>{errors.nameUser}</p>}
         </div>
-
         <div>
           <label htmlFor="lastName" className={style["label-input-group"]}>
             {lastName}
@@ -101,27 +89,27 @@ const FormContainer = () => {
         </div>
         <div className={style["input-container"]}>
           <input
-            type="text"
-            value={userData.user}
-            name="user"
+            type="lastName"
+            value={userData.lastName}
+            name="lastName"
             onChange={handleChange}
           />
-          {/* {errors.lastName !== "" && <p>{errors.lastName}</p>} */}
+          {errors.lastName !== "" && <p>{errors.lastName}</p>}
         </div>
 
         <div>
-          <label htmlFor="email" className={style["label-input-group"]}>
+          <label htmlFor="emailUser" className={style["label-input-group"]}>
             {email}
           </label>
         </div>
         <div className={style["input-container"]}>
           <input
-            type="email"
-            value={userData.email}
-            name="email"
+            type="emailUser"
+            value={userData.emailUser}
+            name="emailUser"
             onChange={handleChange}
           />
-          {errors.email !== "" && <p>{errors.email}</p>}
+          {errors.emailUser !== "" && <p>{errors.emailUser}</p>}
         </div>
 
         <div>
@@ -138,8 +126,7 @@ const FormContainer = () => {
           />
           {errors.password !== "" && <p>{errors.password}</p>}
         </div>
-
-        <button type="submit">Crear mi cuenta</button>
+        <button type="submit" disabled={handleDisabled}>Crear mi cuenta</button>
       </form>
     </div>
   );
