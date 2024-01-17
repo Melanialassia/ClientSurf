@@ -12,6 +12,7 @@ import Login from './components/features/Login/roots/Login';
 import Home from './components/features/Home/roots/Home';
 import Cart from './components/features/Cart/roots/Cart';
 import AboutUs from './components/features/About/roots/AboutUs';
+import Services from './components/features/Services/roots/Services';
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='/products' element={<ProductPage />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/aboutus' element= {<AboutUs/>} />
+        <Route path='/services' element= {<Services/>}/>
       </Routes>
       <Footer />
 

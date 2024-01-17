@@ -7,5 +7,6 @@ export const ALL_PRODUCTS = "ALL_PRODUCTS";
 export const FILTER_PRICE = "FILTER_PRICE";
 export const FILTER_COLOR = "FILTER_COLOR";
 export const ADD_TO_CART = "ADD_TO_CART";
+export const POST_LOGIN = "POST_LOGIN";
 
 

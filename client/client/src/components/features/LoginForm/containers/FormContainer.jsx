@@ -9,8 +9,6 @@ import style from "./FormContainer.module.css";
 
 const FormContainer = () => {
   const [userData, setUserData] = useState({
-
-    idLevel: 1,
     nameUser: "",
     lastName: "",
     emailUser: "",
@@ -56,16 +54,14 @@ const FormContainer = () => {
     }
   };
 
-  const handleDisabled = () => {
-    return Object.values(errors).some((error) => error !== "");
-  };
+  // const handleDisabled = () => {
+  //   return Object.values(errors).some((error) => error !== "");
+  // };
 
   return (
     <div className={style.container}>
       <h3>{infoLogin}</h3>
       <form onSubmit={handleSubmit}>
-      <input type="hidden" name="idLevel" value={userData.idLevel} />
-
 
         <div>
           <label htmlFor="nameUser" className={style["label-input-group"]}>
@@ -126,7 +122,7 @@ const FormContainer = () => {
           />
           {errors.password !== "" && <p>{errors.password}</p>}
         </div>
-        <button type="submit" disabled={handleDisabled}>Crear mi cuenta</button>
+        <button type="submit" >Crear mi cuenta</button>
       </form>
     </div>
   );
