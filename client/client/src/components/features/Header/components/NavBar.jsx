@@ -4,19 +4,24 @@ import NavBarButton from "./NavBarButton";
 import style from './NavBar.module.css';
 
 
+
 const NavBar = () => {
 
-    // TODO: Actualizar rutas y agregar estilos
+
   return (
     <div className={style.container} >
       <nav >
+
         <Flex gap="large" wrap="wrap" >
 
 
           <NavBarButton link="/" text="HOME" />
-          <NavBarButton link="/products" text="PRODUCTOS"/>   
-          <NavBarButton link='/#como-comprar' text="COMO COMPRAR"/>
-          <NavBarButton link="/aboutus" text="QUIENES SOMOS" />
+          <NavBarButton link="/products" text="PRODUCTOS"/>
+          <NavBarButton link="/servicios" text="SERVICIOS"/>    
+          <li className={style.li}>
+            <a href="#como-comprar">COMO COMPRAR</a>
+          </li>
+          <NavBarButton link="/aboutus" text="PROPOSITO" />
 
 
         </Flex>
