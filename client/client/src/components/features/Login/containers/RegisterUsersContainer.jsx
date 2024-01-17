@@ -78,6 +78,7 @@ const RegisterUsersContainer = () => {
     <div className={style.container}>
       <h2>{registerCustomers}</h2>
       <h4>{textRegisterCustomers}</h4>
+      <hr className={style.hr}/>
       <form action="" onSubmit={handleSubmit}>
         <div className={style["label-input-group"]}>
           <label htmlFor="email">{email}</label>
