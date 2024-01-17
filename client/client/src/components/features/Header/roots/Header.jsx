@@ -1,26 +1,51 @@
-import React from "react";
-import {
-  HeartFilled,
-  UserOutlined,
-  ShoppingCartOutlined,
-} from "@ant-design/icons";
-import { Avatar } from "antd";
-import NavBar from "../components/NavBar";
+//Hooks
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
+//Librarys
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { Button } from "antd";
+//Components
+import NavBar from "../components/NavBar";
+//style-sheets
 import styles from "./Header.module.css";
+//JavaScript
 
 const Header = () => {
+  const data = useSelector((state) => state.dataUser);
+
+  const location = useLocation();
+let userAccess = null;
+  // const userAccess = !data ? data.access : null;
+  if(data){
+   userAccess = data.access;
+} 
+
+
+  console.log(userAccess)
+
+  const styledButton = {
+    backgroundColor: "#30445c",
+    borderRadius: "20px",
+    color: "#e2dcd1",
+    marginTop: "-5px",
+    textAlign: "center",
+    fontWeight: "500",
+    fontSize: "20px",
+    padding: "20px 20px",
+    lineHeight: "-0px",
+  };
+
   return (
     <div className={styles.headerContainer}>
       <div>
         <a href="/">
-        <img
-          className={styles.logo}
-          src="/assets/images/LogoOla.png"
-          alt="Logo"
-         
-        />
-
+          <img
+            className={styles.logo}
+            src="/assets/images/LogoOla.png"
+            alt="Logo"
+          />
         </a>
       </div>
 
@@ -28,37 +53,23 @@ const Header = () => {
         <NavBar />
       </div>
 
-      <div>
-        <div className={styles.iconButton}>
-          <Link>
-            <HeartFilled
-              style={{
-                color: "red",
-                fontSize: "30px",
-              }}
-            />
-          </Link>
+      {!userAccess && (
+        <div>
+          <ul className={styles.menuitems}>
+            <li>
+              <Link to="/login">
+                <a href="">Iniciar sesión</a>
+              </Link>
+            </li>
 
-          <Link to="/login">
-            <Avatar
-              style={{
-                backgroundColor: "#28445c",
-              }}
-              size={30}
-              icon={
-                <UserOutlined
-                  style={{
-                    color: "white",
-                    fontSize: "20px",
-                  }}
-                />
-              }
-            />
-          </Link>
+            <Link to={"/account/create"}>
+              <Button type="primary" style={styledButton}>
+                Registrarse
+              </Button>
+            </Link>
+          </ul>
         </div>
-
-        <input type="text" placeholder="Search..." />
-      </div>
+      )}
 
       <div>
         <Link to="/">

@@ -10,7 +10,7 @@ import styles from "./HowToBuyContainer.module.css"
 
 const HowToBuyContainer = () => {
   return (
-    <div className={styles.container}>
+    <div id='como-comprar' className={styles.container}>
       <div>COMO COMPRAR</div>
 
       <div>

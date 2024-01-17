@@ -1,24 +1,30 @@
 import React from "react";
 import { auth, provider } from "../utils/firebaseConfig";
 import { signInWithPopup } from "firebase/auth";
+import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { userLogin } from "../../../../redux/actions/action";
 import {
   registerCustomers,
   textRegisterCustomers,
   loginWithGoogle,
   email,
   password,
+  login
 } from "../utils/constants";
 import style from "./RegisterUsersContainer.module.css";
-import axios from "axios";
 import Home from "../../Home/roots/Home";
 
 const RegisterUsersContainer = () => {
+ 
+  const dispatch = useDispatch();
+
   const [error, setError] = useState(null);
 
   const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
@@ -33,32 +39,12 @@ const RegisterUsersContainer = () => {
     password: "",
   });
 
-  const [access, setAccess] = useState(true);
-
-  async function login(userData) {
-    try {
-      const { email, password } = userData;
-      console.log(userData);
-      const URL = `http://localhost:3001/surf/login`;
-      const response = await axios.post(URL, userData);
-      console.log(response);
-      const { data } = response;
-
-      const { access } = data;
-      setAccess(access);
-      if (access) {
-        navigate("/");
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-    }
-  }
-
-  const handleSubmit = (e) => {
-    alert(userData);
-    e.preventDefault();
-    login(userData);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(userLogin(userData));
+    navigate('/');
   };
+
   const handleChange = (event) => {
     setUserData({
       ...userData,
@@ -78,6 +64,7 @@ const RegisterUsersContainer = () => {
     <div className={style.container}>
       <h2>{registerCustomers}</h2>
       <h4>{textRegisterCustomers}</h4>
+      <hr className={style.hr}/>
       <form action="" onSubmit={handleSubmit}>
         <div className={style["label-input-group"]}>
           <label htmlFor="email">{email}</label>
@@ -102,7 +89,7 @@ const RegisterUsersContainer = () => {
             />
           </div>
         </div>
-        <button type="submit">Iniciar seción</button>
+        <button type="submit">{login}</button>
       </form>
 
       {userEmail ? (

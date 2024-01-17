@@ -7,8 +7,9 @@
   align-items: center;
   background-color: #2D4056;
   padding: 10px;
-  width: 100%;
-  margin-bottom: -20px;
+  width: 1500px;
+  height: 300px;
+  margin-top: 170px;
   margin-left: -10px;
   margin-right: -10px;
   border-radius: 20px;
@@ -17,10 +18,8 @@
 }
 
 .logo {
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  border: 2px solid rgb(32, 67, 95);
+  width: 250px;
+  height: 250px;
 }
 
 .policies {
@@ -41,4 +40,9 @@
   display: flex;
   justify-content: space-around;
   width: 250px;
+}
+
+.logoIg {
+  width: 60px;
+  height: 60px;
 }

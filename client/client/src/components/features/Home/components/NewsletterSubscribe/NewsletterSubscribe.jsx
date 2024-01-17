@@ -1,5 +1,4 @@
 import React from "react";
-import { MailOutlined } from "@ant-design/icons";
 import styles from "./NewsletterSubscribe.module.css";
 import { Input } from "antd";
 

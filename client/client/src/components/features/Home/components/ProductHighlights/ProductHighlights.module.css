@@ -1,10 +1,10 @@
-/* Styles.module.css */
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
 .container {
   display: flex;
   flex-direction: column;
   font-family: "Montserrat", sans-serif;
+  margin-top: 130px;
 }
 
 .container > div:first-child {
@@ -18,8 +18,8 @@
 }
 
 .container > div:last-child img {
-  width: 19%; /* Esto dividirá el ancho total de la pantalla entre las 5 imágenes, dejando un 1% para los espacios entre imágenes */
+  width: 19%;
   height: auto;
-  border-radius: 10px; /* Esto hará que los bordes de las imágenes sean curvos */
+  border-radius: 10px;
   padding: 5px;
 }

@@ -1,11 +1,14 @@
 import {
-  ALL_PRODUCTS,
-  ALL_CATEGORYS,
-  ALL_COLORS,
   FILTER_BY_CATEGORY,
+  GET_NAME_PRODUCTS,
+  ALL_CATEGORYS,
+  ALL_PRODUCTS,
   FILTER_PRICE,
   FILTER_COLOR,
-  ADD_TO_CART
+  ADD_TO_CART,
+  POST_LOGIN,
+  ALL_COLORS,
+  PAGINATE,
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -13,17 +16,20 @@ const initialState = {
   allCategorys: [],
   allColors: [],
   filter: [],
+  productPerPage: 10,
+  currentPage: 1,
 
 
   logedUser: false,
   cart: [],
- 
+
+  dataUser: null,
+
 
   filteredProducts: [],
-  logedUser: false
+  logedUser: false,
+};
 
-
-}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -46,11 +52,17 @@ const reducer = (state = initialState, action) => {
         allColors: action.payload,
       };
 
+    case GET_NAME_PRODUCTS:
+      return {
+        ...state,
+        filter: action.payload,
+      };
+
     case FILTER_BY_CATEGORY:
       return {
         ...state,
         filter: action.payload,
-        filteredProducts: [...action.payload]
+        filteredProducts: [...action.payload],
       };
 
     case FILTER_PRICE:
@@ -74,22 +86,31 @@ const reducer = (state = initialState, action) => {
 
     case FILTER_COLOR:
       const selectedColor = action.payload;
-      const filteredByColor = state.filteredProducts.filter(
-        (product) => product.nameColor.includes(selectedColor)
+      const filteredByColor = state.filteredProducts.filter((product) =>
+        product.nameColor.includes(selectedColor)
       );
       return {
         ...state,
-        filter: filteredByColor
+        filter: filteredByColor,
       };
-      case ADD_TO_CART:
+    case ADD_TO_CART:
       return {
         ...state,
         cart: [...state.cart, action.payload],
-        
       };
       
 
+    case POST_LOGIN:
+      return {
+        ...state,
+        dataUser: action.payload,
+      };
 
+    case PAGINATE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
 
     default:
       return {

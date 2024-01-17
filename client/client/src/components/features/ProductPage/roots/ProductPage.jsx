@@ -3,18 +3,18 @@ import React, { useEffect, useState } from "react";
 //COMPONENTS
 import CategoryFilter from "../containers/CategoryFilter";
 import ColorFilter from "../containers/ColorFilter";
-import Product from "../containers/Product";
+import SearchBar from "../containers/SearchBar";
 import Paginate from "../containers/Paginate";
+import Product from "../containers/Product";
 //ACTIONS
 import {
+  filterProductsByCategory,
   getAllCategorys,
   getAllProducts,
   getAllColors,
-} from "../../../../redux/actions/action";
-import {
-  filterProductsByCategory,
   filterPrice,
   filterColor,
+  pageChange
 } from "../../../../redux/actions/action";
 //STYLE
 import style from "./ProductPage.module.css";
@@ -30,18 +30,24 @@ const ProductPage = () => {
   const [color, setColor] = useState("");
 
   //PAGINADO
-  const [productPerPage, setProductPerPage] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
+  const currentPage = useSelector((state) => state.currentPage);
+  const productPerPage = useSelector((state) => state.productPerPage);
 
-  const lastIndex = currentPage * productPerPage;
-  const firstIndex = lastIndex - productPerPage;
+  const indexOfLastPage = currentPage * productPerPage;
+  const indexofFirstPage = indexOfLastPage - productPerPage;
+  const currentPoducts = allProducts.slice(indexofFirstPage, indexOfLastPage);
   const totalProducts = allProducts.length;
+  const totalPage = Math.ceil(totalProducts / productPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    // PARA CAMBIAR LA PAGINA DE PERROS
+    dispatch(pageChange(pageNumber));
+  };
 
   useEffect(() => {
-    dispatch(getAllProducts());
     dispatch(getAllCategorys());
+    dispatch(getAllProducts());
     dispatch(getAllColors());
-    console.log("Entre", currentPage);
   }, []);
 
   const handleCategoryChange = (event) => {
@@ -53,23 +59,20 @@ const ProductPage = () => {
   const handlePriceChange = (event) => {
     const selectPrice = event.target.value;
     setProductOrder(selectPrice);
-
     dispatch(filterPrice(selectPrice));
   };
 
   const handlerColorChange = (event) => {
     const selectColor = event.target.value;
     setColor(selectColor);
-
     dispatch(filterColor(selectColor));
   };
-
 
   return (
     <div className={style.wrapper}>
       <aside className={style.aside}>
         <header className={style.titulo}>
-          <h2>Filtros</h2>
+          <h2 className={style.filter}>FILTRAR POR</h2>
         </header>
         <h3>Categoria</h3>
         <select
@@ -102,16 +105,14 @@ const ProductPage = () => {
             <option value="ASC">Mayor precio</option>
           </select>
         </div>
-        <Product
-          allProducts={allProducts}
-          lastIndex={lastIndex}
-          firstIndex={firstIndex}
-        />
+        <div>
+          <SearchBar />
+        </div>
+        <Product currentPoducts={currentPoducts} />
         <Paginate
-          productPerPage={productPerPage}
+          totalPage={totalPage}
           currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          totalProducts={totalProducts}
+          handlePageChange={handlePageChange}
         />
       </main>
     </div>
