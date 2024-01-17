@@ -32,6 +32,7 @@ body {
     flex-direction: column;
     margin-top: 80px;
     margin-right: 380px;
+    margin-left: 50px;
     height: 90vh;
     align-items: flex-start;
     color: #2D4056;
@@ -41,7 +42,7 @@ body {
 
 .imgContainer {
   margin-top: 30px;
-  width: 130%;
+  width: 110%;
   height: 1200px; /* O un valor específico en píxeles */
   overflow: hidden;
 }
@@ -61,17 +62,17 @@ body {
   padding: 10px 20px;
   background-color: #2D4056; 
   color: #fff; 
-  border: 2px solid #2D4056; 
-  border-radius: 5px; 
+  border: 2px solid #2D4056;  
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-left: 130px;
+  margin-left: 100px;
   margin-top: 40px;
+  border-radius: 5px;
+  
 }
 
 .cartButton button:hover {
-  background-color: rgb(84, 121, 133); 
-  border-color: rgb(84, 121, 133); 
+  background-color: rgb(44, 182, 88); 
+  border-color: rgb(44, 182, 88); 
   transform: scale(1.05);
 }
 
@@ -122,5 +123,19 @@ body {
 
 .zoom img {
   transition: transform 0.5s ease;
+}
+
+.quantityLabel {
+    margin-left: 10px;
+    border: 2px solid #000; 
+    
+}
+
+.cartButton button:disabled {
+  background-color: #bdc3c7; 
+  color: #7f8c8d; 
+  border-color: #bdc3c7; 
+  cursor: not-allowed; 
+  transform: none; 
 }
 

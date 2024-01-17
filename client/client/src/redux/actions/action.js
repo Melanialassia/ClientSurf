@@ -5,7 +5,8 @@ import {
   FILTER_BY_CATEGORY,
   CREATE_USER,
   FILTER_PRICE,
-  FILTER_COLOR
+  FILTER_COLOR,
+  ADD_TO_CART
 
 
 } from "../actions-types/actions-types";
@@ -81,6 +82,26 @@ export const postUser = (userdata) => {
       });
     } catch (error) {
       throw Error("No se pudo crear la cuenta de usuario con éxito:", error);
+    }
+  };
+};
+
+export const addToCart = (productId, idUser, amount) => {
+  console.log("idUser in addToCart:", idUser); // Verifica que idUser tenga un valor definido
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:3001/surf/cart', {
+        idProduct: productId,
+        idUser,
+        amount,
+      });
+
+      dispatch({
+        type: ADD_TO_CART,
+        payload: response.data, 
+      });
+    } catch (error) {
+      console.error('Error al agregar al carrito:', error);
     }
   };
 };
