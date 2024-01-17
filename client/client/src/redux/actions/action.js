@@ -119,9 +119,12 @@ export const userLogin =  (userData) => {
 }
 
 export const addToCart = (productId, idUser, amount) => {
+  console.log("idUser in addToCart:", idUser); // Verifica que idUser tenga un valor definido
   return async (dispatch) => {
     try {
+
       const response = await axios.post("http://localhost:3001/surf/cart", {
+
         idProduct: productId,
         idUser,
         amount,
@@ -132,8 +135,9 @@ export const addToCart = (productId, idUser, amount) => {
         payload: response.data,
       });
     } catch (error) {
-      console.error("Error al agregar al carrito:", error);
-      console.error("Error object:", error);
+
+      console.error('Error al agregar al carrito:', error);
+
     }
   };
 };

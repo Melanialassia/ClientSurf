@@ -19,14 +19,17 @@ const initialState = {
   productPerPage: 10,
   currentPage: 1,
 
+
   logedUser: false,
   cart: [],
 
   dataUser: null,
 
+
   filteredProducts: [],
   logedUser: false,
 };
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -95,6 +98,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         cart: [...state.cart, action.payload],
       };
+      
 
     case POST_LOGIN:
       return {
