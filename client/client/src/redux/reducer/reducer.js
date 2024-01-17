@@ -5,7 +5,8 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_PRICE,
   FILTER_COLOR,
-  ADD_TO_CART
+  ADD_TO_CART,
+  POST_LOGIN
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   logedUser: false,
   cart: [],
  
+  dataUser: null,
 
   filteredProducts: [],
   logedUser: false
@@ -86,7 +88,11 @@ const reducer = (state = initialState, action) => {
         
       };
 
-
+      case POST_LOGIN:
+        return {
+          ...state,
+          dataUser: action.payload
+        }
 
     default:
       return {

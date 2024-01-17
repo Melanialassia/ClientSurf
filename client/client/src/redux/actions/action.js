@@ -6,9 +6,8 @@ import {
   CREATE_USER,
   FILTER_PRICE,
   FILTER_COLOR,
-  ADD_TO_CART
-
-
+  ADD_TO_CART,
+  POST_LOGIN,
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -86,41 +85,46 @@ export const postUser = (userdata) => {
   };
 };
 
+export const userLogin =  (userData) => {
+  return async function (dispatch){ 
+  console.log(userData)
+  try {
+    const URL = `http://localhost:3001/surf/login`;
+    const response = await axios.post(URL, userData);
+    console.log(response);
+    dispatch({
+      type: POST_LOGIN,
+      payload: response.data,
+    })
+  } catch (error) {
+    console.log("Error during login:", error);
+  }
+}
+}
+
 export const addToCart = (productId, idUser, amount) => {
   return async (dispatch) => {
     try {
-      
-      const response = await axios.post('http://localhost:3001/surf/cart', {
+      const response = await axios.post("http://localhost:3001/surf/cart", {
         idProduct: productId,
         idUser,
         amount,
       });
- 
 
       dispatch({
         type: ADD_TO_CART,
-        payload: response.data, 
+        payload: response.data,
       });
     } catch (error) {
-      console.error('Error al agregar al carrito:', error);
-      console.error('Error object:', error);
+      console.error("Error al agregar al carrito:", error);
+      console.error("Error object:", error);
     }
   };
 };
 
-
-
-
-
-
-
-
-
 export const filterColor = (payload) => {
   return {
     type: FILTER_COLOR,
-    payload: payload
-  }
+    payload: payload,
+  };
 };
-
-
