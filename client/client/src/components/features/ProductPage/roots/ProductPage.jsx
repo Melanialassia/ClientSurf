@@ -47,7 +47,6 @@ const ProductPage = () => {
   const handleCategoryChange = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
-
     dispatch(filterProductsByCategory(selectedCategory));
   };
 
