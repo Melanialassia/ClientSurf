@@ -1,4 +1,3 @@
-import { Divider } from "antd";
 import React from "react";
 import styles from "./ProductHighlights.module.css";
 

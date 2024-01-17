@@ -1,13 +1,12 @@
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
-/* Styles.module.css */
 .container {
   display: flex;
   flex-direction: column;
-  height: 400px;
-  background-color: burlywood;
+  height: 300px;
+  background-color: #F2E3A5;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-top: 140px;
   align-items: center;
   justify-content: center;
   font-family: "Montserrat", sans-serif;

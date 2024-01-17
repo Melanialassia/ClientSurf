@@ -3,18 +3,19 @@ import { Carousel } from "antd";
 
 const CarouselContainer = () => {
   const contentStyle = {
-    height: "400px",
+    height: "450px",
     color: "#fff",
     lineHeight: "400px",
     textAlign: "center",
     background: "#364d79",
   };
 
+
   return (
 
 
     <Carousel autoplay>
-      <div>
+      <div >
 
         <h3 style={contentStyle}>Image 1</h3>
 

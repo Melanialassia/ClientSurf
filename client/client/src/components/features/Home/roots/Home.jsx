@@ -1,5 +1,3 @@
-import Footer from "../../Footer/roots/Footer";
-import Header from "../../Header/roots/Header";
 import CarrouselContainer from "../components/Carousel/CarouselContainer";
 import HowToBuyContainer from "../components/HowToBuy/HowToBuyContainer";
 import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";

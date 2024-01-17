@@ -4,6 +4,9 @@
   display: flex;
   justify-content: space-between;
   font-family: "Montserrat", sans-serif;
+  margin-top: 190px;
+  font-size: large;
+  text-align: center;
 }
 
 .container > div {
@@ -13,7 +16,6 @@
 .container > div:first-child {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 
@@ -28,4 +30,5 @@
   margin-top: 10px;
   margin-left: 60px;
   height: auto;
+  border-radius: 20px;
 }

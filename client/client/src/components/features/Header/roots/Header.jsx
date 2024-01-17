@@ -10,6 +10,9 @@ import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const Header = () => {
+
+
+    
   return (
     <div className={styles.headerContainer}>
       <div>
@@ -55,6 +58,7 @@ const Header = () => {
               }
             />
           </Link>
+      
         </div>
 
         <input type="text" placeholder="Search..." />
@@ -62,6 +66,7 @@ const Header = () => {
 
       <div>
         <Link to="/">
+
           <ShoppingCartOutlined
             style={{
               color: "#28445c",
@@ -73,5 +78,6 @@ const Header = () => {
     </div>
   );
 };
+
 
 export default Header;

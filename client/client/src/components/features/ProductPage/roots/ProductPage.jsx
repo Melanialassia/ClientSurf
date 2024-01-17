@@ -69,7 +69,7 @@ const ProductPage = () => {
     <div className={style.wrapper}>
       <aside className={style.aside}>
         <header className={style.titulo}>
-          <h2>Filtros</h2>
+          <h2 className={style.filter}>FILTRAR POR</h2>
         </header>
         <h3>Categoria</h3>
         <select
