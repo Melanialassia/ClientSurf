@@ -13,9 +13,16 @@ const initialState = {
   allCategorys: [],
   allColors: [],
   filter: [],
+
+
   logedUser: false,
   cart: [],
-  
+ 
+
+  filteredProducts: [],
+  logedUser: false
+
+
 }
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +50,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         filter: action.payload,
+        filteredProducts: [...action.payload]
       };
 
     case FILTER_PRICE:
@@ -66,12 +74,12 @@ const reducer = (state = initialState, action) => {
 
     case FILTER_COLOR:
       const selectedColor = action.payload;
-      const filteredByColor = [...state.filter].filter(
+      const filteredByColor = state.filteredProducts.filter(
         (product) => product.nameColor.includes(selectedColor)
       );
       return {
         ...state,
-        filter: [...filteredByColor]
+        filter: filteredByColor
       };
       case ADD_TO_CART:
       return {
@@ -79,6 +87,7 @@ const reducer = (state = initialState, action) => {
         cart: [...state.cart, action.payload],
         
       };
+      
 
 
 

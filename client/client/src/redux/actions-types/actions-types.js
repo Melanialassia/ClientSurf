@@ -8,3 +8,4 @@ export const FILTER_PRICE = "FILTER_PRICE";
 export const FILTER_COLOR = "FILTER_COLOR";
 export const ADD_TO_CART = "ADD_TO_CART";
 
+
