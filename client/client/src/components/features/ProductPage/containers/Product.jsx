@@ -1,12 +1,10 @@
 import Cards from "../components/Cards";
 import style from "./Product.module.css";
 
-const Product = ({ allProducts, lastIndex, firstIndex }) => {
+const Product = ({ currentPoducts}) => {
   return (
     <div className={style.contenedorproductos}>
-      {allProducts
-      .slice(firstIndex,lastIndex)
-      .map((product) => (
+      {currentPoducts .map((product) => (
         <Cards product={product} key={product.idProduct} />
       ))}
     </div>

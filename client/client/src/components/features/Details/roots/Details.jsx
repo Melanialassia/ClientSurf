@@ -98,12 +98,10 @@ const Details = () => {
     };
 
     const addToCartHandler = async () => {
-      
       try {
         console.log("idUser:", idUser); 
-         await dispatch(addToCart(product.idProduct, 1, quantity));
-
-        
+        await dispatch(addToCart(product.idProduct, 1, quantity));
+        navigate('/cart'); 
       } catch (error) {
         console.error('Error al agregar al carrito:', error);
       }
@@ -195,6 +193,23 @@ const Details = () => {
             </div>
             <div className={styles.cartButton}>
             <label htmlFor="quantityInput">Cantidad:</label>
+<<<<<<< HEAD
+            <select className={styles.quantityLabel}
+            id="quantityInput"
+            name="quantityInput"
+            value={quantity}
+            onChange={handleQuantityChange}
+          >
+            {[...Array(product.stock).keys()].map((count) => (
+              <option key={count + 1} value={count + 1}>
+                {count + 1}
+              </option>
+            ))}
+          </select>
+      
+              <button disabled={product.stock === 0} onClick={addToCartHandler}>Añadir al carrito</button>
+              
+=======
         <input className={styles.quantityLabel}
           type="number"
           id="quantityInput"
@@ -207,6 +222,7 @@ const Details = () => {
         <Link to="/cart">
               <button type="primary" onClick={addToCartHandler}>Añadir al carrito</button>
               </Link>
+>>>>>>> 18ceb5a5688216a7335597b7be7ded54997e5cb9
             </div>
             </div>
         </div>

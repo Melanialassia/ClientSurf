@@ -1,15 +1,18 @@
 import {
-  ALL_PRODUCTS,
-  ALL_CATEGORYS,
-  ALL_COLORS,
   FILTER_BY_CATEGORY,
-  CREATE_USER,
+  GET_NAME_PRODUCTS,
+  ALL_CATEGORYS,
+  ALL_PRODUCTS,
   FILTER_PRICE,
   FILTER_COLOR,
-  ADD_TO_CART,
   ALL_FAVORITES,
   ADD_TO_FAVORITES,
   DELETE_FAVORITES,
+  CREATE_USER,
+  ADD_TO_CART,
+  POST_LOGIN,
+  ALL_COLORS,
+  PAGINATE
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -63,6 +66,20 @@ export const filterProductsByCategory = (selectedCategory) => {
   };
 };
 
+export const getProductsByName = (nameProduct) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:3001/surf/product?name=" + nameProduct
+      );
+      const result = data.listProducts;
+      return dispatch({ type: GET_NAME_PRODUCTS, payload: result });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export const filterPrice = (selectedPrice) => {
   return {
     type: FILTER_PRICE,
@@ -87,9 +104,28 @@ export const postUser = (userdata) => {
   };
 };
 
+export const userLogin =  (userData) => {
+  return async function (dispatch){ 
+  console.log(userData)
+  try {
+    const URL = `http://localhost:3001/surf/login`;
+    const response = await axios.post(URL, userData);
+    console.log(response);
+    dispatch({
+      type: POST_LOGIN,
+      payload: response.data,
+    })
+  } catch (error) {
+    console.log("Error during login:", error);
+  }
+}
+}
+
 export const addToCart = (productId, idUser, amount) => {
+  console.log("idUser in addToCart:", idUser); // Verifica que idUser tenga un valor definido
   return async (dispatch) => {
     try {
+
       const response = await axios.post("http://localhost:3001/surf/cart", {
         idProduct: productId,
         idUser,
@@ -101,10 +137,18 @@ export const addToCart = (productId, idUser, amount) => {
         payload: response.data,
       });
     } catch (error) {
-      console.error("Error al agregar al carrito:", error);
-      console.error("Error object:", error);
+      console.error('Error al agregar al carrito:', error);
     }
   };
+};
+
+export const pageChange = (payload) => {  // ACCION PARA CAMBIAR LA PAGINA DE LA LISTA DE PERROS
+  return function (dispatch) {
+      dispatch({
+          type: PAGINATE,
+          payload: payload
+      });
+  }
 };
 
 export const filterColor = (payload) => {
