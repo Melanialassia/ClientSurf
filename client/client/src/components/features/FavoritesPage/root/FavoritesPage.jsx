@@ -4,6 +4,8 @@ import { getAllFavoriteProducts } from "../../../../redux/actions/action";
 import styles from "./FavoritesPage.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { Button, Empty } from 'antd';
+import EmptyPage from "../../EmptyPage/roots/EmptyPage";
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
@@ -19,11 +21,21 @@ const FavoritesPage = () => {
     <div className={styles.container}>
       <p className={styles.title}>Favoritos</p>
 
-      <div>
+      {favoriteProducts.length === 0 ? (
+        <EmptyPage />
+      ) : (
+        <div>
+          {favoriteProducts.map((product) => (
+            <FavoriteCard key={product.idProduct} product={product} />
+          ))}
+        </div>
+      )}
+
+      {/*       <div>
         {favoriteProducts.map((product) => {
           return <FavoriteCard key={product.idProduct} product={product} />;
         })}
-      </div>
+      </div> */}
     </div>
   );
 };
