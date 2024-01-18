@@ -13,6 +13,7 @@ import Home from './components/features/Home/roots/Home';
 import Cart from './components/features/Cart/roots/Cart';
 import AboutUs from './components/features/About/roots/AboutUs';
 import Services from './components/features/Services/roots/Services';
+import CreateProducts from './adminComponents/features/CreateProduct/roots/CreateProducts';
 
 const App = () => {
 
@@ -31,6 +32,7 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/aboutus' element= {<AboutUs/>} />
         <Route path='/services' element= {<Services/>}/>
+        <Route path='/admin/dashboard' element= {<CreateProducts/>} />
       </Routes>
       <Footer />
 
