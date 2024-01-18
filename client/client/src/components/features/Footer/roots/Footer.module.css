@@ -8,7 +8,7 @@
   background-color: #2D4056;
   padding: 10px;
   width: 1500px;
-  height: 300px;
+  height: 250px;
   margin-top: 170px;
   margin-left: -10px;
   margin-right: -10px;
@@ -23,14 +23,12 @@
 }
 
 .policies {
-
-  border: 3px solid white;
-  border-radius: 10px;
   height: 180px;
-  width: 250px;
-  align-items: center;
-  display: grid ;
-  justify-content: space-around;
+  width: 280px;
+  margin-top: 50px;
+  margin-left: 130px;
+  display: flex;
+  flex-direction: row;
 }
 
 .socialMedia {
@@ -45,4 +43,5 @@
 .logoIg {
   width: 60px;
   height: 60px;
+  margin-right: 120px;
 }

@@ -108,6 +108,7 @@ const reducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
 
+
     default:
       return {
         ...state,

@@ -11,6 +11,9 @@ const AboutUs = () => {
         </p>
       </div>
 
+      <br />
+      <br />
+
       <div className={style.columncontainer}>
         <p>
         Por eso, nuestro compromiso está enfocado en equiparte y asesorarte,
@@ -18,6 +21,10 @@ const AboutUs = () => {
         emprender ruta hacia el mar. 
         </p> 
       </div>
+
+      <br />
+      <br />
+      
       <div className={style.columncontainer}>
         <p>
         El mar está lejos, pero nosotros te

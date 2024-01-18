@@ -17,11 +17,11 @@ const NavBar = () => {
 
           <NavBarButton link="/" text="HOME" />
           <NavBarButton link="/products" text="PRODUCTOS"/>
-          <NavBarButton link="/servicios" text="SERVICIOS"/>    
+          <NavBarButton link="/services" text="SERVICIOS"/>    
           <li className={style.li}>
             <a href="#como-comprar">COMO COMPRAR</a>
           </li>
-          <NavBarButton link="/aboutus" text="PROPOSITO" />
+          <NavBarButton link="/aboutus" text="PROPÓSITO" />
 
 
         </Flex>

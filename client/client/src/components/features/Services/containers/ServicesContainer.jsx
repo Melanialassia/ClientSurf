@@ -1,14 +1,24 @@
-import React from 'react'
+//hooks
+import React from "react";
+//contants
+import {
+  fixedSurfBoards,
+  fixedWetSuits,
+  surfLessons,
+  garageSurfBoards,
+} from "../utils/constants";
+//style-sheets
+import styles from "./ServicesContainer.module.css";
 
 const ServicesContainer = () => {
   return (
-    <div>
-      <p>Reparación de tablas</p>
-      <p>Reparación de trajes de neoprene</p>
-      <p>Información de clases de surf</p>
-      <p>Guardería de tablas</p>
+    <div className={styles.container}>
+      <p>{fixedSurfBoards}</p>
+      <p>{fixedWetSuits}</p>
+      <p>{surfLessons}</p>
+      <p>{garageSurfBoards}</p>
     </div>
-  )
+  );
 };
 
 export default ServicesContainer;
