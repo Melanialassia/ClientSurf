@@ -5,7 +5,10 @@ import {
   FILTER_BY_CATEGORY,
   FILTER_PRICE,
   FILTER_COLOR,
-  ADD_TO_CART
+  ADD_TO_CART,
+  ALL_FAVORITES,
+  ADD_TO_FAVORITES,
+  DELETE_FAVORITES,
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -15,13 +18,12 @@ const initialState = {
   filter: [],
 
   logedUser: false,
+  favoriteProducts: [],
   cart: [],
- 
 
   filteredProducts: [],
-  logedUser: false
-
-}
+  logedUser: false,
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -48,7 +50,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         filter: action.payload,
-        filteredProducts: [...action.payload]
+        filteredProducts: [...action.payload],
       };
 
     case FILTER_PRICE:
@@ -72,22 +74,28 @@ const reducer = (state = initialState, action) => {
 
     case FILTER_COLOR:
       const selectedColor = action.payload;
-      const filteredByColor = state.filteredProducts.filter(
-        (product) => product.nameColor.includes(selectedColor)
+      const filteredByColor = state.filteredProducts.filter((product) =>
+        product.nameColor.includes(selectedColor)
       );
       return {
         ...state,
-        filter: filteredByColor
+        filter: filteredByColor,
       };
-      case ADD_TO_CART:
+    case ADD_TO_CART:
       return {
         ...state,
         cart: [...state.cart, action.payload],
-        
       };
-
-
-
+    case ALL_FAVORITES:
+      return {
+        ...state,
+        favoriteProducts: action.payload,
+      };
+    case DELETE_FAVORITES:
+      return {
+        ...state,
+        favoriteProducts: action.payload,
+      };
     default:
       return {
         ...state,

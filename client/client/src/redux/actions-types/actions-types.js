@@ -7,5 +7,7 @@ export const ALL_PRODUCTS = "ALL_PRODUCTS";
 export const FILTER_PRICE = "FILTER_PRICE";
 export const FILTER_COLOR = "FILTER_COLOR";
 export const ADD_TO_CART = "ADD_TO_CART";
-
+export const ALL_FAVORITES = "ALL_FAVORITES";
+export const ADD_TO_FAVORITES = "ADD_TO_FAVORITES";
+export const DELETE_FAVORITES = "DELETE_FAVORITES";
 
