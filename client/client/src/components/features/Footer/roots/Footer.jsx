@@ -12,9 +12,13 @@ const Footer = () => {
         />
       </div>
 
-      <div>
+      <div className={styles.policies}>
         <p>MI CUENTA</p>
-        <p>POLITICA DE CAMBIO</p>
+        </div>
+        <div className={styles.policies}>
+        <p>POLÍTICA DE CAMBIO</p>
+        </div>
+        <div className={styles.policies}>
         <p>CONTACTO</p>
       </div>
       <a

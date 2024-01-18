@@ -142,7 +142,7 @@ export const addToCart = (productId, idUser, amount) => {
   };
 };
 
-export const pageChange = (payload) => {  // ACCION PARA CAMBIAR LA PAGINA DE LA LISTA DE PERROS
+export const pageChange = (payload) => { 
   return function (dispatch) {
       dispatch({
           type: PAGINATE,
