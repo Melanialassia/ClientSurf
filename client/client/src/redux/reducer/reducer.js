@@ -6,6 +6,9 @@ import {
   FILTER_PRICE,
   FILTER_COLOR,
   ADD_TO_CART,
+  ALL_FAVORITES,
+  ADD_TO_FAVORITES,
+  DELETE_FAVORITES,
   POST_LOGIN,
   ALL_COLORS,
   PAGINATE,
@@ -18,12 +21,10 @@ const initialState = {
   filter: [],
   productPerPage: 10,
   currentPage: 1,
-
   logedUser: false,
+  favoriteProducts: [],
   cart: [],
-
   dataUser: null,
-
   filteredProducts: [],
   logedUser: false,
 };
@@ -36,32 +37,27 @@ const reducer = (state = initialState, action) => {
         allProducts: action.payload,
         filter: [...action.payload],
       };
-
     case ALL_CATEGORYS:
       return {
         ...state,
         allCategorys: action.payload,
       };
-
     case ALL_COLORS:
       return {
         ...state,
         allColors: action.payload,
       };
-
     case GET_NAME_PRODUCTS:
       return {
         ...state,
         filter: action.payload,
       };
-
     case FILTER_BY_CATEGORY:
       return {
         ...state,
         filter: action.payload,
         filteredProducts: [...action.payload],
       };
-
     case FILTER_PRICE:
       if (action.payload === "ASC") {
         const response = [...state.filter].sort(
@@ -95,20 +91,27 @@ const reducer = (state = initialState, action) => {
         ...state,
         cart: [...state.cart, action.payload],
       };
-
+    case ALL_FAVORITES:
+      return {
+        ...state,
+        favoriteProducts: action.payload,
+      };
+    case DELETE_FAVORITES:
+      return {
+        ...state,
+        favoriteProducts: action.payload,
+      };
     case POST_LOGIN:
       return {
         ...state,
         dataUser: action.payload,
       };
-
     case PAGINATE:
       return {
         ...state,
         currentPage: action.payload,
       };
-
-
+      
     default:
       return {
         ...state,

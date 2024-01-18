@@ -126,9 +126,16 @@ body {
 }
 
 .quantityLabel {
-  width: 30px; /* Define el ancho del input */
-    height: 20px; /* Define la altura del input */
-    border: 2px solid #000; /* Define el borde del input */
     margin-left: 10px;
+    border: 2px solid #000; 
+    
+}
+
+.cartButton button:disabled {
+  background-color: #bdc3c7; 
+  color: #7f8c8d; 
+  border-color: #bdc3c7; 
+  cursor: not-allowed; 
+  transform: none; 
 }
 
