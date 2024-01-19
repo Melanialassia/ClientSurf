@@ -14,7 +14,7 @@ import {
   getAllColors,
   filterPrice,
   filterColor,
-  pageChange
+  pageChange,
 } from "../../../../redux/actions/action";
 //STYLE
 import style from "./ProductPage.module.css";
@@ -24,7 +24,7 @@ const ProductPage = () => {
   const allProducts = useSelector((s) => s.filter);
   const allCategorys = useSelector((s) => s.allCategorys);
   const allColors = useSelector((s) => s.allColors);
-
+  console.log("entre", allProducts);
   const [category, setCategory] = useState("");
   const [productOrder, setProductOrder] = useState("");
   const [color, setColor] = useState("");
@@ -40,7 +40,7 @@ const ProductPage = () => {
   const totalPage = Math.ceil(totalProducts / productPerPage);
 
   const handlePageChange = (pageNumber) => {
-    // PARA CAMBIAR LA PAGINA DE PERROS
+    // PARA CAMBIAR LA PAGINA 
     dispatch(pageChange(pageNumber));
   };
 
@@ -71,9 +71,7 @@ const ProductPage = () => {
   return (
     <div className={style.wrapper}>
       <aside className={style.aside}>
-        <header className={style.titulo}>
-          <h2 className={style.filter}>FILTRAR POR</h2>
-        </header>
+          <h2>FILTROS</h2>
         <h3>Categoria</h3>
         <select
           className={style.filtro}
@@ -90,12 +88,15 @@ const ProductPage = () => {
           value={color}
         >
           <option value="">TODAS</option>
-          <ColorFilter allColors={allColors} />
+          <ColorFilter allColors={allColors} handlerColorChange={handlerColorChange}/>
         </select>
       </aside>
+
       <main className={style.main}>
+        <div>
+          <SearchBar />
+        </div>
         <div className={style.priceSection}>
-          <h4>Ordenar por</h4>
           <select
             className={style.select}
             onChange={handlePriceChange}
@@ -106,14 +107,15 @@ const ProductPage = () => {
           </select>
         </div>
         <div>
-          <SearchBar />
+          <Product currentPoducts={currentPoducts} />
         </div>
-        <Product currentPoducts={currentPoducts} />
-        <Paginate
-          totalPage={totalPage}
-          currentPage={currentPage}
-          handlePageChange={handlePageChange}
-        />
+        <div>
+          <Paginate
+            totalPage={totalPage}
+            currentPage={currentPage}
+            handlePageChange={handlePageChange}
+          />
+        </div>
       </main>
     </div>
   );

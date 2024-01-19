@@ -1,24 +1,33 @@
-
-import style from "./Cards.module.css";
+import React from "react";
 import { Link } from "react-router-dom";
-
-
+import style from "./Cards.module.css";
+//LIBRARY
+import { Card } from 'antd';
+const { Meta } = Card;
 
 const Cards = ({ product }) => {
-
   return (
-    <div >
+    <div>
       <Link to={`/details/${product.idProduct}`}>
-        <img
-          src={product.image}
-          alt=""
-          className={style.productimage}
-        />
-        <h3 className={style.container}>
-          {product.name}
-        </h3>
-        <h4 className={style.container}>${product.priceProduct}</h4>
-        <h4 >{product.nameColor}</h4>
+      <Card
+        hoverable
+        style={{
+          width: 240,
+          margin:"10px",
+          padding: "40px"
+        }}
+        cover={
+          <img
+            alt="example"
+            src={product.image}
+          />
+        }
+      >
+        <Meta title={product.name} />
+        <Meta title={`Color: ${product.nameColor}`} />
+          <Meta description={`$${product.priceProduct}`} />
+      </Card>
+       
       </Link>
     </div>
   );

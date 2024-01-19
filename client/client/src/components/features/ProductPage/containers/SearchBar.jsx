@@ -1,30 +1,44 @@
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-//ACTION
-import {getProductsByName} from "../../../../redux/actions/action";
+import { Input, Space, Tooltip, Button } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { getProductsByName } from "../../../../redux/actions/action";
 
 const SearchBar = () => {
-    const [nameProduct, setNameProduct] = useState("");
-    const dispatch = useDispatch();
+  const [nameProduct, setNameProduct] = useState("");
+  const dispatch = useDispatch();
 
-    const handleChange = (event) => {
-        setNameProduct(event.target.value);
-    };
+  const handleChange = (event) => {
+    setNameProduct(event.target.value);
+  };
 
-    const handleSubmit = ()=> {
-        dispatch(getProductsByName(nameProduct));
-    };
+  const handleSubmit = () => {
+    dispatch(getProductsByName(nameProduct));
+  };
 
-    return ( 
-        <>
-        <input
-        type="search"
+  return (
+    <Space>
+      <Input
         placeholder="Buscar..."
-        onChange={(event) => handleChange(event)}
+        onChange={handleChange}
+        value={nameProduct}
+        style={{ width: 200 }}
+      />
+      <Tooltip title="Buscar">
+        <Button
+          shape="circle"
+          icon={<SearchOutlined />}
+          type="submit"
+          onClick={handleSubmit}
+          style={{ marginTop: "0px" }}
         />
-        <button type="submit" onClick={handleSubmit}>Buscar</button>
-        </>
-    )
+      </Tooltip>
+    </Space>
+  );
 };
 
 export default SearchBar;
+
+
+
+
