@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styles from './details.module.css';
 import { useDispatch } from 'react-redux';
 import { addToCart } from "../../../../redux/actions/action"
@@ -18,6 +18,7 @@ const Details = () => {
   const [selectedColor, setSelectedColor] = useState('');
   const imgRef = useRef(null);
   const [quantity, setQuantity] = useState(1);
+  
  
   
  
@@ -100,7 +101,9 @@ const Details = () => {
     const addToCartHandler = async () => {
       try {
         console.log("idUser:", idUser); 
-        await dispatch(addToCart(product.idProduct, 1, quantity));
+        console.log(product);
+        await dispatch(addToCart(product.idProduct, 1, quantity, product.description));
+
         navigate('/cart'); 
       } catch (error) {
         console.error('Error al agregar al carrito:', error);
@@ -132,68 +135,30 @@ const Details = () => {
                 <h2>${product.priceProduct}</h2>
                 </div>
                 
-
-                <div className={styles.characteristics}>
-                <h3>Características:</h3>
-                <ul>
-                {filteredCharacteristics.map(([key, value]) => (
-  <li key={key}>
-    {key === 'Talla' ? (
-      // Si la característica es "Talla", renderiza botones
-      <>
-        <strong>{key}:</strong> {value.split(',').map((talla) => (
-          <button
-          key={talla}
-          style={{
-            marginRight: '5px',
-            border: talla === selectedSize ? '2px solid lightblue' : '2px solid transparent',
-          }}
-          onClick={() => handleSizeSelect(talla)}
-        >
-          {talla}
-        </button>
-        ))}
-      </>
-    ) : key === 'Color' ? (
-      // Si la característica es "Color", renderiza botones
-      <>
-        <strong>{key}:</strong> {value.split('/').map((color) => (
-          <button
-          key={color}
-          style={{
-            backgroundColor: translateColor(color),
-            marginRight: '5px',
-            width: '20px',
-            height: '20px',
-            border: `4px solid ${translateColor(color) === selectedColor ? 'lightblue' : 'transparent'}`,
-          }}
-          onClick={() => handleColorSelect(translateColor(color))}
-        >
-          {/* Puedes agregar aquí el texto o icono que desees */}
-        </button>
-        ))}
-      </>
-    ) : (
-      // Si no es "Talla" ni "Color", renderiza como texto
-      <>
-        <strong>{key}:</strong> {value}
-      </>
-    )}
-  </li>
-))}
-              </ul>
-              
-            </div>
+               
           </div>
         
             <div className={styles.description}>
               <h3>Descripcion:</h3>
 
             <p>{product.description}</p>
+            <p>
+              <div className={styles.color}>
+    <strong>Color:</strong> {product.nameColor}
+    </div>
+    <br />
+    <div className={styles.size}>
+    <br />
+    <strong>Talle:</strong> {product.nameSize}
+    </div>
+    <div className={styles.stock}>
+    <strong>Stock:</strong> {product.stock > 0 ? 'Disponible' : 'Agotado'}
+    </div>
+  </p>
             </div>
             <div className={styles.cartButton}>
             <label htmlFor="quantityInput">Cantidad:</label>
-{/* <<<<<<< HEAD
+
             <select className={styles.quantityLabel}
             id="quantityInput"
             name="quantityInput"
@@ -209,20 +174,7 @@ const Details = () => {
       
               <button disabled={product.stock === 0} onClick={addToCartHandler}>Añadir al carrito</button>
               
-======= */}
-        <input className={styles.quantityLabel}
-          type="number"
-          id="quantityInput"
-          name="quantityInput"
-          min="1"
-          max={product.stock}
-          value={quantity}
-          onChange={handleQuantityChange}
-        />
-        <Link to="/cart">
-              <button type="primary" onClick={addToCartHandler}>Añadir al carrito</button>
-              </Link>
-{/* >>>>>>> 18ceb5a5688216a7335597b7be7ded54997e5cb9 */}
+
             </div>
             </div>
         </div>

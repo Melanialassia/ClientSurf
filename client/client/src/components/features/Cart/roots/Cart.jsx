@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Cart = () => {
   const [cartData, setCartData] = useState(null);
  
-
+  
   const fetchCartData = async () => {
     try {
       const response = await axios.get('http://localhost:3001/surf/cart/1');
@@ -15,14 +15,15 @@ const Cart = () => {
       console.error('Error al cargar el carrito:', error);
     }
   };
-
+  
   useEffect(() => {
     fetchCartData();
     
   }, []); 
-
+  
   const cartListItems = cartData?.cartList || [];
-
+  console.log(cartData);
+  
   const handleRemoveProduct = async (productId) => {
     try {
       await axios.delete(`http://localhost:3001/surf/cart/1`);
@@ -32,6 +33,32 @@ const Cart = () => {
     }
   };
 
+  const handleFinish = async () => {
+    let listCart = cartListItems.map((item) => {
+      return {
+        id: item.idProduct, 
+        name: item.name,
+        image: item.image,
+        price: item.priceProduct, 
+        quantity: item.amount, 
+        description: item.description, 
+        userId: "1",
+      };
+    });
+    
+    console.log(listCart);
+    try {
+      const response = await axios.post('http://localhost:3001/surf/mecado', listCart);
+      console.log('Response:', response);
+      const data = response.data;
+      
+      console.log(data);
+      window.location.href = data;
+    } catch (error) {
+      console.error('Error al finalizar la compra:', error);
+    }
+  }
+  
   return (
     <div className={styles.cartContainer}>
       {cartListItems.length > 0 ? (
@@ -67,7 +94,7 @@ const Cart = () => {
       {cartListItems.length > 0 && (
         <div className={styles.totalPriceContainer}>
           <p>Total de venta: <strong>${cartData?.costSale || 0}</strong></p>
-          <button className={styles.buyButton}>Finalizar Compra</button>
+          <button className={styles.buyButton} onClick={handleFinish}>Finalizar Compra</button>
         </div>
       )}
     </div>

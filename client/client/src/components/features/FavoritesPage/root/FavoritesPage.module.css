@@ -1,3 +1,5 @@
+@import url("https://fonts.cdnfonts.com/css/montserrat");
+
 .container {
   display: flex;
   flex-direction: column;
@@ -10,4 +12,5 @@
 .title {
   font-weight: bold;
   font-size: 2em;
+  font-family: "Montserrat", sans-serif;
 }
