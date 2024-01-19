@@ -5,13 +5,42 @@ import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSub
 import PhotoBannerContainer from "../components/PhotoBanner/PhotoBannerContainer";
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
 import styles from "./Home.module.css";
-import { useSelector } from "react-redux";
+
+import { useSelector, useDispatch } from "react-redux";
+import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
+import { useEffect } from "react";
+import { getIdUser } from "../../../../redux/actions/action";
 
 const Home = () => {
-  const open = useSelector((s) => s.openModal);
+  const dispatch = useDispatch();
+
+ const dataUser = useSelector((state) => state.dataUser);  
+
+ let userInfoFistrLogin = null;
+
+ if(dataUser){
+    userInfoFistrLogin = dataUser.idUser;
+ }
+
+  const open = useSelector((state) => state.openModal);
+
+  const handleOpenModal = () => {
+    dispatch({ type: OPEN_MODAL });
+  };
+
+  useEffect(()=>{
+    if(nombre){
+    dispatch(getIdUser(userInfoFistrLogin))
+    }
+  }, [userInfoFistrLogin])
 
   return (
     <div className={styles.homeContainer}>
+      <div>
+        <button onClick={handleOpenModal}>Open model</button>
+      </div>
+
+
       <div>
         <LoginModal open={open} />
       </div>

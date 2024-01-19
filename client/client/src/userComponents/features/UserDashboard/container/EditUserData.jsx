@@ -1,16 +1,13 @@
 //HOOKS
 import React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 //LIBRARYS
 import { Button, Form, Input } from "antd";
-//REDUX
-import { postUser } from "../../../../redux/actions/action";
-//CONstANTS
-import { infoLogin, saveChanges } from "../utils/constants";
+//CONSTANTS
+import { saveChanges, editPersonalData } from "../utils/constants";
 //STYLE-SHEETS
-import styles from "./FormContainer.module.css";
+import styles from "./EditUserData.module.css";
 
 const layout = {
   labelCol: {
@@ -22,9 +19,9 @@ const layout = {
 };
 
 const validateMessages = {
-  required: "Campo obligatorio!",
+  required: "${label} is required!",
   types: {
-    email: "No es un email válido!",
+    email: "${label} is not a valid email!",
     number: "${label} is not a valid number!",
   },
   number: {
@@ -32,59 +29,62 @@ const validateMessages = {
   },
 };
 
-const FormContainer = () => {
-  const [userData, setUserData] = useState({
-    nameUser: "",
-    lastName: "",
-    emailUser: "",
-    password: "",
-  });
+const onFinish = (values) => {
+  console.log(values);
+};
+
+const EditUserData = () => {
+
+  const userData = useSelector((state)=> state.userData);
+  console.log("LLegue",userData);
 
   const dispatch = useDispatch();
 
-  const [isUserCreated, setIsUserCreated] = useState(false);
+  const [dataUser, setDataUser] = useState({
+      idUser: userData.idUser,
+      nameUser: userData.nameUser,
+      lastName: userData.lastName,
+      emailUser: userData.emailUser
+  });
 
-  const navigate = useNavigate();
+  useEffect(() => {
 
-  const handleChange = (name, value) => {
-    setUserData({
-      ...userData,
-      [name]: value,
+    setDataUser({
+      idUser: userData.idUser,
+      nameUser: userData.nameUser,
+      lastName: userData.lastName,
+      emailUser: userData.emailUser,
     });
+  }, [userData]);
+
+  const handleSubmit = () => {
+    dispatch();
+  ;
   };
-
-  const handleSubmit = async () => {
-    try {
-      dispatch(postUser(userData));
-      setIsUserCreated(true);
-      navigate("/login");
-    } catch (error) {
-      console.error("No se pudo crear la cuenta de usuario con éxito:", error);
-    }
-  };
-
-  // const handleDisabled = () => {
-  //   return Object.values(errors).some((error) => error !== "");
-  // };
-
+console.log("hola", userData.nameUser);
   return (
-    <div className={styles.container}>
-      <h3>{infoLogin}</h3>
-
+    <div>
+      <h4 className={styles.text}>{editPersonalData}</h4>
       <Form
+        initialValues={{
+          user: {
+            nameUser: userData.nameUser,
+            lastName: userData.lastName,
+            emailUser: userData.emailUser
+          },
+        }}
         {...layout}
         className={styles.container}
         name="nest-messages"
-        onFinish={handleSubmit}
+        onFinish={onFinish}
         style={{
-          marginTop: "80px",
+          marginTop: "-80px",
           maxWidth: 600,
-          fontSize: "200px",
         }}
         validateMessages={validateMessages}
       >
         <Form.Item
-          name={["user", "name"]}
+          name={["user", "nameUser"]}
           label="Nombre"
           rules={[
             {
@@ -92,7 +92,7 @@ const FormContainer = () => {
             },
           ]}
         >
-          <Input onChange={(e) => handleChange("nameUser", e.target.value)} />
+          <Input  />
         </Form.Item>
 
         <Form.Item
@@ -104,11 +104,11 @@ const FormContainer = () => {
             },
           ]}
         >
-          <Input onChange={(e) => handleChange("lastName", e.target.value)} />
+          <Input />
         </Form.Item>
 
         <Form.Item
-          name={["user", "email"]}
+          name={["user", "emailUser"]}
           label="Email"
           rules={[
             {
@@ -117,7 +117,7 @@ const FormContainer = () => {
             },
           ]}
         >
-          <Input onChange={(e) => handleChange("emailUser", e.target.value)} />
+          <Input />
         </Form.Item>
 
         <Form.Item
@@ -131,9 +131,7 @@ const FormContainer = () => {
           ]}
           hasFeedback
         >
-          <Input.Password
-            onChange={(e) => handleChange("password", e.target.value)}
-          />
+          <Input.Password />
         </Form.Item>
 
         <Form.Item
@@ -151,4 +149,4 @@ const FormContainer = () => {
   );
 };
 
-export default FormContainer;
+export default EditUserData;

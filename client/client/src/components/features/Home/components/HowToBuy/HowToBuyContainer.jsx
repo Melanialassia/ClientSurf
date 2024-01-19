@@ -30,7 +30,7 @@ const HowToBuyContainer = () => {
             }
           />
 
-          <p>BUSCA TU PRODUCTO EN LA TIENDA</p>
+          <p>BUSCÁ TU PRODUCTO EN LA TIENDA</p>
         </div>
 
         <div>
@@ -49,7 +49,7 @@ const HowToBuyContainer = () => {
             }
           />
 
-          <p>ELEGÍ TALLA, COLOR O TAMAÑO Y AGREGALO AL CARRITO</p>
+          <p>ELEGÍ TALLE, COLOR Y AGREGALO AL CARRITO</p>
         </div>
 
         <div>
@@ -68,7 +68,7 @@ const HowToBuyContainer = () => {
             }
           />
 
-          <p>COMPLETA TUS DATOS DE ENVIO Y METODO DE PAGO</p>
+          <p>COMPLETÁ TUS DATOS DE ENVÍO Y MÉTODO DE PAGO</p>
         </div>
 
         <div>
@@ -87,7 +87,7 @@ const HowToBuyContainer = () => {
             }
           />
 
-          <p>DISFRUTA</p>
+          <p>DISFRUTÁ</p>
         </div>
       </div>
     </div>

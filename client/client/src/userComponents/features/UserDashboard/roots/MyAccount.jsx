@@ -1,14 +1,14 @@
-//hooks
-import React from 'react';
-//components
-import MyProfile from '../container/MyProfile';
+//HOOKS
+import React from "react";
+//COMPONENTS
+import MyProfile from "../container/MyProfile";
 
 const MyAccount = () => {
   return (
     <div>
-        <MyProfile/>
+      <MyProfile />
     </div>
-  )
-}
+  );
+};
 
-export default MyAccount
+export default MyAccount;
