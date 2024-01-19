@@ -15,6 +15,8 @@ import AboutUs from './components/features/About/roots/AboutUs';
 import FavoritesPage from './components/features/FavoritesPage/root/FavoritesPage';
 import Services from './components/features/Services/roots/Services';
 import CreateProducts from './adminComponents/features/CreateProduct/roots/CreateProducts';
+import MyAccount from './userComponents/features/UserDashboard/roots/MyAccount';
+import ChangePolicy from './components/features/ChangePolicy/components/ChangePolicy';
 
 const App = () => {
 
@@ -35,6 +37,8 @@ const App = () => {
         <Route path='/favorites' element= {<FavoritesPage/>} />
         <Route path='/services' element= {<Services/>}/>
         <Route path='/admin/dashboard' element= {<CreateProducts/>} />
+        <Route path='/my-account' element= {<MyAccount/>} />
+        <Route path='/change-policy' element= {<ChangePolicy />} />
       </Routes>
       <Footer />
 

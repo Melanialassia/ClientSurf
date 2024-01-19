@@ -13,6 +13,7 @@ import {
   POST_LOGIN,
   ALL_COLORS,
   PAGINATE,
+  LOGOUT
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -206,4 +207,11 @@ export const deleteFavorite = (idUser, idProduct) => {
     }
   };
 };
+
+ export const logOut = () => {
+  return {
+    type: LOGOUT
+  };
+ };
+
 

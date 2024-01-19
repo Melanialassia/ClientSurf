@@ -9,14 +9,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 
 const Home = () => {
+
+
+
   const dispatch = useDispatch();
 
   const open = useSelector((s) => s.openModal);
 
-  const logOut = () => {
-    localStorage.clear();
-    window.location.reload();
-  };
+
 
   const handleOpenModal = () => {
     dispatch({ type: OPEN_MODAL });
@@ -24,6 +24,8 @@ const Home = () => {
 
   return (
     <div className={styles.homeContainer}>
+
+
       <div>
         <button onClick={logOut}>Logout</button>
         <br></br>
@@ -33,6 +35,7 @@ const Home = () => {
       <div>
         <LoginModal open={open} />
       </div>
+
 
       <div>
         <CarrouselContainer />

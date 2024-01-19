@@ -12,6 +12,7 @@ import {
   POST_LOGIN,
   ALL_COLORS,
   PAGINATE,
+  LOGOUT
   OPEN_MODAL,
   CLOSE_MODAL
 } from "../actions-types/actions-types";
@@ -114,6 +115,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentPage: action.payload,
       };
+    case LOGOUT:
+        return {
+          ...state,
+          dataUser: null,
+          logedUser: false,
+        };
+      
     case OPEN_MODAL:
       return {
         ...state,
@@ -124,6 +132,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         openModal: false,
       };
+
     default:
       return {
         ...state,
