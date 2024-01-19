@@ -1,10 +1,13 @@
 import {
   FILTER_BY_CATEGORY,
   GET_NAME_PRODUCTS,
+  GET_ALL_BRANDS,
   ALL_CATEGORYS,
+  GET_ALL_SIZE,
   ALL_PRODUCTS,
   FILTER_PRICE,
   FILTER_COLOR,
+  POST_PRODUCT,
   ALL_FAVORITES,
   ADD_TO_FAVORITES,
   DELETE_FAVORITES,
@@ -32,7 +35,7 @@ export const getAllProducts = () => {
 export const getAllCategorys = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/category/");
+      const { data } = await axios.get("http://localhost:3001/surf/category");
       const result = data.data;
       return dispatch({ type: ALL_CATEGORYS, payload: result });
     } catch (error) {
@@ -71,8 +74,9 @@ export const getProductsByName = (nameProduct) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3001/surf/product?name=" + nameProduct
+        "http://localhost:3001/surf/product?nameProducts=" + nameProduct
       );
+      console.log("accion", data);
       const result = data.listProducts;
       return dispatch({ type: GET_NAME_PRODUCTS, payload: result });
     } catch (error) {
@@ -105,22 +109,22 @@ export const postUser = (userdata) => {
   };
 };
 
-export const userLogin =  (userData) => {
-  return async function (dispatch){ 
-  console.log(userData)
-  try {
-    const URL = `http://localhost:3001/surf/login`;
-    const response = await axios.post(URL, userData);
-    console.log(response);
-    dispatch({
-      type: POST_LOGIN,
-      payload: response.data,
-    })
-  } catch (error) {
-    console.log("Error during login:", error);
-  }
-}
-}
+export const userLogin = (userData) => {
+  return async function (dispatch) {
+    console.log(userData);
+    try {
+      const URL = `http://localhost:3001/surf/login`;
+      const response = await axios.post(URL, userData);
+      console.log(response);
+      dispatch({
+        type: POST_LOGIN,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log("Error during login:", error);
+    }
+  };
+};
 
 export const addToCart = (productId, idUser, amount) => {
   console.log("idUser in addToCart:", idUser); 
@@ -145,17 +149,60 @@ export const addToCart = (productId, idUser, amount) => {
 
 export const pageChange = (payload) => { 
   return function (dispatch) {
-      dispatch({
-          type: PAGINATE,
-          payload: payload
-      });
-  }
+    dispatch({
+      type: PAGINATE,
+      payload: payload,
+    });
+  };
 };
 
 export const filterColor = (payload) => {
   return {
     type: FILTER_COLOR,
     payload: payload,
+  };
+};
+
+
+export const getAllBrands = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/surf/brand");
+      const result = data.data;
+      dispatch({
+        type: GET_ALL_BRANDS,
+        payload: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getAllSize = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/surf/size");
+      const result = data.data;
+      dispatch({
+        type: GET_ALL_SIZE,
+        payload: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const postProduct = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:3001/surf/product", data);
+      dispatch({type: POST_PRODUCT, payload: response.data});
+      return response
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
@@ -213,5 +260,6 @@ export const deleteFavorite = (idUser, idProduct) => {
     type: LOGOUT
   };
  };
+
 
 
