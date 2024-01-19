@@ -118,17 +118,20 @@ export const postUser = (userdata) => {
 
 export const userLogin = (userData) => {
   return async function (dispatch) {
-    console.log(userData);
     try {
       const URL = `http://localhost:3001/surf/login`;
       const response = await axios.post(URL, userData);
       console.log(response);
+      localStorage.setItem('access', JSON.stringify(response.data.access));
+      localStorage.setItem('userId', response.data.idUser); 
+      
+      
       dispatch({
         type: POST_LOGIN,
         payload: response.data,
       });
     } catch (error) {
-      console.log("Error during login:", error);
+      console.log('Error durante el inicio de sesión:', error);
     }
   };
 };
@@ -263,6 +266,7 @@ export const deleteFavorite = (idUser, idProduct) => {
 };
 
 export const logOut = () => {
+  localStorage.removeItem('access');
   return {
     type: LOGOUT,
   };

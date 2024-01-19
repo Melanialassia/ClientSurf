@@ -5,8 +5,8 @@ body {
 .detailsContainer{
     display: flex;
     flex-direction: row;
-    height: 100vh;
-    width: 80vw;
+    height: 80vh;
+    width: 85vw;
     padding-bottom: 20px;
     margin-left: 300px;
     
@@ -36,26 +36,27 @@ body {
     height: 90vh;
     align-items: flex-start;
     color: #2D4056;
+    width: 50%;
     
     
 }
 
 .imgContainer {
   margin-top: 30px;
-  width: 110%;
-  height: 1200px; /* O un valor específico en píxeles */
+  width: 80%;
+  height: 700px; 
   overflow: hidden;
 }
 
 .imgContainer img {
   width: 600px;
-  height: 800px;
+  height: 600px;
   transition: transform 0.3s ease;
   cursor: zoom-in;
 }
 
 .imgContainer img:hover {
-  transform: scale(1.1);
+  transform: scale(1.0);
 }
 
 .cartButton button {
@@ -65,8 +66,9 @@ body {
   border: 2px solid #2D4056;  
   cursor: pointer;
   margin-left: 100px;
-  margin-top: 40px;
+  margin-top: 60px;
   border-radius: 5px;
+  font-size: medium;
   
 }
 
@@ -88,7 +90,8 @@ body {
 }
 
 .color{
-  margin-top: 30px
+  margin-left: 0px
+
 }
 .size{
   margin-bottom: 20px;
@@ -99,10 +102,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     padding-left: 0;
-   
-    
   }
 
   .characteristics ul {
@@ -123,14 +123,17 @@ body {
 }
 
 .politicas{
-  margin-bottom: 100px
+  margin-top: 40px
   
   
 }
 
 .politicas p {
   color: #2D4056;
-  margin-left: 850px;
+  margin-left: 500px;
+  align-items: center;
+  width: 900px;
+  font-size: small;
 }
 
 .zoom img {
@@ -152,3 +155,19 @@ body {
   transform: none; 
 }
 
+.favoriteButton {
+  padding: 10px 20px;
+  background-color: transparent; 
+  color: #fff; 
+  border: none; 
+  cursor: pointer;
+  margin-left: 150px;
+  margin-bottom: 40px;
+  border-radius: 5px;
+  height: fit-content;
+}
+
+.favoriteButton:hover {
+  
+  transform: scale(1.57);
+}

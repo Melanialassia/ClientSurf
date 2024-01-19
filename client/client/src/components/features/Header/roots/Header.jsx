@@ -23,6 +23,13 @@ const Header = () => {
   // const userAccess = !data ? data.access : null;
   if (data) {
     userAccess = data.access;
+
+    // Guardar el valor de access en el localStorage
+    localStorage.setItem('access', JSON.stringify(userAccess));
+  } else {
+    // Si no hay datos de usuario, intenta recuperar el valor desde el localStorage
+    const storedAccess = localStorage.getItem('access');
+    userAccess = storedAccess ? JSON.parse(storedAccess) : null;
   }
 
   console.log(userAccess);

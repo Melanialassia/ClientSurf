@@ -29,7 +29,7 @@ const Home = () => {
   };
 
   useEffect(()=>{
-    if(nombre){
+    if(userInfoFistrLogin){
     dispatch(getIdUser(userInfoFistrLogin))
     }
   }, [userInfoFistrLogin])
