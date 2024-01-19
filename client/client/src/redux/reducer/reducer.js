@@ -1,8 +1,10 @@
 import {
   FILTER_BY_CATEGORY,
   GET_NAME_PRODUCTS,
+  GET_ALL_BRANDS,
   ALL_CATEGORYS,
   ALL_PRODUCTS,
+  GET_ALL_SIZE,
   FILTER_PRICE,
   FILTER_COLOR,
   ADD_TO_CART,
@@ -15,13 +17,19 @@ import {
   LOGOUT,
   OPEN_MODAL,
   CLOSE_MODAL,
+
   GET_USER_ID
+
+  LOGED_USER
+
 } from "../actions-types/actions-types";
 
 const initialState = {
   allProducts: [],
   allCategorys: [],
+  allBrands: [],
   allColors: [],
+  allSize: [],
   filter: [],
   productPerPage: 10,
   currentPage: 1,
@@ -110,6 +118,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         dataUser: action.payload,
+        logedUser: true,
       };
     case PAGINATE:
       return {
@@ -117,12 +126,12 @@ const reducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
     case LOGOUT:
-        return {
-          ...state,
-          dataUser: null,
-          logedUser: false,
-        };
-      
+      return {
+        ...state,
+        dataUser: null,
+        logedUser: false,
+      };
+
     case OPEN_MODAL:
       return {
         ...state,
@@ -139,6 +148,24 @@ const reducer = (state = initialState, action) => {
         ...state,
         userData: action.payload,
       }
+
+    case LOGED_USER:
+      return {
+        ...state,
+        logedUser: true,
+      };
+
+    case GET_ALL_BRANDS:
+      return {
+        ...state,
+        allBrands: action.payload,
+      };
+
+    case GET_ALL_SIZE:
+      return {
+        ...state,
+        allSize: action.payload,
+      };
 
     default:
       return {

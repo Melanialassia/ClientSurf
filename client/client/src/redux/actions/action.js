@@ -1,10 +1,13 @@
 import {
   FILTER_BY_CATEGORY,
   GET_NAME_PRODUCTS,
+  GET_ALL_BRANDS,
   ALL_CATEGORYS,
+  GET_ALL_SIZE,
   ALL_PRODUCTS,
   FILTER_PRICE,
   FILTER_COLOR,
+  POST_PRODUCT,
   ALL_FAVORITES,
   ADD_TO_FAVORITES,
   DELETE_FAVORITES,
@@ -14,8 +17,13 @@ import {
   ALL_COLORS,
   PAGINATE,
   LOGOUT,
+
   GET_USER_ID,
   PUT_USER
+
+  OPEN_MODAL,
+  LOGED_USER
+
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -34,7 +42,7 @@ export const getAllProducts = () => {
 export const getAllCategorys = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/category/");
+      const { data } = await axios.get("http://localhost:3001/surf/category");
       const result = data.data;
       return dispatch({ type: ALL_CATEGORYS, payload: result });
     } catch (error) {
@@ -73,8 +81,9 @@ export const getProductsByName = (nameProduct) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3001/surf/product?name=" + nameProduct
+        "http://localhost:3001/surf/product?nameProducts=" + nameProduct
       );
+      console.log("accion", data);
       const result = data.listProducts;
       return dispatch({ type: GET_NAME_PRODUCTS, payload: result });
     } catch (error) {
@@ -107,28 +116,27 @@ export const postUser = (userdata) => {
   };
 };
 
-export const userLogin =  (userData) => {
-  return async function (dispatch){ 
-  console.log(userData)
-  try {
-    const URL = `http://localhost:3001/surf/login`;
-    const response = await axios.post(URL, userData);
-    console.log(response);
-    dispatch({
-      type: POST_LOGIN,
-      payload: response.data,
-    })
-  } catch (error) {
-    console.log("Error during login:", error);
-  }
-}
-}
+export const userLogin = (userData) => {
+  return async function (dispatch) {
+    console.log(userData);
+    try {
+      const URL = `http://localhost:3001/surf/login`;
+      const response = await axios.post(URL, userData);
+      console.log(response);
+      dispatch({
+        type: POST_LOGIN,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.log("Error during login:", error);
+    }
+  };
+};
 
 export const addToCart = (productId, idUser, amount) => {
-  console.log("idUser in addToCart:", idUser); 
+  console.log("idUser in addToCart:", idUser);
   return async (dispatch) => {
     try {
-
       const response = await axios.post("http://localhost:3001/surf/cart", {
         idProduct: productId,
         idUser,
@@ -140,18 +148,18 @@ export const addToCart = (productId, idUser, amount) => {
         payload: response.data,
       });
     } catch (error) {
-      console.error('Error al agregar al carrito:', error);
+      console.error("Error al agregar al carrito:", error);
     }
   };
 };
 
-export const pageChange = (payload) => { 
+export const pageChange = (payload) => {
   return function (dispatch) {
-      dispatch({
-          type: PAGINATE,
-          payload: payload
-      });
-  }
+    dispatch({
+      type: PAGINATE,
+      payload: payload,
+    });
+  };
 };
 
 export const filterColor = (payload) => {
@@ -161,13 +169,57 @@ export const filterColor = (payload) => {
   };
 };
 
-//FAVORITES ACTIONS
-export const getAllFavoriteProducts = () => {
+
+export const getAllBrands = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/favorite");
+      const { data } = await axios.get("http://localhost:3001/surf/brand");
       const result = data.data;
-      console.log(result);
+      dispatch({
+        type: GET_ALL_BRANDS,
+        payload: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getAllSize = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/surf/size");
+      const result = data.data;
+      dispatch({
+        type: GET_ALL_SIZE,
+        payload: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const postProduct = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:3001/surf/product", data);
+      dispatch({type: POST_PRODUCT, payload: response.data});
+      return response
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+//FAVORITES ACTIONS
+export const getAllFavoriteProducts = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/surf/favorite/${idUser}`
+      );
+      const result = data.data;
       return dispatch({ type: ALL_FAVORITES, payload: result });
     } catch (error) {
       throw Error("No se pudo traer los productos favoritos con exito", error);
@@ -199,21 +251,21 @@ export const deleteFavorite = (idUser, idProduct) => {
       const response = await axios.delete(
         `http://localhost:3001/surf/favorite/${idUser}/${idProduct}`
       );
-      console.log("response", response.data);
       dispatch({
         type: DELETE_FAVORITES,
         payload: response.data.data,
       });
     } catch (error) {
-      throw Error("No se pudo borrar el producto a favoritos", error);
+      throw Error("No se pudo borrar el producto de favoritos", error);
     }
   };
 };
 
- export const logOut = () => {
+export const logOut = () => {
   return {
-    type: LOGOUT
+    type: LOGOUT,
   };
+
  };
 
  export const getIdUser = (idUser) => {
@@ -235,3 +287,9 @@ export const deleteFavorite = (idUser, idProduct) => {
  }
 
 
+};
+
+
+export const handleOpenModal = () => {
+  dispatch({ type: OPEN_MODAL });
+};

@@ -5,6 +5,7 @@ import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSub
 import PhotoBannerContainer from "../components/PhotoBanner/PhotoBannerContainer";
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
 import styles from "./Home.module.css";
+
 import { useSelector, useDispatch } from "react-redux";
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 import { useEffect } from "react";
@@ -38,6 +39,7 @@ const Home = () => {
       <div>
         <button onClick={handleOpenModal}>Open model</button>
       </div>
+
 
       <div>
         <LoginModal open={open} />

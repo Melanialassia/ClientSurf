@@ -1,8 +1,9 @@
-import './App.css';
+import "./App.css";
 
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
 //COMPONENTS
+
 import ProductPage from './components/features/ProductPage/roots/ProductPage';
 import LoginForm from './components/features/LoginForm/roots/LoginForm';
 import Details from './components/features/Details/roots/Details';
@@ -19,15 +20,13 @@ import MyAccount from './userComponents/features/UserDashboard/roots/MyAccount';
 import ChangePolicy from './components/features/ChangePolicy/components/ChangePolicy';
 import EditUserData from './userComponents/features/UserDashboard/container/EditUserData';
 
+
 const App = () => {
-
-
   return (
-
-<div>
- 
+    <div>
       <Header />
       <Routes>
+
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/account/create' element={<LoginForm />} />
@@ -41,11 +40,11 @@ const App = () => {
         <Route path='/my-account' element= {<MyAccount/>} />
         <Route path='/change-policy' element= {<ChangePolicy />} />
         <Route path='/edit-personaldata' element= {<EditUserData />} />
+
       </Routes>
       <Footer />
-
-</div>
-  )
-}
+    </div>
+  );
+};
 
 export default App;
