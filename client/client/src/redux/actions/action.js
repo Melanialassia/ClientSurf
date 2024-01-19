@@ -122,7 +122,7 @@ export const userLogin =  (userData) => {
 }
 
 export const addToCart = (productId, idUser, amount) => {
-  console.log("idUser in addToCart:", idUser); // Verifica que idUser tenga un valor definido
+  console.log("idUser in addToCart:", idUser); 
   return async (dispatch) => {
     try {
 

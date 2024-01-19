@@ -54,12 +54,12 @@
 .productPrice {
   font-weight: bold;
   color: #333;
-  margin-left: 10px; /* Agrega un espacio entre el nombre y el precio */
+  margin-left: 10px; 
 }
 
 .productQuantity {
   color: #777;
-  margin-left: 10px; /* Agrega un espacio entre el precio y la cantidad */
+  margin-left: 10px; 
 }
 
 .removeButton {
@@ -74,7 +74,7 @@
   border: 1px solid #ddd;
   margin-left: 20px;
   height: fit-content;
-  margin-top: 202px;
+  margin-top: 184px;
   text-align: left;
   font-size: xx-large;
 }
