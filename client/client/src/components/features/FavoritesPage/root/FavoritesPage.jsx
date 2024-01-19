@@ -11,9 +11,10 @@ const FavoritesPage = () => {
   const dispatch = useDispatch();
   const [reload, setReload] = useState(false);
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
+  const dataUser = useSelector((s) => s.dataUser);
 
   useEffect(() => {
-    dispatch(getAllFavoriteProducts());
+    dispatch(getAllFavoriteProducts(dataUser.idUser));
     setReload(true);
   }, [reload]);
 
@@ -26,16 +27,10 @@ const FavoritesPage = () => {
       ) : (
         <div>
           {favoriteProducts.map((product) => (
-            <FavoriteCard key={product.idProduct} product={product} />
+            <FavoriteCard key={product.idProduct} product={product} dataUser={dataUser}/>
           ))}
         </div>
       )}
-
-      {/*       <div>
-        {favoriteProducts.map((product) => {
-          return <FavoriteCard key={product.idProduct} product={product} />;
-        })}
-      </div> */}
     </div>
   );
 };

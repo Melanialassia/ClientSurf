@@ -5,37 +5,16 @@ import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSub
 import PhotoBannerContainer from "../components/PhotoBanner/PhotoBannerContainer";
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
 import styles from "./Home.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-
-
-
-  const dispatch = useDispatch();
-
   const open = useSelector((s) => s.openModal);
-
-
-
-  const handleOpenModal = () => {
-    dispatch({ type: OPEN_MODAL });
-  };
 
   return (
     <div className={styles.homeContainer}>
-
-
-      <div>
-        <button onClick={logOut}>Logout</button>
-        <br></br>
-        <button onClick={handleOpenModal}>Open model</button>
-      </div>
-
       <div>
         <LoginModal open={open} />
       </div>
-
 
       <div>
         <CarrouselContainer />

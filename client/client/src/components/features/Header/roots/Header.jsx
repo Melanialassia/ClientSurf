@@ -1,19 +1,20 @@
 //Hooks
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 //Librarys
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 //Components
 import NavBar from "../components/NavBar";
 import ProfileMenu from "../components/ProfileMenu";
+import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types"
 //style-sheets
 import styles from "./Header.module.css";
 //JavaScript
 
 const Header = () => {
+  const dispatch = useDispatch();
   const data = useSelector((state) => state.dataUser);
 
   const location = useLocation();
@@ -35,6 +36,20 @@ const Header = () => {
     fontSize: "20px",
     padding: "20px 20px",
     lineHeight: "-0px",
+  };
+
+  const handleCartClick = () => {
+    console.log(data)
+    if (data === null) {
+      handleOpenModal()
+    } else {
+      // Si el usuario está logeado, llevarlo a la página del carrito
+      window.location.href = "/cart"; // Esto redirigirá a la ruta "/cart"
+    }
+  };
+
+  const handleOpenModal = () => {
+    dispatch({ type: OPEN_MODAL });
   };
 
   return (
@@ -74,14 +89,15 @@ const Header = () => {
       )}
 
       <div>
-        <Link to="/">
+        {/* <Link to="/"> */}
           <ShoppingCartOutlined
+          onClick={handleCartClick}
             style={{
               color: "#28445c",
               fontSize: "35px",
             }}
           />
-        </Link>
+        {/* </Link> */}
       </div>
     </div>
   );
