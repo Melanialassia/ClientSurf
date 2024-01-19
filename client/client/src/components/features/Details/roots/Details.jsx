@@ -20,7 +20,7 @@ const Details = () => {
   const imgRef = useRef(null);
   const [quantity, setQuantity] = useState(1);
   
-  const data = useSelector((state) => state.dataUser);
+  const logedUser = useSelector((state) => state.logedUser);
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const open = useSelector((s) => s.openModal);
   
@@ -114,7 +114,7 @@ const Details = () => {
     };
 
     const addToFavoritesHandler = () => {
-      if (data === null) {
+      if (logedUser === false) {
         handleOpenModal()
       } else {
         dispatch(addToFavorites(favoriteProducts.idUser, favoriteProducts.idProduct))

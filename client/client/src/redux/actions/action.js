@@ -18,6 +18,7 @@ import {
   PAGINATE,
   LOGOUT,
   OPEN_MODAL,
+  LOGED_USER
 } from "../actions-types/actions-types";
 import axios from "axios";
 

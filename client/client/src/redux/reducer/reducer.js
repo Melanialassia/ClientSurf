@@ -16,7 +16,8 @@ import {
   PAGINATE,
   LOGOUT,
   OPEN_MODAL,
-  CLOSE_MODAL
+  CLOSE_MODAL,
+  LOGED_USER
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -112,6 +113,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         dataUser: action.payload,
+        logedUser: true,
       };
     case PAGINATE:
       return {
@@ -119,12 +121,12 @@ const reducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
     case LOGOUT:
-        return {
-          ...state,
-          dataUser: null,
-          logedUser: false,
-        };
-      
+      return {
+        ...state,
+        dataUser: null,
+        logedUser: false,
+      };
+
     case OPEN_MODAL:
       return {
         ...state,
@@ -134,6 +136,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         openModal: false,
+      };
+
+    case LOGED_USER:
+      return {
+        ...state,
+        logedUser: true,
       };
 
     case GET_ALL_BRANDS:
