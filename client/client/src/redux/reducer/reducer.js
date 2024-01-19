@@ -115,10 +115,13 @@ const reducer = (state = initialState, action) => {
         favoriteProducts: action.payload,
       };
     case POST_LOGIN:
+      localStorage.setItem('userId', action.payload.idUser);  
+      
       return {
         ...state,
         dataUser: action.payload,
         logedUser: true,
+        
       };
     case PAGINATE:
       return {
@@ -126,6 +129,7 @@ const reducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
     case LOGOUT:
+      
       return {
         ...state,
         dataUser: null,
