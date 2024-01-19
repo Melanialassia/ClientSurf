@@ -16,6 +16,7 @@ import styles from "./Header.module.css";
 const Header = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.dataUser);
+  const logedUser = useSelector((state) => state.logedUser);
 
   const location = useLocation();
   let userAccess = null;
@@ -39,12 +40,10 @@ const Header = () => {
   };
 
   const handleCartClick = () => {
-    console.log(data)
-    if (data === null) {
+    if (logedUser === false) {
       handleOpenModal()
     } else {
-      // Si el usuario está logeado, llevarlo a la página del carrito
-      window.location.href = "/cart"; // Esto redirigirá a la ruta "/cart"
+      window.location.href = "/cart";
     }
   };
 
@@ -89,7 +88,6 @@ const Header = () => {
       )}
 
       <div>
-        {/* <Link to="/"> */}
           <ShoppingCartOutlined
           onClick={handleCartClick}
             style={{
@@ -97,7 +95,6 @@ const Header = () => {
               fontSize: "35px",
             }}
           />
-        {/* </Link> */}
       </div>
     </div>
   );
