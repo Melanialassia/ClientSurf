@@ -27,8 +27,6 @@ const Home = () => {
 
 
       <div>
-        <button onClick={logOut}>Logout</button>
-        <br></br>
         <button onClick={handleOpenModal}>Open model</button>
       </div>
 

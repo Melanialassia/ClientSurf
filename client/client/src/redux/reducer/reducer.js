@@ -14,7 +14,7 @@ import {
   POST_LOGIN,
   ALL_COLORS,
   PAGINATE,
-  LOGOUT
+  LOGOUT,
   OPEN_MODAL,
   CLOSE_MODAL
 } from "../actions-types/actions-types";
@@ -26,7 +26,7 @@ const initialState = {
   allColors: [],
   allSize: [],
   filter: [],
-  productPerPage: 10,
+  productPerPage: 8,
   currentPage: 1,
   logedUser: false,
   favoriteProducts: [],

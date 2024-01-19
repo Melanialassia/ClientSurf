@@ -109,12 +109,11 @@ const FormProduct = () => {
   
     dispatch(postProduct(obj));
   
-    // Restablecer el estado
     setDataProduct({
       idCategory: "",
       name: "",
       idSize: "",
-      image: "", // Asegúrate de restablecer image
+      image: "", 
       idColor: "",
       idBrand: "",
       priceProduct: 0,
