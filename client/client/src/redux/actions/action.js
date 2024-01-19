@@ -163,6 +163,7 @@ export const pageChange = (payload) => {
 };
 
 export const filterColor = (payload) => {
+  console.log(payload);
   return {
     type: FILTER_COLOR,
     payload: payload,

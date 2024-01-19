@@ -31,7 +31,7 @@ const initialState = {
   allColors: [],
   allSize: [],
   filter: [],
-  productPerPage: 10,
+  productPerPage: 8,
   currentPage: 1,
   logedUser: false,
   favoriteProducts: [],
