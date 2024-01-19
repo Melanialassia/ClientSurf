@@ -12,3 +12,4 @@ export const DELETE_FAVORITES = "DELETE_FAVORITES";
 export const POST_LOGIN = "POST_LOGIN";
 export const ALL_COLORS = "ALL_COLORS";
 export const PAGINATE = "PAGINATE";
+export const LOGOUT = "LOGOUT";

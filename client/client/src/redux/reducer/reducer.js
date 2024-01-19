@@ -12,6 +12,7 @@ import {
   POST_LOGIN,
   ALL_COLORS,
   PAGINATE,
+  LOGOUT
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -26,7 +27,6 @@ const initialState = {
   cart: [],
   dataUser: null,
   filteredProducts: [],
-  logedUser: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -111,6 +111,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         currentPage: action.payload,
       };
+    
+    case LOGOUT:
+        return {
+          ...state,
+          dataUser: null,
+          logedUser: false,
+        };
       
     default:
       return {

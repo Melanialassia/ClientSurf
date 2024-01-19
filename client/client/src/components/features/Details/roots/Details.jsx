@@ -193,7 +193,7 @@ const Details = () => {
             </div>
             <div className={styles.cartButton}>
             <label htmlFor="quantityInput">Cantidad:</label>
-<<<<<<< HEAD
+{/* <<<<<<< HEAD
             <select className={styles.quantityLabel}
             id="quantityInput"
             name="quantityInput"
@@ -209,7 +209,7 @@ const Details = () => {
       
               <button disabled={product.stock === 0} onClick={addToCartHandler}>Añadir al carrito</button>
               
-=======
+======= */}
         <input className={styles.quantityLabel}
           type="number"
           id="quantityInput"
@@ -222,7 +222,7 @@ const Details = () => {
         <Link to="/cart">
               <button type="primary" onClick={addToCartHandler}>Añadir al carrito</button>
               </Link>
->>>>>>> 18ceb5a5688216a7335597b7be7ded54997e5cb9
+{/* >>>>>>> 18ceb5a5688216a7335597b7be7ded54997e5cb9 */}
             </div>
             </div>
         </div>

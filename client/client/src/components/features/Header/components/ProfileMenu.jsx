@@ -1,7 +1,9 @@
 //hooks
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+//actions
+import { logOut } from "../../../../redux/actions/action";
 //librarys
 import { Menu } from "antd";
 //style-sheets
@@ -27,10 +29,13 @@ const items = [
 
 const ProfileMenu = () => {
 
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleLogOut = () => {
-
+    dispatch(logOut());
+    navigate('/login')
   }
 
   const handleMenuClick = (event) => {
@@ -46,7 +51,7 @@ const ProfileMenu = () => {
         navigate("/my-buys");
         break;
       case "4":
-        navigate();
+        handleLogOut();
         break;
       default:
         break;

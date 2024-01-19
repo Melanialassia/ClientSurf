@@ -6,16 +6,10 @@ import ProductHighlights from "../components/ProductHighlights/ProductHighlights
 import styles from "./Home.module.css";
 
 const Home = () => {
-  const logOut = () => {
-    localStorage.clear();
-    window.location.reload();
-  };
+
 
   return (
     <div className={styles.homeContainer}>
-      <div>
-        <button onClick={logOut}>Logout</button>
-      </div>
 
       <div>
         <CarrouselContainer />
