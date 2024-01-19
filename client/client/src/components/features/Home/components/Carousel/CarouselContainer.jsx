@@ -8,6 +8,7 @@ const CarouselContainer = () => {
     lineHeight: "400px",
     textAlign: "center",
     background: "#364d79",
+    marginTop: "90px"
   };
 
 

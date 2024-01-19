@@ -1,9 +1,7 @@
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
 .container {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    margin-top: 80px;
+    margin-top: 150px;
     margin-bottom: 250px;
     margin-left: 200px;
     font-family: "Montserrat", sans-serif;
@@ -13,5 +11,4 @@
 .columncontainer {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 10px; /* Espacio entre elementos dentro de la columna */
 }

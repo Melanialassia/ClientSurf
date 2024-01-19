@@ -8,11 +8,15 @@ import {
   FILTER_PRICE,
   FILTER_COLOR,
   POST_PRODUCT,
+  ALL_FAVORITES,
+  ADD_TO_FAVORITES,
+  DELETE_FAVORITES,
   CREATE_USER,
   ADD_TO_CART,
   POST_LOGIN,
   ALL_COLORS,
   PAGINATE,
+  LOGOUT
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -123,8 +127,10 @@ export const userLogin = (userData) => {
 };
 
 export const addToCart = (productId, idUser, amount) => {
+  console.log("idUser in addToCart:", idUser); 
   return async (dispatch) => {
     try {
+
       const response = await axios.post("http://localhost:3001/surf/cart", {
         idProduct: productId,
         idUser,
@@ -136,14 +142,12 @@ export const addToCart = (productId, idUser, amount) => {
         payload: response.data,
       });
     } catch (error) {
-      console.error("Error al agregar al carrito:", error);
-      console.error("Error object:", error);
+      console.error('Error al agregar al carrito:', error);
     }
   };
 };
 
-export const pageChange = (payload) => {
-  // ACCION PARA CAMBIAR LA PAGINA DE LA LISTA DE PERROS
+export const pageChange = (payload) => { 
   return function (dispatch) {
     dispatch({
       type: PAGINATE,
@@ -158,6 +162,7 @@ export const filterColor = (payload) => {
     payload: payload,
   };
 };
+
 
 export const getAllBrands = () => {
   return async (dispatch) => {
@@ -200,3 +205,61 @@ export const postProduct = (data) => {
     }
   };
 };
+
+//FAVORITES ACTIONS
+export const getAllFavoriteProducts = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/surf/favorite");
+      const result = data.data;
+      console.log(result);
+      return dispatch({ type: ALL_FAVORITES, payload: result });
+    } catch (error) {
+      throw Error("No se pudo traer los productos favoritos con exito", error);
+    }
+  };
+};
+
+export const addToFavorites = (idUser, idProduct) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:3001/surf/favorite", {
+        idProduct,
+        idUser,
+      });
+
+      dispatch({
+        type: ADD_TO_FAVORITES,
+        payload: response.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo agregar el producto a favoritos", error);
+    }
+  };
+};
+
+export const deleteFavorite = (idUser, idProduct) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/surf/favorite/${idUser}/${idProduct}`
+      );
+      console.log("response", response.data);
+      dispatch({
+        type: DELETE_FAVORITES,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo borrar el producto a favoritos", error);
+    }
+  };
+};
+
+ export const logOut = () => {
+  return {
+    type: LOGOUT
+  };
+ };
+
+
+

@@ -8,6 +8,7 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 //Components
 import NavBar from "../components/NavBar";
+import ProfileMenu from "../components/ProfileMenu";
 //style-sheets
 import styles from "./Header.module.css";
 //JavaScript
@@ -16,14 +17,13 @@ const Header = () => {
   const data = useSelector((state) => state.dataUser);
 
   const location = useLocation();
-let userAccess = null;
+  let userAccess = null;
   // const userAccess = !data ? data.access : null;
-  if(data){
-   userAccess = data.access;
-} 
+  if (data) {
+    userAccess = data.access;
+  }
 
-
-  console.log(userAccess)
+  console.log(userAccess);
 
   const styledButton = {
     backgroundColor: "#30445c",
@@ -52,8 +52,8 @@ let userAccess = null;
       <div className={styles.navbar}>
         <NavBar />
       </div>
-
-      {!userAccess && (
+      
+      {!userAccess ? (
         <div>
           <ul className={styles.menuitems}>
             <li>
@@ -69,6 +69,8 @@ let userAccess = null;
             </Link>
           </ul>
         </div>
+      ) : (
+        <ProfileMenu />
       )}
 
       <div>
