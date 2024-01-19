@@ -2,10 +2,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './details.module.css';
-import { useDispatch } from 'react-redux';
-import { addToCart } from "../../../../redux/actions/action"
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, addToFavorites } from "../../../../redux/actions/action"
+import LoginModal from '../../LoginModal/root/LoginModal';
 
-
+import { OPEN_MODAL } from '../../../../redux/actions-types/actions-types';
 
 const Details = () => {
   
@@ -19,7 +20,9 @@ const Details = () => {
   const imgRef = useRef(null);
   const [quantity, setQuantity] = useState(1);
   
- 
+  const data = useSelector((state) => state.dataUser);
+  const favoriteProducts = useSelector((s) => s.favoriteProducts);
+  const open = useSelector((s) => s.openModal);
   
  
 
@@ -109,8 +112,18 @@ const Details = () => {
         console.error('Error al agregar al carrito:', error);
       }
     };
- 
-    
+
+    const addToFavoritesHandler = () => {
+      if (data === null) {
+        handleOpenModal()
+      } else {
+        dispatch(addToFavorites(favoriteProducts.idUser, favoriteProducts.idProduct))
+      }
+    }
+
+    const handleOpenModal = () => {
+      dispatch({ type: OPEN_MODAL });
+    }; 
 
 
   
@@ -174,6 +187,7 @@ const Details = () => {
       
               <button disabled={product.stock === 0} onClick={addToCartHandler}>Añadir al carrito</button>
               
+              <button onClick={addToFavoritesHandler}>Añadir a favoritos</button>
 
             </div>
             </div>
@@ -182,6 +196,9 @@ const Details = () => {
                 <p>Politicas de Cambioo</p>
             </div>
 
+        <div>
+          <LoginModal open={open} />
+        </div>
     </div>
     
   )

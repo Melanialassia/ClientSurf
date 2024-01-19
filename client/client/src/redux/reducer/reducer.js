@@ -12,7 +12,7 @@ import {
   POST_LOGIN,
   ALL_COLORS,
   PAGINATE,
-  LOGOUT
+  LOGOUT,
   OPEN_MODAL,
   CLOSE_MODAL
 } from "../actions-types/actions-types";
@@ -29,7 +29,6 @@ const initialState = {
   cart: [],
   dataUser: null,
   filteredProducts: [],
-  logedUser: false,
   openModal: false,
 };
 
