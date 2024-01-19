@@ -17,6 +17,7 @@ import Services from './components/features/Services/roots/Services';
 import CreateProducts from './adminComponents/features/CreateProduct/roots/CreateProducts';
 import MyAccount from './userComponents/features/UserDashboard/roots/MyAccount';
 import ChangePolicy from './components/features/ChangePolicy/components/ChangePolicy';
+import EditUserData from './userComponents/features/UserDashboard/container/EditUserData';
 
 const App = () => {
 
@@ -39,6 +40,7 @@ const App = () => {
         <Route path='/admin/dashboard' element= {<CreateProducts/>} />
         <Route path='/my-account' element= {<MyAccount/>} />
         <Route path='/change-policy' element= {<ChangePolicy />} />
+        <Route path='/edit-personaldata' element= {<EditUserData />} />
       </Routes>
       <Footer />
 

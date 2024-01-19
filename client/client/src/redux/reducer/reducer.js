@@ -12,9 +12,10 @@ import {
   POST_LOGIN,
   ALL_COLORS,
   PAGINATE,
-  LOGOUT
+  LOGOUT,
   OPEN_MODAL,
-  CLOSE_MODAL
+  CLOSE_MODAL,
+  GET_USER_ID
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -28,8 +29,8 @@ const initialState = {
   favoriteProducts: [],
   cart: [],
   dataUser: null,
+  userData: [],
   filteredProducts: [],
-  logedUser: false,
   openModal: false,
 };
 
@@ -132,6 +133,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         openModal: false,
       };
+    case GET_USER_ID:
+      console.log(action.payload);
+      return {
+        ...state,
+        userData: action.payload,
+      }
 
     default:
       return {

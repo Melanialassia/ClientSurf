@@ -7,35 +7,41 @@ import ProductHighlights from "../components/ProductHighlights/ProductHighlights
 import styles from "./Home.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
+import { useEffect } from "react";
+import { getIdUser } from "../../../../redux/actions/action";
 
 const Home = () => {
-
-
-
   const dispatch = useDispatch();
 
-  const open = useSelector((s) => s.openModal);
+ const dataUser = useSelector((state) => state.dataUser);  
 
+ let userInfoFistrLogin = null;
 
+ if(dataUser){
+    userInfoFistrLogin = dataUser.idUser;
+ }
+
+  const open = useSelector((state) => state.openModal);
 
   const handleOpenModal = () => {
     dispatch({ type: OPEN_MODAL });
   };
 
+  useEffect(()=>{
+    if(nombre){
+    dispatch(getIdUser(userInfoFistrLogin))
+    }
+  }, [userInfoFistrLogin])
+
   return (
     <div className={styles.homeContainer}>
-
-
       <div>
-        <button onClick={logOut}>Logout</button>
-        <br></br>
         <button onClick={handleOpenModal}>Open model</button>
       </div>
 
       <div>
         <LoginModal open={open} />
       </div>
-
 
       <div>
         <CarrouselContainer />

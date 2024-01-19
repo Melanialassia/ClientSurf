@@ -1,0 +1,12 @@
+@import url('https://fonts.cdnfonts.com/css/montserrat');
+
+.text {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 90px;
+    margin-left: 120px;
+    font-size: x-large;
+}
+
+.container {
+    font-family: 'Montserrat', sans-serif;
+}

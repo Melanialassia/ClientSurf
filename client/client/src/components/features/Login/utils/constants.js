@@ -7,5 +7,4 @@ export const registerCustomers = "Clientes registrados";
 export const textRegisterCustomers =
   "Si tenes una cuenta, iniciá sesión con tu dirección de correo electrónico.";
 export const loginWithGoogle = "Iniciar sesión con Google";
-export const email = "Email";
-export const password = "Contraseña";
+
