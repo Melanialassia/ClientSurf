@@ -19,7 +19,7 @@ import {
   LOGOUT,
 
   GET_USER_ID,
-  PUT_USER
+  PUT_USER,
 
   OPEN_MODAL,
   LOGED_USER
@@ -287,7 +287,7 @@ export const logOut = () => {
  }
 
 
-};
+
 
 
 export const handleOpenModal = () => {
