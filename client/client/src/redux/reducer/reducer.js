@@ -1,8 +1,10 @@
 import {
   FILTER_BY_CATEGORY,
   GET_NAME_PRODUCTS,
+  GET_ALL_BRANDS,
   ALL_CATEGORYS,
   ALL_PRODUCTS,
+  GET_ALL_SIZE,
   FILTER_PRICE,
   FILTER_COLOR,
   ADD_TO_CART,
@@ -14,7 +16,9 @@ import {
 const initialState = {
   allProducts: [],
   allCategorys: [],
+  allBrands: [],
   allColors: [],
+  allSize: [],
   filter: [],
   productPerPage: 10,
   currentPage: 1,
@@ -106,6 +110,18 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentPage: action.payload,
+      };
+
+    case GET_ALL_BRANDS:
+      return {
+        ...state,
+        allBrands: action.payload,
+      };
+
+    case GET_ALL_SIZE:
+      return {
+        ...state,
+        allSize: action.payload,
       };
 
     default:
