@@ -28,15 +28,20 @@ const Home = () => {
     }
   }, [userInfoFistrLogin]);
 
-  useEffect(()=>{
-    if(userInfoFistrLogin){
-    dispatch(getIdUser(userInfoFistrLogin))
-    }
-  }, [userInfoFistrLogin])
 
   return (
     <div className={styles.homeContainer}>
       <div>
+
+        <button onClick={handleOpenModal}>Open model</button>
+      </div>
+
+      <div>
+        <LoginModal open={open} />
+      </div>
+
+      <div>
+
         <CarrouselContainer />
       </div>
 

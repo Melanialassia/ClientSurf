@@ -1,4 +1,4 @@
-export const myAccount = "MI CUENTA";
+export const fAQ = "PREGUNTAS FRECUENTES";
 export const changePolicy = "POLÍTICAS DE CAMBIO";
 export const contact = "CONTACTO";
 export const celNumber = "(341) 155948636";
