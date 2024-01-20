@@ -28,11 +28,11 @@ const Home = () => {
     dispatch({ type: OPEN_MODAL });
   };
 
-  useEffect(()=>{
-    if(nombre){
-    dispatch(getIdUser(userInfoFistrLogin))
-    }
-  }, [userInfoFistrLogin])
+  // useEffect(()=>{
+  //   if(nombre){
+  //   dispatch(getIdUser(userInfoFistrLogin))
+  //   }
+  // }, [userInfoFistrLogin])
 
   return (
     <div className={styles.homeContainer}>

@@ -1,3 +1,27 @@
 .paginate {
-    padding: 30px
-}
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 250px;
+  }
+  
+  .paginate button {
+    border: 1px solid #2d4056;
+    background-color: #ffffff;
+    color: #2d4056;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Añadir transición para el color del texto */
+  }
+  
+  .paginate button:hover {
+    background-color: #2d4056; /* Color más oscuro cuando está en hover */
+    color: #f3efef;
+  }
+
+  .paginate button.active {
+    background-color: #2d4056; /* Color más oscuro cuando está activo */
+    color: #f3efef;
+  }
