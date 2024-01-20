@@ -27,7 +27,7 @@ const FavoritesPage = () => {
       ) : (
         <div>
           {favoriteProducts.map((product) => (
-            <FavoriteCard key={product.idProduct} product={product} dataUser={dataUser}/>
+            <FavoriteCard key={product.idProduct} product={product} user={dataUser}/>
           ))}
         </div>
       )}

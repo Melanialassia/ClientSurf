@@ -76,13 +76,17 @@
   margin-top: 184px;
   text-align: left;
   font-size: xx-large;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
 }
 
 .buyButton {
   display: inline-block;
   padding: 8px 16px;
-  font-size: 24px;
-  font-weight: 300;
+  font-size: 20px;
+  font-weight: 200;
   line-height: 1.5;
   text-align: center;
   text-decoration: none;
@@ -161,6 +165,11 @@
   color: #fff; 
   background-color: #ff4d4f; 
   border-color: #ff4d4f; 
+}
+
+.emptyPage {
+  text-align: center;
+  justify-content: center;
 }
 
 

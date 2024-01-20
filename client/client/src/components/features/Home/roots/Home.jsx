@@ -1,4 +1,3 @@
-import LoginModal from "../../LoginModal/root/LoginModal";
 import CarrouselContainer from "../components/Carousel/CarouselContainer";
 import HowToBuyContainer from "../components/HowToBuy/HowToBuyContainer";
 import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";
@@ -7,26 +6,27 @@ import ProductHighlights from "../components/ProductHighlights/ProductHighlights
 import styles from "./Home.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
-import { useEffect, useInsertionEffect } from "react";
+import { useEffect } from "react";
 import { getIdUser } from "../../../../redux/actions/action";
 
 const Home = () => {
   const dispatch = useDispatch();
 
- const dataUser = useSelector((state) => state.dataUser);  
+  const dataUser = useSelector((state) => state.dataUser);
 
- let userInfoFistrLogin = null;
+  let userInfoFistrLogin = null;
 
- if(dataUser){
+  if (dataUser) {
     userInfoFistrLogin = dataUser.idUser;
- }
+  }
 
   const open = useSelector((state) => state.openModal);
 
-  const handleOpenModal = () => {
-    dispatch({ type: OPEN_MODAL });
-  };
+  useEffect(() => {
+    if (userInfoFistrLogin) {
+      dispatch(getIdUser(userInfoFistrLogin));
+    }
+  }, [userInfoFistrLogin]);
 
   useEffect(()=>{
     if(userInfoFistrLogin){
@@ -36,15 +36,6 @@ const Home = () => {
 
   return (
     <div className={styles.homeContainer}>
-      <div>
-        <button onClick={handleOpenModal}>Open model</button>
-      </div>
-
-
-      <div>
-        <LoginModal open={open} />
-      </div>
-
       <div>
         <CarrouselContainer />
       </div>
