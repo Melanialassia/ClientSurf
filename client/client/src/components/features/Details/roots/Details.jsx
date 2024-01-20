@@ -3,8 +3,14 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./details.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addToFavorites } from "../../../../redux/actions/action";
+import {
+  addToCart,
+  addToFavorites,
+  deleteFavorite,
+} from "../../../../redux/actions/action";
 import LoginModal from "../../LoginModal/root/LoginModal";
+
+import { HeartOutlined, HeartFilled, ShoppingCartOutlined } from "@ant-design/icons";
 
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 
@@ -20,8 +26,26 @@ const Details = () => {
   const [quantity, setQuantity] = useState(1);
 
   const logedUser = useSelector((state) => state.logedUser);
+  const dataUser = useSelector((state) => state.dataUser);
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const open = useSelector((s) => s.openModal);
+
+  const isProductInFavorites = favoriteProducts.some(
+    (favProduct) => favProduct.idProduct === product.idProduct
+  );
+
+  const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
+
+  useEffect(() => {
+    console.log("allFavs", favoriteProducts);
+    setIsInFavorites(isProductInFavorites);
+  }, [isProductInFavorites]);
+  
+  const storedAccess = localStorage.getItem('access');
+  const userAccess = storedAccess ? JSON.parse(storedAccess) : null;
+  const userId = localStorage.getItem('userId');
+
+  console.log(dataUser)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,7 +105,14 @@ const Details = () => {
       azul: "blue",
       verde: "green",
       negro: "black",
-      // Agrega más traducciones según sea necesario
+      rojo: "red",
+      blanco: "white",
+      amarillo: "yellow",
+      rosa: "pink",
+      morado: "purple",
+      naranja: "orange",
+      marrón: "brown",
+
     };
 
     // Devuelve el color traducido o el color original si no hay traducción disponible
@@ -101,16 +132,18 @@ const Details = () => {
   };
 
   const addToCartHandler = async () => {
-    try {
-      console.log("idUser:", idUser);
-      console.log(product);
-      await dispatch(
-        addToCart(product.idProduct, 1, quantity, product.description)
-      );
+    if (logedUser === false) {
+      handleOpenModal();
+    } else {
+      try {
+        await dispatch(
+          addToCart(product.idProduct, 1, quantity, product.description)
+        );
 
-      navigate("/cart");
-    } catch (error) {
-      console.error("Error al agregar al carrito:", error);
+        navigate("/cart");
+      } catch (error) {
+        console.error("Error al agregar al carrito:", error);
+      }
     }
   };
 
@@ -118,14 +151,47 @@ const Details = () => {
     if (logedUser === false) {
       handleOpenModal();
     } else {
-      dispatch(
-        addToFavorites(favoriteProducts.idUser, favoriteProducts.idProduct)
-      );
+      dispatch(addToFavorites(dataUser.idUser, product.idProduct));
+      setIsInFavorites(!isInFavorites);
     }
+  };
+
+  const removeFromFavoritesHandler = () => {
+    dispatch(deleteFavorite(dataUser.idUser, product.idProduct));
+    setIsInFavorites(!isInFavorites);
   };
 
   const handleOpenModal = () => {
     dispatch({ type: OPEN_MODAL });
+  };
+
+  const getColorButtons = () => {
+    if (product.nameColor) {
+      const colors = product.nameColor.split('/');
+      
+
+      return (
+        <div className={styles.colorButtons}>
+          <strong>Color:          </strong>
+          {colors.map((color) => (
+            <button
+              key={color}
+              style={{
+                backgroundColor: translateColor(color),
+                marginRight: '5px',
+                width: '30px',
+                height: '30px',
+                border: `2px solid ${translateColor(color) === selectedColor ? 'lightblue' : 'transparent'}`,
+                borderRadius: "100px"
+              }}
+              onClick={() => handleColorSelect(translateColor(color))}
+            />
+          ))}
+        </div>
+      );
+    }
+
+    return null;
   };
 
   return (
@@ -140,6 +206,12 @@ const Details = () => {
           />
         </div>
         <div className={styles.infoContainer}>
+            <button
+          onClick={addToFavoritesHandler}
+          className={styles.favoriteButton}
+        >
+          {isProductInFavorites ? '❤️' : '🤍'}
+        </button>
           <div className={styles.subInfoContainer1}>
             <h2>{product.name}</h2>
             <div className={styles.price}>
@@ -153,7 +225,7 @@ const Details = () => {
             <p>{product.description}</p>
             <p>
               <div className={styles.color}>
-                <strong>Color:</strong> {product.nameColor}
+              {getColorButtons()}
               </div>
               <br />
               <div className={styles.size}>
@@ -184,16 +256,73 @@ const Details = () => {
             </select>
 
             <button disabled={product.stock === 0} onClick={addToCartHandler}>
-              Añadir al carrito
+              Añadir al carrito   <ShoppingCartOutlined />
             </button>
 
-            <button onClick={addToFavoritesHandler}>Añadir a favoritos</button>
+            {isInFavorites ? (
+              <HeartFilled
+                onClick={removeFromFavoritesHandler}
+                style={{
+                  color: "#E89038",
+                  fontSize: "35px",
+                  marginLeft: "10px",
+                }}
+              />
+            ) : (
+              <HeartOutlined
+                onClick={addToFavoritesHandler}
+                style={{
+                  color: "#E89038",
+                  fontSize: "35px",
+                  marginLeft: "10px",
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
       <div className={styles.politicas}>
-        <p>Politicas de Cambioo</p>
+      <p>
+En LA OLA URBANA tenés 15 días para cambiar luego de haber realizado la compra.
+El cambio puede ser por talle o color y se respeta el precio que pagaste.
+
+
+PASO A PASO:
+
+Envíanos un mail a laolaurbana@gmail.com con el asunto “Cambio/Devolución” indicando en el cuerpo del mail las siguientes informaciones:
+
+* Nombre completo
+
+* DNI
+
+* Número de pedido
+
+* Producto para devolver
+
+* Nuevo producto que quiero recibir
+
+* Motivo del cambio/devolución
+
+
+Vas a recibir nuestra respuesta con los pasos a seguir y la información necesaria para realizar el envío.
+
+IMPORTANTE!
+
+Los productos deben ser enviados en perfecto estado, sin uso, sin perfumes, sin manchas y sin haberse lavado.
+Cada prenda debe contar con su etiqueta adherida y encontrarse en su paquete correspondiente.
+
+El cargo de envío por cambios o devoluciones correrá por tu cuenta.
+
+Gracias!
+
+
+
+
+LA OLA URBANA
+    </p>
       </div>
+
+      <br></br>
 
       <div>
         <LoginModal open={open} />

@@ -17,11 +17,8 @@ import {
   LOGOUT,
   OPEN_MODAL,
   CLOSE_MODAL,
-
   GET_USER_ID,
-
-  LOGED_USER
-
+  LOGED_USER,
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -115,10 +112,13 @@ const reducer = (state = initialState, action) => {
         favoriteProducts: action.payload,
       };
     case POST_LOGIN:
+      localStorage.setItem('userId', action.payload.idUser);  
+      
       return {
         ...state,
         dataUser: action.payload,
         logedUser: true,
+        
       };
     case PAGINATE:
       return {
@@ -126,6 +126,7 @@ const reducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
     case LOGOUT:
+      
       return {
         ...state,
         dataUser: null,
@@ -147,7 +148,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userData: action.payload,
-      }
+      };
 
     case LOGED_USER:
       return {
