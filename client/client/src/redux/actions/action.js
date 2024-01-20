@@ -17,13 +17,10 @@ import {
   ALL_COLORS,
   PAGINATE,
   LOGOUT,
-
   GET_USER_ID,
   PUT_USER,
-
   OPEN_MODAL,
-  LOGED_USER
-
+  LOGED_USER,
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -169,7 +166,6 @@ export const filterColor = (payload) => {
   };
 };
 
-
 export const getAllBrands = () => {
   return async (dispatch) => {
     try {
@@ -203,9 +199,12 @@ export const getAllSize = () => {
 export const postProduct = (data) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:3001/surf/product", data);
-      dispatch({type: POST_PRODUCT, payload: response.data});
-      return response
+      const response = await axios.post(
+        "http://localhost:3001/surf/product",
+        data
+      );
+      dispatch({ type: POST_PRODUCT, payload: response.data });
+      return response;
     } catch (error) {
       console.log(error);
     }
@@ -265,30 +264,21 @@ export const logOut = () => {
   return {
     type: LOGOUT,
   };
+};
 
- };
-
- export const getIdUser = (idUser) => {
-  return async (dispatch) => { 
-   try {
-    const response = await axios(`http://localhost:3001/surf/user/${idUser}`);
-    dispatch({
-      type: GET_USER_ID,
-      payload: response.data.data[0]
-    })
-   } catch (error) {
-    
-   };
+export const getIdUser = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios(`http://localhost:3001/surf/user/${idUser}`);
+      dispatch({
+        type: GET_USER_ID,
+        payload: response.data.data[0],
+      });
+    } catch (error) {}
   };
- };
+};
 
- export const updateUserInfo = () => {
-
- }
-
-
-
-
+export const updateUserInfo = () => {};
 
 export const handleOpenModal = () => {
   dispatch({ type: OPEN_MODAL });

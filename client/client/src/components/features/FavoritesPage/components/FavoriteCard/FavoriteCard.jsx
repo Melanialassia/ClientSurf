@@ -6,11 +6,12 @@ import { Button } from "antd";
 import styles from "./FavoriteCard.module.css";
 import { Link } from "react-router-dom";
 
-const FavoriteCard = ({ product }) => {
+const FavoriteCard = ({ product, user }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteFavorite(product.idUser, product.idProduct));
+    console.log(product);
+    dispatch(deleteFavorite(user.idUser, product.idProduct));
   };
 
   return (

@@ -3,8 +3,13 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./details.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addToFavorites } from "../../../../redux/actions/action";
+import {
+  addToCart,
+  addToFavorites,
+  deleteFavorite,
+} from "../../../../redux/actions/action";
 import LoginModal from "../../LoginModal/root/LoginModal";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 
@@ -22,6 +27,18 @@ const Details = () => {
   const logedUser = useSelector((state) => state.logedUser);
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const open = useSelector((s) => s.openModal);
+  const dataUser = useSelector((state) => state.dataUser);
+
+  const isProductInFavorites = favoriteProducts.some(
+    (favProduct) => favProduct.idProduct === product.idProduct
+  );
+
+  const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
+
+  useEffect(() => {
+    console.log("allFavs", favoriteProducts);
+    setIsInFavorites(isProductInFavorites);
+  }, [isProductInFavorites]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -101,16 +118,20 @@ const Details = () => {
   };
 
   const addToCartHandler = async () => {
-    try {
-      console.log("idUser:", idUser);
-      console.log(product);
-      await dispatch(
-        addToCart(product.idProduct, 1, quantity, product.description)
-      );
+    if (logedUser === false) {
+      handleOpenModal();
+    } else {
+      try {
+        console.log("idUser:", idUser);
+        console.log(product);
+        await dispatch(
+          addToCart(product.idProduct, 1, quantity, product.description)
+        );
 
-      navigate("/cart");
-    } catch (error) {
-      console.error("Error al agregar al carrito:", error);
+        navigate("/cart");
+      } catch (error) {
+        console.error("Error al agregar al carrito:", error);
+      }
     }
   };
 
@@ -118,10 +139,14 @@ const Details = () => {
     if (logedUser === false) {
       handleOpenModal();
     } else {
-      dispatch(
-        addToFavorites(favoriteProducts.idUser, favoriteProducts.idProduct)
-      );
+      dispatch(addToFavorites(dataUser.idUser, product.idProduct));
+      setIsInFavorites(!isInFavorites);
     }
+  };
+
+  const removeFromFavoritesHandler = () => {
+    dispatch(deleteFavorite(dataUser.idUser, product.idProduct));
+    setIsInFavorites(!isInFavorites);
   };
 
   const handleOpenModal = () => {
@@ -187,13 +212,33 @@ const Details = () => {
               Añadir al carrito
             </button>
 
-            <button onClick={addToFavoritesHandler}>Añadir a favoritos</button>
+            {isInFavorites ? (
+              <HeartFilled
+                onClick={removeFromFavoritesHandler}
+                style={{
+                  color: "#E89038",
+                  fontSize: "35px",
+                  marginLeft: "10px",
+                }}
+              />
+            ) : (
+              <HeartOutlined
+                onClick={addToFavoritesHandler}
+                style={{
+                  color: "#E89038",
+                  fontSize: "35px",
+                  marginLeft: "10px",
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
       <div className={styles.politicas}>
         <p>Politicas de Cambioo</p>
       </div>
+
+      <br></br>
 
       <div>
         <LoginModal open={open} />

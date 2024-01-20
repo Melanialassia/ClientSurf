@@ -1,15 +1,16 @@
+@import url("https://fonts.cdnfonts.com/css/montserrat");
+
 body {
-  overflow: visible; 
+  overflow: visible;
 }
 
-.detailsContainer{
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    width: 80vw;
-    padding-bottom: 20px;
-    margin-left: 300px;
-    
+.detailsContainer {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 80vw;
+  padding-bottom: 20px;
+  margin-left: 300px;
 }
 
 .price {
@@ -17,27 +18,24 @@ body {
   font-size: x-large;
 }
 
-
 .favButton {
-        background-color: transparent;
-        border: none; 
-        padding: 10px 20px;
-        color: white;
-        cursor: pointer; 
-        transition: background-color 0.3s ease; 
+  background-color: transparent;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .infoContainer {
-    display: flex;
-    flex-direction: column;
-    margin-top: 80px;
-    margin-right: 380px;
-    margin-left: 50px;
-    height: 90vh;
-    align-items: flex-start;
-    color: #2D4056;
-    
-    
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  margin-right: 380px;
+  margin-left: 50px;
+  height: 90vh;
+  align-items: flex-start;
+  color: #2d4056;
 }
 
 .imgContainer {
@@ -59,77 +57,70 @@ body {
 }
 
 .cartButton button {
+  font-family: "Montserrat", sans-serif;
   padding: 10px 20px;
-  background-color: #2D4056; 
-  color: #fff; 
-  border: 2px solid #2D4056;  
+  background-color: #2d4056;
+  color: #fff;
+  border: 2px solid #2d4056;
   cursor: pointer;
   margin-left: 100px;
   margin-top: 40px;
   border-radius: 5px;
-  
 }
 
 .cartButton button:hover {
-  background-color: rgb(44, 182, 88); 
-  border-color: rgb(44, 182, 88); 
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(44, 182, 88);
+  border-color: rgb(44, 182, 88);
   transform: scale(1.05);
 }
 
-
-.description{
-    text-align: left;
-    
+.description {
+  text-align: left;
 }
 
-.stock{
+.stock {
   margin-top: 34px;
   margin-bottom: 20px;
 }
 
-.color{
-  margin-top: 30px
+.color {
+  margin-top: 30px;
 }
-.size{
+.size {
   margin-bottom: 20px;
 }
 
 .characteristics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    padding-left: 0;
-   
-    
-  }
-
-  .characteristics ul {
-    list-style-type: none; 
-    padding: 0; 
-   
-  }
-  
-  .characteristics li {
-    margin-bottom: 8px; 
-    text-align: left; 
-  }
-
-  .subInfoContainer1 h2 {
-    margin-bottom: 5px; 
-    margin-top: 0; 
-    color: #2D4056;
+  padding-left: 0;
 }
 
-.politicas{
-  margin-bottom: 100px
-  
-  
+.characteristics ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.characteristics li {
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.subInfoContainer1 h2 {
+  margin-bottom: 5px;
+  margin-top: 0;
+  color: #2d4056;
+}
+
+.politicas {
+  margin-bottom: 100px;
 }
 
 .politicas p {
-  color: #2D4056;
+  color: #2d4056;
   margin-left: 850px;
 }
 
@@ -138,17 +129,16 @@ body {
 }
 
 .quantityLabel {
-    margin-left: 10px;
-    border: 2px solid #000; 
-    margin-top: 20px;
-    
+  margin-left: 10px;
+  border: 2px solid #000;
+  margin-top: 20px;
 }
 
 .cartButton button:disabled {
-  background-color: #bdc3c7; 
-  color: #7f8c8d; 
-  border-color: #bdc3c7; 
-  cursor: not-allowed; 
-  transform: none; 
+  font-family: "Montserrat", sans-serif;
+  background-color: #bdc3c7;
+  color: #7f8c8d;
+  border-color: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
 }
-
