@@ -1,4 +1,3 @@
-import LoginModal from "../../LoginModal/root/LoginModal";
 import CarrouselContainer from "../components/Carousel/CarouselContainer";
 import HowToBuyContainer from "../components/HowToBuy/HowToBuyContainer";
 import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";
@@ -7,7 +6,6 @@ import ProductHighlights from "../components/ProductHighlights/ProductHighlights
 import styles from "./Home.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
-import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 import { useEffect } from "react";
 import { getIdUser } from "../../../../redux/actions/action";
 
@@ -24,19 +22,17 @@ const Home = () => {
 
   const open = useSelector((state) => state.openModal);
 
-  const handleOpenModal = () => {
-    dispatch({ type: OPEN_MODAL });
-  };
-
   useEffect(() => {
     if (userInfoFistrLogin) {
       dispatch(getIdUser(userInfoFistrLogin));
     }
   }, [userInfoFistrLogin]);
 
+
   return (
     <div className={styles.homeContainer}>
       <div>
+
         <button onClick={handleOpenModal}>Open model</button>
       </div>
 
@@ -45,6 +41,7 @@ const Home = () => {
       </div>
 
       <div>
+
         <CarrouselContainer />
       </div>
 

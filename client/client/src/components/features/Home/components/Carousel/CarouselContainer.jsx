@@ -1,5 +1,6 @@
 import React from "react";
 import { Carousel } from "antd";
+import styles from "./CarouselContainer.module.css";
 
 const CarouselContainer = () => {
   const contentStyle = {
@@ -8,27 +9,37 @@ const CarouselContainer = () => {
     lineHeight: "400px",
     textAlign: "center",
     background: "#364d79",
-    marginTop: "90px"
   };
 
-
   return (
-
-
-    <Carousel autoplay>
-      <div >
-
-        <h3 style={contentStyle}>Image 1</h3>
-
+    <Carousel autoplay className={styles.customCarousel}>
+      <div className={styles.carouselItem}>
+        <img
+          className={styles.carouselImage}
+          src="/assets/images/carousel1.png"
+          alt="Imagen Carousel 1"
+        />
       </div>
-      <div>
-        <h3 style={contentStyle}>Image 2</h3>
+      <div className={styles.carouselItem}>
+        <img
+          className={styles.carouselImage}
+          src="/assets/images/carousel2.png"
+          alt="Imagen Carousel 2"
+        />
       </div>
-      <div>
-        <h3 style={contentStyle}>Image 3</h3>
+      <div className={styles.carouselItem}>
+        <img
+          className={styles.carouselImage}
+          src="/assets/images/carousel3.png"
+          alt="Imagen Carousel 3"
+        />
       </div>
-      <div>
-        <h3 style={contentStyle}>Image 4</h3>
+      <div className={styles.carouselItem}>
+        <img
+          className={styles.carouselImage}
+          src="/assets/images/carousel4.png"
+          alt="Imagen Carousel 4"
+        />
       </div>
     </Carousel>
   );

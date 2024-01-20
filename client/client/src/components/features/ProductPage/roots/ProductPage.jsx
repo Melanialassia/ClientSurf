@@ -20,14 +20,15 @@ import {
 import style from "./ProductPage.module.css";
 
 const ProductPage = () => {
-  const dispatch = useDispatch();
-  const allProducts = useSelector((s) => s.filter);
   const allCategorys = useSelector((s) => s.allCategorys);
-  const allColors = useSelector((s) => s.allColors);
-  console.log("entre", allProducts);
-  const [category, setCategory] = useState("");
   const [productOrder, setProductOrder] = useState("");
+  const allColors = useSelector((s) => s.allColors);
+  const allProducts = useSelector((s) => s.filter);
+  const [category, setCategory] = useState("");
   const [color, setColor] = useState("");
+  const dispatch = useDispatch();
+  console.log("entre", allProducts);
+  console.log(color);
 
   //PAGINADO
   const currentPage = useSelector((state) => state.currentPage);

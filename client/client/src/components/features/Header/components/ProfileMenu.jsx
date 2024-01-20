@@ -34,8 +34,11 @@ const ProfileMenu = () => {
   const navigate = useNavigate();
 
   const handleLogOut = () => {
+    localStorage.removeItem('access');
     dispatch(logOut());
+    userAccess = null;
     navigate('/login')
+    window.location.reload();
   }
 
   const handleMenuClick = (event) => {

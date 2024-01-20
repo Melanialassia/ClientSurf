@@ -1,5 +1,5 @@
 //Hooks
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 //Librarys
@@ -11,18 +11,32 @@ import ProfileMenu from "../components/ProfileMenu";
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 //style-sheets
 import styles from "./Header.module.css";
+import LoginModal from "../../LoginModal/root/LoginModal";
 //JavaScript
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const data = useSelector((state) => state.dataUser);
   const logedUser = useSelector((state) => state.logedUser);
 
+  const open = useSelector((state) => state.openModal);
+
   const location = useLocation();
-  // let userAccess = null;
-  // if (data) {
-  //   userAccess = data.access;
-  // }
+
+  let userAccess = null;
+  // const userAccess = !data ? data.access : null;
+  if (data) {
+    userAccess = data.access;
+
+    // Guardar el valor de access en el localStorage
+    localStorage.setItem('access', JSON.stringify(userAccess));
+  } else {
+    // Si no hay datos de usuario, intenta recuperar el valor desde el localStorage
+    const storedAccess = localStorage.getItem('access');
+    userAccess = storedAccess ? JSON.parse(storedAccess) : null;
+  }
+
 
   // const userAccess = data ? data.access || localStorage.getItem("email") : false;
   const userAccess = data?.access || localStorage.getItem("email");
@@ -43,7 +57,7 @@ const Header = () => {
     if (logedUser === false) {
       handleOpenModal();
     } else {
-      window.location.href = "/cart";
+      navigate("/cart");
     }
   };
 
@@ -63,9 +77,14 @@ const Header = () => {
         </a>
       </div>
 
+      <div>
+        <LoginModal open={open} />
+      </div>
+
       <div className={styles.navbar}>
         <NavBar />
       </div>
+
 
       {userAccess !== null && userAccess !== undefined ? (
         <ProfileMenu />
@@ -83,26 +102,7 @@ const Header = () => {
           </Link>
         </ul>
       )}
-      {/* {!userAccess ? (
-        <div>
-          <ul className={styles.menuitems}>
-            <li>
-              <Link to="/login">
-                <a href="">Iniciar sesión</a>
-              </Link>
-            </li>
-
-            <Link to={"/account/create"}>
-              <Button type="primary" style={styledButton}>
-                Registrarse
-              </Button>
-            </Link>
-          </ul>
-        </div>
-      ) : (
-        <ProfileMenu />
-      )} */}
-
+      
       <div>
         <ShoppingCartOutlined
           onClick={handleCartClick}
