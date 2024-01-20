@@ -3,6 +3,7 @@ import axios from 'axios';
 import styles from './Cart.module.css';
 import { Link } from 'react-router-dom';
 import { DeleteOutlined } from '@ant-design/icons';
+import EmptyPage from '../../EmptyPage/roots/EmptyPage';
 import { useSelector, useDispatch } from "react-redux";
 
 
@@ -125,7 +126,7 @@ const Cart = () => {
         ) : (
           <div>
             <h2>Carrito de Compras</h2>
-            <p>No tienes ningún artículo en tu carrito de compras.</p>
+            <EmptyPage className={styles.emptyPage}/>
           </div>
         )}
         {cartListItems.length > 0 && (

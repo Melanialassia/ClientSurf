@@ -1,5 +1,5 @@
 //Hooks
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 //Librarys
@@ -8,15 +8,19 @@ import { Button } from "antd";
 //Components
 import NavBar from "../components/NavBar";
 import ProfileMenu from "../components/ProfileMenu";
-import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types"
+import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 //style-sheets
 import styles from "./Header.module.css";
+import LoginModal from "../../LoginModal/root/LoginModal";
 //JavaScript
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const data = useSelector((state) => state.dataUser);
   const logedUser = useSelector((state) => state.logedUser);
+
+  const open = useSelector((state) => state.openModal);
 
   const location = useLocation();
   let userAccess = null;
@@ -48,9 +52,9 @@ const Header = () => {
 
   const handleCartClick = () => {
     if (logedUser === false) {
-      handleOpenModal()
+      handleOpenModal();
     } else {
-      window.location.href = "/cart";
+      navigate("/cart");
     }
   };
 
@@ -70,10 +74,14 @@ const Header = () => {
         </a>
       </div>
 
+      <div>
+        <LoginModal open={open} />
+      </div>
+
       <div className={styles.navbar}>
         <NavBar />
       </div>
-      
+
       {!userAccess ? (
         <div>
           <ul className={styles.menuitems}>
@@ -95,13 +103,13 @@ const Header = () => {
       )}
 
       <div>
-          <ShoppingCartOutlined
+        <ShoppingCartOutlined
           onClick={handleCartClick}
-            style={{
-              color: "#28445c",
-              fontSize: "35px",
-            }}
-          />
+          style={{
+            color: "#28445c",
+            fontSize: "35px",
+          }}
+        />
       </div>
     </div>
   );

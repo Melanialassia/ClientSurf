@@ -17,11 +17,8 @@ import {
   LOGOUT,
   OPEN_MODAL,
   CLOSE_MODAL,
-
   GET_USER_ID,
-
-  LOGED_USER
-
+  LOGED_USER,
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -151,7 +148,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userData: action.payload,
-      }
+      };
 
     case LOGED_USER:
       return {

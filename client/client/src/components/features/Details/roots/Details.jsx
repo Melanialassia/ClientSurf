@@ -3,9 +3,14 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./details.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addToFavorites } from "../../../../redux/actions/action";
+import {
+  addToCart,
+  addToFavorites,
+  deleteFavorite,
+} from "../../../../redux/actions/action";
 import LoginModal from "../../LoginModal/root/LoginModal";
-import { ShoppingCartOutlined } from '@ant-design/icons';
+
+import { HeartOutlined, HeartFilled, ShoppingCartOutlined } from "@ant-design/icons";
 
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 
@@ -24,13 +29,25 @@ const Details = () => {
   const dataUser = useSelector((state) => state.dataUser);
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const open = useSelector((s) => s.openModal);
+
+  const dataUser = useSelector((state) => state.dataUser);
+
+  const isProductInFavorites = favoriteProducts.some(
+    (favProduct) => favProduct.idProduct === product.idProduct
+  );
+
+  const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
+
+  useEffect(() => {
+    console.log("allFavs", favoriteProducts);
+    setIsInFavorites(isProductInFavorites);
+  }, [isProductInFavorites]);
+  
   const storedAccess = localStorage.getItem('access');
   const userAccess = storedAccess ? JSON.parse(storedAccess) : null;
   const userId = localStorage.getItem('userId');
 
   console.log(dataUser)
-
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -117,24 +134,18 @@ const Details = () => {
   };
 
   const addToCartHandler = async () => {
-   
-  
-    try {
-      // Verificar si el usuario tiene access antes de agregar al carrito
-      if (userAccess) {
-        console.log("idUser:", idUser);
-        console.log(product);
+    if (logedUser === false) {
+      handleOpenModal();
+    } else {
+      try {
         await dispatch(
-          addToCart(product.idProduct, userId, quantity, product.description)
+          addToCart(product.idProduct, 1, quantity, product.description)
         );
+
         navigate("/cart");
-      } else {
-        handleOpenModal();
-        console.log("El usuario no tiene acceso. Redirigiendo a la página de inicio de sesión.");
-        
+      } catch (error) {
+        console.error("Error al agregar al carrito:", error);
       }
-    } catch (error) {
-      console.error("Error al agregar al carrito:", error);
     }
   };
 
@@ -142,10 +153,14 @@ const Details = () => {
     if (logedUser === false) {
       handleOpenModal();
     } else {
-      dispatch(
-        addToFavorites(favoriteProducts.idUser, favoriteProducts.idProduct)
-      );
+      dispatch(addToFavorites(dataUser.idUser, product.idProduct));
+      setIsInFavorites(!isInFavorites);
     }
+  };
+
+  const removeFromFavoritesHandler = () => {
+    dispatch(deleteFavorite(dataUser.idUser, product.idProduct));
+    setIsInFavorites(!isInFavorites);
   };
 
   const handleOpenModal = () => {
@@ -250,6 +265,25 @@ const Details = () => {
               Añadir al carrito   <ShoppingCartOutlined />
             </button>
 
+            {isInFavorites ? (
+              <HeartFilled
+                onClick={removeFromFavoritesHandler}
+                style={{
+                  color: "#E89038",
+                  fontSize: "35px",
+                  marginLeft: "10px",
+                }}
+              />
+            ) : (
+              <HeartOutlined
+                onClick={addToFavoritesHandler}
+                style={{
+                  color: "#E89038",
+                  fontSize: "35px",
+                  marginLeft: "10px",
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -293,6 +327,8 @@ Gracias!
 LA OLA URBANA
     </p>
       </div>
+
+      <br></br>
 
       <div>
         <LoginModal open={open} />
