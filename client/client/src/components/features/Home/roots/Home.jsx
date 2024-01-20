@@ -28,6 +28,7 @@ const Home = () => {
     }
   }, [userInfoFistrLogin]);
 
+
   return (
     <div className={styles.homeContainer}>
       <div>

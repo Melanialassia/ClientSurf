@@ -8,11 +8,11 @@ import {
   getAllBrands,
   getAllColors,
   postProduct,
-  getAllSize
+  getAllSize,
 } from "../../../../redux/actions/action";
 //LIBRARY
-import { Form, Input, Select, InputNumber, Button, Upload, Image} from "antd";
-import { PlusOutlined } from '@ant-design/icons';
+import { Form, Input, Select, InputNumber, Button, Upload, Image } from "antd";
+import { PlusOutlined, DownloadOutlined } from "@ant-design/icons";
 import styles from "./FormProduct.module.css";
 const { TextArea } = Input;
 const { Option } = Select;
@@ -23,26 +23,27 @@ const FormProduct = () => {
   const allColors = useSelector((s) => s.allColors);
   const allSize = useSelector((s) => s.allSize);
   const dispatch = useDispatch();
+  const [form] = Form.useForm();
 
+  const [dataProduct, setDataProduct] = useState({
+    idCategory: "",
+    name: "",
+    idSize: "",
+    image: "",
+    idColor: "",
+    idBrand: "",
+    priceProduct: "",
+    stock: "",
+    description: "",
+  });
 
   useEffect(() => {
     dispatch(getAllCategorys());
     dispatch(getAllBrands());
     dispatch(getAllColors());
     dispatch(getAllSize());
-  }, [dispatch]);
+  }, []);
 
-  const [dataProduct, setDataProduct] = useState({
-    idCategory: "",
-    name: "",
-    idSize:"",
-    image: "",
-    idColor: "",
-    idBrand: "",
-    priceProduct:"",
-    stock: "",
-    description: "",
-  });
 
   const handleChange = (name, value) => {
     setDataProduct({
@@ -50,7 +51,7 @@ const FormProduct = () => {
       [name]: value,
     });
   };
-  console.log("entre", dataProduct);
+  
 
   const layout = {
     labelCol: {
@@ -68,12 +69,18 @@ const FormProduct = () => {
     return e && e.fileList;
   };
 
-  const customRequest = async ({ file, onSuccess }) => {
+  const [file, setFile] = useState("");
+
+  const customRequest = ({ file }) => {
+    setFile(file);
+  };
+
+  const postCloudinary = async () => {
     try {
       const data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "olaurbana");
-
+  
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dfvebd4zw/image/upload",
         {
@@ -81,73 +88,87 @@ const FormProduct = () => {
           body: data,
         }
       );
-
+  
       const cloudinaryFile = await res.json();
-      setDataProduct({
-        ...dataProduct,
-        image: cloudinaryFile.secure_url,
-      });
-
-      onSuccess();
+      return cloudinaryFile.secure_url; // Retorna la URL de la imagen
     } catch (error) {
       console.error("Error al subir la imagen:", error);
     }
   };
 
-  const handleSubmit = () => {
-    const obj = {
-      idCategory: +dataProduct.idCategory,
-      name: dataProduct.name,
-      idSize: +dataProduct.idBrand,
-      image: dataProduct.image,
-      idColor: +dataProduct.idColor,
-      idBrand: +dataProduct.idBrand,
-      priceProduct: dataProduct.priceProduct,
-      stock: dataProduct.stock,
-      description: dataProduct.description,
-    };
+  const handleSubmit = async () => {
+    try {
+      const imageUrl = await postCloudinary();  // Esperar a que se complete la subida de la imagen
+  console.log(imageUrl);
+      const obj = {
+        idCategory: +dataProduct.idCategory,
+        name: dataProduct.name,
+        idSize: +dataProduct.idSize, 
+        image: imageUrl, 
+        idColor: +dataProduct.idColor,
+        idBrand: +dataProduct.idBrand,
+        priceProduct: dataProduct.priceProduct,
+        stock: dataProduct.stock,
+        description: dataProduct.description,
+      };
+      console.log("entre", obj);
+      dispatch(postProduct(obj));
+
+      setFile("");
+
+      setDataProduct({
+        idCategory: "",
+        name: "",
+        idSize: "", 
+        image: "",
+        idColor: "",
+        idBrand: "",
+        priceProduct: 0,
+        stock: 0,
+        description: "",
+      });
   
-    dispatch(postProduct(obj));
-  
-    setDataProduct({
-      idCategory: "",
-      name: "",
-      idSize: "",
-      image: "", 
-      idColor: "",
-      idBrand: "",
-      priceProduct: 0,
-      stock: 0,
-      description: "",
-    });
+      form.resetFields(); 
+    } catch (error) {
+      console.error("Error al procesar el formulario:", error);
+    }
   };
+
 
   return (
     <div>
-      <h4 style={{ marginTop: "80px", fontSize: "30px" }} className={styles.text}> Crear Producto </h4>
-      <Form onFinish={handleSubmit} {...layout} style={{maxWidth: 600}}>
+      <h4
+        style={{ marginTop: "80px", fontSize: "30px" }}
+        className={styles.text}
+      >
+        {" "}
+        Agrega un nuevo producto{" "}
+      </h4>
+      <Form form={form} onFinish={handleSubmit} {...layout} style={{ maxWidth: 600,  marginLeft: '700px' }}>
         <Form.Item
           label="Nombre"
           name="name"
           rules={[
-            { required: true, message: 'Campo obligatorio!' },
-            { max: 20, message: 'El nombre no debe tener más de 50 caracteres' },
-            { pattern: /^[^\d]+$/, message: 'El nombre no debe contener números' },
-          ]} 
+            { required: true, message: "Campo obligatorio!." },
+            {
+              max: 20,
+              message: "El nombre no debe tener más de 50 caracteres.",
+            },
+            {
+              pattern: /^[^\d]+$/,
+              message: "El nombre no debe contener números.",
+            },
+          ]}
         >
-          <Input
-            onChange={(e) => handleChange("name", e.target.value)}
-          />
+          <Input onChange={(e) => handleChange("name", e.target.value)} defaultValue={dataProduct.name}/>
         </Form.Item>
 
         <Form.Item
           label="Categoría"
           name="idCategory"
-          rules={[{ required: true, message: "Seleccione la categoría!" }]}
+          rules={[{ required: true, message: "Seleccione la categoría!." }]}
         >
-          <Select
-            onChange={(value) => handleChange("idCategory", value)}
-          >
+          <Select onChange={(value) => handleChange("idCategory", value)}>
             {allCategorys.map((c) => (
               <Option key={c.idCategory} value={c.idCategory}>
                 {c.nameCategory}
@@ -161,35 +182,35 @@ const FormProduct = () => {
           name="image"
           valuePropName="fileList"
           getValueFromEvent={normFile}
-          rules={[{ required: true, message: "Debe de subir una foto!" }]}
+          rules={[{ required: true, message: "Debe de subir una foto!." }]}
         >
           <Upload
             customRequest={customRequest}
-            listType="picture-card"
             showUploadList={false}
           >
-            {dataProduct.image ? (
-              <Image src={dataProduct.image} alt="product"  />
-            ) : (
+            {
               <div>
                 <PlusOutlined />
-                <div style={{ marginTop: 8 }}>Subir Imagen</div>
+                <div style={{ marginTop: 8 }}>Selecione una imagen</div>
               </div>
-            )}
+            }
           </Upload>
         </Form.Item>
+
+        <Form.Item style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+          {file && <Image src={URL.createObjectURL(file)} alt="product" style={{ width: '150px', height: '150px' }} />}
+        </Form.Item>
+
 
         <Form.Item
           label="Talle"
           name="idSize"
-          rules={[{ required: true, message: "Seleccione el talle!" }]}
+          rules={[{ required: true, message: "Seleccione el talle!." }]}
         >
-          <Select
-            onChange={(value) => handleChange("idSize", value)}
-          >
+          <Select onChange={(value) => handleChange("idSize", value)}>
             {allSize.map((c) => (
               <Option key={c.idSize} value={c.idSize}>
-                {c.name}
+                {c.nameSize}
               </Option>
             ))}
           </Select>
@@ -198,11 +219,9 @@ const FormProduct = () => {
         <Form.Item
           label="Color"
           name="idColor"
-          rules={[{ required: true, message: "Seleccione el color!" }]}
+          rules={[{ required: true, message: "Seleccione el color!." }]}
         >
-          <Select
-            onChange={(value) => handleChange("idColor", value)}
-          >
+          <Select onChange={(value) => handleChange("idColor", value)}>
             {allColors.map((c) => (
               <Option key={c.idColor} value={c.idColor}>
                 {c.nameColor}
@@ -214,7 +233,7 @@ const FormProduct = () => {
         <Form.Item
           label="Marca"
           name="idBrand"
-          rules={[{ required: true, message: "Seleccione la marca!" }]}
+          rules={[{ required: true, message: "Seleccione la marca!." }]}
         >
           <Select onChange={(value) => handleChange("idBrand", value)}>
             {allBrands.map((b) => (
@@ -228,16 +247,14 @@ const FormProduct = () => {
         <Form.Item
           label="Precio"
           name="priceProduct"
-          rules={[{ required: true, message: "Ingrese el precio!" },
-          {
-            validator: (_, value) => {
-              if (value < 0) {
-                return Promise.reject("No se puede ingresar un número negativo");
-              }
-              return Promise.resolve();
+          rules={[
+            { required: true, message: "Ingrese el precio!." },
+            {
+              type: "number",
+              min: 0,
+              message: "No se puede ingresar un número negativo.",
             },
-          },
-        ]}
+          ]}
         >
           <InputNumber
             style={{ width: "100%" }}
@@ -248,15 +265,14 @@ const FormProduct = () => {
         <Form.Item
           label="Stock"
           name="stock"
-          rules={[{ required: true, message: "Ingrese el stock!" },
-          {
-            validator: (_, value) => {
-              if (value < 0) {
-                return Promise.reject("No se puede ingresar un número negativo");
-              }
-              return Promise.resolve();
+          rules={[
+            { required: true, message: "Ingrese el stock!." },
+            {
+              type: "number",
+              min: 0,
+              message: "No se puede ingresar un número negativo.",
             },
-          },]}
+          ]}
         >
           <InputNumber
             style={{ width: "100%" }}
@@ -264,18 +280,21 @@ const FormProduct = () => {
           />
         </Form.Item>
 
-        <Form.Item
-          label="Descripción"
-          name="description"
+        <Form.Item 
+        label="Descripción" 
+        name="description"
+        rules={[{ required: true, message: "Por favor, añade una breve descripción." }]}
         >
           <TextArea
             onChange={(e) => handleChange("description", e.target.value)}
           />
         </Form.Item>
 
-        <Form.Item>
+        <Form.Item
+        style={{ marginLeft: '700px' }}
+        >
           <Button type="primary" htmlType="submit">
-            Crear
+            Guardar
           </Button>
         </Form.Item>
       </Form>

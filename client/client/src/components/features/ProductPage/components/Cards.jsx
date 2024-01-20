@@ -5,7 +5,7 @@ const { Meta } = Card;
 
 const Cards = ({ product }) => {
   return (
-    <div>
+    <div style={{ marginBottom: '20px' }}>
       <Link to={`/details/${product.idProduct}`}>
         <Card
           hoverable
@@ -14,13 +14,20 @@ const Cards = ({ product }) => {
             height: 350,
             margin: "10px",
             padding: "0", 
+            borderRadius: '2rem',
           }}
+          className="container"
         >
           <div style={{ height: '100%' }}>
             <img
               alt="example"
               src={product.image}
-              style={{ width: '100%', height: '70%', objectFit: 'cover' }}
+              style={{
+                width: '100%',
+                height: '200px', 
+                objectFit: 'cover',
+              }}
+              className="productimage"
             />
             <div style={{ padding: '16px' }}>
               <Meta
