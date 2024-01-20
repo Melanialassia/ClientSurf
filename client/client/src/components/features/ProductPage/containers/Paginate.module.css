@@ -13,15 +13,15 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Añadir transición para el color del texto */
+    transition: background-color 0.3s ease, color 0.3s ease; 
   }
   
   .paginate button:hover {
-    background-color: #2d4056; /* Color más oscuro cuando está en hover */
+    background-color: #2d4056; 
     color: #f3efef;
   }
 
   .paginate button.active {
-    background-color: #2d4056; /* Color más oscuro cuando está activo */
+    background-color: #2d4056; 
     color: #f3efef;
   }

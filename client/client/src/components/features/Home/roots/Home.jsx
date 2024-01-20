@@ -8,7 +8,7 @@ import styles from "./Home.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
-import { useEffect } from "react";
+import { useEffect, useInsertionEffect } from "react";
 import { getIdUser } from "../../../../redux/actions/action";
 
 const Home = () => {
@@ -28,11 +28,11 @@ const Home = () => {
     dispatch({ type: OPEN_MODAL });
   };
 
-  // useEffect(()=>{
-  //   if(nombre){
-  //   dispatch(getIdUser(userInfoFistrLogin))
-  //   }
-  // }, [userInfoFistrLogin])
+  useEffect(()=>{
+    if(userInfoFistrLogin){
+    dispatch(getIdUser(userInfoFistrLogin))
+    }
+  }, [userInfoFistrLogin])
 
   return (
     <div className={styles.homeContainer}>
