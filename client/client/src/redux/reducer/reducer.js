@@ -1,12 +1,10 @@
 import {
-  FILTER_BY_CATEGORY,
-  GET_NAME_PRODUCTS,
+  //PRODUCTS
+  FILTER_PRODUCS,
   GET_ALL_BRANDS,
   ALL_CATEGORYS,
   ALL_PRODUCTS,
   GET_ALL_SIZE,
-  FILTER_PRICE,
-  FILTER_COLOR,
   ADD_TO_CART,
   ALL_FAVORITES,
   ADD_TO_FAVORITES,
@@ -57,45 +55,65 @@ const reducer = (state = initialState, action) => {
         ...state,
         allColors: action.payload,
       };
-    case GET_NAME_PRODUCTS:
-      return {
-        ...state,
-        filter: action.payload,
-      };
-    case FILTER_BY_CATEGORY:
-      return {
-        ...state,
-        filter: action.payload,
-        filteredProducts: [...action.payload],
-      };
-    case FILTER_PRICE:
-      if (action.payload === "ASC") {
-        const response = [...state.filter].sort(
-          (a, b) => a.priceProduct - b.priceProduct
-        );
-        return {
-          ...state,
-          filter: [...response],
-        };
-      } else if (action.payload === "DESC") {
-        const response = [...state.filter].sort(
-          (a, b) => b.priceProduct - a.priceProduct
-        );
-        return {
-          ...state,
-          filter: [...response],
-        };
-      }
 
-    case FILTER_COLOR:
-      const selectedColor = action.payload;
-      const filteredByColor = state.filteredProducts.filter((product) =>
-        product.nameColor.includes(selectedColor)
-      );
+    case GET_ALL_BRANDS:
       return {
         ...state,
-        filter: filteredByColor,
+        allBrands: action.payload,
       };
+
+    case GET_ALL_SIZE:
+      return {
+        ...state,
+        allSize: action.payload,
+      };
+    // case GET_NAME_PRODUCTS:
+    //   return {
+    //     ...state,
+    //     filter: action.payload,
+    //   };
+    // case FILTER_BY_CATEGORY:
+
+    //   return {
+    //     ...state,
+    //     filter: action.payload,
+    //     // filteredProducts: [...action.payload],
+    //   };
+    // case FILTER_PRICE:
+    //   if (action.payload === "ASC") {
+    //     const response = [...state.filter].sort(
+    //       (a, b) => a.priceProduct - b.priceProduct
+    //     );
+    //     return {
+    //       ...state,
+    //       filter: [...response],
+    //     };
+    //   } else if (action.payload === "DESC") {
+    //     const response = [...state.filter].sort(
+    //       (a, b) => b.priceProduct - a.priceProduct
+    //     );
+    //     return {
+    //       ...state,
+    //       filter: [...response],
+    //     };
+    //   }
+
+    // case FILTER_PRODUCTS_COLOR:
+    //   // const selectedColor = action.payload;
+    //   // const filteredByColor = state.filteredProducts.filter((product) =>
+    //   //   product.nameColor.includes(selectedColor)
+    //   // );
+    //   return {
+    //     ...state,
+    //     filter: action.payload,
+    //   };
+
+    case FILTER_PRODUCS:
+      return {
+        ...state,
+        filter: action.payload,
+      };
+
     case ADD_TO_CART:
       return {
         ...state,
@@ -112,13 +130,12 @@ const reducer = (state = initialState, action) => {
         favoriteProducts: action.payload,
       };
     case POST_LOGIN:
-      localStorage.setItem('userId', action.payload.idUser);  
-      
+      localStorage.setItem("userId", action.payload.idUser);
+
       return {
         ...state,
         dataUser: action.payload,
         logedUser: true,
-        
       };
     case PAGINATE:
       return {
@@ -126,7 +143,6 @@ const reducer = (state = initialState, action) => {
         currentPage: action.payload,
       };
     case LOGOUT:
-      
       return {
         ...state,
         dataUser: null,
@@ -154,18 +170,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         logedUser: true,
-      };
-
-    case GET_ALL_BRANDS:
-      return {
-        ...state,
-        allBrands: action.payload,
-      };
-
-    case GET_ALL_SIZE:
-      return {
-        ...state,
-        allSize: action.payload,
       };
 
     default:
