@@ -1,28 +1,27 @@
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
 .container {
-    font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .text {
-    color: #30445c; 
+  color: #30445c;
 }
 
-.li{
-    list-style: none;
-    text-decoration: none; 
+.li {
+  list-style: none;
 }
 
 a {
-    color: #30445c;
-    text-decoration: none; 
+  color: #30445c;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
 }
 
 a:visited {
-    color: #30445c;
+  color: #30445c;
 }
 
-/* Agrega este estilo si quieres cambiar el color cuando el enlace está activo (clicado) */
-a:active {
-    color: #00ff00;
+a.active {
+  text-decoration: underline;
 }

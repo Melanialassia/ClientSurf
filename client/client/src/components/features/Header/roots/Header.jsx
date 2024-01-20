@@ -23,6 +23,7 @@ const Header = () => {
   const open = useSelector((state) => state.openModal);
 
   const location = useLocation();
+
   let userAccess = null;
   // const userAccess = !data ? data.access : null;
   if (data) {
@@ -36,7 +37,9 @@ const Header = () => {
     userAccess = storedAccess ? JSON.parse(storedAccess) : null;
   }
 
-  console.log(userAccess);
+
+  // const userAccess = data ? data.access || localStorage.getItem("email") : false;
+  // const userAccess = data?.access || localStorage.getItem("email");
 
   const styledButton = {
     backgroundColor: "#30445c",
@@ -82,26 +85,24 @@ const Header = () => {
         <NavBar />
       </div>
 
-      {!userAccess ? (
-        <div>
-          <ul className={styles.menuitems}>
-            <li>
-              <Link to="/login">
-                <a href="">Iniciar sesión</a>
-              </Link>
-            </li>
 
-            <Link to={"/account/create"}>
-              <Button type="primary" style={styledButton}>
-                Registrarse
-              </Button>
-            </Link>
-          </ul>
-        </div>
-      ) : (
+      {userAccess !== null && userAccess !== undefined ? (
         <ProfileMenu />
+      ) : (
+        <ul className={styles.menuitems}>
+          <li>
+            <Link to="/login">
+              <a href="">Iniciar sesión</a>
+            </Link>
+          </li>
+          <Link to={"/account/create"}>
+            <Button type="primary" style={styledButton}>
+              Registrarse
+            </Button>
+          </Link>
+        </ul>
       )}
-
+      
       <div>
         <ShoppingCartOutlined
           onClick={handleCartClick}

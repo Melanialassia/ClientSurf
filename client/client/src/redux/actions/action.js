@@ -132,6 +132,7 @@ export const filterProducts = (filter) => {
 
 //USER ACTIONS
 export const postUser = (userdata) => {
+  console.log(userdata);
   return async function (dispatch) {
     try {
       const response = await axios.post(

@@ -1,17 +1,17 @@
-//hooks
+//HOOKS
 import React from "react";
 import { Link } from "react-router-dom";
-//Components
+//COMPONENTS
 import {
-  myAccount,
+  fAQ,
   changePolicy,
   contact,
   celNumber,
   email,
   opneningHs,
-  days,
+  days
 } from "../utils/constants";
-//Style-sheets
+//STYLE-SHEETS
 import styles from "./Footer.module.css";
 
 const Footer = () => {
@@ -26,7 +26,9 @@ const Footer = () => {
       </div>
 
       <div className={styles.policiess}>
-        <p>{myAccount}</p>
+        <Link to={"/faq"}>
+        <p>{fAQ}</p>
+        </Link>
         <Link to={"/change-policy"}>
           <p>{changePolicy}</p>
         </Link>

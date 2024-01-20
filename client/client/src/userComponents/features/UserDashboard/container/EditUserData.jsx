@@ -44,7 +44,7 @@ const EditUserData = () => {
       idUser: userData.idUser,
       nameUser: userData.nameUser,
       lastName: userData.lastName,
-      emailUser: userData.emailUser
+      emailUser: userData.emailUser,
   });
 
   useEffect(() => {
