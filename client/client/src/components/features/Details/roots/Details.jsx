@@ -30,8 +30,6 @@ const Details = () => {
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const open = useSelector((s) => s.openModal);
 
-  const dataUser = useSelector((state) => state.dataUser);
-
   const isProductInFavorites = favoriteProducts.some(
     (favProduct) => favProduct.idProduct === product.idProduct
   );
@@ -166,10 +164,6 @@ const Details = () => {
   const handleOpenModal = () => {
     dispatch({ type: OPEN_MODAL });
   };
-
-  const isProductInFavorites = favoriteProducts.some(
-    (favProduct) => favProduct.idProduct === product.idProduct
-  );
 
   const getColorButtons = () => {
     if (product.nameColor) {
