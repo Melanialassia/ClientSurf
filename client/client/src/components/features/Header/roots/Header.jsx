@@ -39,7 +39,7 @@ const Header = () => {
 
 
   // const userAccess = data ? data.access || localStorage.getItem("email") : false;
-  const userAccess = data?.access || localStorage.getItem("email");
+  // const userAccess = data?.access || localStorage.getItem("email");
 
   const styledButton = {
     backgroundColor: "#30445c",
