@@ -28,6 +28,11 @@ const Home = () => {
     }
   }, [userInfoFistrLogin]);
 
+  useEffect(()=>{
+    if(userInfoFistrLogin){
+    dispatch(getIdUser(userInfoFistrLogin))
+    }
+  }, [userInfoFistrLogin])
 
   return (
     <div className={styles.homeContainer}>
