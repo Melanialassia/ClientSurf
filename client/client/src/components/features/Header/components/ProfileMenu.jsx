@@ -35,10 +35,9 @@ const ProfileMenu = () => {
 
   const handleLogOut = () => {
     localStorage.removeItem('access');
+    localStorage.setItem('logedUser', JSON.stringify(false));
     dispatch(logOut());
-    userAccess = null;
-    navigate('/login')
-    window.location.reload();
+    navigate('/login');
   }
 
   const handleMenuClick = (event) => {

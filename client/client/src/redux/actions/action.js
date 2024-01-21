@@ -164,6 +164,7 @@ export const userLogin = (userData) => {
       const response = await axios.post(URL, userData);
       localStorage.setItem("access", JSON.stringify(response.data.access));
       localStorage.setItem("userId", response.data.idUser);
+      localStorage.setItem("logedUser", true);
 
       dispatch({
         type: POST_LOGIN,
@@ -272,9 +273,12 @@ export const deleteFavorite = (idUser, idProduct) => {
 };
 
 export const logOut = () => {
-  localStorage.removeItem("access");
-  return {
-    type: LOGOUT,
+  localStorage.removeItem('access');
+  localStorage.setItem('logedUser', JSON.stringify(false));
+
+  return (dispatch) => {
+    dispatch({ type: LOGOUT });
+    dispatch({ type: LOGED_USER, payload: false });
   };
 };
 
@@ -295,3 +299,4 @@ export const updateUserInfo = () => {};
 export const handleOpenModal = () => {
   dispatch({ type: OPEN_MODAL });
 };
+

@@ -148,18 +148,7 @@ body {
   transform: none; 
 }
 
-.favoriteButton {
-  padding: 10px 20px;
-  background-color: transparent; 
-  color: #fff; 
-  border: none; 
-  cursor: pointer;
-  margin-left: 150px;
-  margin-bottom: 40px;
-  border-radius: 5px;
-  height: fit-content;
-}
-
-.favoriteButton:hover {
-  transform: scale(1.57);
+.heartButton {
+  margin-left: 160px;
+  margin-bottom: 30px;
 }
