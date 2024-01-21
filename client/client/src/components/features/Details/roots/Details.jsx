@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./details.module.css";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   addToCart,
   addToFavorites,
@@ -25,7 +26,7 @@ const Details = () => {
   const imgRef = useRef(null);
   const [quantity, setQuantity] = useState(1);
 
-  const logedUser = useSelector((state) => state.logedUser);
+  const logedUser = JSON.parse(localStorage.getItem('logedUser'));
   const dataUser = useSelector((state) => state.dataUser);
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const open = useSelector((s) => s.openModal);
@@ -132,14 +133,14 @@ const Details = () => {
   };
 
   const addToCartHandler = async () => {
-    if (logedUser === false) {
+    if (logedUser === null || logedUser === false) {
       handleOpenModal();
     } else {
       try {
         await dispatch(
           addToCart(product.idProduct, 1, quantity, product.description)
         );
-
+  
         navigate("/cart");
       } catch (error) {
         console.error("Error al agregar al carrito:", error);
@@ -206,13 +207,29 @@ const Details = () => {
           />
         </div>
         <div className={styles.infoContainer}>
-            <button
-          onClick={addToFavoritesHandler}
-          className={styles.favoriteButton}
-        >
-          {isProductInFavorites ? '❤️' : '🤍'}
-        </button>
+           
           <div className={styles.subInfoContainer1}>
+            <div className={styles.heartButton}>
+          {isInFavorites ? (
+              <HeartFilled
+                onClick={removeFromFavoritesHandler}
+                style={{
+                  color: "#E89038",
+                  fontSize: "35px",
+                  marginLeft: "10px",
+                }}
+              />
+            ) : (
+              <HeartOutlined
+                onClick={addToFavoritesHandler}
+                style={{
+                  color: "#E89038",
+                  fontSize: "35px",
+                  marginLeft: "10px",
+                }}
+              />
+            )}
+            </div>
             <h2>{product.name}</h2>
             <div className={styles.price}>
               <h2>${product.priceProduct}</h2>
@@ -259,25 +276,7 @@ const Details = () => {
               Añadir al carrito   <ShoppingCartOutlined />
             </button>
 
-            {isInFavorites ? (
-              <HeartFilled
-                onClick={removeFromFavoritesHandler}
-                style={{
-                  color: "#E89038",
-                  fontSize: "35px",
-                  marginLeft: "10px",
-                }}
-              />
-            ) : (
-              <HeartOutlined
-                onClick={addToFavoritesHandler}
-                style={{
-                  color: "#E89038",
-                  fontSize: "35px",
-                  marginLeft: "10px",
-                }}
-              />
-            )}
+            
           </div>
         </div>
       </div>

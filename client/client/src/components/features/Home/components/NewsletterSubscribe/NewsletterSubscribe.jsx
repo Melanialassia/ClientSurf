@@ -13,7 +13,7 @@ const NewsletterSubscribe = () => {
 
         <div>
           <Input placeholder="Ingresa tu correo" style={{ width: 350 }} />
-          <button>Subscribirse</button>
+          <button className={styles.button}>Subscribirse</button>
         </div>
       </div>
 

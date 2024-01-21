@@ -69,8 +69,8 @@ const FormContainer = () => {
 
   return (
     <div className={styles.container}>
-      <h2>{infoLogin}</h2>
-      <h4>{text}</h4>
+      <h2 className={styles.textt}>{infoLogin}</h2>
+      <h4 className={styles.text}>{text}</h4>
       <hr className={styles.hr} />
 
       <Form
@@ -107,7 +107,7 @@ const FormContainer = () => {
           <Input onChange={(e) => handleChange("nameUser", e.target.value)} />
         </Form.Item>
 
-        {/* <Form.Item
+        <Form.Item
           name={["user", "lastName"]}
           label="Apellido"
           rules={[
@@ -117,7 +117,7 @@ const FormContainer = () => {
           ]}
         >
           <Input onChange={(e) => handleChange("lastName", e.target.value)} />
-        </Form.Item> */}
+        </Form.Item>
 
         <Form.Item
           name={["user", "email"]}

@@ -20,9 +20,9 @@ import {
   GET_USER_ID,
   POST_LOGIN,
   LOGOUT,
+  PUT_USER,
   //PAGINADO
   PAGINATE,
-  PUT_USER,
   OPEN_MODAL,
   LOGED_USER,
 } from "../actions-types/actions-types";
@@ -178,9 +178,9 @@ export const userLogin = (userData) => {
     try {
       const URL = `http://localhost:3001/surf/login`;
       const response = await axios.post(URL, userData);
-      console.log(response);
       localStorage.setItem("access", JSON.stringify(response.data.access));
       localStorage.setItem("userId", response.data.idUser);
+      localStorage.setItem("logedUser", true);
 
       dispatch({
         type: POST_LOGIN,
@@ -193,9 +193,12 @@ export const userLogin = (userData) => {
 };
 
 export const logOut = () => {
-  localStorage.removeItem("access");
-  return {
-    type: LOGOUT,
+  localStorage.removeItem('access');
+  localStorage.setItem('logedUser', JSON.stringify(false));
+
+  return (dispatch) => {
+    dispatch({ type: LOGOUT });
+    dispatch({ type: LOGED_USER, payload: false });
   };
 };
 
@@ -212,6 +215,23 @@ export const getIdUser = (idUser) => {
 };
 
 export const updateUserInfo = () => {};
+
+export const updateUser = (userData) => {
+  console.log("antes", userData);
+  return async function (dispatch) {
+    try {
+      const URL = `http://localhost:3001/surf/user`;
+      const response = await axios.put(URL, userData);
+      console.log("desp", response);
+      dispatch({
+        type: PUT_USER,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log("Error durante el inicio de sesión:", error);
+    };
+  };
+};
 
 //CART ACTIONS
 export const addToCart = (productId, idUser, amount) => {
@@ -296,3 +316,4 @@ export const deleteFavorite = (idUser, idProduct) => {
 export const handleOpenModal = () => {
   dispatch({ type: OPEN_MODAL });
 };
+

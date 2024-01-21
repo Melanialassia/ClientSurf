@@ -159,7 +159,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case GET_USER_ID:
-      console.log(action.payload);
+  
       return {
         ...state,
         userData: action.payload,

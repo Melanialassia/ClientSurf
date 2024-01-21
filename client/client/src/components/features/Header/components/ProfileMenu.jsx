@@ -1,12 +1,12 @@
-//hooks
+//HOOKS
 import React from "react";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-//actions
+//ACTIONS
 import { logOut } from "../../../../redux/actions/action";
-//librarys
+//LIBRARY
 import { Menu } from "antd";
-//style-sheets
+//STYLE-SHEETS
 import styles from './ProfileMenu.module.css'
 
 function getItem(label, key, children, type) {
@@ -35,14 +35,12 @@ const ProfileMenu = () => {
 
   const handleLogOut = () => {
     localStorage.removeItem('access');
+    localStorage.setItem('logedUser', JSON.stringify(false));
     dispatch(logOut());
-    userAccess = null;
-    navigate('/login')
-    window.location.reload();
+    navigate('/login');
   }
 
   const handleMenuClick = (event) => {
-    console.log("click ", event);
     switch (event.key) {
       case "1":
         navigate("/my-account");
@@ -71,7 +69,7 @@ const ProfileMenu = () => {
           marginRight: "80px",
           borderRadius: "20px"
         }}
-        defaultSelectedKeys={["1"]}
+        selectedKeys={[]} 
         defaultOpenKeys={["sub1"]}
         items={items}
         onSelect={handleMenuClick}
