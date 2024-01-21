@@ -123,7 +123,8 @@ const RegisterUsersContainer = () => {
         name="nest-messages"
         onFinish={handleSubmit}
         style={{
-          marginTop: "80px",
+          marginTop: "20px",
+          marginLeft: "-100px",
           maxWidth: 600,
           fontSize: "200px",
         }}

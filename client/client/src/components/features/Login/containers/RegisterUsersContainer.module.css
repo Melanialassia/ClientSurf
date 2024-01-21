@@ -3,7 +3,7 @@
   color: black;
   width: 570px;
   height: 500px;
-  margin-top: 50px;
+  margin-top: 150px;
   margin-bottom: 5px;
   background-color: white;
   margin-left: 150px;
@@ -17,41 +17,18 @@
   font-family: "Montserrat", sans-serif;
 }
 
-.label-input-group {
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 80%;
-  margin-bottom: -5px;
-}
-
-.label-input-group label {
-  margin-top: -10px;
-  margin-right: 10px;
-}
-
-.input-container {
-  flex-grow: 1;
-}
-
-input {
-  margin-top: 5px;
-  margin-bottom: 10px;
-  width: 90%;
-  border-radius: 5px;
-}
-
 h2 {
   margin-bottom: 120px;
   color: black;
   font-size: xx-large;
+  font-weight: 400;
 }
 
 h4 {
   color: black;
   margin-bottom: 150px;
   margin-top: -100px;
+  font-weight: 400;
 
 }
 
