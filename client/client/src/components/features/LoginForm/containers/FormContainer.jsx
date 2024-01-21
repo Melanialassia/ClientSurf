@@ -8,7 +8,7 @@ import { Button, Form, Input } from "antd";
 //REDUX
 import { postUser } from "../../../../redux/actions/action";
 //CONstANTS
-import { infoLogin, createAccount } from "../utils/constants";
+import { infoLogin, createAccount, text } from "../utils/constants";
 //STYLE-SHEETS
 import styles from "./FormContainer.module.css";
 
@@ -69,7 +69,9 @@ const FormContainer = () => {
 
   return (
     <div className={styles.container}>
-      <h3>{infoLogin}</h3>
+      <h2>{infoLogin}</h2>
+      <h4>{text}</h4>
+      <hr className={styles.hr} />
 
       <Form
         {...layout}
@@ -77,7 +79,8 @@ const FormContainer = () => {
         name="nest-messages"
         onFinish={handleSubmit}
         style={{
-          marginTop: "80px",
+          marginTop: "20px",
+          marginLeft: "-50px",
           maxWidth: 600,
           fontSize: "200px",
         }}

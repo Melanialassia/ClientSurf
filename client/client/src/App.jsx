@@ -2,6 +2,7 @@ import "./App.css";
 
 import { Routes, Route } from "react-router-dom";
 import { FloatButton } from "antd";
+import styles from './App.module.css'
 
 //COMPONENTS
 
@@ -42,6 +43,9 @@ const App = () => {
         <Route path="/edit-personaldata" element={<EditUserData />} />
         <Route path="/faq" element={<Faq />} />
       </Routes>
+      <a href="https://api.whatsapp.com/send?phone=5493415948636" target="_blank">
+        <img src="/assets/images/whatsapp.png" alt="" className={styles.image}/>
+      </a>
       <FloatButton.BackTop
         style={{
           height: "8vh",
