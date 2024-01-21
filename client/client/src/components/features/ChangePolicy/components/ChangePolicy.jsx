@@ -1,62 +1,52 @@
 //Hooks
-import React from 'react';
+import React from "react";
+//constants
+import {
+  fifthP,
+  secondP,
+  thirdP,
+  userName,
+  buyNumber,
+  product,
+  newProduct,
+  reason,
+  fourthP,
+  important,
+  firstP,
+  sixthP,
+  seventhP,
+  thankYou,
+  theWave,
+  dni,
+} from "../utils/constants";
 //style-sheets
-import styles from './ChangePolicy.module.css';
+import styles from "./ChangePolicy.module.css";
 
 const ChangePolicy = () => {
   return (
     <div className={styles.container}>
-    <p>
-En LA OLA URBANA tenés 15 días para cambiar luego de haber realizado la compra.
-El cambio puede ser por talle o color y se respeta el precio que pagaste.
+      <p>{firstP}</p>
+      <p>{secondP}</p>
+      <p>
+        {thirdP}
+        <p>{userName}</p>
+        <p>{dni}</p>
+        <p>{buyNumber}</p>
+        <p>{product}</p>
+        <p>{newProduct}</p>
+        <p>{reason}</p>
+      </p>
 
-</p>
-<p> 
+      <p>{fourthP}</p>
+      <p>{important}</p>
 
-PASO A PASO:
-
-Envíanos un mail a laolaurbana@gmail.com con el asunto “Cambio/Devolución” indicando en el cuerpo del mail las siguientes informaciones:
-<p>
-* Nombre completo
-</p>
-<p>
-* DNI
-</p>
-<p>
-* Número de pedido
-</p>
-<p>
-* Producto para devolver
-</p>
-<p>
-* Nuevo producto que quiero recibir
-</p>
-<p>
-* Motivo del cambio/devolución
-</p>
-
-</p>
-
-<p> 
-
-Vas a recibir nuestra respuesta con los pasos a seguir y la información necesaria para realizar el envío.
-
-IMPORTANTE!
-
-Los productos deben ser enviados en perfecto estado, sin uso, sin perfumes, sin manchas y sin haberse lavado.
-Cada prenda debe contar con su etiqueta adherida y encontrarse en su paquete correspondiente.
-
-El cargo de envío por cambios o devoluciones correrá por tu cuenta.
-
-Gracias!
-
-</p>
-<p> 
-
-LA OLA URBANA
-    </p>
+      <p>{fifthP}</p>
+      <p>{sixthP}</p>
+      <p>{seventhP}</p>
+      <p>{thankYou}</p>
+      <p>{theWave}</p>
     </div>
-  )
-}
+  );
+};
 
-export default ChangePolicy
+export default ChangePolicy;

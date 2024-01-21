@@ -8,7 +8,7 @@ import { Button } from "antd";
 //Components
 import NavBar from "../components/NavBar";
 import ProfileMenu from "../components/ProfileMenu";
-import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types"
+import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 //style-sheets
 import styles from "./Header.module.css";
 //JavaScript
@@ -19,13 +19,13 @@ const Header = () => {
   const logedUser = useSelector((state) => state.logedUser);
 
   const location = useLocation();
-  let userAccess = null;
-  // const userAccess = !data ? data.access : null;
-  if (data) {
-    userAccess = data.access;
-  }
+  // let userAccess = null;
+  // if (data) {
+  //   userAccess = data.access;
+  // }
 
-  console.log(userAccess);
+  // const userAccess = data ? data.access || localStorage.getItem("email") : false;
+  const userAccess = data?.access || localStorage.getItem("email");
 
   const styledButton = {
     backgroundColor: "#30445c",
@@ -41,7 +41,7 @@ const Header = () => {
 
   const handleCartClick = () => {
     if (logedUser === false) {
-      handleOpenModal()
+      handleOpenModal();
     } else {
       window.location.href = "/cart";
     }
@@ -66,8 +66,24 @@ const Header = () => {
       <div className={styles.navbar}>
         <NavBar />
       </div>
-      
-      {!userAccess ? (
+
+      {userAccess !== null && userAccess !== undefined ? (
+        <ProfileMenu />
+      ) : (
+        <ul className={styles.menuitems}>
+          <li>
+            <Link to="/login">
+              <a href="">Iniciar sesión</a>
+            </Link>
+          </li>
+          <Link to={"/account/create"}>
+            <Button type="primary" style={styledButton}>
+              Registrarse
+            </Button>
+          </Link>
+        </ul>
+      )}
+      {/* {!userAccess ? (
         <div>
           <ul className={styles.menuitems}>
             <li>
@@ -85,16 +101,16 @@ const Header = () => {
         </div>
       ) : (
         <ProfileMenu />
-      )}
+      )} */}
 
       <div>
-          <ShoppingCartOutlined
+        <ShoppingCartOutlined
           onClick={handleCartClick}
-            style={{
-              color: "#28445c",
-              fontSize: "35px",
-            }}
-          />
+          style={{
+            color: "#28445c",
+            fontSize: "35px",
+          }}
+        />
       </div>
     </div>
   );

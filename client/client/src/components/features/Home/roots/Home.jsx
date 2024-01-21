@@ -14,13 +14,13 @@ import { getIdUser } from "../../../../redux/actions/action";
 const Home = () => {
   const dispatch = useDispatch();
 
- const dataUser = useSelector((state) => state.dataUser);  
+  const dataUser = useSelector((state) => state.dataUser);
 
- let userInfoFistrLogin = null;
+  let userInfoFistrLogin = null;
 
- if(dataUser){
+  if (dataUser) {
     userInfoFistrLogin = dataUser.idUser;
- }
+  }
 
   const open = useSelector((state) => state.openModal);
 
@@ -28,18 +28,17 @@ const Home = () => {
     dispatch({ type: OPEN_MODAL });
   };
 
-  useEffect(()=>{
-    if(nombre){
-    dispatch(getIdUser(userInfoFistrLogin))
+  useEffect(() => {
+    if (userInfoFistrLogin) {
+      dispatch(getIdUser(userInfoFistrLogin));
     }
-  }, [userInfoFistrLogin])
+  }, [userInfoFistrLogin]);
 
   return (
     <div className={styles.homeContainer}>
       <div>
         <button onClick={handleOpenModal}>Open model</button>
       </div>
-
 
       <div>
         <LoginModal open={open} />

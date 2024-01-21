@@ -10,7 +10,7 @@ import { Button, Form, Input } from "antd";
 //COMPONENTS
 import Home from "../../Home/roots/Home";
 //REDUX
-import { userLogin } from "../../../../redux/actions/action";
+import { userLogin, postUser } from "../../../../redux/actions/action";
 //CONSTANTS
 import {
   registerCustomers,
@@ -42,18 +42,24 @@ const validateMessages = {
 };
 
 const RegisterUsersContainer = () => {
+
   const dispatch = useDispatch();
 
   const [userEmail, setUserEmail] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const storedEmail = localStorage.getItem("email");
+
     if (storedEmail) {
       setUserEmail(storedEmail);
       navigate("/");
     }
+    console.log(storedEmail);
   }, [navigate]);
+
+  localStorage.clear()
 
   const [userData, setUserData] = useState({
     email: "",
@@ -72,14 +78,40 @@ const RegisterUsersContainer = () => {
     });
   };
 
+
   const handleClick = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      const email = data.user.email;
-      setUserEmail(email);
-      localStorage.setItem("email", email);
-      navigate("/");
-    });
+    signInWithPopup(auth, provider)
+      .then((data) => {
+
+        const dataUser = {
+          library : data.user.providerId,
+          nameUser : data.user.providerData[0].displayName,
+          emailUser : data.user.providerData[0].email,
+          uniqueId : data.user.providerData[0].uid
+  
+        }
+
+        // Verificar si hay información en providerData
+        // const hasProviderData = data.user.providerData && data.user.providerData.length > 0;
+
+  
+        // Realizar el dispatch para almacenar el usuario en tu base de datos
+        dispatch(postUser(dataUser));
+  
+        // Resto del código...
+      })
+      .catch((error) => {
+        console.error("Error durante la autenticación con Google:", error);
+      });
   };
+  // const handleClick = () => {
+  //   signInWithPopup(auth, provider).then((data) => {
+  //     const email = data.user.email;
+  //     setUserEmail(email);
+  //     localStorage.setItem("email", email);
+  //     navigate("/");
+  //   });
+  // };
   return (
     <div className={styles.container}>
       <h2>{registerCustomers}</h2>
@@ -116,7 +148,7 @@ const RegisterUsersContainer = () => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: "Campo obligatorio!",
             },
           ]}
           hasFeedback

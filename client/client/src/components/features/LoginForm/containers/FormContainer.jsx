@@ -8,7 +8,7 @@ import { Button, Form, Input } from "antd";
 //REDUX
 import { postUser } from "../../../../redux/actions/action";
 //CONstANTS
-import { infoLogin, saveChanges } from "../utils/constants";
+import { infoLogin, createAccount } from "../utils/constants";
 //STYLE-SHEETS
 import styles from "./FormContainer.module.css";
 
@@ -89,13 +89,22 @@ const FormContainer = () => {
           rules={[
             {
               required: true,
+              pattern: 20
+            },
+            {
+              max: 20,
+              message: "Máximo 20 caracteres",
+            },
+            {
+              pattern: /^[A-Za-zÁ-ý\s]+$/,
+              message: "Ingrese solo letras",
             },
           ]}
         >
           <Input onChange={(e) => handleChange("nameUser", e.target.value)} />
         </Form.Item>
 
-        <Form.Item
+        {/* <Form.Item
           name={["user", "lastName"]}
           label="Apellido"
           rules={[
@@ -105,7 +114,7 @@ const FormContainer = () => {
           ]}
         >
           <Input onChange={(e) => handleChange("lastName", e.target.value)} />
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item
           name={["user", "email"]}
@@ -126,7 +135,16 @@ const FormContainer = () => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: "Campo obligatorio!",
+            },
+            {
+              min: 6,
+              max: 15,
+              message: "Debe tener entre 6 y 10 caracteres",
+            },
+            {
+              pattern: /^(?=.*[A-Z])(?=.*\d)/,
+              message: "Debe contener al menos una letra mayúscula y un número",
             },
           ]}
           hasFeedback
@@ -143,7 +161,7 @@ const FormContainer = () => {
           }}
         >
           <Button type="primary" htmlType="submit">
-            {saveChanges}
+            {createAccount}
           </Button>
         </Form.Item>
       </Form>
