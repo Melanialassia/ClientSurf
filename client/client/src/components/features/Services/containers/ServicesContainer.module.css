@@ -11,14 +11,14 @@
 
 .text {
   text-align: center;
-  margin-bottom: -80px;
+  margin-bottom: 40px;
 }
 
 .serviceContainer {
   display: flex;
-  flex-direction: row; /* Ajuste para tener los serviceItems en fila */
-  justify-content: space-around; /* Alineación horizontal */
-  width: 100%; /* Ajuste para ocupar todo el ancho disponible */
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%; 
 }
 
 .serviceItem {

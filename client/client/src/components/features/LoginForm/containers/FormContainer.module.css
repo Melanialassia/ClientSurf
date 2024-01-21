@@ -18,10 +18,16 @@
   font-family: "Montserrat", sans-serif;
 }
 
-h3 {
+.text {
+  color: black;
+  margin-bottom: 150px;
+  margin-top: 10px;
+}
+
+/* .text {
   font-weight: 400;
   font-size: xx-large;
-}
+} */
 
 button {
   margin-top: 20px;
