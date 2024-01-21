@@ -1,6 +1,7 @@
 //PRODUCTS
 export const FILTER_PRODUCS = "FILTER_PRODUCS";
 export const GET_ALL_BRANDS = "GET_ALL_BRANDS";
+export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const ALL_CATEGORYS = "ALL_CATEGORYS";
 export const GET_ALL_SIZE = "GET_ALL_SIZE";
 export const ALL_PRODUCTS = "ALL_PRODUCTS";

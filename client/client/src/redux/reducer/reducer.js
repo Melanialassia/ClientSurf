@@ -2,6 +2,7 @@ import {
   //PRODUCTS
   FILTER_PRODUCS,
   GET_ALL_BRANDS,
+  FILTER_BY_NAME,
   ALL_CATEGORYS,
   ALL_PRODUCTS,
   GET_ALL_SIZE,
@@ -31,7 +32,6 @@ const initialState = {
   allColors: [],
   allSize: [],
   filter: [],
-  filterPrice: [],
   productPerPage: 12,
   currentPage: 1,
   logedUser: false,
@@ -51,11 +51,13 @@ const reducer = (state = initialState, action) => {
         allProducts: action.payload,
         filter: [...action.payload],
       };
+
     case ALL_CATEGORYS:
       return {
         ...state,
         allCategorys: action.payload,
       };
+
     case ALL_COLORS:
       return {
         ...state,
@@ -80,7 +82,7 @@ const reducer = (state = initialState, action) => {
         filter: action.payload,
       };
 
-      case FILTER_PRICE:
+    case FILTER_PRICE:
       if (action.payload === "DESC") {
         const response = [...state.filter].sort(
           (a, b) => a.priceProduct - b.priceProduct
@@ -99,34 +101,44 @@ const reducer = (state = initialState, action) => {
         };
       }
 
+    case FILTER_BY_NAME:
+      return {
+        ...state,
+        filter: action.payload,
+      };
+
     case ADD_TO_CART:
       return {
         ...state,
         cart: [...state.cart, action.payload],
       };
+
     case ALL_FAVORITES:
       return {
         ...state,
         favoriteProducts: action.payload,
       };
+
     case DELETE_FAVORITES:
       return {
         ...state,
         favoriteProducts: action.payload,
       };
+
     case POST_LOGIN:
       localStorage.setItem("userId", action.payload.idUser);
-
       return {
         ...state,
         dataUser: action.payload,
         logedUser: true,
       };
+
     case PAGINATE:
       return {
         ...state,
         currentPage: action.payload,
       };
+
     case LOGOUT:
       return {
         ...state,
@@ -139,11 +151,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         openModal: true,
       };
+
     case CLOSE_MODAL:
       return {
         ...state,
         openModal: false,
       };
+
     case GET_USER_ID:
       console.log(action.payload);
       return {

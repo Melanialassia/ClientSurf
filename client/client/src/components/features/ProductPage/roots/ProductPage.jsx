@@ -6,7 +6,7 @@ import BrandFilter from "../containers/BrandsFilter";
 import ColorFilter from "../containers/ColorFilter";
 import SizeFilter from "../containers/SizesFilter";
 import FilterPrice from "../containers/PriceFilter";
-// import SearchBar from "../containers/SearchBar";
+import SearchBar from "../containers/SearchBar";
 import Paginate from "../containers/Paginate";
 import Product from "../containers/Product";
 //ACTIONS
@@ -28,7 +28,6 @@ import { Button } from "antd";
 const ProductPage = () => {
   const allProducts = useSelector((s) => s.filter);
   const dispatch = useDispatch();
-  const [productOrder, setProductOrder] = useState("");
   //FILTROS
   const allCategorys = useSelector((s) => s.allCategorys);
   const allColors = useSelector((s) => s.allColors);
@@ -60,7 +59,9 @@ const ProductPage = () => {
     dispatch(getAllBrands());
     dispatch(getAllColors());
     dispatch(getAllSize());
-    return () => {filter};
+    return () => {
+      filter;
+    };
   }, []);
 
   const handlePageChange = (pageNumber) => {
@@ -72,13 +73,12 @@ const ProductPage = () => {
       ...filter,
       [event.target.name]: event.target.value,
     });
-    console.log("entre", filter);
   };
-  
+
   const handleOrderPrice = (event) => {
     dispatch(filterPrice(event.target.value));
     dispatch(pageChange(1));
-  }
+  };
 
   const result = () => {
     dispatch(filterProducts(filter));
@@ -86,6 +86,8 @@ const ProductPage = () => {
   };
 
   const clean = () => {
+    dispatch(getAllProducts());
+    dispatch(pageChange(1));
     setFilter({
       idCategory: "",
       idColor: "",
@@ -94,13 +96,15 @@ const ProductPage = () => {
       minPrice: "",
       maxPrice: "",
     });
-  }
+  };
 
   return (
     <div className={style.wrapper}>
       <aside className={style.aside}>
         <h2>FILTROS</h2>
-        <Button type="text" onClick={clean}>Limpiar filtros</Button>
+        <Button type="text" onClick={clean}>
+          Limpiar filtros
+        </Button>
 
         <CategoryFilter allCategorys={allCategorys} handleChange={handleChange}/>
 
@@ -112,20 +116,26 @@ const ProductPage = () => {
 
         <FilterPrice setFilter={setFilter} filter={filter} />
 
-        <Button type="text" onClick={result}>Aplicar filtros</Button>
+        <Button type="text" onClick={result}>
+          Aplicar filtros
+        </Button>
       </aside>
       <main className={style.main}>
-        {/* <div>
-          <SearchBar />
-        </div> */}
         <div className={style.priceSection}>
+        <div>
+          <SearchBar/>
+        </div>
           <p>Ordenar por: </p>
           <select
             className={style.selectStyle}
-            onChange={(event) => handleOrderPrice (event)}
+            onChange={(event) => handleOrderPrice(event)}
           >
-            <option value="DESC" className={style.optionStyle}>Menor precio</option>
-            <option value="ASC" className={style.optionStyle}>Mayor precio</option>
+            <option value="DESC" className={style.optionStyle}>
+              Menor precio
+            </option>
+            <option value="ASC" className={style.optionStyle}>
+              Mayor precio
+            </option>
           </select>
         </div>
         <div>
