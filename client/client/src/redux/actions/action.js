@@ -6,6 +6,7 @@ import {
   ALL_PRODUCTS,
   GET_ALL_SIZE,
   POST_PRODUCT,
+  FILTER_PRICE,
   ALL_COLORS,
   //FAVORITE
   ADD_TO_FAVORITES,
@@ -30,8 +31,8 @@ import axios from "axios";
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/product/");
-      const result = data.listProducts;
+      const { data } = await axios.get("http://localhost:3001/surf/filterProduct");
+      const result = data.data;
       return dispatch({ type: ALL_PRODUCTS, payload: result });
     } catch (error) {
       console.log(error);
@@ -126,6 +127,13 @@ export const filterProducts = (filter) => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const filterPrice = (payload) => {
+  return {
+    type: FILTER_PRICE,
+    payload: payload,
   };
 };
 

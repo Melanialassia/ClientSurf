@@ -9,7 +9,7 @@
 
 .aside {
     position: sticky;
-    top: 0;
+    top:0;
     height: 100vh;
     
 }
@@ -48,16 +48,9 @@
     margin-bottom: 10px;
 }
 
-h4 {
-    margin-right: 10px;
-}
 
-.select {
-    margin-left: 0; 
-}
-
-.derecha{
-    margin-left: 300px;
+.priceSection p {
+    font-family: 'Montserrat', sans-serif;
 }
 
 .filter {
@@ -65,3 +58,27 @@ h4 {
     font-size: large;
     font-weight: 200;
 }
+
+.selectStyle {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+  
+  .selectStyle:hover {
+    border-color: #e8903b;
+    box-shadow: 0 0 5px rgba(232, 144, 59, 0.5);
+  }
+  
+  .selectStyle:focus {
+    outline: none;
+    border-color: #ccc;
+  }
+  
+  .optionStyle {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
