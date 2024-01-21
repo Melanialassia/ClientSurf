@@ -2,6 +2,7 @@
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react"; 
 //Librarys
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Button } from "antd";
@@ -9,6 +10,7 @@ import { Button } from "antd";
 import NavBar from "../components/NavBar";
 import ProfileMenu from "../components/ProfileMenu";
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
+import { LOGED_USER } from "../../../../redux/actions-types/actions-types";
 //style-sheets
 import styles from "./Header.module.css";
 import LoginModal from "../../LoginModal/root/LoginModal";
@@ -18,11 +20,19 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.dataUser);
-  const logedUser = useSelector((state) => state.logedUser);
+  const logedUser = JSON.parse(localStorage.getItem('logedUser'));
 
   const open = useSelector((state) => state.openModal);
 
   const location = useLocation();
+
+  useEffect(() => {
+    // Check if access is in localStorage and set logedUser accordingly
+    const storedAccess = localStorage.getItem('access');
+    if (storedAccess) {
+      dispatch({ type: LOGED_USER, payload: true });
+    }
+  }, [dispatch]);
 
   let userAccess = null;
   // const userAccess = !data ? data.access : null;
@@ -54,7 +64,7 @@ const Header = () => {
   };
 
   const handleCartClick = () => {
-    if (logedUser === false) {
+    if (logedUser === null || logedUser === false) {
       handleOpenModal();
     } else {
       navigate("/cart");

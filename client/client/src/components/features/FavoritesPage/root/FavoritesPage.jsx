@@ -12,9 +12,10 @@ const FavoritesPage = () => {
   const [reload, setReload] = useState(false);
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const dataUser = useSelector((s) => s.dataUser);
+  const userId = localStorage.getItem('userId');
 
   useEffect(() => {
-    dispatch(getAllFavoriteProducts(dataUser.idUser));
+    dispatch(getAllFavoriteProducts(userId));
     setReload(true);
   }, [reload]);
 
