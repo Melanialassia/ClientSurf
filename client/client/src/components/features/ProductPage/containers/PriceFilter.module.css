@@ -1,0 +1,9 @@
+.price{
+    color: black;
+    font-size: large;
+    font-weight: 200;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    width: 160px;
+}
