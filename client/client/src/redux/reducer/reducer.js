@@ -160,7 +160,7 @@ const reducer = (state = initialState, action) => {
         openModal: false,
       };
     case GET_USER_ID:
-      console.log(action.payload);
+  
       return {
         ...state,
         userData: action.payload,

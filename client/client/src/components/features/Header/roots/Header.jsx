@@ -1,18 +1,18 @@
-//Hooks
+//HOOKS
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-//Librarys
+//LIBRARYS
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Button } from "antd";
-//Components
+//COMPONENTS
 import NavBar from "../components/NavBar";
 import ProfileMenu from "../components/ProfileMenu";
+//ACTIONS
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
-//style-sheets
+//STYLE-SHEETS
 import styles from "./Header.module.css";
 import LoginModal from "../../LoginModal/root/LoginModal";
-//JavaScript
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Header = () => {
     backgroundColor: "#30445c",
     borderRadius: "20px",
     color: "#e2dcd1",
-    marginTop: "-5px",
+    marginTop: "50px",
     textAlign: "center",
     fontWeight: "500",
     fontSize: "20px",

@@ -23,23 +23,31 @@
 .navbar {
   border-radius: 20px;
   padding: 6px;
+
 }
 
-
-.menuitems {
-  display: flex;
-  gap: 10px;
+.menuitems{
   list-style: none;
-  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 10px
+}
+.menuitems a {
+  text-decoration: none;
+  color: #30445c; 
+  transition: color 0.3s ease; 
+  margin-top: -60px;
+}
+
+.menuitems a:hover {
+  color: #0066cc; /* Cambia el color al pasar el ratón sobre el enlace */
+}
+
+.menuitems .active a {
+  color: #0066cc; /* Cambia el color del enlace activo */
 }
 
 
-.buttonregister {
-  background-color: #30445c ;
-  border-radius: 20px;
-  color: #e2dcd1;
-  margin-top: -5px;
-  text-align: center;
-}
+
 
 

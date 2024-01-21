@@ -32,3 +32,19 @@
   height: auto;
   border-radius: 20px;
 }
+
+.button {
+  width: 150px;
+  margin-top: 5px;
+  background-color: #2D4056;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #3c536d;
+  }
+}

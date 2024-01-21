@@ -1,7 +1,7 @@
 .image {
-  bottom: 130px; /* Ajusta la distancia desde la parte inferior de la página */
-  margin-right: -20px; /* Ajusta la distancia desde el margen derecho de la página */
-  width: 60px; /* Ajusta el tamaño del logo según tus necesidades */
+  bottom: 130px;
+  margin-right: -20px; 
+  width: 60px; 
   margin-left: 1423px;
   position: fixed;
 }

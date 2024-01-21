@@ -1,7 +1,7 @@
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
 .container {
-  color:black;
+  color: black;
   width: 90%;
   height: 500px;
   max-width: 570px;
@@ -16,7 +16,6 @@
   flex-direction: column;
   justify-content: center;
   font-family: "Montserrat", sans-serif;
-
 }
 
 h3 {
@@ -29,6 +28,6 @@ button {
 }
 
 .hr {
-  border: 1px solid #000; /* Establecer color y grosor de la línea */
-      margin: -100px 0 50px; /* Ajustar el margen según sea necesario */
-    }
+  border: 1px solid #000;
+  margin: -100px 0 50px;
+}
