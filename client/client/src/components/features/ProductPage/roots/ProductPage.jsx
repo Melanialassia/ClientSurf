@@ -2,33 +2,45 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 //COMPONENTS
 import CategoryFilter from "../containers/CategoryFilter";
+import BrandFilter from "../containers/BrandsFilter";
 import ColorFilter from "../containers/ColorFilter";
-import SearchBar from "../containers/SearchBar";
+import SizeFilter from "../containers/SizesFilter";
+// import SearchBar from "../containers/SearchBar";
 import Paginate from "../containers/Paginate";
 import Product from "../containers/Product";
 //ACTIONS
 import {
-  filterProductsByCategory,
   getAllCategorys,
   getAllProducts,
+  filterProducts,
   getAllColors,
-  filterPrice,
-  filterColor,
+  getAllBrands,
+  getAllSize,
   pageChange,
 } from "../../../../redux/actions/action";
 //STYLE
 import style from "./ProductPage.module.css";
 
 const ProductPage = () => {
-  const allCategorys = useSelector((s) => s.allCategorys);
-  const [productOrder, setProductOrder] = useState("");
-  const allColors = useSelector((s) => s.allColors);
   const allProducts = useSelector((s) => s.filter);
-  const [category, setCategory] = useState("");
-  const [color, setColor] = useState("");
   const dispatch = useDispatch();
-  console.log("entre", allProducts);
-  console.log(color);
+  const [productOrder, setProductOrder] = useState("");
+  //FILTROS
+  const allCategorys = useSelector((s) => s.allCategorys);
+  const allColors = useSelector((s) => s.allColors);
+  const allBrands = useSelector((s) => s.allBrands);
+  const allSize = useSelector((s) => s.allSize);
+  //ESTADOS LOCALES FILTRADOS
+  const [filter, setFilter] = useState({
+    idCategory: "",
+    idColor: "",
+    idSize: "",
+    idBrand: "",
+    // minPrice: "",
+    // maxPrice: "",
+    // orderBy: "",
+    // key: "",
+  });
 
   //PAGINADO
   const currentPage = useSelector((state) => state.currentPage);
@@ -40,67 +52,61 @@ const ProductPage = () => {
   const totalProducts = allProducts.length;
   const totalPage = Math.ceil(totalProducts / productPerPage);
 
-  const handlePageChange = (pageNumber) => {
-    // PARA CAMBIAR LA PAGINA 
-    dispatch(pageChange(pageNumber));
-  };
-
   useEffect(() => {
     dispatch(getAllCategorys());
     dispatch(getAllProducts());
+    dispatch(getAllBrands());
     dispatch(getAllColors());
+    dispatch(getAllSize());
   }, []);
 
-  const handleCategoryChange = (event) => {
-    const selectedCategory = event.target.value;
-    setCategory(selectedCategory);
-    dispatch(filterProductsByCategory(selectedCategory));
+  const handlePageChange = (pageNumber) => {
+    dispatch(pageChange(pageNumber));
   };
 
-  const handlePriceChange = (event) => {
-    const selectPrice = event.target.value;
-    setProductOrder(selectPrice);
-    dispatch(filterPrice(selectPrice));
+  const handleChange = (event) => {
+    setFilter({
+      ...filter,
+      [event.target.name]: event.target.value,
+    });
+    console.log("entre", filter);
   };
 
-  const handlerColorChange = (event) => {
-    const selectColor = event.target.value;
-    setColor(selectColor);
-    dispatch(filterColor(selectColor));
+  const result = () => {
+    dispatch(filterProducts(filter));
+    setFilter({
+      idCategory: "",
+      idColor: "",
+      idSize: "",
+      idBrand: "",
+      // minPrice: "",
+      // maxPrice: "",
+      // orderBy: ""
+    });
   };
 
   return (
     <div className={style.wrapper}>
       <aside className={style.aside}>
-          <h2>FILTROS</h2>
+        <h2>FILTROS</h2>
+        <button onClick={result}>Aplicar Filtros</button>
         <h3>Categoria</h3>
-        <select
-          className={style.filtro}
-          onChange={handleCategoryChange}
-          value={category}
-        >
-          <option value="">TODAS</option>
-          <CategoryFilter allCategorys={allCategorys} />
-        </select>
+        <CategoryFilter allCategorys={allCategorys}  handleChange={handleChange} />
         <h3>Color</h3>
-        <select
-          className={style.filtro}
-          onChange={handlerColorChange}
-          value={color}
-        >
-          <option value="">TODAS</option>
-          <ColorFilter allColors={allColors} handlerColorChange={handlerColorChange}/>
-        </select>
+        <ColorFilter allColors={allColors}  handleChange={handleChange} />
+        <h3>Marcas</h3>
+        <BrandFilter allBrands={allBrands}  handleChange={handleChange} />
+        <h3>Talle</h3>
+        <SizeFilter allSize={allSize} handleChange={handleChange} />
       </aside>
-
       <main className={style.main}>
-        <div>
+        {/* <div>
           <SearchBar />
-        </div>
+        </div> */}
         <div className={style.priceSection}>
           <select
             className={style.select}
-            onChange={handlePriceChange}
+            onChange={(e) => setProductOrder(e.target.value)}
             value={productOrder}
           >
             <option value="DESC">Menor precio</option>
