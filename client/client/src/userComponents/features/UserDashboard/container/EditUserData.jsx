@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 //LIBRARYS
 import { Button, Form, Input } from "antd";
+//REDUX
+import { updateUser } from "../../../../redux/actions/action";
 //CONSTANTS
 import { saveChanges, editPersonalData } from "../utils/constants";
 //STYLE-SHEETS
@@ -40,28 +42,33 @@ const EditUserData = () => {
 
   const dispatch = useDispatch();
 
+  // const passwordState = "";
+
   const [dataUser, setDataUser] = useState({
       idUser: userData.idUser,
       nameUser: userData.nameUser,
       lastName: userData.lastName,
       emailUser: userData.emailUser,
+      idLevel : userData.idLevel,
+      password: ""
   });
+  console.log("level", dataUser.idLevel);
+  console.log(dataUser);
 
   useEffect(() => {
-
     setDataUser({
       idUser: userData.idUser,
       nameUser: userData.nameUser,
       lastName: userData.lastName,
       emailUser: userData.emailUser,
+      idLevel: userData.idLevel,
+      password: ""
     });
-  }, [userData]);
+  }, []);
 
   const handleSubmit = () => {
-    dispatch();
-  ;
+    dispatch(updateUser(dataUser));
   };
-console.log("hola", userData.nameUser);
   return (
     <div>
       <h4 className={styles.text}>{editPersonalData}</h4>
@@ -76,7 +83,7 @@ console.log("hola", userData.nameUser);
         {...layout}
         className={styles.container}
         name="nest-messages"
-        onFinish={onFinish}
+        onFinish={handleSubmit}
         style={{
           marginTop: "-80px",
           maxWidth: 600,
@@ -133,6 +140,30 @@ console.log("hola", userData.nameUser);
         >
           <Input.Password />
         </Form.Item>
+
+        {/* <Form.Item
+          name={["user", "idLevel"]}
+          label="Nivel"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input  />
+        </Form.Item>
+
+        <Form.Item
+          name={["user", "idUser"]}
+          label="Id de Usuario"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input  />
+        </Form.Item> */}
 
         <Form.Item
           wrapperCol={{

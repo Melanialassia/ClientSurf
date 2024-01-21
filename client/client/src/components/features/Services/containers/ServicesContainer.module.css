@@ -1,10 +1,43 @@
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
-.container{
-    color: black;
-    font-family: "Montserrat", sans-serif;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 180px;
+.container {
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.text {
+  text-align: center;
+  margin-bottom: -80px;
+}
+
+.serviceContainer {
+  display: flex;
+  flex-direction: row; /* Ajuste para tener los serviceItems en fila */
+  justify-content: space-around; /* Alineación horizontal */
+  width: 100%; /* Ajuste para ocupar todo el ancho disponible */
+}
+
+.serviceItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.imagen {
+  width: 180px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.largeImage {
+  width: 300px;
+}
+
+.largeImagen {
+  width: 228px;
 }
