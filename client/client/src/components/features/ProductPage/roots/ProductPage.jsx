@@ -5,6 +5,7 @@ import CategoryFilter from "../containers/CategoryFilter";
 import BrandFilter from "../containers/BrandsFilter";
 import ColorFilter from "../containers/ColorFilter";
 import SizeFilter from "../containers/SizesFilter";
+import FilterPrice from "../containers/PriceFilter";
 // import SearchBar from "../containers/SearchBar";
 import Paginate from "../containers/Paginate";
 import Product from "../containers/Product";
@@ -15,11 +16,14 @@ import {
   filterProducts,
   getAllColors,
   getAllBrands,
+  filterPrice,
   getAllSize,
   pageChange,
 } from "../../../../redux/actions/action";
 //STYLE
 import style from "./ProductPage.module.css";
+//LIBRARY
+import { Button } from "antd";
 
 const ProductPage = () => {
   const allProducts = useSelector((s) => s.filter);
@@ -36,10 +40,8 @@ const ProductPage = () => {
     idColor: "",
     idSize: "",
     idBrand: "",
-    // minPrice: "",
-    // maxPrice: "",
-    // orderBy: "",
-    // key: "",
+    minPrice: "",
+    maxPrice: "",
   });
 
   //PAGINADO
@@ -58,6 +60,7 @@ const ProductPage = () => {
     dispatch(getAllBrands());
     dispatch(getAllColors());
     dispatch(getAllSize());
+    return () => {filter};
   }, []);
 
   const handlePageChange = (pageNumber) => {
@@ -71,46 +74,58 @@ const ProductPage = () => {
     });
     console.log("entre", filter);
   };
+  
+  const handleOrderPrice = (event) => {
+    dispatch(filterPrice(event.target.value));
+    dispatch(pageChange(1));
+  }
 
   const result = () => {
     dispatch(filterProducts(filter));
+    dispatch(pageChange(1));
+  };
+
+  const clean = () => {
     setFilter({
       idCategory: "",
       idColor: "",
       idSize: "",
       idBrand: "",
-      // minPrice: "",
-      // maxPrice: "",
-      // orderBy: ""
+      minPrice: "",
+      maxPrice: "",
     });
-  };
+  }
 
   return (
     <div className={style.wrapper}>
       <aside className={style.aside}>
         <h2>FILTROS</h2>
-        <button onClick={result}>Aplicar Filtros</button>
-        <h3>Categoria</h3>
-        <CategoryFilter allCategorys={allCategorys}  handleChange={handleChange} />
-        <h3>Color</h3>
-        <ColorFilter allColors={allColors}  handleChange={handleChange} />
-        <h3>Marcas</h3>
-        <BrandFilter allBrands={allBrands}  handleChange={handleChange} />
-        <h3>Talle</h3>
+        <Button type="text" onClick={clean}>Limpiar filtros</Button>
+
+        <CategoryFilter allCategorys={allCategorys} handleChange={handleChange}/>
+
+        <ColorFilter allColors={allColors} handleChange={handleChange} />
+
+        <BrandFilter allBrands={allBrands} handleChange={handleChange} />
+
         <SizeFilter allSize={allSize} handleChange={handleChange} />
+
+        <FilterPrice setFilter={setFilter} filter={filter} />
+
+        <Button type="text" onClick={result}>Aplicar filtros</Button>
       </aside>
       <main className={style.main}>
         {/* <div>
           <SearchBar />
         </div> */}
         <div className={style.priceSection}>
+          <p>Ordenar por: </p>
           <select
-            className={style.select}
-            onChange={(e) => setProductOrder(e.target.value)}
-            value={productOrder}
+            className={style.selectStyle}
+            onChange={(event) => handleOrderPrice (event)}
           >
-            <option value="DESC">Menor precio</option>
-            <option value="ASC">Mayor precio</option>
+            <option value="DESC" className={style.optionStyle}>Menor precio</option>
+            <option value="ASC" className={style.optionStyle}>Mayor precio</option>
           </select>
         </div>
         <div>

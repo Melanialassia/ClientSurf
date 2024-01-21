@@ -5,18 +5,23 @@ import {
   ALL_CATEGORYS,
   ALL_PRODUCTS,
   GET_ALL_SIZE,
+  FILTER_PRICE,
+  //CART
   ADD_TO_CART,
-  ALL_FAVORITES,
-  ADD_TO_FAVORITES,
+  //FAVORITE
   DELETE_FAVORITES,
-  POST_LOGIN,
-  ALL_COLORS,
-  PAGINATE,
-  LOGOUT,
-  OPEN_MODAL,
-  CLOSE_MODAL,
+  ADD_TO_FAVORITES,
+  ALL_FAVORITES,
+  //LOGIN
   GET_USER_ID,
   LOGED_USER,
+  POST_LOGIN,
+  ALL_COLORS,
+  LOGOUT,
+  //PAGINATE
+  PAGINATE,
+  OPEN_MODAL,
+  CLOSE_MODAL,
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -26,6 +31,7 @@ const initialState = {
   allColors: [],
   allSize: [],
   filter: [],
+  filterPrice: [],
   productPerPage: 12,
   currentPage: 1,
   logedUser: false,
@@ -67,52 +73,31 @@ const reducer = (state = initialState, action) => {
         ...state,
         allSize: action.payload,
       };
-    // case GET_NAME_PRODUCTS:
-    //   return {
-    //     ...state,
-    //     filter: action.payload,
-    //   };
-    // case FILTER_BY_CATEGORY:
-
-    //   return {
-    //     ...state,
-    //     filter: action.payload,
-    //     // filteredProducts: [...action.payload],
-    //   };
-    // case FILTER_PRICE:
-    //   if (action.payload === "ASC") {
-    //     const response = [...state.filter].sort(
-    //       (a, b) => a.priceProduct - b.priceProduct
-    //     );
-    //     return {
-    //       ...state,
-    //       filter: [...response],
-    //     };
-    //   } else if (action.payload === "DESC") {
-    //     const response = [...state.filter].sort(
-    //       (a, b) => b.priceProduct - a.priceProduct
-    //     );
-    //     return {
-    //       ...state,
-    //       filter: [...response],
-    //     };
-    //   }
-
-    // case FILTER_PRODUCTS_COLOR:
-    //   // const selectedColor = action.payload;
-    //   // const filteredByColor = state.filteredProducts.filter((product) =>
-    //   //   product.nameColor.includes(selectedColor)
-    //   // );
-    //   return {
-    //     ...state,
-    //     filter: action.payload,
-    //   };
 
     case FILTER_PRODUCS:
       return {
         ...state,
         filter: action.payload,
       };
+
+      case FILTER_PRICE:
+      if (action.payload === "DESC") {
+        const response = [...state.filter].sort(
+          (a, b) => a.priceProduct - b.priceProduct
+        );
+        return {
+          ...state,
+          filter: [...response],
+        };
+      } else if (action.payload === "ASC") {
+        const response = [...state.filter].sort(
+          (a, b) => b.priceProduct - a.priceProduct
+        );
+        return {
+          ...state,
+          filter: [...response],
+        };
+      }
 
     case ADD_TO_CART:
       return {
