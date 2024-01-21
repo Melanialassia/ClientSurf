@@ -19,9 +19,9 @@ import {
   GET_USER_ID,
   POST_LOGIN,
   LOGOUT,
+  PUT_USER,
   //PAGINADO
   PAGINATE,
-  PUT_USER,
   OPEN_MODAL,
   LOGED_USER,
 } from "../actions-types/actions-types";
@@ -162,7 +162,6 @@ export const userLogin = (userData) => {
     try {
       const URL = `http://localhost:3001/surf/login`;
       const response = await axios.post(URL, userData);
-      console.log(response);
       localStorage.setItem("access", JSON.stringify(response.data.access));
       localStorage.setItem("userId", response.data.idUser);
       localStorage.setItem("logedUser", true);
@@ -174,6 +173,23 @@ export const userLogin = (userData) => {
     } catch (error) {
       console.log("Error durante el inicio de sesión:", error);
     }
+  };
+};
+
+export const updateUser = (userData) => {
+  console.log("antes", userData);
+  return async function (dispatch) {
+    try {
+      const URL = `http://localhost:3001/surf/user`;
+      const response = await axios.put(URL, userData);
+      console.log("desp", response);
+      dispatch({
+        type: PUT_USER,
+        payload: response.data
+      })
+    } catch (error) {
+      console.log("Error durante el inicio de sesión:", error);
+    };
   };
 };
 

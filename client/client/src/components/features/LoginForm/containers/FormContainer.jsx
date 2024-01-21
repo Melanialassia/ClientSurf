@@ -107,7 +107,7 @@ const FormContainer = () => {
           <Input onChange={(e) => handleChange("nameUser", e.target.value)} />
         </Form.Item>
 
-        {/* <Form.Item
+        <Form.Item
           name={["user", "lastName"]}
           label="Apellido"
           rules={[
@@ -117,7 +117,7 @@ const FormContainer = () => {
           ]}
         >
           <Input onChange={(e) => handleChange("lastName", e.target.value)} />
-        </Form.Item> */}
+        </Form.Item>
 
         <Form.Item
           name={["user", "email"]}

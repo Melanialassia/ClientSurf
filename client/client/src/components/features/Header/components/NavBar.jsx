@@ -1,27 +1,32 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Flex } from "antd";
-import NavBarButton from "./NavBarButton";
 import style from "./NavBar.module.css";
 
 const NavBar = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className={style.container}>
+    <div>
       <nav>
         <Flex gap="large" wrap="wrap">
-          <NavBarButton link="/" text="HOME" />
-          <NavBarButton link="/products" text="PRODUCTOS" />
-          <NavBarButton link="/services" text="SERVICIOS" />
-          {pathname === "/" ? (
-            <li className={style.li}>
-              <a href="#como-comprar">COMO COMPRAR</a>
+          <ul className={style.container}>
+            <li className={pathname === "/" ? style.active : ""}>
+              <Link to="/">HOME</Link>
             </li>
-          ) : (
-            <NavBarButton link="/" hash="#como-comprar" text="COMO COMPRAR" />
-          )}
-          <NavBarButton link="/aboutus" text="PROPÓSITO" />
+            <li className={pathname === "/products" ? style.active : ""}>
+              <Link to="/products">PRODUCTOS</Link>
+            </li>
+            <li className={pathname === "/services" ? style.active : ""}>
+              <Link to="/services">SERVICOS</Link>
+            </li>
+            <li>
+              <a href="/#como-comprar">COMO COMPRAR</a>
+            </li>
+            <li className={pathname === "/aboutus" ? style.active : ""}>
+              <Link to="/aboutus">PROPÓSITO</Link>
+            </li>
+          </ul>
         </Flex>
       </nav>
     </div>

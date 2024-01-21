@@ -79,39 +79,41 @@ const RegisterUsersContainer = () => {
   };
 
 
-  const handleClick = () => {
-    signInWithPopup(auth, provider)
-      .then((data) => {
-
-        const dataUser = {
-          library : data.user.providerId,
-          nameUser : data.user.providerData[0].displayName,
-          emailUser : data.user.providerData[0].email,
-          uniqueId : data.user.providerData[0].uid
-  
-        }
-
-        // Verificar si hay información en providerData
-        // const hasProviderData = data.user.providerData && data.user.providerData.length > 0;
-
-  
-        // Realizar el dispatch para almacenar el usuario en tu base de datos
-        dispatch(postUser(dataUser));
-  
-        // Resto del código...
-      })
-      .catch((error) => {
-        console.error("Error durante la autenticación con Google:", error);
-      });
-  };
   // const handleClick = () => {
-  //   signInWithPopup(auth, provider).then((data) => {
-  //     const email = data.user.email;
-  //     setUserEmail(email);
-  //     localStorage.setItem("email", email);
-  //     navigate("/");
-  //   });
+  //   signInWithPopup(auth, provider)
+  //     .then((data) => {
+
+  //       const dataUser = {
+  //         library : data.user.providerId,
+  //         nameUser : data.user.providerData[0].displayName,
+  //         emailUser : data.user.providerData[0].email,
+  //         uniqueId : data.user.providerData[0].uid
+  
+  //       }
+
+  //       // Verificar si hay información en providerData
+  //       // const hasProviderData = data.user.providerData && data.user.providerData.length > 0;
+
+  
+  //       // Realizar el dispatch para almacenar el usuario en tu base de datos
+  //       dispatch(postUser(dataUser));
+  
+  //       // Resto del código...
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error durante la autenticación con Google:", error);
+  //     });
   // };
+  const handleClick = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      console.log("entre",data);
+      const email = data.user.email;
+      setUserEmail(email);
+      dispatch(userLogin(email));
+      localStorage.setItem("email", email);
+      navigate("/");
+    });
+  };
   return (
     <div className={styles.container}>
       <h2>{registerCustomers}</h2>
@@ -176,7 +178,7 @@ const RegisterUsersContainer = () => {
           <Home />
         </Link>
       ) : (
-        <button onClick={handleClick}>{loginWithGoogle}</button>
+        <button onClick={handleClick} className={styles.googleButton}>{loginWithGoogle}</button>
       )}
     </div>
   );
