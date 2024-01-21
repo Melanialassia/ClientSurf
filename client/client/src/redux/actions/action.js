@@ -2,6 +2,7 @@ import {
   //PRODUCTS
   GET_ALL_BRANDS,
   FILTER_PRODUCS,
+  FILTER_BY_NAME,
   ALL_CATEGORYS,
   ALL_PRODUCTS,
   GET_ALL_SIZE,
@@ -31,7 +32,9 @@ import axios from "axios";
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/filterProduct");
+      const { data } = await axios.get(
+        "http://localhost:3001/surf/filterProduct"
+      );
       const result = data.data;
       return dispatch({ type: ALL_PRODUCTS, payload: result });
     } catch (error) {
@@ -109,6 +112,20 @@ export const getAllSize = () => {
     }
   };
 };
+export const getProductsByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get("http://localhost:3001/surf/product?name=" + name);
+      const result = data.listProducts;
+      dispatch({
+        type: FILTER_BY_NAME,
+        payload: result,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const filterProducts = (filter) => {
   return async (dispatch) => {
@@ -136,7 +153,6 @@ export const filterPrice = (payload) => {
     payload: payload,
   };
 };
-
 
 //USER ACTIONS
 export const postUser = (userdata) => {
@@ -176,6 +192,30 @@ export const userLogin = (userData) => {
   };
 };
 
+export const logOut = () => {
+  localStorage.removeItem('access');
+  localStorage.setItem('logedUser', JSON.stringify(false));
+
+  return (dispatch) => {
+    dispatch({ type: LOGOUT });
+    dispatch({ type: LOGED_USER, payload: false });
+  };
+};
+
+export const getIdUser = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios(`http://localhost:3001/surf/user/${idUser}`);
+      dispatch({
+        type: GET_USER_ID,
+        payload: response.data.data[0],
+      });
+    } catch (error) {}
+  };
+};
+
+export const updateUserInfo = () => {};
+
 export const updateUser = (userData) => {
   console.log("antes", userData);
   return async function (dispatch) {
@@ -214,6 +254,7 @@ export const addToCart = (productId, idUser, amount) => {
   };
 };
 
+//PAGINATE
 export const pageChange = (payload) => {
   return function (dispatch) {
     dispatch({
@@ -271,30 +312,6 @@ export const deleteFavorite = (idUser, idProduct) => {
     }
   };
 };
-
-export const logOut = () => {
-  localStorage.removeItem('access');
-  localStorage.setItem('logedUser', JSON.stringify(false));
-
-  return (dispatch) => {
-    dispatch({ type: LOGOUT });
-    dispatch({ type: LOGED_USER, payload: false });
-  };
-};
-
-export const getIdUser = (idUser) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios(`http://localhost:3001/surf/user/${idUser}`);
-      dispatch({
-        type: GET_USER_ID,
-        payload: response.data.data[0],
-      });
-    } catch (error) {}
-  };
-};
-
-export const updateUserInfo = () => {};
 
 export const handleOpenModal = () => {
   dispatch({ type: OPEN_MODAL });
