@@ -53,8 +53,9 @@ const Details = () => {
     const fetchData = async () => {
       try {
         const response = await axios(
-          `http://localhost:3001/surf/product/${id}`
+          `https://serversurf-production.up.railway.app/surf/product/${id}`
         );
+        console.log(response);
         const { data } = response;
         setProduct(data.listProducts[0]);
       } catch (error) {
