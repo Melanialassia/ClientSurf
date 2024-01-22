@@ -18,7 +18,6 @@ import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 
 import { LOGED_USER } from "../../../../redux/actions-types/actions-types";
 //style-sheets
-=======
 //STYLE-SHEETS
 
 import styles from "./Header.module.css";
