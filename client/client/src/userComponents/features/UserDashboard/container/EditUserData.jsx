@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 //LIBRARYS
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Checkbox } from "antd";
 //REDUX
 import { updateUser } from "../../../../redux/actions/action";
 //CONSTANTS
@@ -31,44 +31,83 @@ const validateMessages = {
   },
 };
 
-const onFinish = (values) => {
-  console.log(values);
-};
-
 const EditUserData = () => {
-
-  const userData = useSelector((state)=> state.userData);
-  console.log("LLegue",userData);
-
+  const userData = useSelector((state) => state.userData);
   const dispatch = useDispatch();
+  const [flag, setFlag] = useState("password");
 
-  // const passwordState = "";
-
-  const [dataUser, setDataUser] = useState({
-      idUser: userData.idUser,
-      nameUser: userData.nameUser,
-      lastName: userData.lastName,
-      emailUser: userData.emailUser,
-      idLevel : userData.idLevel,
-      password: ""
+  // CASO 1 DONDE QUIERE CAMBIAR SU PASSWORD
+  const [dataUnique, setDataUnique] = useState({
+    idUser: userData.idUser,
+    nameUser: userData.nameUser,
+    emailUser: userData.emailUser,
+    idLevel: userData.idLevel,
+    uniqueId: userData.uniqueId,
+    password: ""
   });
-  console.log("level", dataUser.idLevel);
-  console.log(dataUser);
 
-  useEffect(() => {
-    setDataUser({
-      idUser: userData.idUser,
-      nameUser: userData.nameUser,
-      lastName: userData.lastName,
-      emailUser: userData.emailUser,
-      idLevel: userData.idLevel,
-      password: ""
-    });
-  }, []);
+  // CASO 2 DONDE NO QUIERE CAMBIAR PASSWORD
+  const [dataPassword, setDataPassword] = useState({
+    idLevel: userData.idLevel,
+    idUser: userData.idUser,
+    nameUser: userData.nameUser,
+    emailUser: userData.emailUser,
+    uniqueId: userData.uniqueId,
+  });
+
+  const onChangeOption = (event) => {
+    const optionButton = event.target.name;
+    if (optionButton === "password") {
+      setFlag("password");
+    } else if (optionButton === "uniqueId") {
+      setFlag("unique");
+    }
+  };
 
   const handleSubmit = () => {
-    dispatch(updateUser(dataUser));
+    if (flag === "password") {
+      dispatch(updateUser(dataUnique));
+    } else if (flag === "unique") {
+      dispatch(updateUser(dataPassword));
+    }
   };
+
+  const readUpdate = (value, name) => {
+    if (flag === "unique") {
+      setDataPassword({
+        ...dataPassword,
+        [name]: value
+      })
+    }
+    if (flag === "password") {
+      setDataUnique({
+        ...dataUnique,
+        [name]: value
+      })
+    }
+  }
+
+  useEffect(() => {
+    if (flag === "password") {
+      setDataUnique({
+        idUser: userData.idUser,
+        nameUser: userData.nameUser,
+        emailUser: userData.emailUser,
+        idLevel: userData.idLevel,
+        uniqueId: userData.uniqueId,
+        password: ""
+      });
+    } else {
+      setDataPassword({
+        idLevel: userData.idLevel,
+        idUser: userData.idUser,
+        nameUser: userData.nameUser,
+        emailUser: userData.emailUser,
+        uniqueId: userData.uniqueId,
+      });
+    }
+  }, [flag]);
+
   return (
     <div>
       <h4 className={styles.text}>{editPersonalData}</h4>
@@ -76,7 +115,6 @@ const EditUserData = () => {
         initialValues={{
           user: {
             nameUser: userData.nameUser,
-            lastName: userData.lastName,
             emailUser: userData.emailUser
           },
         }}
@@ -99,19 +137,7 @@ const EditUserData = () => {
             },
           ]}
         >
-          <Input  />
-        </Form.Item>
-
-        <Form.Item
-          name={["user", "lastName"]}
-          label="Apellido"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
+          <Input onChange={(event) => readUpdate(event.target.value, "nameUser")} />
         </Form.Item>
 
         <Form.Item
@@ -124,46 +150,26 @@ const EditUserData = () => {
             },
           ]}
         >
-          <Input />
+          <Input onChange={(event) => readUpdate(event.target.value, "emailUser")} />
         </Form.Item>
 
-        <Form.Item
-          name="password"
-          label="Contraseña"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-          hasFeedback
-        >
-          <Input.Password />
-        </Form.Item>
-
-        {/* <Form.Item
-          name={["user", "idLevel"]}
-          label="Nivel"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input  />
-        </Form.Item>
-
-        <Form.Item
-          name={["user", "idUser"]}
-          label="Id de Usuario"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input  />
-        </Form.Item> */}
+        {
+          flag === "password" && (
+            <Form.Item
+              name="password"
+              label="Contraseña"
+              rules={[
+                {
+                  required: true,
+                  message: "Ingresa tu contraseña!",
+                },
+              ]}
+              hasFeedback
+            >
+              <Input.Password onChange={(event) => readUpdate(event.target.value, "password")} />
+            </Form.Item>
+          )
+        }
 
         <Form.Item
           wrapperCol={{
@@ -176,6 +182,15 @@ const EditUserData = () => {
           </Button>
         </Form.Item>
       </Form>
+
+      <button name="password" onClick={onChangeOption}>
+        Cambiar mi contraseña
+      </button>
+
+      <button name="uniqueId" onClick={onChangeOption}>
+        No quiero cambiar mi contraseña
+      </button>
+
     </div>
   );
 };
