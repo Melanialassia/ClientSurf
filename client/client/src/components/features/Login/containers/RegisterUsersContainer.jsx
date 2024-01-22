@@ -42,7 +42,6 @@ const validateMessages = {
 };
 
 const RegisterUsersContainer = () => {
-
   const dispatch = useDispatch();
 
   const [userEmail, setUserEmail] = useState("");
@@ -62,7 +61,7 @@ const RegisterUsersContainer = () => {
   localStorage.clear()
 
   const [userData, setUserData] = useState({
-    email: "",
+    emailUser: "",
     password: "",
   });
 
@@ -78,42 +77,26 @@ const RegisterUsersContainer = () => {
     });
   };
 
-
-  // const handleClick = () => {
-  //   signInWithPopup(auth, provider)
-  //     .then((data) => {
-
-  //       const dataUser = {
-  //         library : data.user.providerId,
-  //         nameUser : data.user.providerData[0].displayName,
-  //         emailUser : data.user.providerData[0].email,
-  //         uniqueId : data.user.providerData[0].uid
-  
-  //       }
-
-  //       // Verificar si hay información en providerData
-  //       // const hasProviderData = data.user.providerData && data.user.providerData.length > 0;
-
-  
-  //       // Realizar el dispatch para almacenar el usuario en tu base de datos
-  //       dispatch(postUser(dataUser));
-  
-  //       // Resto del código...
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error durante la autenticación con Google:", error);
-  //     });
-  // };
   const handleClick = () => {
     signInWithPopup(auth, provider).then((data) => {
-      console.log("entre",data);
+      const dataUser = {
+        nameUser: data.user.providerData[0].displayName,
+        emailUser: data.user.providerData[0].email,
+        uniqueId: data.user.providerData[0].uid
+      }
       const email = data.user.email;
-      setUserEmail(email);
-      dispatch(userLogin(email));
+      // MARIANA
+      // setUserEmail(email);         =>>> NO SE QUE HACE ESTO PERO LO DEJO
+      // dispatch(userLogin(email));
+      // localStorage.setItem("email", email);
+      // navigate("/");
+      // MIGUEL
+      dispatch(userLogin(dataUser));
       localStorage.setItem("email", email);
       navigate("/");
     });
   };
+
   return (
     <div className={styles.container}>
       <h2>{registerCustomers}</h2>
@@ -133,7 +116,7 @@ const RegisterUsersContainer = () => {
         validateMessages={validateMessages}
       >
         <Form.Item
-          name={["user", "email"]}
+          name={["user", "emailUser"]}
           label="Email"
           rules={[
             {
@@ -142,7 +125,7 @@ const RegisterUsersContainer = () => {
             },
           ]}
         >
-          <Input onChange={(e) => handleChange("email", e.target.value)} />
+          <Input onChange={(e) => handleChange("emailUser", e.target.value)} />
         </Form.Item>
 
         <Form.Item
