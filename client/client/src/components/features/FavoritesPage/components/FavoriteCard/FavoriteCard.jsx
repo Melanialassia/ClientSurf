@@ -7,6 +7,8 @@ import styles from "./FavoriteCard.module.css";
 import { Link } from "react-router-dom";
 
 const FavoriteCard = ({ product, user }) => {
+  console.log(product);
+console.log(user);
   const dispatch = useDispatch();
 
   const handleDelete = () => {

@@ -18,7 +18,7 @@ import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 const Details = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const idUser = 1;
+ 
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState("");
@@ -27,7 +27,8 @@ const Details = () => {
   const [quantity, setQuantity] = useState(1);
 
   const logedUser = JSON.parse(localStorage.getItem('logedUser'));
-  const dataUser = useSelector((state) => state.dataUser);
+  const dataUser =JSON.parse(localStorage.getItem("dataUser"));
+  
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const open = useSelector((s) => s.openModal);
 
@@ -149,9 +150,10 @@ const Details = () => {
   };
 
   const addToFavoritesHandler = () => {
-    if (logedUser === false) {
+    if (logedUser === false || logedUser === null) {
       handleOpenModal();
     } else {
+      
       dispatch(addToFavorites(dataUser.idUser, product.idProduct));
       setIsInFavorites(!isInFavorites);
     }
