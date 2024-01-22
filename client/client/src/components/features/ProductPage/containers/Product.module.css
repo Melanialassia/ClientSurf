@@ -2,4 +2,15 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-content: space-between;
-}
+  }
+  
+  .centeredResultContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .centeredResult {
+    margin-left: 400px; /* Ajusta según sea necesario */
+  }

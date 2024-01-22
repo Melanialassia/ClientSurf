@@ -11,7 +11,16 @@ import {
   getAllSize,
 } from "../../../../redux/actions/action";
 //LIBRARY
-import { Form, Input, Select, InputNumber, Button, Upload, Image } from "antd";
+import {
+  Form,
+  Input,
+  Select,
+  InputNumber,
+  Button,
+  Upload,
+  Image,
+  message,
+} from "antd";
 import { PlusOutlined, DownloadOutlined } from "@ant-design/icons";
 import styles from "./FormProduct.module.css";
 const { TextArea } = Input;
@@ -24,6 +33,9 @@ const FormProduct = () => {
   const allSize = useSelector((s) => s.allSize);
   const dispatch = useDispatch();
   const [form] = Form.useForm();
+
+  //MESSAGE
+  const [messageApi, contextHolder] = message.useMessage();
 
   const [dataProduct, setDataProduct] = useState({
     idCategory: "",
@@ -44,14 +56,12 @@ const FormProduct = () => {
     dispatch(getAllSize());
   }, []);
 
-
   const handleChange = (name, value) => {
     setDataProduct({
       ...dataProduct,
       [name]: value,
     });
   };
-  
 
   const layout = {
     labelCol: {
@@ -80,7 +90,7 @@ const FormProduct = () => {
       const data = new FormData();
       data.append("file", file);
       data.append("upload_preset", "olaurbana");
-  
+
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dfvebd4zw/image/upload",
         {
@@ -88,7 +98,7 @@ const FormProduct = () => {
           body: data,
         }
       );
-  
+
       const cloudinaryFile = await res.json();
       return cloudinaryFile.secure_url; // Retorna la URL de la imagen
     } catch (error) {
@@ -98,13 +108,13 @@ const FormProduct = () => {
 
   const handleSubmit = async () => {
     try {
-      const imageUrl = await postCloudinary();  // Esperar a que se complete la subida de la imagen
-  console.log(imageUrl);
+      const imageUrl = await postCloudinary(); // Esperar a que se complete la subida de la imagen
+      console.log(imageUrl);
       const obj = {
         idCategory: +dataProduct.idCategory,
         name: dataProduct.name,
-        idSize: +dataProduct.idSize, 
-        image: imageUrl, 
+        idSize: +dataProduct.idSize,
+        image: imageUrl,
         idColor: +dataProduct.idColor,
         idBrand: +dataProduct.idBrand,
         priceProduct: dataProduct.priceProduct,
@@ -113,13 +123,17 @@ const FormProduct = () => {
       };
       console.log("entre", obj);
       dispatch(postProduct(obj));
+      messageApi.open({
+        type: "success",
+        content: "Producto creado con éxito!",
+      });
 
       setFile("");
 
       setDataProduct({
         idCategory: "",
         name: "",
-        idSize: "", 
+        idSize: "",
         image: "",
         idColor: "",
         idBrand: "",
@@ -127,24 +141,28 @@ const FormProduct = () => {
         stock: 0,
         description: "",
       });
-  
-      form.resetFields(); 
+
+      form.resetFields();
     } catch (error) {
       console.error("Error al procesar el formulario:", error);
     }
   };
 
-
   return (
     <div>
       <h4
-        style={{ marginTop: "80px", fontSize: "30px" }}
+        style={{ marginTop: "80px", fontSize: "30px", marginLeft: "850px" }}
         className={styles.text}
-      >
-        {" "}
-        Agrega un nuevo producto{" "}
+      > 
+        Agrega un nuevo producto
       </h4>
-      <Form form={form} onFinish={handleSubmit} {...layout} style={{ maxWidth: 600,  marginLeft: '700px' }}>
+      {contextHolder}
+      <Form
+        form={form}
+        onFinish={handleSubmit}
+        {...layout}
+        style={{ maxWidth: 600, marginLeft: "700px" }}
+      >
         <Form.Item
           label="Nombre"
           name="name"
@@ -160,7 +178,10 @@ const FormProduct = () => {
             },
           ]}
         >
-          <Input onChange={(e) => handleChange("name", e.target.value)} defaultValue={dataProduct.name}/>
+          <Input
+            onChange={(e) => handleChange("name", e.target.value)}
+            defaultValue={dataProduct.name}
+          />
         </Form.Item>
 
         <Form.Item
@@ -184,23 +205,35 @@ const FormProduct = () => {
           getValueFromEvent={normFile}
           rules={[{ required: true, message: "Debe de subir una foto!." }]}
         >
-          <Upload
-            customRequest={customRequest}
-            showUploadList={false}
-          >
-            {
-              <div>
-                <PlusOutlined />
-                <div style={{ marginTop: 8 }}>Selecione una imagen</div>
-              </div>
-            }
+          <Upload customRequest={customRequest} showUploadList={false}>
+            <div
+              style={{
+                border: "1px dashed #d9d9d9",
+                borderRadius: "20px",
+                padding: "10px",
+                textAlign: "center",
+              }}
+            >
+              Selecciona una imagen
+            </div>
           </Upload>
         </Form.Item>
 
-        <Form.Item style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-          {file && <Image src={URL.createObjectURL(file)} alt="product" style={{ width: '150px', height: '150px' }} />}
+        <Form.Item
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
+          }}
+        >
+          {file && (
+            <Image
+              src={URL.createObjectURL(file)}
+              alt="product"
+              style={{ width: "150px", height: "150px" }}
+            />
+          )}
         </Form.Item>
-
 
         <Form.Item
           label="Talle"
@@ -280,19 +313,22 @@ const FormProduct = () => {
           />
         </Form.Item>
 
-        <Form.Item 
-        label="Descripción" 
-        name="description"
-        rules={[{ required: true, message: "Por favor, añade una breve descripción." }]}
+        <Form.Item
+          label="Descripción"
+          name="description"
+          rules={[
+            {
+              required: true,
+              message: "Por favor, añade una breve descripción.",
+            },
+          ]}
         >
           <TextArea
             onChange={(e) => handleChange("description", e.target.value)}
           />
         </Form.Item>
 
-        <Form.Item
-        style={{ marginLeft: '700px' }}
-        >
+        <Form.Item style={{ marginLeft: "500px" }}>
           <Button type="primary" htmlType="submit">
             Guardar
           </Button>

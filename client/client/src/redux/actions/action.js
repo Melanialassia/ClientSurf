@@ -112,24 +112,26 @@ export const getAllSize = () => {
     }
   };
 };
+
 export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/product?name=" + name);
+      const { data } = await axios.get(
+        "http://localhost:3001/surf/product?name=" + name
+      );
       const result = data.listProducts;
       dispatch({
         type: FILTER_BY_NAME,
         payload: result,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
     }
   };
 };
 
 export const filterProducts = (filter) => {
   return async (dispatch) => {
-    console.log("accion", filter);
     try {
       // Convierte el objeto filter en una cadena de consulta
       const queryParams = new URLSearchParams(filter).toString();
@@ -139,7 +141,6 @@ export const filterProducts = (filter) => {
 
       const { data } = await axios(apiUrl);
       const result = data.data;
-      console.log("entre", result);
       return dispatch({ type: FILTER_PRODUCS, payload: result });
     } catch (error) {
       console.log(error);
@@ -193,8 +194,8 @@ export const userLogin = (userData) => {
 };
 
 export const logOut = () => {
-  localStorage.removeItem('access');
-  localStorage.setItem('logedUser', JSON.stringify(false));
+  localStorage.removeItem("access");
+  localStorage.setItem("logedUser", JSON.stringify(false));
 
   return (dispatch) => {
     dispatch({ type: LOGOUT });
@@ -225,11 +226,11 @@ export const updateUser = (userData) => {
       console.log("desp", response);
       dispatch({
         type: PUT_USER,
-        payload: response.data
-      })
+        payload: response.data,
+      });
     } catch (error) {
       console.log("Error durante el inicio de sesión:", error);
-    };
+    }
   };
 };
 
@@ -316,4 +317,3 @@ export const deleteFavorite = (idUser, idProduct) => {
 export const handleOpenModal = () => {
   dispatch({ type: OPEN_MODAL });
 };
-

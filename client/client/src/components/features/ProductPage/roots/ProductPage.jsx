@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 //COMPONENTS
 import CategoryFilter from "../containers/CategoryFilter";
 import BrandFilter from "../containers/BrandsFilter";
+import FilterPrice from "../containers/PriceFilter";
 import ColorFilter from "../containers/ColorFilter";
 import SizeFilter from "../containers/SizesFilter";
-import FilterPrice from "../containers/PriceFilter";
 import SearchBar from "../containers/SearchBar";
 import Paginate from "../containers/Paginate";
 import Product from "../containers/Product";
@@ -100,7 +100,7 @@ const ProductPage = () => {
 
   return (
     <div className={style.wrapper}>
-      <aside className={style.aside}>
+      <aside>
         <h2>FILTROS</h2>
         <Button type="text" onClick={clean}>
           Limpiar filtros
