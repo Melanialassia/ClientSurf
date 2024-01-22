@@ -175,10 +175,14 @@ export const postUser = (userdata) => {
 };
 
 export const userLogin = (userData) => {
+  const modifiedUserData = {
+    emailUser: userData.email,
+    password: userData.password
+  };
   return async function (dispatch) {
     try {
       const URL = `http://localhost:3001/surf/login`;
-      const response = await axios.post(URL, userData);
+      const response = await axios.post(URL, modifiedUserData);
       localStorage.setItem("access", JSON.stringify(response.data.access));
       localStorage.setItem("userId", response.data.idUser);
       localStorage.setItem("logedUser", true);
@@ -242,6 +246,7 @@ export const addToCart = (productId, idUser, amount) => {
         idUser,
         amount,
       });
+      console.log(response);
 
       dispatch({
         type: ADD_TO_CART,
