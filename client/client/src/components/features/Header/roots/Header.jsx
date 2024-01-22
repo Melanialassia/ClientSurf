@@ -10,7 +10,9 @@ import { Button } from "antd";
 import NavBar from "../components/NavBar";
 import ProfileMenu from "../components/ProfileMenu";
 //ACTIONS
+
 import { OPEN_MODAL, LOGED_USER } from "../../../../redux/actions-types/actions-types";
+
 //STYLE-SHEETS
 import styles from "./Header.module.css";
 import LoginModal from "../../LoginModal/root/LoginModal";
