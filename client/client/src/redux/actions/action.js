@@ -175,22 +175,37 @@ export const postUser = (userdata) => {
 };
 
 export const userLogin = (userData) => {
-  const modifiedUserData = {
-    emailUser: userData.email,
-    password: userData.password
-  };
   return async function (dispatch) {
     try {
       const URL = `http://localhost:3001/surf/login`;
-      const response = await axios.post(URL, modifiedUserData);
-      localStorage.setItem("access", JSON.stringify(response.data.access));
-      localStorage.setItem("userId", response.data.idUser);
-      localStorage.setItem("logedUser", true);
+      let response;
+      // GOOGLE EMAIL, UNIQUEID
+      if (userData.uniqueId) {
+        const modifiedUserData = {
+          emailUser: userData.emailUser,
+          uniqueId: userData.uniqueId
+        };
+        response = await axios.post(URL, modifiedUserData);
+      }
+      // FORM EMAIL PASSWORD
+      else if (userData.password) {
+        const modifiedUserData = {
+          emailUser: userData.emailUser,
+          password: userData.password,
+        };
+        response = await axios.post(URL, modifiedUserData);
+      }
 
-      dispatch({
-        type: POST_LOGIN,
-        payload: response.data,
-      });
+      if (response) {
+        localStorage.setItem("access", JSON.stringify(response.data.access));
+        localStorage.setItem("userId", response.data.idUser);
+        localStorage.setItem("logedUser", true);
+
+        dispatch({
+          type: POST_LOGIN,
+          payload: response.data,
+        });
+      }
     } catch (error) {
       console.log("Error durante el inicio de sesión:", error);
     }
