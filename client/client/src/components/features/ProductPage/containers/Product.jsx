@@ -1,5 +1,10 @@
+//COMPONENT
 import Cards from "../components/Cards";
+//STYLE
 import style from "./Product.module.css";
+//LIBRARY
+import { SmileOutlined } from "@ant-design/icons";
+import { Button, Result } from "antd";
 
 const Product = ({ currentPoducts }) => {
   return (
@@ -9,11 +14,16 @@ const Product = ({ currentPoducts }) => {
           <Cards product={product} key={product.idProduct} />
         ))
       ) : (
-        <p>NO SE ENCONTRO UN PRODUCTO </p>
+        <div className={style.centeredResultContainer}>
+          <Result
+            className={style.centeredResult}
+            icon={<SmileOutlined />}
+            title="Aun no tenemos ese producto!."
+          />
+        </div>
       )}
     </div>
   );
 };
 
 export default Product;
-

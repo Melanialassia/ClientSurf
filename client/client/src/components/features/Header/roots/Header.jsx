@@ -2,24 +2,18 @@
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-
 import { useEffect } from "react"; 
-//Librarys
-
 //LIBRARYS
-
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 //COMPONENTS
 import NavBar from "../components/NavBar";
 import ProfileMenu from "../components/ProfileMenu";
 //ACTIONS
-import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 
-import { LOGED_USER } from "../../../../redux/actions-types/actions-types";
-//style-sheets
+import { OPEN_MODAL, LOGED_USER } from "../../../../redux/actions-types/actions-types";
+
 //STYLE-SHEETS
-
 import styles from "./Header.module.css";
 import LoginModal from "../../LoginModal/root/LoginModal";
 
