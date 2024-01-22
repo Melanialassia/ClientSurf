@@ -117,7 +117,7 @@ const RegisterUsersContainer = () => {
   return (
     <div className={styles.container}>
       <h2>{registerCustomers}</h2>
-      <h4>{textRegisterCustomers}</h4>
+      <h4 className={styles.text}>{textRegisterCustomers}</h4>
       <hr className={styles.hr} />
       <Form
         {...layout}

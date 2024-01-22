@@ -69,8 +69,8 @@ const FormContainer = () => {
 
   return (
     <div className={styles.container}>
-      <h2>{infoLogin}</h2>
-      <h4>{text}</h4>
+      <h2 className={styles.textt}>{infoLogin}</h2>
+      <h4 className={styles.text}>{text}</h4>
       <hr className={styles.hr} />
 
       <Form
