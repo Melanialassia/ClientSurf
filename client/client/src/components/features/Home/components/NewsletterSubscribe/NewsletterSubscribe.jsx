@@ -3,6 +3,12 @@ import styles from "./NewsletterSubscribe.module.css";
 import { Input } from "antd";
 
 const NewsletterSubscribe = () => {
+
+    //HANDLE ALERT
+    const handleAlert = () => {
+      alert("Estamos trabajando para que puedas recibir las ultimas novedades")
+    }
+
   return (
     <div className={styles.container}>
       <div>
@@ -13,7 +19,7 @@ const NewsletterSubscribe = () => {
 
         <div>
           <Input placeholder="Ingresa tu correo" style={{ width: 350 }} />
-          <button className={styles.button}>Subscribirse</button>
+          <button className={styles.button} onClick={handleAlert}>Subscribirse</button>
         </div>
       </div>
 

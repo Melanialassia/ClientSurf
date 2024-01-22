@@ -1,11 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 //LIBRARY
-import { Card, Button, Space } from "antd";
+import { Card, Button, Space, Alert } from "antd";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 const { Meta } = Card;
 
 const Cards = ({ product }) => {
+
+  const HandleAlert = () => {
+    alert("Estamos trabajando esta funcion")
+  }
+
   return (
     <div style={{ marginBottom: "20px" }}>
       <Link
@@ -50,16 +55,16 @@ const Cards = ({ product }) => {
         </Card>
       </Link>
       <div style={{ textAlign: "center", marginTop: "10px" }}>
-        <Space>
+        {<Space>
           <Button
             icon={<HeartOutlined />}
-            onClick={(e) => e.stopPropagation()}
+            onClick={HandleAlert}
           />
           <Button
             icon={<ShoppingCartOutlined />}
-            onClick={(e) => e.stopPropagation()}
+            onClick={HandleAlert}
           />
-        </Space>
+        </Space>}
       </div>
     </div>
   );

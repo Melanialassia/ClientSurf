@@ -35,7 +35,7 @@ const validateMessages = {
 const FormContainer = () => {
   const [userData, setUserData] = useState({
     nameUser: "",
-    lastName: "",
+    //lastName: "",
     emailUser: "",
     password: "",
   });
@@ -58,10 +58,16 @@ const FormContainer = () => {
       dispatch(postUser(userData));
       setIsUserCreated(true);
       navigate("/login");
+      handleAlert(); //ALERT
     } catch (error) {
       console.error("No se pudo crear la cuenta de usuario con éxito:", error);
     }
   };
+
+  //HANDLE ALERT
+  const handleAlert = () => {
+    alert("Usuario creado con exito!")
+  }
 
   // const handleDisabled = () => {
   //   return Object.values(errors).some((error) => error !== "");
@@ -107,7 +113,7 @@ const FormContainer = () => {
           <Input onChange={(e) => handleChange("nameUser", e.target.value)} />
         </Form.Item>
 
-        <Form.Item
+        {/* <Form.Item
           name={["user", "lastName"]}
           label="Apellido"
           rules={[
@@ -117,7 +123,7 @@ const FormContainer = () => {
           ]}
         >
           <Input onChange={(e) => handleChange("lastName", e.target.value)} />
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item
           name={["user", "email"]}
