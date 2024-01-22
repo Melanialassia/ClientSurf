@@ -11,11 +11,14 @@ const FavoritesPage = () => {
   const dispatch = useDispatch();
   const [reload, setReload] = useState(false);
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
-  const dataUser = useSelector((s) => s.dataUser);
+  
   const userId = localStorage.getItem('userId');
+  const dataUser =JSON.parse(localStorage.getItem("dataUser"));
+  
+  
 
   useEffect(() => {
-    dispatch(getAllFavoriteProducts(userId));
+    dispatch(getAllFavoriteProducts(dataUser.idUser));
     setReload(true);
   }, [reload]);
 

@@ -127,6 +127,7 @@ const reducer = (state = initialState, action) => {
 
     case POST_LOGIN:
       localStorage.setItem("userId", action.payload.idUser);
+      localStorage.setItem("dataUser", JSON.stringify(action.payload));
       return {
         ...state,
         dataUser: action.payload,
