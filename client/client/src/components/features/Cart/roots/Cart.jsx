@@ -13,7 +13,7 @@ const Cart = () => {
   const [refreshCart, setRefreshCart] = useState(false);
   const dataUser = useSelector((state) => state.dataUser);
   const userId = localStorage.getItem('userId');
-  
+  console.log(userId);
   const storedAccess = localStorage.getItem('access');
   const userAccess = storedAccess ? JSON.parse(storedAccess) : null;
   
