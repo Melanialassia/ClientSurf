@@ -210,19 +210,17 @@ export const getIdUser = (idUser) => {
         type: GET_USER_ID,
         payload: response.data.data[0],
       });
-    } catch (error) {}
+    } catch (error) { }
   };
 };
 
-export const updateUserInfo = () => {};
+export const updateUserInfo = () => { };
 
 export const updateUser = (userData) => {
-  console.log("antes", userData);
   return async function (dispatch) {
     try {
       const URL = `http://localhost:3001/surf/user`;
       const response = await axios.put(URL, userData);
-      console.log("desp", response);
       dispatch({
         type: PUT_USER,
         payload: response.data
