@@ -175,17 +175,21 @@ export const postUser = (userdata) => {
 };
 
 export const userLogin = (userData) => {
+  console.log(userData);
+
   return async function (dispatch) {
     try {
-      const URL = `http://localhost:3001/surf/login`;
+      const URL = `https://serversurf-production.up.railway.app/surf/login`;
       let response;
       // GOOGLE EMAIL, UNIQUEID
       if (userData.uniqueId) {
         const modifiedUserData = {
           emailUser: userData.emailUser,
           uniqueId: userData.uniqueId
+          
         };
         response = await axios.post(URL, modifiedUserData);
+        
       }
       // FORM EMAIL PASSWORD
       else if (userData.password) {
@@ -194,18 +198,19 @@ export const userLogin = (userData) => {
           password: userData.password,
         };
         response = await axios.post(URL, modifiedUserData);
+        
       }
+      if (response && response.data) {
+  localStorage.setItem("access", JSON.stringify(response.data.access));
+  localStorage.setItem("userId", response.data.idUser);
+  localStorage.setItem("logedUser", true);
 
-      if (response) {
-        localStorage.setItem("access", JSON.stringify(response.data.access));
-        localStorage.setItem("userId", response.data.idUser);
-        localStorage.setItem("logedUser", true);
+  dispatch({
+    type: POST_LOGIN,
+    payload: response.data,
+  });
+}
 
-        dispatch({
-          type: POST_LOGIN,
-          payload: response.data,
-        });
-      }
     } catch (error) {
       console.log("Error durante el inicio de sesión:", error);
     }
@@ -256,7 +261,7 @@ export const addToCart = (productId, idUser, amount) => {
   console.log("idUser in addToCart:", idUser);
   return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:3001/surf/cart", {
+      const response = await axios.post(`https://serversurf-production.up.railway.app/surf/cart`, {
         idProduct: productId,
         idUser,
         amount,
