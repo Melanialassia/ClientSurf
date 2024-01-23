@@ -56,7 +56,7 @@ const LoginModal = ({ open }) => {
                 loading={loading}
                 onClick={handleCancel}
               >
-                Ir a iniciar secion
+                Ir a iniciar sesion
               </Button>
             </Link>,
           ]}

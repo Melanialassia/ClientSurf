@@ -28,12 +28,14 @@ import {
 } from "../actions-types/actions-types";
 import axios from "axios";
 
+const SERVER_URL = "https://serversurf-production.up.railway.app/surf"
+
 //PRODUCTS ACTIONS
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3001/surf/filterProduct"
+        `${SERVER_URL}/filterProduct`
       );
       const result = data.data;
       return dispatch({ type: ALL_PRODUCTS, payload: result });
@@ -47,7 +49,7 @@ export const postProduct = (data) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/surf/product",
+        `${SERVER_URL}/product`,
         data
       );
       dispatch({ type: POST_PRODUCT, payload: response.data });
@@ -62,7 +64,7 @@ export const postProduct = (data) => {
 export const getAllCategorys = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/category");
+      const { data } = await axios.get(`${SERVER_URL}/category`);
       const result = data.data;
       return dispatch({ type: ALL_CATEGORYS, payload: result });
     } catch (error) {
@@ -74,7 +76,7 @@ export const getAllCategorys = () => {
 export const getAllColors = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/color/");
+      const { data } = await axios.get(`${SERVER_URL}/color/`);
       const result = data.data;
       return dispatch({ type: ALL_COLORS, payload: result });
     } catch (error) {
@@ -86,7 +88,7 @@ export const getAllColors = () => {
 export const getAllBrands = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/brand");
+      const { data } = await axios.get(`${SERVER_URL}/brand`);
       const result = data.data;
       dispatch({
         type: GET_ALL_BRANDS,
@@ -101,7 +103,7 @@ export const getAllBrands = () => {
 export const getAllSize = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/surf/size");
+      const { data } = await axios.get(`${SERVER_URL}/size`);
       const result = data.data;
       dispatch({
         type: GET_ALL_SIZE,
@@ -117,7 +119,7 @@ export const getProductsByName = (name) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        "http://localhost:3001/surf/product?name=" + name
+        `${SERVER_URL}/product?name=` + name
       );
       const result = data.listProducts;
       dispatch({
@@ -137,7 +139,7 @@ export const filterProducts = (filter) => {
       const queryParams = new URLSearchParams(filter).toString();
 
       // Construye la URL con la cadena de consulta
-      let apiUrl = `http://localhost:3001/surf/filterProduct?${queryParams}`;
+      let apiUrl = `${SERVER_URL}/filterProduct?${queryParams}`;
 
       const { data } = await axios(apiUrl);
       const result = data.data;
@@ -161,7 +163,7 @@ export const postUser = (userdata) => {
   return async function (dispatch) {
     try {
       const response = await axios.post(
-        "http://localhost:3001/surf/user",
+        `${SERVER_URL}/user`,
         userdata
       ); // ENVIA LOS DATOS
       dispatch({
@@ -175,21 +177,18 @@ export const postUser = (userdata) => {
 };
 
 export const userLogin = (userData) => {
-  console.log(userData);
 
   return async function (dispatch) {
     try {
-      const URL = `https://serversurf-production.up.railway.app/surf/login`;
+      const URL = `${SERVER_URL}/login`;
       let response;
       // GOOGLE EMAIL, UNIQUEID
       if (userData.uniqueId) {
         const modifiedUserData = {
           emailUser: userData.emailUser,
           uniqueId: userData.uniqueId
-          
         };
         response = await axios.post(URL, modifiedUserData);
-        
       }
       // FORM EMAIL PASSWORD
       else if (userData.password) {
@@ -198,19 +197,19 @@ export const userLogin = (userData) => {
           password: userData.password,
         };
         response = await axios.post(URL, modifiedUserData);
-        
+
       }
-      if (response && response.data) {
-  localStorage.setItem("access", JSON.stringify(response.data.access));
-  localStorage.setItem("userId", response.data.idUser);
-  localStorage.setItem("logedUser", true);
 
-  dispatch({
-    type: POST_LOGIN,
-    payload: response.data,
-  });
-}
+      if (response) { // && response.data
+        localStorage.setItem("access", JSON.stringify(response.data.access));
+        localStorage.setItem("userId", response.data.idUser);
+        localStorage.setItem("logedUser", true);
 
+        dispatch({
+          type: POST_LOGIN,
+          payload: response.data,
+        });
+      }
     } catch (error) {
       console.log("Error durante el inicio de sesión:", error);
     }
@@ -230,7 +229,7 @@ export const logOut = () => {
 export const getIdUser = (idUser) => {
   return async (dispatch) => {
     try {
-      const response = await axios(`http://localhost:3001/surf/user/${idUser}`);
+      const response = await axios(`${SERVER_URL}/user/${idUser}`);
       dispatch({
         type: GET_USER_ID,
         payload: response.data.data[0],
@@ -244,7 +243,7 @@ export const updateUserInfo = () => { };
 export const updateUser = (userData) => {
   return async function (dispatch) {
     try {
-      const URL = `http://localhost:3001/surf/user`;
+      const URL = `${SERVER_URL}/user`;
       const response = await axios.put(URL, userData);
       dispatch({
         type: PUT_USER,
@@ -261,7 +260,7 @@ export const addToCart = (productId, idUser, amount) => {
   console.log("idUser in addToCart:", idUser);
   return async (dispatch) => {
     try {
-      const response = await axios.post(`https://serversurf-production.up.railway.app/surf/cart`, {
+      const response = await axios.post(`${SERVER_URL}/cart`, {
         idProduct: productId,
         idUser,
         amount,
@@ -293,7 +292,7 @@ export const getAllFavoriteProducts = (idUser) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/surf/favorite/${idUser}`
+        `${SERVER_URL}/favorite/${idUser}`
       );
       const result = data.data;
       return dispatch({ type: ALL_FAVORITES, payload: result });
@@ -306,7 +305,7 @@ export const getAllFavoriteProducts = (idUser) => {
 export const addToFavorites = (idUser, idProduct) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:3001/surf/favorite", {
+      const response = await axios.post(`${SERVER_URL}/favorite`, {
         idProduct,
         idUser,
       });
@@ -325,7 +324,7 @@ export const deleteFavorite = (idUser, idProduct) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/surf/favorite/${idUser}/${idProduct}`
+        `${SERVER_URL}/favorite/${idUser}/${idProduct}`
       );
       dispatch({
         type: DELETE_FAVORITES,
