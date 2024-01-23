@@ -7,6 +7,7 @@ import {
   ALL_PRODUCTS,
   GET_ALL_SIZE,
   FILTER_PRICE,
+  DELETE_PRODUCT,
   //CART
   ADD_TO_CART,
   //FAVORITE
@@ -14,15 +15,26 @@ import {
   ADD_TO_FAVORITES,
   ALL_FAVORITES,
   //LOGIN
+  GET_ALL_USERS,
   GET_USER_ID,
   LOGED_USER,
   POST_LOGIN,
   ALL_COLORS,
   LOGOUT,
+  DELETE_USER,
   //PAGINATE
   PAGINATE,
   OPEN_MODAL,
   CLOSE_MODAL,
+  //ADMIN DASHBOARD
+  CREATE_CATEGORY,
+  CREATE_COLOR,
+  CREATE_BRAND,
+  CREATE_SIZE,
+  DELETE_CATEGORY,
+  DELETE_COLOR,
+  DELETE_BRAND,
+  DELETE_SIZE
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -31,6 +43,7 @@ const initialState = {
   allBrands: [],
   allColors: [],
   allSize: [],
+  allUsers: [],
   filter: [],
   productPerPage: 12,
   currentPage: 1,

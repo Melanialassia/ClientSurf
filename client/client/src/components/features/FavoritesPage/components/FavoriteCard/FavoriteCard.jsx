@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const FavoriteCard = ({ product, user }) => {
   console.log(product);
-console.log(user);
+  console.log(user);
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -33,11 +33,7 @@ console.log(user);
           Agregar al carrito
         </Button>
 
-        <Button
-          onClick={handleDelete}
-          type="primary"
-          icon={<DeleteOutlined />}
-        >
+        <Button onClick={handleDelete} type="primary" icon={<DeleteOutlined />}>
           Eliminar
         </Button>
       </div>

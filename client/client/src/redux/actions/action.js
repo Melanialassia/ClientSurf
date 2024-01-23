@@ -9,6 +9,7 @@ import {
   POST_PRODUCT,
   FILTER_PRICE,
   ALL_COLORS,
+  DELETE_PRODUCT,
   //FAVORITE
   ADD_TO_FAVORITES,
   DELETE_FAVORITES,
@@ -17,18 +18,29 @@ import {
   //CART
   ADD_TO_CART,
   //USER
+  GET_ALL_USERS,
   GET_USER_ID,
   POST_LOGIN,
   LOGOUT,
   PUT_USER,
+  DELETE_USER,
   //PAGINADO
   PAGINATE,
   OPEN_MODAL,
   LOGED_USER,
+  //ADMIN DASHBOARD
+  CREATE_CATEGORY,
+  CREATE_COLOR,
+  CREATE_BRAND,
+  CREATE_SIZE,
+  DELETE_CATEGORY,
+  DELETE_COLOR,
+  DELETE_BRAND,
+  DELETE_SIZE
 } from "../actions-types/actions-types";
 import axios from "axios";
 
-const SERVER_URL = "https://serversurf-production.up.railway.app/surf"
+const SERVER_URL = "https://surf-4i7c.onrender.com/surf"
 
 //PRODUCTS ACTIONS
 export const getAllProducts = () => {
@@ -56,6 +68,21 @@ export const postProduct = (data) => {
       return response;
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+export const deleteProduct = (idProduct) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `${SERVER_URL}/product/${idProduct}`
+      );
+      dispatch({
+        type: DELETE_PRODUCT,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo borrar el producto", error);
     }
   };
 };
@@ -255,6 +282,36 @@ export const updateUser = (userData) => {
   };
 };
 
+export const getAllUsers = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `${SERVER_URL}/user`
+      );
+      const result = data.data;
+      return dispatch({ type: GET_ALL_USERS, payload: result });
+    } catch (error) {
+      throw Error("No se pudo traer los usuarios con exito", error);
+    }
+  };
+}
+
+export const deleteUser = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `${SERVER_URL}/user/${idUser}`
+      );
+      dispatch({
+        type: DELETE_USER,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo borrar el usuario", error);
+    }
+  };
+};
+
 //CART ACTIONS
 export const addToCart = (productId, idUser, amount) => {
   console.log("idUser in addToCart:", idUser);
@@ -338,4 +395,132 @@ export const deleteFavorite = (idUser, idProduct) => {
 
 export const handleOpenModal = () => {
   dispatch({ type: OPEN_MODAL });
+};
+
+//ADMIN CATEGORIES
+export const postCategory = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${SERVER_URL}/category`,
+        data
+      );
+      dispatch({ type: CREATE_CATEGORY, payload: response.data });
+      return response;
+    } catch (error) {
+      throw Error("No se pudo crear la categoria", error);
+    }
+  };
+};
+
+export const deleteCategory = (idCategory) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `${SERVER_URL}/category/${idCategory}`
+      );
+      dispatch({
+        type: DELETE_CATEGORY,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo borrar la categoria", error);
+    }
+  };
+};
+
+//ADMIN BRANDS
+export const postBrand = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${SERVER_URL}/brand`,
+        data
+      );
+      dispatch({ type: CREATE_BRAND, payload: response.data });
+      return response;
+    } catch (error) {
+      throw Error("No se pudo crear el brand", error);
+    }
+  };
+};
+
+export const deleteBrand = (idBrand) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `${SERVER_URL}/brand/${idBrand}`
+      );
+      dispatch({
+        type: DELETE_BRAND,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo borrar el color", error);
+    }
+  };
+};
+
+//ADMIN COLORS
+export const postColor = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${SERVER_URL}/color`,
+        data
+      );
+      dispatch({ type: CREATE_COLOR, payload: response.data });
+      return response;
+    } catch (error) {
+      throw Error("No se pudo crear el color", error);
+    }
+  };
+};
+
+export const deleteColor = (idColor) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `${SERVER_URL}/color/${idColor}`
+      );
+      dispatch({
+        type: DELETE_COLOR,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo borrar el color", error);
+    }
+  };
+};
+
+//ADMIN SIZES
+export const postSize = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `${SERVER_URL}/size`,
+        data
+      );
+      dispatch({ type: CREATE_SIZE, payload: response.data });
+      return response;
+    } catch (error) {
+      throw Error("No se pudo crear la talla", error);
+    }
+  };
+};
+
+export const deleteSize = (idSize) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `${SERVER_URL}/size/${idSize}`
+      );
+      dispatch({
+        type: DELETE_SIZE,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo borrar la talla", error);
+    }
+  };
 };
