@@ -17,7 +17,7 @@ import {
   LOGED_USER,
 } from "../../../../redux/actions-types/actions-types";
 //CONSTANTS
-import { login, register } from "../utils/constants";
+import { login, createAnAccount } from "../../Login/utils/constants";
 //STYLE-SHEETS
 import styles from "./Header.module.css";
 
@@ -119,7 +119,7 @@ const Header = () => {
           </li>
           <Link to={"/account/create"}>
             <Button type="primary" style={styledButton}>
-              {register}
+            {createAnAccount}
             </Button>
           </Link>
         </ul>
