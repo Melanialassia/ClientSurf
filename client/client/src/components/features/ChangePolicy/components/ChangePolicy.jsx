@@ -20,7 +20,7 @@ import {
   dni,
 } from "../utils/constants";
 //style-sheets
-import styles from "./ChangePolicy.module.css";
+import styles from "./Changepolicy.module.css";
 
 const ChangePolicy = () => {
   return (
