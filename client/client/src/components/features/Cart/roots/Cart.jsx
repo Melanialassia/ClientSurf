@@ -21,8 +21,7 @@ const Cart = () => {
   
   const fetchCartData = async () => {
     try {
-      const response = await axios.get(`https://serversurf-production.up.railway.app/surf/cart/${userId}`);
-      console.log(response.data);
+      const response = await axios.get(`http://localhost:3001/surf/cart/1`);
       setCartData(response.data);
     } catch (error) {
       console.error('Error al cargar el carrito:', error);
@@ -40,7 +39,7 @@ const Cart = () => {
   
   const handleRemoveProduct = async (productId) => {
     try {
-      await axios.delete(`https://serversurf-production.up.railway.app/surf/cart/${userId}/${productId}`); 
+      await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${userId}/${productId}`); 
       setRefreshCart(true);
     } catch (error) {
       console.error('Error al eliminar el producto del carrito:', error);
@@ -49,7 +48,7 @@ const Cart = () => {
 
   const handleRemoveAllProducts = async () => {
     try {
-      await axios.delete(`https://serversurf-production.up.railway.app/surf/cart/${userId}`);
+      await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
       setRefreshCart(true);
     } catch (error) {
       console.error('Error al eliminar todos los productos del carrito:', error);
@@ -72,7 +71,7 @@ const Cart = () => {
     
     console.log(listCart);
     try {
-      const response = await axios.post('https://serversurf-production.up.railway.app/surf/mecado', listCart);
+      const response = await axios.post('https://surf-4i7c.onrender.com/surf/mecado', listCart);
       console.log('Response:', response);
       const data = response.data;
       
@@ -84,14 +83,7 @@ const Cart = () => {
   }
   
   
-  if (!userAccess) {
-    return (
-      <div>
-        <h2>Carrito de Compras</h2>
-        <p>No tienes ningún artículo en tu carrito de compras.</p>
-      </div>
-    );
-  }
+
 
   
   return (
