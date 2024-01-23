@@ -177,6 +177,7 @@ export const postUser = (userdata) => {
 };
 
 export const userLogin = (userData) => {
+
   return async function (dispatch) {
     try {
       const URL = `${SERVER_URL}/login`;
@@ -196,9 +197,10 @@ export const userLogin = (userData) => {
           password: userData.password,
         };
         response = await axios.post(URL, modifiedUserData);
+
       }
 
-      if (response) {
+      if (response) { // && response.data
         localStorage.setItem("access", JSON.stringify(response.data.access));
         localStorage.setItem("userId", response.data.idUser);
         localStorage.setItem("logedUser", true);
