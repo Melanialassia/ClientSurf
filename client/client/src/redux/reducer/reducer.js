@@ -1,6 +1,6 @@
 import {
   //PRODUCTS
-  FILTER_PRODUCS,
+  FILTER_PRODUCTS ,
   GET_ALL_BRANDS,
   FILTER_BY_NAME,
   ALL_CATEGORYS,
@@ -31,7 +31,6 @@ const initialState = {
   allBrands: [],
   allColors: [],
   allSize: [],
-  filter: [],
   productPerPage: 12,
   currentPage: 1,
   logedUser: false,
@@ -39,7 +38,6 @@ const initialState = {
   cart: [],
   dataUser: null,
   userData: [],
-  filteredProducts: [],
   openModal: false,
 };
 
@@ -50,7 +48,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allProducts: action.payload,
-        filter: [...action.payload],
       };
 
     case ALL_CATEGORYS:
@@ -77,35 +74,35 @@ const reducer = (state = initialState, action) => {
         allSize: action.payload,
       };
 
-    case FILTER_PRODUCS:
+      case FILTER_PRODUCTS:
       return {
         ...state,
-        filter: action.payload,
+        allProducts: action.payload,
       };
 
     case FILTER_PRICE:
       if (action.payload === "DESC") {
-        const response = [...state.filter].sort(
+        const response = [...state.allProducts].sort(
           (a, b) => a.priceProduct - b.priceProduct
         );
         return {
           ...state,
-          filter: [...response],
+          allProducts: [...response],
         };
       } else if (action.payload === "ASC") {
-        const response = [...state.filter].sort(
+        const response = [...state.allProducts].sort(
           (a, b) => b.priceProduct - a.priceProduct
         );
         return {
           ...state,
-          filter: [...response],
+          allProducts: [...response],
         };
       }
 
     case FILTER_BY_NAME:
       return {
         ...state,
-        filter: action.payload,
+        allProducts: action.payload,
       };
 
     case ADD_TO_CART:

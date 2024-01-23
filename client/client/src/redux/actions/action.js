@@ -1,7 +1,7 @@
 import {
   //PRODUCTS
   GET_ALL_BRANDS,
-  FILTER_PRODUCS,
+  FILTER_PRODUCTS,
   FILTER_BY_NAME,
   ALL_CATEGORYS,
   ALL_PRODUCTS,
@@ -143,7 +143,7 @@ export const filterProducts = (filter) => {
 
       const { data } = await axios(apiUrl);
       const result = data.data;
-      return dispatch({ type: FILTER_PRODUCS, payload: result });
+      return dispatch({ type: FILTER_PRODUCTS, payload: result });
     } catch (error) {
       console.log(error);
     }

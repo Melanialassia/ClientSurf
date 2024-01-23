@@ -2,10 +2,12 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from "react"; 
+
 //COMPONENTS
 import EditUserData from "./EditUserData";
 //LIBRARYS
 import { Card } from 'antd';
+
 //CONSTANTS
 import { myAccount, personalInfo, editLink } from "../utils/constants";
 //REDUX
@@ -20,7 +22,7 @@ const MyProfile = () => {
   const dispatch = useDispatch();
 
   const userData = useSelector((state) => state.userData);
- 
+
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {
@@ -60,7 +62,20 @@ const MyProfile = () => {
       <div className={styles.editSection}>
         {isEditing && <EditUserData onCancel={() => setIsEditing(false)} />}
       </div>
+
+    <div className={styles.container}>
+    <div className={styles.profileInfo}>
+      <h3>{myAccount}</h3>
+      <h4>{personalInfo}</h4>
+      <p>Nome: {userData.nameUser}</p>
+      <p>Email: {userData.emailUser}</p>
+      <button onClick={handleEditClick}>{editLink}</button>
     </div>
+    <div className={styles.editSection}>
+      {isEditing && <EditUserData onCancel={() => setIsEditing(false)} />}
+
+    </div>
+  </div>
   );
 };
 

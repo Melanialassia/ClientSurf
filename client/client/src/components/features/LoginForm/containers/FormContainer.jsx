@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 //LIBRARYS
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 //REDUX
 import { postUser } from "../../../../redux/actions/action";
 //CONstANTS
@@ -45,6 +45,8 @@ const FormContainer = () => {
   const [isUserCreated, setIsUserCreated] = useState(false);
 
   const navigate = useNavigate();
+   //MESSAGE
+   const [messageApi, contextHolder] = message.useMessage();
 
   const handleChange = (name, value) => {
     setUserData({
@@ -57,17 +59,16 @@ const FormContainer = () => {
     try {
       dispatch(postUser(userData));
       setIsUserCreated(true);
+      messageApi.open({
+        type: "success",
+        content: "Usuario creado con éxito!",
+      });
       navigate("/login");
-      handleAlert(); //ALERT
     } catch (error) {
       console.error("No se pudo crear la cuenta de usuario con éxito:", error);
     }
   };
 
-  //HANDLE ALERT
-  const handleAlert = () => {
-    alert("Usuario creado con exito!")
-  }
 
   // const handleDisabled = () => {
   //   return Object.values(errors).some((error) => error !== "");
