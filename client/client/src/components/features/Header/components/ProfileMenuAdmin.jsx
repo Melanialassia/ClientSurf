@@ -7,7 +7,7 @@ import { logOut } from "../../../../redux/actions/action";
 //LIBRARY
 import { Menu } from "antd";
 //STYLE-SHEETS
-import styles from './ProfileMenuAdmin.module.css';
+import styles from './ProfileMenu.module.css';
 
 function getItem(label, key, children, type) {
     return {
