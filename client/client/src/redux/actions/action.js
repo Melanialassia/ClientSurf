@@ -28,7 +28,7 @@ import {
 } from "../actions-types/actions-types";
 import axios from "axios";
 
-const SERVER_URL = "https://serversurf-production.up.railway.app/surf"
+const SERVER_URL = "https://surf-4i7c.onrender.com/surf"
 
 //PRODUCTS ACTIONS
 export const getAllProducts = () => {

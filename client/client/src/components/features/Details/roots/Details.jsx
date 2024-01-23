@@ -53,7 +53,7 @@ const Details = () => {
     const fetchData = async () => {
       try {
         const response = await axios(
-          `https://serversurf-production.up.railway.app/surf/product/${id}`
+          `https://surf-4i7c.onrender.com/surf/product/${id}`
         );
         console.log(response);
         const { data } = response;
