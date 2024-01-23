@@ -2,7 +2,9 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from "react"; 
-import { Form, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+//COMPONENTS
+import EditUserData from "./EditUserData";
 //CONSTANTS
 import { myAccount, personalInfo, editLink } from "../utils/constants";
 //REDUX
@@ -15,37 +17,33 @@ const MyProfile = () => {
   const dispatch = useDispatch();
 
   const userData = useSelector((state) => state.userData);
- 
-  const [userById, setUserById] = useState({
-    idUser: userData.idUser,
-    nameUser: userData.nameUser,
-    lastName: userData.lastName,
-    emailUser: userData.emailUser
-  })
-  
-  useEffect(() => {
-    // Actualiza userById cuando cambia userData
-    setUserById({
-      idUser: userData.idUser,
-      nameUser: userData.nameUser,
-      lastName: userData.lastName,
-      emailUser: userData.emailUser
-    });
-  }, [userData]);
 
-  // useEffect(() => {
-  //   // Realiza la primera carga de datos al montar el componente
-  //   dispatch(getIdUser(userById.idUser));
-  // }, [dispatch]);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  useEffect(() => {
+    if (userData.idUser) {
+      dispatch(getIdUser(userData.idUser));
+    }
+  }, [dispatch, userData.idUser]);
 
   return (
+
     <div className={styles.container}>
+    <div className={styles.profileInfo}>
       <h3>{myAccount}</h3>
       <h4>{personalInfo}</h4>
-      <Link to={"/edit-personalData"}>
-        <h4>{editLink}</h4>
-      </Link>
+      <p>Nome: {userData.nameUser}</p>
+      <p>Email: {userData.emailUser}</p>
+      <button onClick={handleEditClick}>{editLink}</button>
     </div>
+    <div className={styles.editSection}>
+      {isEditing && <EditUserData onCancel={() => setIsEditing(false)} />}
+    </div>
+  </div>
   );
 };
 
