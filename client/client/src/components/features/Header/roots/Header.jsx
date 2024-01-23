@@ -16,8 +16,7 @@ import {
   OPEN_MODAL,
   LOGED_USER,
 } from "../../../../redux/actions-types/actions-types";
-//CONSTANTS
-import { login, createAnAccount } from "../../Login/utils/constants";
+
 //STYLE-SHEETS
 import styles from "./Header.module.css";
 
@@ -114,12 +113,14 @@ const Header = () => {
         <ul className={styles.menuitems}>
           <li>
             <Link to="/login">
-              <p href="">{login}</p>
+              <p href="">Iniciar sesión</p>
             </Link>
           </li>
           <Link to={"/account/create"}>
             <Button type="primary" style={styledButton}>
-            {createAnAccount}
+
+              Registrarse
+
             </Button>
           </Link>
         </ul>

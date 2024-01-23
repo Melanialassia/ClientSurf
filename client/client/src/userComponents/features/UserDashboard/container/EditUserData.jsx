@@ -8,7 +8,7 @@ import { Button, Form, Input, Card, Checkbox } from "antd";
 //REDUX
 import { updateUser } from "../../../../redux/actions/action";
 //CONSTANTS
-import { saveChanges, editPersonalData, changePassword, keepActualPassword } from "../utils/constants";
+import { saveChanges, editPersonalData} from "../utils/constants";
 
 //STYLE-SHEETS
 import styles from "./EditUserData.module.css";
