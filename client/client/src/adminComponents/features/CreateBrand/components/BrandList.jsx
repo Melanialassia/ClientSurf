@@ -13,12 +13,12 @@ const BrandList = () => {
   useEffect(() => {
     dispatch(getAllBrands());
     setReload(true);
-  }, []);
+  }, [reload]);
 
-  const data = allBrands.map(brand => brand.brandName);
+  //const data = allBrands.map(brand => brand.brandName);
 
-  const handleDelete = () => {
-    dispatch(deleteBrand(allBrands.idBrand));
+  const handleDelete = (idBrand) => {
+    dispatch(deleteBrand(idBrand));
   };
 
   return (
@@ -26,10 +26,10 @@ const BrandList = () => {
       <List
         header={<div>Lista de Marcas</div>}
         bordered
-        dataSource={data}
+        dataSource={allBrands}
         renderItem={(item) => (
-          <List.Item actions={[<a key="list-delete" onClick={handleDelete}>Eliminar</a>]}>
-            <Typography.Text mark></Typography.Text> {item}
+          <List.Item actions={[<a key="list-delete" onClick={() => handleDelete(item.idBrand)}>Eliminar</a>]}>
+            <Typography.Text mark></Typography.Text> {item.brandName}
           </List.Item>
         )}
       />

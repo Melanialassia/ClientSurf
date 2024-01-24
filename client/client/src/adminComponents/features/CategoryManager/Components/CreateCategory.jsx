@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Space, Button, message, Form, Input } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { postCategory } from "../../../../redux/actions/action";
 
 const CreateCategory = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const CreateCategory = () => {
     <Space direction="vertical" size={16}>
       {contextHolder} {/* //TODO: Verificar que esto funcione */}
       <Card title="Crea una nueva categoria" style={{ width: 300 }}>
-        <Form onFinish={handleSubmit}>
+        <Form onFinish={handleSubmit} form={form}>
           <Form.Item
             label="Nombre"
             name="name"

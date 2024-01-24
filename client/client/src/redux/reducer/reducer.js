@@ -1,6 +1,6 @@
 import {
   //PRODUCTS
-  FILTER_PRODUCTS ,
+  FILTER_PRODUCTS,
   GET_ALL_BRANDS,
   FILTER_BY_NAME,
   ALL_CATEGORYS,
@@ -8,6 +8,7 @@ import {
   GET_ALL_SIZE,
   FILTER_PRICE,
   DELETE_PRODUCT,
+  POST_PRODUCT,
   //CART
   ADD_TO_CART,
   //FAVORITE
@@ -70,13 +71,60 @@ const reducer = (state = initialState, action) => {
         allCategorys: action.payload,
       };
 
+    case CREATE_CATEGORY:
+      return {
+        ...state,
+        allCategorys: action.payload,
+      };
+
+    case DELETE_CATEGORY:
+      return {
+        ...state,
+        allCategorys: action.payload,
+      };
+
+    case POST_PRODUCT:
+      return {
+        ...state,
+        allProducts: [...state.allProducts, action.payload],
+      };
+
+    case DELETE_PRODUCT:
+      return {
+        ...state,
+        allProducts: action.payload,
+      };
+
     case ALL_COLORS:
+      return {
+        ...state,
+        allColors: action.payload,
+      };
+    case CREATE_COLOR:
+      return {
+        ...state,
+        allColors: action.payload,
+      };
+
+    case DELETE_COLOR:
       return {
         ...state,
         allColors: action.payload,
       };
 
     case GET_ALL_BRANDS:
+      return {
+        ...state,
+        allBrands: action.payload,
+      };
+
+    case CREATE_BRAND:
+      return {
+        ...state,
+        allBrands: action.payload,
+      };
+
+    case DELETE_BRAND:
       return {
         ...state,
         allBrands: action.payload,
@@ -91,7 +139,7 @@ const reducer = (state = initialState, action) => {
     case CREATE_SIZE:
       return {
         ...state,
-        allSize: [...state.allSize, action.payload],
+        allSize: action.payload,
       };
 
     case DELETE_SIZE:
@@ -100,8 +148,7 @@ const reducer = (state = initialState, action) => {
         allSize: action.payload,
       };
 
-    case FILTER_PRODUCS:
-
+    case FILTER_PRODUCTS:
       return {
         ...state,
         allProducts: action.payload,

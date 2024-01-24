@@ -3,7 +3,7 @@ import { List, Typography, Skeleton, Avatar, Divider } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  deleteCategory,
+  deleteProduct,
   getAllProducts,
 } from "../../../../redux/actions/action";
 
@@ -14,13 +14,10 @@ const ProductList = () => {
   //Traemos estado global de allCategory
   const allProducts = useSelector((s) => s.allProducts);
 
-  console.log("allProducts Admin", allProducts);
-
   const [loading, setLoading] = useState(false);
   // const [data, setData] = useState([]);
 
-  const data = allProducts.map((product) => product.name);
-  console.log("AllProducts", data);
+  //const data = allProducts.map((product) => product.name);
 
   const loadMoreData = () => {
     if (loading) {
@@ -42,12 +39,16 @@ const ProductList = () => {
 
   useEffect(() => {
     //loadMoreData();
-    dispatch(getAllProducts());
-    setReload(true);
-  }, []);
+    console.log("allProducts ANTES", allProducts);
 
-  const handleDelete = () => {
-    dispatch(deleteCategory(allCategories.idCategory));
+    dispatch(getAllProducts());
+    console.log("allProducts DESPUES", allProducts);
+
+    setReload(true);
+  }, [reload]);
+
+  const handleDelete = (idProduct) => {
+    dispatch(deleteProduct(idProduct));
   };
 
   return (
@@ -62,9 +63,9 @@ const ProductList = () => {
       }}
     >
       <InfiniteScroll
-        dataLength={data.length}
-        next={loadMoreData}
-        hasMore={data.length < 5}
+        dataLength={allProducts.length}
+        /* next={loadMoreData} */
+        hasMore={allProducts.length < 5}
         loader={
           <Skeleton
             avatar
@@ -91,7 +92,7 @@ const ProductList = () => {
                   </p>
                 }
               />
-              <a onClick={handleDelete}>Eliminar</a>
+              <a onClick={() => handleDelete(item.idProduct)}>Eliminar</a>
             </List.Item>
           )}
         />

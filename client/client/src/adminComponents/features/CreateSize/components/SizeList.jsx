@@ -10,12 +10,13 @@ const SizeList = () => {
   //Traemos estado global de allCategory
   const allSize = useSelector((s) => s.allSize);
 
+  console.log("allSize", allSize);
   useEffect(() => {
     dispatch(getAllSize());
     setReload(true);
   }, [reload]);
 
-  const data = allSize.map(size => size.nameSize);
+  //const data = allSize.map(size => size.nameSize);
 
   const handleDelete = (idSize) => {
     dispatch(deleteSize(idSize));

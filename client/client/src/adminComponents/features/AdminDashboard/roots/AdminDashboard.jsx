@@ -30,22 +30,22 @@ const items = [
   },
   {
     key: "4",
-    label: "Crear una nueva categoria",
+    label: "Gestionar las categorias",
     children: <CategoryManager />,
   },
   {
     key: "5",
-    label: "Agregar una nueva marca",
+    label: "Gestionar las marcas",
     children: <BrandManager></BrandManager>,
   },
   {
     key: "6",
-    label: "Agregar un nuevo color",
+    label: "Gestionar los colores",
     children: <ColorManager></ColorManager>,
   },
   {
     key: "7",
-    label: "Agregar una nueva talla",
+    label: "Gestionar las tallas",
     children: <SizeManager></SizeManager>,
   },
 ];

@@ -15,10 +15,10 @@ const CategoryList = () => {
     setReload(true);
   }, []);
 
-  const data = allCategories.map(category => category.nameCategory);
+  //const data = allCategories.map(category => category.nameCategory);
 
-  const handleDelete = () => {
-    dispatch(deleteCategory(allCategories.idCategory));
+  const handleDelete = (idCategory) => {
+    dispatch(deleteCategory(idCategory));
   };
 
   return (
@@ -26,10 +26,10 @@ const CategoryList = () => {
       <List
         header={<div>Lista de Categorias</div>}
         bordered
-        dataSource={data}
+        dataSource={allCategories}
         renderItem={(item) => (
-          <List.Item actions={[<a key="list-delete" onClick={handleDelete}>Eliminar</a>]}>
-            <Typography.Text mark></Typography.Text> {item}
+          <List.Item actions={[<a key="list-delete" onClick={() => handleDelete(item.idCategory)}>Eliminar</a>]}>
+            <Typography.Text mark></Typography.Text> {item.nameCategory}
           </List.Item>
         )}
       />
