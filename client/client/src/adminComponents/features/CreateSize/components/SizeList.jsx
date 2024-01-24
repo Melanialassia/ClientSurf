@@ -13,12 +13,12 @@ const SizeList = () => {
   useEffect(() => {
     dispatch(getAllSize());
     setReload(true);
-  }, []);
+  }, [reload]);
 
   const data = allSize.map(size => size.nameSize);
 
-  const handleDelete = () => {
-    dispatch(deleteSize(allSize.idSize));
+  const handleDelete = (idSize) => {
+    dispatch(deleteSize(idSize));
   };
 
   return (
@@ -26,10 +26,10 @@ const SizeList = () => {
       <List
         header={<div>Lista de Tallas</div>}
         bordered
-        dataSource={data}
+        dataSource={allSize}
         renderItem={(item) => (
-          <List.Item actions={[<a key="list-delete" onClick={handleDelete}>Eliminar</a>]}>
-            <Typography.Text mark></Typography.Text> {item}
+          <List.Item actions={[<a key="list-delete" onClick={() => handleDelete(item.idSize)}>Eliminar</a>]}>
+            <Typography.Text mark></Typography.Text> {item.nameSize}
           </List.Item>
         )}
       />

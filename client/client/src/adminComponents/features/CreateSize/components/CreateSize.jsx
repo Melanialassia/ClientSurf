@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Space, Button, message, Form, Input } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { postSize } from "../../../../redux/actions/action";
 
 const CreateSize = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const CreateSize = () => {
         name: newSize.name,
       };
 
-      dispatch(postCategory(obj));
+      dispatch(postSize(obj));
       messageApi.open({
         type: "success",
         content: "Talla creada con éxito!",
@@ -48,7 +49,7 @@ const CreateSize = () => {
     <Space direction="vertical" size={16}>
       {contextHolder} {/* //TODO: Verificar que esto funcione */}
       <Card title="Crea una nueva talla" style={{ width: 300 }}>
-        <Form onFinish={handleSubmit}>
+        <Form onFinish={handleSubmit} form={form}>
           <Form.Item
             label="Nombre"
             name="name"

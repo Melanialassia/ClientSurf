@@ -17,7 +17,10 @@ const ProductList = () => {
   console.log("allProducts Admin", allProducts);
 
   const [loading, setLoading] = useState(false);
- // const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
+
+  const data = allProducts.map((product) => product.name);
+  console.log("AllProducts", data);
 
   const loadMoreData = () => {
     if (loading) {
@@ -38,13 +41,10 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    loadMoreData();
+    //loadMoreData();
     dispatch(getAllProducts());
     setReload(true);
   }, []);
-
-  const data = allProducts.map((product) => product.name);
-  console.log("AllProducts", data);
 
   const handleDelete = () => {
     dispatch(deleteCategory(allCategories.idCategory));
@@ -58,13 +58,13 @@ const ProductList = () => {
         overflow: "auto",
         padding: "0 16px",
         border: "1px solid rgba(140, 140, 140, 0.35)",
-        minWidth: "600px"
+        minWidth: "600px",
       }}
     >
       <InfiniteScroll
         dataLength={data.length}
         next={loadMoreData}
-        hasMore={data.length < 50}
+        hasMore={data.length < 5}
         loader={
           <Skeleton
             avatar
@@ -84,8 +84,12 @@ const ProductList = () => {
             <List.Item key={item.idProduct}>
               <List.Item.Meta
                 avatar={<Avatar src={item.image} />}
-                title={<a >{item.name}</a>}
-                description={<p >Precio: ${item.priceProduct} || Stock: {item.stock}</p>} 
+                title={<a>{item.name}</a>}
+                description={
+                  <p>
+                    Precio: ${item.priceProduct} || Stock: {item.stock}
+                  </p>
+                }
               />
               <a onClick={handleDelete}>Eliminar</a>
             </List.Item>
