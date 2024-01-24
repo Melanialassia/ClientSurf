@@ -1,9 +1,10 @@
 //HOOKS
 import React from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 //REDUX
-import { logOut } from "../../../../redux/actions/action";
+import { logOut, getIdUser } from "../../../../redux/actions/action";
 //LIBRARY
 import { Menu } from "antd";
 //STYLE-SHEETS
@@ -18,20 +19,27 @@ function getItem(label, key, children, type) {
   };
 };
 
-const items = [
-    getItem("MI PERFIL", "sub1", [
-    getItem("Mi cuenta", "1"),
-    getItem("Mis Favoritos", "2"),
-    getItem("Mis compras", "3"),
-    getItem("Cerrar sesión", "4"),
-  ]),
-];
 
 const ProfileMenu = () => {
-
+  
   const dispatch = useDispatch();
-
+  const data = useSelector((state) => state.userData);
+  
   const navigate = useNavigate();
+  
+  const items = [
+      getItem(`Hola, ${data.nameUser}`, "sub1", [
+      getItem("Mi cuenta", "1"),
+      getItem("Mis Favoritos", "2"),
+      getItem("Mis compras", "3"),
+      getItem("Cerrar sesión", "4"),
+    ]),
+  ];
+    useEffect(() => {
+    if (data.idUser) {
+      dispatch(getIdUser(data.idUser));
+    }
+  }, [dispatch, data.idUser]);
 
   const handleLogOut = () => {
     localStorage.removeItem('access');
