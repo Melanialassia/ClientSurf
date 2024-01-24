@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 
 import { Button, Form, Input, Card } from "antd";
 //REDUX
-import { updateUser } from "../../../../redux/actions/action";
+import { updateUser, getIdUser } from "../../../../redux/actions/action";
 //CONSTANTS
-import { saveChanges, editPersonalData} from "../utils/constants";
+import { saveChanges, editPersonalData } from "../utils/constants";
 
 //STYLE-SHEETS
 import styles from "./EditUserData.module.css";
@@ -37,7 +37,6 @@ const validateMessages = {
 
 const EditUserData = () => {
   const userData = useSelector((state) => state.userData);
-  console.log("data usuario", userData);
   const dispatch = useDispatch();
   const [flag, setFlag] = useState("password");
 
@@ -69,14 +68,14 @@ const EditUserData = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (flag === "password") {
-      dispatch(updateUser(dataUnique));
+      await dispatch(updateUser(dataUnique));
     } else if (flag === "unique") {
-      dispatch(updateUser(dataPassword));
+      await dispatch(updateUser(dataPassword));
     }
+    dispatch(getIdUser(userData.idUser));
   };
-  console.log("password",dataUnique);
 
   const readUpdate = (value, name) => {
     if (flag === "unique") {
@@ -114,21 +113,20 @@ const EditUserData = () => {
     }
   }, [flag]);
 
-
   return (
 
-      // <Card
-      // hoverable
-      // style={{
-      //   width: 550,
-      //   height: 400,
-      //   margin: "10px",
-      //   padding: "0",
-      //   borderRadius: "2rem",
-      //   marginRight: "150px"
-      // }}
-      // className={styles.firstHeadline}
-  
+    // <Card
+    // hoverable
+    // style={{
+    //   width: 550,
+    //   height: 400,
+    //   margin: "10px",
+    //   padding: "0",
+    //   borderRadius: "2rem",
+    //   marginRight: "150px"
+    // }}
+    // className={styles.firstHeadline}
+
     // >
     <div>
       <h4 className={styles.text}>{editPersonalData}</h4>
@@ -210,8 +208,8 @@ const EditUserData = () => {
           </Button>
         </Form.Item>
       </Form>
-        <button onClick={onChangeOption} name="password">Cambiar mi contraseña</button>
-        <button onClick={onChangeOption} name="uniqueId">Mantener mi contraseña actual</button>
+      <button onClick={onChangeOption} name="password">Cambiar mi contraseña</button>
+      <button onClick={onChangeOption} name="uniqueId">Mantener mi contraseña actual</button>
 
 
     </div>
