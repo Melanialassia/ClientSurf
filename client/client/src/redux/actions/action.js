@@ -256,17 +256,15 @@ export const getIdUser = (idUser) => {
 
 
 export const updateUser = (userData) => {
-  console.log("lala",userData);
   return async function (dispatch) {
     try {
       const URL = `${SERVER_URL}/user`;
       const response = await axios.put(URL, userData);
-      console.log("dormir",response);
       dispatch({
         type: PUT_USER,
-        payload: response.data,
+        payload: response.data.data,
       });
-      console.log("hola",response);
+
     } catch (error) {
       console.log("Error durante el inicio de sesión:", error);
     }
