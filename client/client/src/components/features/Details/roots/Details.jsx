@@ -122,9 +122,7 @@ const Details = () => {
     return colorMap[spanishColor.toLowerCase()] || spanishColor;
   };
 
-  const handleSizeSelect = (size) => {
-    setSelectedSize(size);
-  };
+  
 
   const handleColorSelect = (color) => {
     setSelectedColor(color);
