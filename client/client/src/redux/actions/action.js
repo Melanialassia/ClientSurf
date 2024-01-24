@@ -46,7 +46,7 @@ const SERVER_URL = "https://surf-4i7c.onrender.com/surf";
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`${SERVER_URL}/filterProduct`);
+      const { data } = await axios.get(`${SERVER_URL}/product`);
       const result = data.data;
       return dispatch({ type: ALL_PRODUCTS, payload: result });
     } catch (error) {
@@ -384,7 +384,7 @@ export const postCategory = (data) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${SERVER_URL}/category`, data);
-      dispatch({ type: CREATE_CATEGORY, payload: response.data });
+      dispatch({ type: CREATE_CATEGORY, payload: response.data.data });
       return response;
     } catch (error) {
       throw Error("No se pudo crear la categoria", error);
@@ -413,7 +413,10 @@ export const postBrand = (data) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${SERVER_URL}/brand`, data);
-      dispatch({ type: CREATE_BRAND, payload: response.data });
+      dispatch({ type: CREATE_BRAND, payload: response.data.data });
+      console.log("response del BRAND", response);
+      console.log("response.data del BRAND", response.data);
+      console.log("response.data.data del BRAND", response.data.data);
       return response;
     } catch (error) {
       throw Error("No se pudo crear el brand", error);
@@ -440,7 +443,7 @@ export const postColor = (data) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${SERVER_URL}/color`, data);
-      dispatch({ type: CREATE_COLOR, payload: response.data });
+      dispatch({ type: CREATE_COLOR, payload: response.data.data });
       return response;
     } catch (error) {
       throw Error("No se pudo crear el color", error);
@@ -467,7 +470,7 @@ export const postSize = (data) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${SERVER_URL}/size`, data);
-      dispatch({ type: CREATE_SIZE, payload: response.data });
+      dispatch({ type: CREATE_SIZE, payload: response.data.data });
       return response;
     } catch (error) {
       throw Error("No se pudo crear la talla", error);

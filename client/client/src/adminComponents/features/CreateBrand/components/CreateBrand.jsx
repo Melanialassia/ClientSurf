@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Space, Button, message, Form, Input } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { postBrand } from "../../../../redux/actions/action";
 
 const CreateBrand = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const CreateBrand = () => {
         name: newBrand.name,
       };
 
-      dispatch(postCategory(obj));
+      dispatch(postBrand(obj));
       messageApi.open({
         type: "success",
         content: "Marca creada con éxito!",

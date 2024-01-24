@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Space, Button, message, Form, Input } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { postColor } from "../../../../redux/actions/action";
 
 const CreateColor = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const CreateColor = () => {
         name: newColor.name,
       };
 
-      dispatch(postCategory(obj));
+      dispatch(postColor(obj));
       messageApi.open({
         type: "success",
         content: "Color creado con éxito!",
@@ -48,7 +49,7 @@ const CreateColor = () => {
     <Space direction="vertical" size={16}>
       {contextHolder} {/* //TODO: Verificar que esto funcione */}
       <Card title="Crea un nuevo color" style={{ width: 300 }}>
-        <Form onFinish={handleSubmit}>
+        <Form onFinish={handleSubmit} form={form}>
           <Form.Item
             label="Nombre"
             name="name"
