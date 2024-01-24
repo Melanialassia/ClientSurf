@@ -100,7 +100,7 @@ const reducer = (state = initialState, action) => {
         allSize: action.payload,
       };
 
-    case FILTER_PRODUCS:
+    case FILTER_PRODUCTS:
 
       return {
         ...state,
