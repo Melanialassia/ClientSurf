@@ -478,6 +478,7 @@ export const deleteSize = (idSize) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(`${SERVER_URL}/size/${idSize}`);
+      console.log("Response deleteSize", response)
       dispatch({
         type: DELETE_SIZE,
         payload: response.data.data,

@@ -89,6 +89,18 @@ const reducer = (state = initialState, action) => {
         allSize: action.payload,
       };
 
+    case CREATE_SIZE:
+      return {
+        ...state,
+        allSize: [...state.allSize, action.payload],
+      };
+
+    case DELETE_SIZE:
+      return {
+        ...state,
+        allSize: action.payload,
+      };
+
     case FILTER_PRODUCS:
       return {
         ...state,
