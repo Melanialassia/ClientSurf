@@ -26,7 +26,6 @@ const Header = () => {
   const data = useSelector((state) => state.dataUser);
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
 
-  console.log("hola", data);
   const open = useSelector((state) => state.openModal);
 
   const location = useLocation();
@@ -45,10 +44,6 @@ const Header = () => {
   if (data) {
     userAccess = data.access;
     userLevel = data.level;
-
-    console.log("lle", userLevel);
-
-    console.log("llegue", userAccess);
 
     // Guardar el valor de access en el localStorage
     localStorage.setItem("access", JSON.stringify(userAccess));

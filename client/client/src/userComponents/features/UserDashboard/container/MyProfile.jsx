@@ -57,19 +57,6 @@ const MyProfile = () => {
       <div className={styles.editSection}>
         {isEditing && <EditUserData onCancel={() => setIsEditing(false)} />}
       </div>
-
-      <div className={styles.container}>
-        <div className={styles.profileInfo}>
-          <h3>{myAccount}</h3>
-          <h4>{personalInfo}</h4>
-          <p>Nome: {userData.nameUser}</p>
-          <p>Email: {userData.emailUser}</p>
-          <button onClick={handleEditClick}>{editLink}</button>
-        </div>
-        <div className={styles.editSection}>
-          {isEditing && <EditUserData onCancel={() => setIsEditing(false)} />}
-        </div>
-      </div>
     </div>
 
   );
