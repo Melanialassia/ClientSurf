@@ -27,7 +27,6 @@ import { Button } from "antd";
 
 const ProductPage = () => {
   const allProducts = useSelector((s) => s.filter);
-  console.log("allProducts", allProducts);
   const dispatch = useDispatch();
   //FILTROS
   const allCategorys = useSelector((s) => s.allCategorys);

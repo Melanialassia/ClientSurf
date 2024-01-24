@@ -34,7 +34,7 @@ import {
   DELETE_CATEGORY,
   DELETE_COLOR,
   DELETE_BRAND,
-  DELETE_SIZE
+  DELETE_SIZE,
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -59,7 +59,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_PRODUCTS:
-      console.log("action.payload", action.payload);
       return {
         ...state,
         allProducts: action.payload,
@@ -133,6 +132,12 @@ const reducer = (state = initialState, action) => {
         favoriteProducts: action.payload,
       };
 
+    case ADD_TO_FAVORITES:
+      return {
+        ...state,
+        favoriteProducts: [...state.favoriteProducts, action.payload],
+      };
+
     case DELETE_FAVORITES:
       return {
         ...state,
@@ -174,7 +179,6 @@ const reducer = (state = initialState, action) => {
       };
 
     case GET_USER_ID:
-  
       return {
         ...state,
         userData: action.payload,

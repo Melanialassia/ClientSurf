@@ -13,7 +13,7 @@ const SizeList = () => {
   useEffect(() => {
     dispatch(getAllSize());
     setReload(true);
-  }, []);
+  }, [reload]);
 
   const data = allSize.map(size => size.nameSize);
 

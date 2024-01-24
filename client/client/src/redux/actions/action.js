@@ -348,7 +348,6 @@ export const addToFavorites = (idUser, idProduct) => {
         idProduct,
         idUser,
       });
-
       dispatch({
         type: ADD_TO_FAVORITES,
         payload: response.data,

@@ -8,17 +8,22 @@ import {
   addToCart,
   addToFavorites,
   deleteFavorite,
+  getAllFavoriteProducts,
 } from "../../../../redux/actions/action";
 import LoginModal from "../../LoginModal/root/LoginModal";
 
-import { HeartOutlined, HeartFilled, ShoppingCartOutlined } from "@ant-design/icons";
+import {
+  HeartOutlined,
+  HeartFilled,
+  ShoppingCartOutlined,
+} from "@ant-design/icons";
 
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 
 const Details = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
- 
+
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [selectedSize, setSelectedSize] = useState("");
@@ -26,9 +31,9 @@ const Details = () => {
   const imgRef = useRef(null);
   const [quantity, setQuantity] = useState(1);
 
-  const logedUser = JSON.parse(localStorage.getItem('logedUser'));
-  const dataUser =JSON.parse(localStorage.getItem("dataUser"));
-  
+  const logedUser = JSON.parse(localStorage.getItem("logedUser"));
+  const dataUser = JSON.parse(localStorage.getItem("dataUser"));
+
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const open = useSelector((s) => s.openModal);
 
@@ -39,15 +44,16 @@ const Details = () => {
   const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
 
   useEffect(() => {
-    console.log("allFavs", favoriteProducts);
+    dispatch(getAllFavoriteProducts(dataUser.idUser))
+  }, [])
+
+  useEffect(() => {
     setIsInFavorites(isProductInFavorites);
   }, [isProductInFavorites]);
-  
-  const storedAccess = localStorage.getItem('access');
-  const userAccess = storedAccess ? JSON.parse(storedAccess) : null;
-  const userId = localStorage.getItem('userId');
 
-  console.log(dataUser)
+  const storedAccess = localStorage.getItem("access");
+  const userAccess = storedAccess ? JSON.parse(storedAccess) : null;
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +61,6 @@ const Details = () => {
         const response = await axios(
           `https://surf-4i7c.onrender.com/surf/product/${id}`
         );
-        console.log(response);
         const { data } = response;
         setProduct(data.listProducts[0]);
       } catch (error) {
@@ -65,8 +70,6 @@ const Details = () => {
 
     fetchData();
   }, [id]);
-
-  console.log(product);
 
   useEffect(() => {
     if (imgRef.current) {
@@ -96,8 +99,6 @@ const Details = () => {
     }
   }, [imgRef.current]);
 
-  console.log(product);
-
   const filteredCharacteristics = Object.entries(
     product.characteristics || {}
   ).filter(([key, value]) => value !== true);
@@ -115,7 +116,6 @@ const Details = () => {
       morado: "purple",
       naranja: "orange",
       marrón: "brown",
-
     };
 
     // Devuelve el color traducido o el color original si no hay traducción disponible
@@ -142,7 +142,7 @@ const Details = () => {
         await dispatch(
           addToCart(product.idProduct, userId, quantity, product.description)
         );
-  
+
         navigate("/cart");
       } catch (error) {
         console.error("Error al agregar al carrito:", error);
@@ -171,22 +171,25 @@ const Details = () => {
 
   const getColorButtons = () => {
     if (product.nameColor) {
-      const colors = product.nameColor.split('/');
-      
+      const colors = product.nameColor.split("/");
 
       return (
         <div className={styles.colorButtons}>
-          <strong>Color:          </strong>
+          <strong>Color: </strong>
           {colors.map((color) => (
             <button
               key={color}
               style={{
                 backgroundColor: translateColor(color),
-                marginRight: '5px',
-                width: '30px',
-                height: '30px',
-                border: `2px solid ${translateColor(color) === selectedColor ? 'lightblue' : 'transparent'}`,
-                borderRadius: "100px"
+                marginRight: "5px",
+                width: "30px",
+                height: "30px",
+                border: `2px solid ${
+                  translateColor(color) === selectedColor
+                    ? "lightblue"
+                    : "transparent"
+                }`,
+                borderRadius: "100px",
               }}
               onClick={() => handleColorSelect(translateColor(color))}
             />
@@ -210,28 +213,27 @@ const Details = () => {
           />
         </div>
         <div className={styles.infoContainer}>
-           
           <div className={styles.subInfoContainer1}>
             <div className={styles.heartButton}>
-          {isInFavorites ? (
-              <HeartFilled
-                onClick={removeFromFavoritesHandler}
-                style={{
-                  color: "#E89038",
-                  fontSize: "35px",
-                  marginLeft: "10px",
-                }}
-              />
-            ) : (
-              <HeartOutlined
-                onClick={addToFavoritesHandler}
-                style={{
-                  color: "#E89038",
-                  fontSize: "35px",
-                  marginLeft: "10px",
-                }}
-              />
-            )}
+              {isInFavorites ? (
+                <HeartFilled
+                  onClick={removeFromFavoritesHandler}
+                  style={{
+                    color: "#E89038",
+                    fontSize: "35px",
+                    marginLeft: "10px",
+                  }}
+                />
+              ) : (
+                <HeartOutlined
+                  onClick={addToFavoritesHandler}
+                  style={{
+                    color: "#E89038",
+                    fontSize: "35px",
+                    marginLeft: "10px",
+                  }}
+                />
+              )}
             </div>
             <h2>{product.name}</h2>
             <div className={styles.price}>
@@ -244,9 +246,7 @@ const Details = () => {
 
             <p>{product.description}</p>
             <p>
-              <div className={styles.color}>
-              {getColorButtons()}
-              </div>
+              <div className={styles.color}>{getColorButtons()}</div>
               <br />
               <div className={styles.size}>
                 <br />
@@ -276,52 +276,27 @@ const Details = () => {
             </select>
 
             <button disabled={product.stock === 0} onClick={addToCartHandler}>
-              Añadir al carrito   <ShoppingCartOutlined />
+              Añadir al carrito <ShoppingCartOutlined />
             </button>
-
-            
           </div>
         </div>
       </div>
       <div className={styles.politicas}>
-      <p>
-En LA OLA URBANA tenés 15 días para cambiar luego de haber realizado la compra.
-El cambio puede ser por talle o color y se respeta el precio que pagaste.
-
-
-PASO A PASO:
-
-Envíanos un mail a laolaurbana@gmail.com con el asunto “Cambio/Devolución” indicando en el cuerpo del mail las siguientes informaciones:
-
-* Nombre completo
-
-* DNI
-
-* Número de pedido
-
-* Producto para devolver
-
-* Nuevo producto que quiero recibir
-
-* Motivo del cambio/devolución
-
-
-Vas a recibir nuestra respuesta con los pasos a seguir y la información necesaria para realizar el envío.
-
-IMPORTANTE!
-
-Los productos deben ser enviados en perfecto estado, sin uso, sin perfumes, sin manchas y sin haberse lavado.
-Cada prenda debe contar con su etiqueta adherida y encontrarse en su paquete correspondiente.
-
-El cargo de envío por cambios o devoluciones correrá por tu cuenta.
-
-Gracias!
-
-
-
-
-LA OLA URBANA
-    </p>
+        <p>
+          En LA OLA URBANA tenés 15 días para cambiar luego de haber realizado
+          la compra. El cambio puede ser por talle o color y se respeta el
+          precio que pagaste. PASO A PASO: Envíanos un mail a
+          laolaurbana@gmail.com con el asunto “Cambio/Devolución” indicando en
+          el cuerpo del mail las siguientes informaciones: * Nombre completo *
+          DNI * Número de pedido * Producto para devolver * Nuevo producto que
+          quiero recibir * Motivo del cambio/devolución Vas a recibir nuestra
+          respuesta con los pasos a seguir y la información necesaria para
+          realizar el envío. IMPORTANTE! Los productos deben ser enviados en
+          perfecto estado, sin uso, sin perfumes, sin manchas y sin haberse
+          lavado. Cada prenda debe contar con su etiqueta adherida y encontrarse
+          en su paquete correspondiente. El cargo de envío por cambios o
+          devoluciones correrá por tu cuenta. Gracias! LA OLA URBANA
+        </p>
       </div>
 
       <br></br>
