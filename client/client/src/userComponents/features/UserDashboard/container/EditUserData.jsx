@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 //LIBRARYS
 
-import { Button, Form, Input, Card, Checkbox } from "antd";
+import { Button, Form, Input, Card } from "antd";
 //REDUX
 import { updateUser } from "../../../../redux/actions/action";
 //CONSTANTS
@@ -37,6 +37,7 @@ const validateMessages = {
 
 const EditUserData = () => {
   const userData = useSelector((state) => state.userData);
+  console.log("data usuario", userData);
   const dispatch = useDispatch();
   const [flag, setFlag] = useState("password");
 
@@ -75,6 +76,7 @@ const EditUserData = () => {
       dispatch(updateUser(dataPassword));
     }
   };
+  console.log("password",dataUnique);
 
   const readUpdate = (value, name) => {
     if (flag === "unique") {
@@ -112,21 +114,22 @@ const EditUserData = () => {
     }
   }, [flag]);
 
+
   return (
 
-      <Card
-      hoverable
-      style={{
-        width: 550,
-        height: 400,
-        margin: "10px",
-        padding: "0",
-        borderRadius: "2rem",
-        marginRight: "150px"
-      }}
-      className={styles.firstHeadline}
+      // <Card
+      // hoverable
+      // style={{
+      //   width: 550,
+      //   height: 400,
+      //   margin: "10px",
+      //   padding: "0",
+      //   borderRadius: "2rem",
+      //   marginRight: "150px"
+      // }}
+      // className={styles.firstHeadline}
   
-    >
+    // >
     <div>
       <h4 className={styles.text}>{editPersonalData}</h4>
       <Form
@@ -206,13 +209,13 @@ const EditUserData = () => {
             {saveChanges}
           </Button>
         </Form.Item>
-        <Checkbox onClick={onChangeOption} name="password">Cambiar mi contraseña</Checkbox>
-        <Checkbox onClick={onChangeOption} name="uniqueId">Mantener mi contraseña actual</Checkbox>
       </Form>
+        <button onClick={onChangeOption} name="password">Cambiar mi contraseña</button>
+        <button onClick={onChangeOption} name="uniqueId">Mantener mi contraseña actual</button>
 
 
     </div>
-    </Card>
+    // </Card>
   );
 };
 

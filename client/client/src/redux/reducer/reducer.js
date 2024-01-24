@@ -21,6 +21,7 @@ import {
   POST_LOGIN,
   ALL_COLORS,
   LOGOUT,
+  PUT_USER,
   DELETE_USER,
   //PAGINATE
   PAGINATE,
@@ -183,6 +184,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         logedUser: true,
       };
+
+
 
     default:
       return {
