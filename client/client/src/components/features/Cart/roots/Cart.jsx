@@ -67,6 +67,7 @@ const Cart = () => {
         quantity: item.amount, 
         description: item.description, 
         code: item.code,
+        user: userId
       };
     });
 
