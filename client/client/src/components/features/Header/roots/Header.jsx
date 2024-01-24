@@ -52,10 +52,13 @@ const Header = () => {
 
     // Guardar el valor de access en el localStorage
     localStorage.setItem("access", JSON.stringify(userAccess));
+    localStorage.setItem("idLevel", JSON.stringify(userLevel));
   } else {
     // Si no hay datos de usuario, intenta recuperar el valor desde el localStorage
     const storedAccess = localStorage.getItem("access");
     userAccess = storedAccess ? JSON.parse(storedAccess) : null;
+    const storedIdLevel = localStorage.getItem("idLevel");
+    userLevel = storedIdLevel ? JSON.parse(storedIdLevel) : null;
   }
 
   // const userAccess = data ? data.access || localStorage.getItem("email") : false;

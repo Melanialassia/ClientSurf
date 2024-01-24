@@ -219,6 +219,7 @@ export const userLogin = (userData) => {
         localStorage.setItem("access", JSON.stringify(response.data.access));
         localStorage.setItem("userId", response.data.idUser);
         localStorage.setItem("logedUser", true);
+        localStorage.setItem("idLevel", JSON.stringify(response.data.level));
 
         dispatch({
           type: POST_LOGIN,

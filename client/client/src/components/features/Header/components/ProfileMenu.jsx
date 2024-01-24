@@ -36,6 +36,7 @@ const ProfileMenu = () => {
   const handleLogOut = () => {
     localStorage.removeItem('access');
     localStorage.setItem('logedUser', JSON.stringify(false));
+    localStorage.removeItem('idLevel');
     dispatch(logOut());
     navigate('/login');
   }
