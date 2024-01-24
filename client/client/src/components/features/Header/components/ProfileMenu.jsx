@@ -2,7 +2,7 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-//ACTIONS
+//REDUX
 import { logOut } from "../../../../redux/actions/action";
 //LIBRARY
 import { Menu } from "antd";
@@ -36,6 +36,7 @@ const ProfileMenu = () => {
   const handleLogOut = () => {
     localStorage.removeItem('access');
     localStorage.setItem('logedUser', JSON.stringify(false));
+    localStorage.removeItem('idLevel');
     dispatch(logOut());
     navigate('/login');
   }

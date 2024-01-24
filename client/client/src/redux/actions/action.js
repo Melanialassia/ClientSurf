@@ -1,7 +1,7 @@
 import {
   //PRODUCTS
   GET_ALL_BRANDS,
-  FILTER_PRODUCS,
+  FILTER_PRODUCTS,
   FILTER_BY_NAME,
   ALL_CATEGORYS,
   ALL_PRODUCTS,
@@ -161,7 +161,7 @@ export const filterProducts = (filter) => {
 
       const { data } = await axios(apiUrl);
       const result = data.data;
-      return dispatch({ type: FILTER_PRODUCS, payload: result });
+      return dispatch({ type: FILTER_PRODUCTS, payload: result });
     } catch (error) {
       console.log(error);
     }
@@ -219,6 +219,7 @@ export const userLogin = (userData) => {
         localStorage.setItem("access", JSON.stringify(response.data.access));
         localStorage.setItem("userId", response.data.idUser);
         localStorage.setItem("logedUser", true);
+        localStorage.setItem("idLevel", JSON.stringify(response.data.level));
 
         dispatch({
           type: POST_LOGIN,
@@ -253,17 +254,19 @@ export const getIdUser = (idUser) => {
   };
 };
 
-export const updateUserInfo = () => {};
 
 export const updateUser = (userData) => {
+  console.log("lala",userData);
   return async function (dispatch) {
     try {
       const URL = `${SERVER_URL}/user`;
       const response = await axios.put(URL, userData);
+      console.log("dormir",response);
       dispatch({
         type: PUT_USER,
         payload: response.data,
       });
+      console.log("hola",response);
     } catch (error) {
       console.log("Error durante el inicio de sesión:", error);
     }

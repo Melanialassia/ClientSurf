@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import { Flex } from "antd";
-import style from "./NavBar.module.css";
+import style from "./Navbar.module.css";
 
 const NavBar = () => {
   const { pathname } = useLocation();

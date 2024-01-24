@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 //COMPONENTS
 import CategoryFilter from "../containers/CategoryFilter";
 import BrandFilter from "../containers/BrandsFilter";
@@ -26,8 +27,9 @@ import style from "./ProductPage.module.css";
 import { Button } from "antd";
 
 const ProductPage = () => {
-  const allProducts = useSelector((s) => s.filter);
+  const allProducts = useSelector((s) => s.allProducts);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   //FILTROS
   const allCategorys = useSelector((s) => s.allCategorys);
   const allColors = useSelector((s) => s.allColors);
@@ -53,15 +55,19 @@ const ProductPage = () => {
   const totalProducts = allProducts.length;
   const totalPage = Math.ceil(totalProducts / productPerPage);
 
+  const applyFilters = () => {
+    dispatch(filterProducts(filter));
+    dispatch(pageChange(1));
+  };
+
   useEffect(() => {
+    if (!allProducts.length) {
+      dispatch(getAllProducts());
+    }
     dispatch(getAllCategorys());
-    dispatch(getAllProducts());
     dispatch(getAllBrands());
     dispatch(getAllColors());
     dispatch(getAllSize());
-    return () => {
-      filter;
-    };
   }, []);
 
   const handlePageChange = (pageNumber) => {
@@ -80,12 +86,7 @@ const ProductPage = () => {
     dispatch(pageChange(1));
   };
 
-  const result = () => {
-    dispatch(filterProducts(filter));
-    dispatch(pageChange(1));
-  };
-
-  const clean = () => {
+  const clearFilters = () => {
     dispatch(getAllProducts());
     dispatch(pageChange(1));
     setFilter({
@@ -102,11 +103,14 @@ const ProductPage = () => {
     <div className={style.wrapper}>
       <aside>
         <h2>FILTROS</h2>
-        <Button type="text" onClick={clean}>
+        <Button type="text" onClick={clearFilters}>
           Limpiar filtros
         </Button>
 
-        <CategoryFilter allCategorys={allCategorys} handleChange={handleChange}/>
+        <CategoryFilter
+          allCategorys={allCategorys}
+          handleChange={handleChange}
+        />
 
         <ColorFilter allColors={allColors} handleChange={handleChange} />
 
@@ -116,15 +120,15 @@ const ProductPage = () => {
 
         <FilterPrice setFilter={setFilter} filter={filter} />
 
-        <Button type="text" onClick={result}>
+        <Button type="text" onClick={applyFilters}>
           Aplicar filtros
         </Button>
       </aside>
       <main className={style.main}>
         <div className={style.priceSection}>
-        <div>
-          <SearchBar/>
-        </div>
+          <div>
+            <SearchBar />
+          </div>
           <p>Ordenar por: </p>
           <select
             className={style.selectStyle}
