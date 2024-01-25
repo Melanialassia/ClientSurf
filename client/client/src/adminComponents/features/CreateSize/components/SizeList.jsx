@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { List, Typography } from "antd";
+import { List, Typography, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteSize, getAllSize } from "../../../../redux/actions/action";
 
 const SizeList = () => {
   const dispatch = useDispatch();
   const [reload, setReload] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
   //Traemos estado global de allCategory
   const allSize = useSelector((s) => s.allSize);
@@ -20,10 +21,15 @@ const SizeList = () => {
 
   const handleDelete = (idSize) => {
     dispatch(deleteSize(idSize));
+    messageApi.open({
+      type: "success",
+      content: "Talla eliminada con éxito!",
+    });
   };
 
   return (
     <div>
+      {contextHolder} 
       <List
         header={<div>Lista de Tallas</div>}
         bordered
