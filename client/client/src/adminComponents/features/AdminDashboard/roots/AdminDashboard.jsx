@@ -7,6 +7,7 @@ import BrandManager from "../../CreateBrand/roots/BrandManager";
 import SizeManager from "../../CreateSize/roots/SizeManager";
 import UserManager from "../../UserManagement/roots/UserManager"
 import styles from "./AdminDashboard.module.css";
+import SalesManager from "../../SalesManager/roots/SalesManager";
 
 
 const text = `
@@ -21,7 +22,7 @@ const items = [
   {
     key: "2",
     label: "Registro de ventas",
-    children: <p>{text}</p>,
+    children: <SalesManager/>,
   },
   {
     key: "3",
