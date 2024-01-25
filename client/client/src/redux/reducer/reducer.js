@@ -24,6 +24,7 @@ import {
   LOGOUT,
   PUT_USER,
   DELETE_USER,
+  GET_USER_BY_NAME,
   //PAGINATE
   PAGINATE,
   OPEN_MODAL,
@@ -254,6 +255,24 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         details: [...state.details, action.payload],
+      };
+
+    case GET_ALL_USERS:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+
+    case DELETE_USER:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+
+    case GET_USER_BY_NAME:
+      return {
+        ...state,
+        allUsers: action.payload,
       };
 
     default:

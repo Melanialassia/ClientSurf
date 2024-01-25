@@ -85,12 +85,7 @@ const RegisterUsersContainer = () => {
         uniqueId: data.user.providerData[0].uid
       }
       const email = data.user.email;
-      // MARIANA
-      // setUserEmail(email);         =>>> NO SE QUE HACE ESTO PERO LO DEJO
-      // dispatch(userLogin(email));
-      // localStorage.setItem("email", email);
-      // navigate("/");
-      // MIGUEL
+      console.log(dataUser);
       dispatch(userLogin(dataUser));
       localStorage.setItem("email", email);
       navigate("/");
@@ -104,13 +99,12 @@ const RegisterUsersContainer = () => {
       <hr className={styles.hr} />
       <Form
         {...layout}
-        className={styles.container}
         name="nest-messages"
         onFinish={handleSubmit}
         style={{
-          marginTop: "20px",
-          marginLeft: "-100px",
-          maxWidth: 600,
+          marginTop: "-130px",
+          marginLeft: "-0px",
+          maxWidth: 400,
           fontSize: "200px",
         }}
         validateMessages={validateMessages}

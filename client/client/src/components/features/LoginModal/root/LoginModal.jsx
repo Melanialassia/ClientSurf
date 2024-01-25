@@ -69,8 +69,6 @@ const LoginModal = ({ open }) => {
       </div>
 
       <Divider type="vertical" />
-
-      <div></div>
     </div>
   );
 };

@@ -51,6 +51,7 @@ const ProductPage = () => {
 
   const indexOfLastPage = currentPage * productPerPage;
   const indexofFirstPage = indexOfLastPage - productPerPage;
+  // console.log("allProducts",allProducts);
   const currentPoducts = allProducts.slice(indexofFirstPage, indexOfLastPage);
   const totalProducts = allProducts.length;
   const totalPage = Math.ceil(totalProducts / productPerPage);

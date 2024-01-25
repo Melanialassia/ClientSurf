@@ -4,8 +4,12 @@ import { Avatar, Divider, List, Skeleton } from "antd";
 import { deleteUser } from "../../../../redux/actions/action";
 
 const DeletedUsers = () => {
+
+
+
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  
   const loadMoreData = () => {
     if (loading) {
       return;
@@ -67,7 +71,7 @@ const DeletedUsers = () => {
                 title={<a href="https://ant.design">{item.name.last}</a>}
                 description={item.email}
               />
-              <div onClick={handleDelete}>Restaurar</div>
+              <a onClick={() => handleDelete()}>Restaurar</a>
             </List.Item>
           )}
         />

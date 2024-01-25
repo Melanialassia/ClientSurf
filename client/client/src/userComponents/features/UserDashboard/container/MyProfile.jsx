@@ -18,7 +18,7 @@ const { Meta } = Card;
 
 const MyProfile = () => {
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.userData);
+  const dataUser = JSON.parse(localStorage.getItem("dataUser"));
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {
@@ -26,10 +26,10 @@ const MyProfile = () => {
   };
 
   useEffect(() => {
-    if (userData.idUser) {
-      dispatch(getIdUser(userData.idUser));
+    if (dataUser.idUser) {
+      dispatch(getIdUser(dataUser.idUser));
     }
-  }, [dispatch, userData.idUser]);
+  }, [dispatch, dataUser.idUser]);
 
   return (
     <div className={styles.container}>
@@ -47,8 +47,8 @@ const MyProfile = () => {
         <div className={styles.profileInfo}>
           <h3 className={styles.textt}>{myAccount}</h3>
           <h4 className={styles.text}>{personalInfo}</h4>
-          <p className={styles.texto}>{userData.nameUser}</p>
-          <p className={styles.texto}>{userData.emailUser}</p>
+          <p className={styles.texto}>{dataUser.nameUser}</p>
+          <p className={styles.texto}>{dataUser.emailUser}</p>
           <button onClick={handleEditClick} className={styles.editButton}>
             {editLink}
           </button>
