@@ -49,7 +49,7 @@ const EditUserData = () => {
     uniqueId: userData.uniqueId,
     password: "",
   });
-
+// console.log("estado", dataUnique);
   // CASO 2 DONDE NO QUIERE CAMBIAR PASSWORD
   const [dataPassword, setDataPassword] = useState({
     idLevel: userData.idLevel,
@@ -58,6 +58,7 @@ const EditUserData = () => {
     emailUser: userData.emailUser,
     uniqueId: userData.uniqueId,
   });
+  console.log("estado", dataPassword);
 
   const onChangeOption = (event) => {
     const optionButton = event.target.name;
@@ -70,14 +71,21 @@ const EditUserData = () => {
 
   const handleSubmit = async () => {
     if (flag === "password") {
+      
+
+      
       await dispatch(updateUser(dataUnique));
+      
     } else if (flag === "unique") {
+      console.log("orto",dataPassword);
       await dispatch(updateUser(dataPassword));
     }
     dispatch(getIdUser(userData.idUser));
   };
 
-  const readUpdate = (value, name) => {
+
+
+  const readUpdate = (name, value) => {
     if (flag === "unique") {
       setDataPassword({
         ...dataPassword,
@@ -131,12 +139,7 @@ const EditUserData = () => {
     <div>
       <h4 className={styles.text}>{editPersonalData}</h4>
       <Form
-        initialValues={{
-          user: {
-            nameUser: userData.nameUser,
-            emailUser: userData.emailUser,
-          },
-        }}
+        initialValues={userData}
         {...layout}
         className={styles.container}
         name="nest-messages"
@@ -151,7 +154,7 @@ const EditUserData = () => {
         validateMessages={validateMessages}
       >
         <Form.Item
-          name={["user", "nameUser"]}
+          name="nameUser"
           label="Nombre"
           rules={[
             {
@@ -160,12 +163,12 @@ const EditUserData = () => {
           ]}
         >
           <Input
-            onChange={(event) => readUpdate(event.target.value, "nameUser")}
+            onChange={(event) => readUpdate("nameUser", event.target.value )}
           />
         </Form.Item>
 
         <Form.Item
-          name={["user", "emailUser"]}
+          name="emailUser"
           label="Email"
           rules={[
             {
@@ -175,7 +178,7 @@ const EditUserData = () => {
           ]}
         >
           <Input
-            onChange={(event) => readUpdate(event.target.value, "emailUser")}
+            onChange={(event) => readUpdate("emailUser", event.target.value )}
           />
         </Form.Item>
 
@@ -192,7 +195,7 @@ const EditUserData = () => {
             hasFeedback
           >
             <Input.Password
-              onChange={(event) => readUpdate(event.target.value, "password")}
+              onChange={(event) => readUpdate("password",event.target.value)}
             />
           </Form.Item>
         )}
