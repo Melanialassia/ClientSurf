@@ -58,7 +58,7 @@ const Home = () => {
 
       <div>
         <Link to={"/products"}>
-          <img onClick={() => HandleFilterClick()} src="/assets/images/Proximamente.png" alt="Imagen 1" />
+          <img onClick={() => HandleFilterTable()} src="/assets/images/Proximamente.png" alt="Imagen 1" />
         </Link>
 
         <Link to={"/products"}>
