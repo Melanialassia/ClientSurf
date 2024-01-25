@@ -44,7 +44,10 @@ const Details = () => {
   const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
 
   useEffect(() => {
-    dispatch(getAllFavoriteProducts(dataUser.idUser))
+    if(logedUser === true){
+
+      dispatch(getAllFavoriteProducts(dataUser.idUser))
+    }
   }, [])
 
   useEffect(() => {
@@ -122,7 +125,9 @@ const Details = () => {
     return colorMap[spanishColor.toLowerCase()] || spanishColor;
   };
 
-  
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+  };
 
   const handleColorSelect = (color) => {
     setSelectedColor(color);
