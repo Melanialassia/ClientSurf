@@ -11,9 +11,11 @@
   justify-content: center;
   font-family: "Montserrat", sans-serif;
   text-align: center;
+  margin-left: 2px;
 }
 
 .container > div:first-child {
+  
     margin-bottom: 60px;
     font-weight: 800;
 }
@@ -21,6 +23,7 @@
 .container > div:last-child {
   display: flex;
   justify-content: space-between;
+  
 }
 
 .container > div:last-child > div {
@@ -31,4 +34,5 @@
   width: 25%;
   font-weight: 500;
   margin: 20px;
+  margin-left: 50px;
 }

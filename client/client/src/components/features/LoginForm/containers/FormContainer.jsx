@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 //LIBRARYS
 import { Button, Form, Input, message } from "antd";
 //REDUX
-import { postUser } from "../../../../redux/actions/action";
+import { postUser, userLogin } from "../../../../redux/actions/action";
 //CONstANTS
 import { infoLogin, createAccount, text } from "../utils/constants";
 //STYLE-SHEETS
@@ -58,12 +58,13 @@ const FormContainer = () => {
   const handleSubmit = async () => {
     try {
       dispatch(postUser(userData));
+      dispatch(userLogin(userData))
       setIsUserCreated(true);
       messageApi.open({
         type: "success",
         content: "Usuario creado con éxito!",
       });
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error("No se pudo crear la cuenta de usuario con éxito:", error);
     }
