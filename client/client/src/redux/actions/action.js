@@ -48,7 +48,8 @@ export const getAllProducts = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/product`);
-      const result = data.data;
+      const result = data.listProducts;
+      console.log(data);
       return dispatch({ type: ALL_PRODUCTS, payload: result });
     } catch (error) {
       console.log(error);

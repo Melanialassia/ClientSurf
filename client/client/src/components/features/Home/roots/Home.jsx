@@ -7,7 +7,9 @@ import styles from "./Home.module.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getIdUser } from "../../../../redux/actions/action";
+import { filterProducts, getIdUser } from "../../../../redux/actions/action";
+import ProductFilter from "../components/ProductFilter/ProductFilter";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -28,11 +30,25 @@ const Home = () => {
     }
   }, [userInfoFistrLogin]);
 
-  useEffect(()=>{
-    if(userInfoFistrLogin){
-    dispatch(getIdUser(userInfoFistrLogin))
+  useEffect(() => {
+    if (userInfoFistrLogin) {
+      dispatch(getIdUser(userInfoFistrLogin));
     }
-  }, [userInfoFistrLogin])
+  }, [userInfoFistrLogin]);
+
+  const HandleFilterTable = () => {
+    const obj = {
+      idCategory: 1
+    }
+    dispatch(filterProducts(obj))
+  }
+
+  const HandleFilterAccesories = () => {
+    const obj = {
+      idCategory: 2
+    }
+    dispatch(filterProducts(obj))
+  }
 
   return (
     <div className={styles.homeContainer}>
@@ -41,7 +57,13 @@ const Home = () => {
       </div>
 
       <div>
-        <PhotoBannerContainer />
+        <Link to={"/products"}>
+          <img onClick={() => HandleFilterClick()} src="/assets/images/Proximamente.png" alt="Imagen 1" />
+        </Link>
+
+        <Link to={"/products"}>
+          <img onClick={() => HandleFilterAccesories()} src="/assets/images/Proximamente.png" alt="Imagen 1" />
+        </Link>
       </div>
 
       <div>
