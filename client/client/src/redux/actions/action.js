@@ -24,6 +24,7 @@ import {
   LOGOUT,
   PUT_USER,
   DELETE_USER,
+  GET_USER_BY_NAME,
   //PAGINADO
   PAGINATE,
   OPEN_MODAL,
@@ -142,6 +143,23 @@ export const getProductsByName = (name) => {
       const result = data.listProducts;
       dispatch({
         type: FILTER_BY_NAME,
+        payload: result,
+      });
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+};
+
+export const getUserByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/user?name=${name}`);
+      const result = data.data;
+      console.log("data", data);
+      console.log("result.data", result.data);
+      dispatch({
+        type: GET_USER_BY_NAME,
         payload: result,
       });
     } catch (error) {
@@ -278,6 +296,7 @@ export const getAllUsers = () => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/user`);
       const result = data.data;
+      //console.log("result", result);
       return dispatch({ type: GET_ALL_USERS, payload: result });
     } catch (error) {
       throw Error("No se pudo traer los usuarios con exito", error);
