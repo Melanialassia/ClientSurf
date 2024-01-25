@@ -21,7 +21,10 @@ const Cart = () => {
   
   const fetchCartData = async () => {
     try {
-      const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/1`);
+
+      const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
+      console.log(response.data);
+
       setCartData(response.data);
     } catch (error) {
       console.error('Error al cargar el carrito:', error);
@@ -77,6 +80,7 @@ const Cart = () => {
     
     try {
       const response = await axios.post('https://surf-4i7c.onrender.com/surf/mecado', listCart);
+
       const data = response.data;
       
       console.log(data);
@@ -101,7 +105,7 @@ const Cart = () => {
     try {
       await axios.put(`https://surf-4i7c.onrender.com/surf/cart`, {
         idProduct: productId,
-        idUser: 1,
+        idUser: userId,
         amount: newQuantity
       });
       setRefreshCart(true);
