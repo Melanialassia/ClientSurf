@@ -79,8 +79,8 @@ const FormProduct = () => {
         image: "",
         idColor: "",
         idBrand: "",
-        priceProduct: 0,
-        stock: 0,
+        priceProduct: "",
+        stock: "",
         description: "",
       });
     }
@@ -162,8 +162,8 @@ const FormProduct = () => {
         image: imageUrl || dataProduct.image,
         idColor: +dataProduct.idColor,
         idBrand: +dataProduct.idBrand,
-        priceProduct: dataProduct.priceProduct,
-        stock: dataProduct.stock,
+        priceProduct: +dataProduct.priceProduct,
+        stock: +dataProduct.stock,
         description: dataProduct.description,
       };
       console.log("entre", obj);
@@ -183,8 +183,8 @@ const FormProduct = () => {
         image: "",
         idColor: "",
         idBrand: "",
-        priceProduct: 0,
-        stock: 0,
+        priceProduct: "",
+        stock: "",
         description: "",
       });
 
@@ -329,15 +329,7 @@ const FormProduct = () => {
             <Form.Item
               label="Precio"
               name="priceProduct"
-              rules={[
-                { required: true, message: "Ingrese el precio!." },
-                {
-                  type: "number",
-                  min: 0,
-                  message: "No se puede ingresar un número negativo.",
-                },
-              ]}
-            >
+              rules={[{ required: true, message: "Ingrese el precio!." }]}>
               <InputNumber
                 style={{ width: "100%" }}
                 onChange={(value) => handleChange("priceProduct", value)}
@@ -347,15 +339,7 @@ const FormProduct = () => {
             <Form.Item
               label="Stock"
               name="stock"
-              rules={[
-                { required: true, message: "Ingrese el stock!." },
-                {
-                  type: "number",
-                  min: 0,
-                  message: "No se puede ingresar un número negativo.",
-                },
-              ]}
-            >
+              rules={[{ required: true, message: "Ingrese el stock!." }]}>
               <InputNumber
                 style={{ width: "100%" }}
                 onChange={(value) => handleChange("stock", value)}
