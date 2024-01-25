@@ -22,7 +22,7 @@ const Cart = () => {
   
   const fetchCartData = async () => {
     try {
-      const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/1`);
+      const response = await axios.get(`http://localhost:3001/surf/cart/1`);
       console.log(response.data);
       setCartData(response.data);
     } catch (error) {
@@ -67,14 +67,19 @@ const Cart = () => {
         quantity: item.amount, 
         description: item.description, 
         code: item.code,
-        user: userId
+        userId: userId
       };
     });
-
+    
+      const cartItemsJSON = JSON.stringify(listCart);
+      localStorage.setItem('cartItems', cartItemsJSON);
+   
     
     console.log(listCart);
+    
+    
     try {
-      const response = await axios.post('https://surf-4i7c.onrender.com/surf/mecado', listCart);
+      const response = await axios.post('http://localhost:3001/surf/mecado', listCart);
       console.log('Response:', response);
       const data = response.data;
       
@@ -98,7 +103,7 @@ const Cart = () => {
   const handleQuantityChange = async (productId, newQuantity) => {
     
     try {
-      await axios.put(`https://surf-4i7c.onrender.com/surf/cart`, {
+      await axios.put(`http://localhost:3001/surf/cart`, {
         idProduct: productId,
         idUser: 1,
         amount: newQuantity
