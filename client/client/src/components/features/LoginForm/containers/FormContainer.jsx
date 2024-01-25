@@ -69,26 +69,19 @@ const FormContainer = () => {
     }
   };
 
-
-  // const handleDisabled = () => {
-  //   return Object.values(errors).some((error) => error !== "");
-  // };
-
   return (
     <div className={styles.container}>
       <h2 className={styles.textt}>{infoLogin}</h2>
       <h4 className={styles.text}>{text}</h4>
-      <hr className={styles.hr} />
-
+  
       <Form
         {...layout}
-        className={styles.container}
         name="nest-messages"
         onFinish={handleSubmit}
         style={{
-          marginTop: "20px",
-          marginLeft: "-50px",
-          maxWidth: 600,
+          marginTop: "-80px",
+          marginLeft: "-10px",
+          maxWidth: 450,
           fontSize: "200px",
         }}
         validateMessages={validateMessages}
@@ -113,18 +106,6 @@ const FormContainer = () => {
         >
           <Input onChange={(e) => handleChange("nameUser", e.target.value)} />
         </Form.Item>
-
-        {/* <Form.Item
-          name={["user", "lastName"]}
-          label="Apellido"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input onChange={(e) => handleChange("lastName", e.target.value)} />
-        </Form.Item> */}
 
         <Form.Item
           name={["user", "email"]}
