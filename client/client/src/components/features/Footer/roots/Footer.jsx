@@ -15,6 +15,12 @@ import {
 import styles from "./Footer.module.css";
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
   return (
     <div className={styles.footerContainer}>
       <div>
@@ -26,10 +32,10 @@ const Footer = () => {
       </div>
 
       <div className={styles.policiess}>
-        <Link to={"/faq"}>
+        <Link to={"/faq"} onClick={scrollToTop}>
         <p>{fAQ}</p>
         </Link>
-        <Link to={"/change-policy"}>
+        <Link to={"/change-policy"} onClick={scrollToTop}>
           <p>{changePolicy}</p>
         </Link>
       </div>
@@ -51,7 +57,6 @@ const Footer = () => {
           alt="LogoIg"
         />
       </a>
-
       <a
         href="https://www.facebook.com/profile.php?id=61551786068824"
         target="_blank"
