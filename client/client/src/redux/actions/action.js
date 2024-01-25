@@ -518,7 +518,7 @@ export const createDetail = (idSale, idUser, listProducts) => {
   
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:3001/surf/detail', { idSale, idUser, listProducts });
+      const response = await axios.post(`${SERVER_URL}/detail`, { idSale, idUser, listProducts });
       console.log(response.data);
       dispatch({
         type: CREATE_DETAIL,

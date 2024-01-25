@@ -10,6 +10,7 @@ const MySales = () => {
   const [sales, setSales] = useState([]);
   const [visibleSaleDetails, setVisibleSaleDetails] = useState({});
   const idUser = localStorage.getItem('userId');
+  console.log(idUser);
   const cartItemsJSON = localStorage.getItem('cartItems');
 
   const listProducts = JSON.parse(cartItemsJSON) || [];
