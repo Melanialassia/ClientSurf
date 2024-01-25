@@ -1,4 +1,5 @@
 import React from "react";
+import {useEffect} from 'react';
 import {
   FileSearchOutlined,
   EyeOutlined,
@@ -9,9 +10,20 @@ import { Avatar } from "antd";
 import styles from "./HowToBuyContainer.module.css";
 
 const HowToBuyContainer = () => {
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", bottom: 0 });
+      }
+    }
+  }, []);
+
   return (
     <div id="como-comprar" className={styles.container}>
-      <div>COMO COMPRAR</div>
+      <div>TE MOSTRAMOS LOS PASOS A SEGUIR, PARA QUE ADQUIERAS DE NUESTROS PRODUCTOS</div>
 
       <div>
         <div>
@@ -87,7 +99,7 @@ const HowToBuyContainer = () => {
             }
           />
 
-          <p>DISFRUTÁ</p>
+          <p>¡AHORA DISFRUTÁ DE TU COMPRA!</p>
         </div>
       </div>
     </div>
