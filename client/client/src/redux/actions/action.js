@@ -37,6 +37,7 @@ import {
   DELETE_COLOR,
   DELETE_BRAND,
   DELETE_SIZE,
+  CREATE_DETAIL
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -489,6 +490,23 @@ export const deleteSize = (idSize) => {
       });
     } catch (error) {
       throw Error("No se pudo borrar la talla", error);
+    }
+  };
+};
+
+
+export const createDetail = (idSale, idUser, listProducts) => {
+  
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:3001/surf/detail', { idSale, idUser, listProducts });
+      console.log(response.data);
+      dispatch({
+        type: CREATE_DETAIL,
+        payload: response.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo crear el detalle", error);
     }
   };
 };

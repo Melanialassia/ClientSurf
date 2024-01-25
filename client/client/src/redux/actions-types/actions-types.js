@@ -39,3 +39,5 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const DELETE_COLOR = "DELETE_COLOR";
 export const DELETE_BRAND = "DELETE_BRAND";
 export const DELETE_SIZE = "DELETE_SIZE";
+
+export const CREATE_DETAIL = "CREATE_DETAIL";

@@ -37,6 +37,7 @@ import {
   DELETE_COLOR,
   DELETE_BRAND,
   DELETE_SIZE,
+  CREATE_DETAIL
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -55,6 +56,7 @@ const initialState = {
   dataUser: null,
   userData: [],
   openModal: false,
+  details: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -247,6 +249,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         logedUser: true,
+      };
+      case CREATE_DETAIL:
+      return {
+        ...state,
+        details: [...state.details, action.payload],
       };
 
     default:
