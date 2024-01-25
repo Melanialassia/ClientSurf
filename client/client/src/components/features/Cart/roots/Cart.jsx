@@ -14,7 +14,6 @@ const Cart = () => {
   const [refreshCart, setRefreshCart] = useState(false);
   const dataUser = useSelector((state) => state.dataUser);
   const userId = localStorage.getItem('userId');
-  console.log(userId);
   const storedAccess = localStorage.getItem('access');
   const userAccess = storedAccess ? JSON.parse(storedAccess) : null;
   
@@ -22,8 +21,7 @@ const Cart = () => {
   
   const fetchCartData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/surf/cart/1`);
-      console.log(response.data);
+      const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/1`);
       setCartData(response.data);
     } catch (error) {
       console.error('Error al cargar el carrito:', error);
@@ -37,7 +35,6 @@ const Cart = () => {
   }, [refreshCart]); 
   
   const cartListItems = cartData?.cartList || [];
-  console.log(cartData);
   
   const handleRemoveProduct = async (productId) => {
     try {
@@ -79,8 +76,7 @@ const Cart = () => {
     
     
     try {
-      const response = await axios.post('http://localhost:3001/surf/mecado', listCart);
-      console.log('Response:', response);
+      const response = await axios.post('https://surf-4i7c.onrender.com/surf/mecado', listCart);
       const data = response.data;
       
       console.log(data);
@@ -103,7 +99,7 @@ const Cart = () => {
   const handleQuantityChange = async (productId, newQuantity) => {
     
     try {
-      await axios.put(`http://localhost:3001/surf/cart`, {
+      await axios.put(`https://surf-4i7c.onrender.com/surf/cart`, {
         idProduct: productId,
         idUser: 1,
         amount: newQuantity

@@ -10,7 +10,7 @@ import ProfileMenuAdmin from "../components/ProfileMenuAdmin";
 import LoginModal from "../../LoginModal/root/LoginModal";
 //LIBRARYS
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Avatar, Badge } from "antd";
 //REDUX
 import {
   OPEN_MODAL,
@@ -25,6 +25,10 @@ const Header = () => {
   const navigate = useNavigate();
   const data = useSelector((state) => state.dataUser);
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
+
+  const cartProducts = useSelector((state) => state.cart);
+  console.log("cartProducts", cartProducts);
+  console.log("cartProducts.lenght", cartProducts.length);
 
   const open = useSelector((state) => state.openModal);
 
@@ -116,22 +120,34 @@ const Header = () => {
           </li>
           <Link to={"/account/create"}>
             <Button type="primary" style={styledButton}>
-
               Registrarse
-
             </Button>
           </Link>
         </ul>
       )}
 
       <div>
-        <ShoppingCartOutlined
-          onClick={handleCartClick}
-          style={{
-            color: "#28445c",
-            fontSize: "35px",
-          }}
-        />
+        {logedUser ? (
+          <a href="#">
+            <Badge count={cartProducts.length}>
+              <ShoppingCartOutlined
+                onClick={handleCartClick}
+                style={{
+                  color: "#28445c",
+                  fontSize: "35px",
+                }}
+              />
+            </Badge>
+          </a>
+        ) : (
+          <ShoppingCartOutlined
+            onClick={handleCartClick}
+            style={{
+              color: "#28445c",
+              fontSize: "35px",
+            }}
+          />
+        )}
       </div>
     </div>
   );
