@@ -50,19 +50,58 @@ const FormProduct = () => {
     stock: "",
     description: "",
   });
+  const loadedData = () => ({
+    idCategory: JSON.parse(localStorage.getItem("formData_idCategory")) || "",
+    name: localStorage.getItem("formData_name"),
+    idSize: JSON.parse(localStorage.getItem("formData_idSize")) || "",
+    image: localStorage.getItem("formData_image") || "",
+    idColor: JSON.parse(localStorage.getItem("formData_idColor")) || "",
+    idBrand: JSON.parse(localStorage.getItem("formData_idBrand")) || "",
+    priceProduct: localStorage.getItem("formData_priceProduct") || "",
+    stock: localStorage.getItem("formData_stock") || "",
+    description: localStorage.getItem("formData_description"),
+  });
+  const [isSubmit, setIsSubmit] = useState(false);
 
   useEffect(() => {
     dispatch(getAllCategorys());
     dispatch(getAllBrands());
     dispatch(getAllColors());
     dispatch(getAllSize());
-  }, []);
+    const obj = loadedData();
+    if (Object.keys(obj).length) {
+      setDataProduct(obj);
+    } else {
+      setDataProduct({
+        idCategory: "",
+        name: "",
+        idSize: "",
+        image: "",
+        idColor: "",
+        idBrand: "",
+        priceProduct: "",
+        stock: "",
+        description: "",
+      });
+    }
+    form.resetFields();
+  }, [isSubmit]);
 
   const handleChange = (name, value) => {
-    setDataProduct({
-      ...dataProduct,
-      [name]: value,
-    });
+    // Manejo especial para el campo de imagen
+    if (name === "image") {
+      setDataProduct({
+        ...dataProduct,
+        image: value[0], // Solo toma el primer archivo, ya que es una sola imagen
+      });
+    } else {
+      setDataProduct({
+        ...dataProduct,
+        [name]: value,
+      });
+    }
+
+    localStorage.setItem(`formData_${name}`, value);
   };
 
   const layout = {
@@ -108,6 +147,10 @@ const FormProduct = () => {
     }
   };
 
+  const cleanLocalStorage = () => {
+    localStorage.clear();
+  };
+
   const handleSubmit = async () => {
     try {
       const imageUrl = await postCloudinary(); // Esperar a que se complete la subida de la imagen
@@ -116,11 +159,11 @@ const FormProduct = () => {
         idCategory: +dataProduct.idCategory,
         name: dataProduct.name,
         idSize: +dataProduct.idSize,
-        image: imageUrl,
+        image: imageUrl || dataProduct.image,
         idColor: +dataProduct.idColor,
         idBrand: +dataProduct.idBrand,
-        priceProduct: dataProduct.priceProduct,
-        stock: dataProduct.stock,
+        priceProduct: +dataProduct.priceProduct,
+        stock: +dataProduct.stock,
         description: dataProduct.description,
       };
       console.log("entre", obj);
@@ -130,6 +173,7 @@ const FormProduct = () => {
         content: "Producto creado con éxito!",
       });
 
+      cleanLocalStorage();
       setFile("");
 
       setDataProduct({
@@ -139,12 +183,13 @@ const FormProduct = () => {
         image: "",
         idColor: "",
         idBrand: "",
-        priceProduct: 0,
-        stock: 0,
+        priceProduct: "",
+        stock: "",
         description: "",
       });
 
       form.resetFields();
+      setIsSubmit(true);
     } catch (error) {
       console.error("Error al procesar el formulario:", error);
     }
@@ -165,12 +210,14 @@ const FormProduct = () => {
           <Form
             form={form}
             onFinish={handleSubmit}
+            initialValues={loadedData()}
             /* {...layout} */
             /* style={{ maxWidth: 600, marginLeft: "700px" }} */
           >
             <Form.Item
               label="Nombre"
               name="name"
+              value={dataProduct.name}
               rules={[
                 { required: true, message: "Campo obligatorio!." },
                 {
@@ -183,10 +230,7 @@ const FormProduct = () => {
                 },
               ]}
             >
-              <Input
-                onChange={(e) => handleChange("name", e.target.value)}
-                defaultValue={dataProduct.name}
-              />
+              <Input onChange={(e) => handleChange("name", e.target.value)} />
             </Form.Item>
 
             <Form.Item
@@ -285,15 +329,7 @@ const FormProduct = () => {
             <Form.Item
               label="Precio"
               name="priceProduct"
-              rules={[
-                { required: true, message: "Ingrese el precio!." },
-                {
-                  type: "number",
-                  min: 0,
-                  message: "No se puede ingresar un número negativo.",
-                },
-              ]}
-            >
+              rules={[{ required: true, message: "Ingrese el precio!." }]}>
               <InputNumber
                 style={{ width: "100%" }}
                 onChange={(value) => handleChange("priceProduct", value)}
@@ -303,15 +339,7 @@ const FormProduct = () => {
             <Form.Item
               label="Stock"
               name="stock"
-              rules={[
-                { required: true, message: "Ingrese el stock!." },
-                {
-                  type: "number",
-                  min: 0,
-                  message: "No se puede ingresar un número negativo.",
-                },
-              ]}
-            >
+              rules={[{ required: true, message: "Ingrese el stock!." }]}>
               <InputNumber
                 style={{ width: "100%" }}
                 onChange={(value) => handleChange("stock", value)}

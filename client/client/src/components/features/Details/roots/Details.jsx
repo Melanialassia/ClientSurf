@@ -44,7 +44,7 @@ const Details = () => {
   const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
 
   useEffect(() => {
-    if(dataUser){
+    if(logedUser === true){
 
       dispatch(getAllFavoriteProducts(dataUser.idUser))
     }

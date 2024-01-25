@@ -38,6 +38,7 @@ import {
   DELETE_COLOR,
   DELETE_BRAND,
   DELETE_SIZE,
+  CREATE_DETAIL
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -49,7 +50,6 @@ export const getAllProducts = () => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/product`);
       const result = data.listProducts;
-      console.log(data);
       return dispatch({ type: ALL_PRODUCTS, payload: result });
     } catch (error) {
       console.log(error);
@@ -275,17 +275,15 @@ export const getIdUser = (idUser) => {
 
 
 export const updateUser = (userData) => {
-  console.log("lala",userData);
   return async function (dispatch) {
     try {
       const URL = `${SERVER_URL}/user`;
       const response = await axios.put(URL, userData);
-      console.log("dormir",response);
       dispatch({
         type: PUT_USER,
-        payload: response.data,
+        payload: response.data.data,
       });
-      console.log("hola",response);
+
     } catch (error) {
       console.log("Error durante el inicio de sesión:", error);
     }
@@ -511,6 +509,23 @@ export const deleteSize = (idSize) => {
       });
     } catch (error) {
       throw Error("No se pudo borrar la talla", error);
+    }
+  };
+};
+
+
+export const createDetail = (idSale, idUser, listProducts) => {
+  
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:3001/surf/detail', { idSale, idUser, listProducts });
+      console.log(response.data);
+      dispatch({
+        type: CREATE_DETAIL,
+        payload: response.data,
+      });
+    } catch (error) {
+      throw Error("No se pudo crear el detalle", error);
     }
   };
 };

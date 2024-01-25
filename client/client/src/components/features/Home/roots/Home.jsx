@@ -74,9 +74,9 @@ const Home = () => {
         <ProductHighlights />
       </div>
 
-      <div className={styles.newsletter}>
+      {/* <div className={styles.newsletter}>
         <NewsletterSubscribe />
-      </div>
+      </div> */}
 
       <div className={styles.footer}></div>
     </div>

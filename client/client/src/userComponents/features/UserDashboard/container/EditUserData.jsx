@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 
 import { Button, Form, Input, Card } from "antd";
 //REDUX
-import { updateUser } from "../../../../redux/actions/action";
+import { updateUser, getIdUser } from "../../../../redux/actions/action";
 //CONSTANTS
-import { saveChanges, editPersonalData} from "../utils/constants";
+import { saveChanges, editPersonalData } from "../utils/constants";
 
 //STYLE-SHEETS
 import styles from "./EditUserData.module.css";
@@ -37,7 +37,6 @@ const validateMessages = {
 
 const EditUserData = () => {
   const userData = useSelector((state) => state.userData);
-  console.log("data usuario", userData);
   const dispatch = useDispatch();
   const [flag, setFlag] = useState("password");
 
@@ -50,7 +49,7 @@ const EditUserData = () => {
     uniqueId: userData.uniqueId,
     password: "",
   });
-
+// console.log("estado", dataUnique);
   // CASO 2 DONDE NO QUIERE CAMBIAR PASSWORD
   const [dataPassword, setDataPassword] = useState({
     idLevel: userData.idLevel,
@@ -59,6 +58,7 @@ const EditUserData = () => {
     emailUser: userData.emailUser,
     uniqueId: userData.uniqueId,
   });
+  console.log("estado", dataPassword);
 
   const onChangeOption = (event) => {
     const optionButton = event.target.name;
@@ -69,16 +69,23 @@ const EditUserData = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (flag === "password") {
-      dispatch(updateUser(dataUnique));
-    } else if (flag === "unique") {
-      dispatch(updateUser(dataPassword));
-    }
-  };
-  console.log("password",dataUnique);
+      
 
-  const readUpdate = (value, name) => {
+      
+      await dispatch(updateUser(dataUnique));
+      
+    } else if (flag === "unique") {
+      console.log("orto",dataPassword);
+      await dispatch(updateUser(dataPassword));
+    }
+    dispatch(getIdUser(userData.idUser));
+  };
+
+
+
+  const readUpdate = (name, value) => {
     if (flag === "unique") {
       setDataPassword({
         ...dataPassword,
@@ -114,31 +121,25 @@ const EditUserData = () => {
     }
   }, [flag]);
 
-
   return (
 
-      // <Card
-      // hoverable
-      // style={{
-      //   width: 550,
-      //   height: 400,
-      //   margin: "10px",
-      //   padding: "0",
-      //   borderRadius: "2rem",
-      //   marginRight: "150px"
-      // }}
-      // className={styles.firstHeadline}
-  
+    // <Card
+    // hoverable
+    // style={{
+    //   width: 550,
+    //   height: 400,
+    //   margin: "10px",
+    //   padding: "0",
+    //   borderRadius: "2rem",
+    //   marginRight: "150px"
+    // }}
+    // className={styles.firstHeadline}
+
     // >
     <div>
       <h4 className={styles.text}>{editPersonalData}</h4>
       <Form
-        initialValues={{
-          user: {
-            nameUser: userData.nameUser,
-            emailUser: userData.emailUser,
-          },
-        }}
+        initialValues={userData}
         {...layout}
         className={styles.container}
         name="nest-messages"
@@ -153,7 +154,7 @@ const EditUserData = () => {
         validateMessages={validateMessages}
       >
         <Form.Item
-          name={["user", "nameUser"]}
+          name="nameUser"
           label="Nombre"
           rules={[
             {
@@ -162,12 +163,12 @@ const EditUserData = () => {
           ]}
         >
           <Input
-            onChange={(event) => readUpdate(event.target.value, "nameUser")}
+            onChange={(event) => readUpdate("nameUser", event.target.value )}
           />
         </Form.Item>
 
         <Form.Item
-          name={["user", "emailUser"]}
+          name="emailUser"
           label="Email"
           rules={[
             {
@@ -177,7 +178,7 @@ const EditUserData = () => {
           ]}
         >
           <Input
-            onChange={(event) => readUpdate(event.target.value, "emailUser")}
+            onChange={(event) => readUpdate("emailUser", event.target.value )}
           />
         </Form.Item>
 
@@ -194,7 +195,7 @@ const EditUserData = () => {
             hasFeedback
           >
             <Input.Password
-              onChange={(event) => readUpdate(event.target.value, "password")}
+              onChange={(event) => readUpdate("password",event.target.value)}
             />
           </Form.Item>
         )}
@@ -210,8 +211,8 @@ const EditUserData = () => {
           </Button>
         </Form.Item>
       </Form>
-        <button onClick={onChangeOption} name="password">Cambiar mi contraseña</button>
-        <button onClick={onChangeOption} name="uniqueId">Mantener mi contraseña actual</button>
+      <button onClick={onChangeOption} name="password">Cambiar mi contraseña</button>
+      <button onClick={onChangeOption} name="uniqueId">Mantener mi contraseña actual</button>
 
 
     </div>

@@ -23,6 +23,7 @@ import ChangePolicy from "./components/features/ChangePolicy/components/ChangePo
 import EditUserData from "./userComponents/features/UserDashboard/container/EditUserData";
 import Faq from "./components/features/Faq/components/Faq";
 import AdminDashboard from "./adminComponents/features/AdminDashboard/roots/AdminDashboard";
+import MySales from "./userComponents/features/UserDashboard/roots/MySales";
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/edit-personaldata" element={<EditUserData />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/my-buys" element={<MySales/>} />
       </Routes>
       <a href="https://api.whatsapp.com/send?phone=5493415948636" target="_blank">
         <img src="/assets/images/whatsapp.png" alt="" className={styles.image}/>

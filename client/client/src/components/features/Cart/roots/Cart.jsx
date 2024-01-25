@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { DeleteOutlined } from '@ant-design/icons';
 import EmptyPage from '../../EmptyPage/roots/EmptyPage';
 import { useSelector, useDispatch } from "react-redux";
+import { InputNumber } from 'antd';
 
 
 
@@ -21,7 +22,7 @@ const Cart = () => {
   
   const fetchCartData = async () => {
     try {
-      const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
+      const response = await axios.get(`http://localhost:3001/surf/cart/1`);
       console.log(response.data);
       setCartData(response.data);
     } catch (error) {
@@ -66,13 +67,19 @@ const Cart = () => {
         quantity: item.amount, 
         description: item.description, 
         code: item.code,
+        userId: userId
       };
     });
-
+    
+      const cartItemsJSON = JSON.stringify(listCart);
+      localStorage.setItem('cartItems', cartItemsJSON);
+   
     
     console.log(listCart);
+    
+    
     try {
-      const response = await axios.post('https://surf-4i7c.onrender.com/surf/mecado', listCart);
+      const response = await axios.post('http://localhost:3001/surf/mecado', listCart);
       console.log('Response:', response);
       const data = response.data;
       
@@ -92,7 +99,20 @@ const Cart = () => {
       </div>
     );
   }
-
+ 
+  const handleQuantityChange = async (productId, newQuantity) => {
+    
+    try {
+      await axios.put(`http://localhost:3001/surf/cart`, {
+        idProduct: productId,
+        idUser: 1,
+        amount: newQuantity
+      });
+      setRefreshCart(true);
+    } catch (error) {
+      console.error('Error al modificar la cantidad del producto en el carrito:', error);
+    }
+  };
   
   return (
     
@@ -108,7 +128,22 @@ const Cart = () => {
                     <Link to={`/details/${product.idProduct}`} className={styles.productLink}>
                       <p className={styles.productName}>{product.name}</p>
                     </Link>
-                    <p className={styles.productQuantity}>Cantidad: {product.amount}</p>
+                    <p className={styles.productQuantity}>
+                    Cantidad:{" "}
+                    <InputNumber
+                      type="number"
+                      value={product.amount}
+                      onChange={(value) => {
+                        console.log("Input change:", value);
+                        const newQuantity = parseInt(value, 10);
+                        console.log("Parsed Quantity:", newQuantity);
+                        if (!isNaN(newQuantity)) {
+                          handleQuantityChange(product.idProduct, newQuantity);
+                        }
+                      }}
+                    />
+                  </p>
+                    
                     <p className={styles.productPrice}>Precio: ${product.priceProduct}</p>
                   </div>
                   <button
