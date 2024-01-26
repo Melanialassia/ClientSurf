@@ -1,0 +1,88 @@
+
+.fuente {
+    font-family: "Montserrat", sans-serif;
+}
+
+
+
+.details {
+    
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.details li {
+    
+    margin-right: 120px; 
+    
+    
+  }
+  
+  .details img {
+    
+    max-width: 100px;
+    margin-right: 10px; 
+  }
+
+  .details ul {
+    display: flex;  
+    flex-direction: row; 
+    list-style: none; 
+    padding: 0; 
+    align-items: center;
+    
+  }
+
+  .details p {
+    margin-top: 25px;
+  }
+
+  .verMas {
+margin-left: 1730px;
+font-family: "Montserrat", sans-serif;
+ padding: 10px 20px;
+  background-color: #2d4056;
+  color: #fff;
+  border: 2px solid #2d4056;
+  cursor: pointer;
+  
+  border-radius: 5px;
+  font-size: small;
+  }
+
+  .verMas:hover {
+    font-family: "Montserrat", sans-serif;
+  background-color: rgb(44, 182, 88);
+  border-color: rgb(44, 182, 88);
+  transform: scale(1.05);
+  }
+
+  .verMenos {
+    margin-left: 1715px;
+font-family: "Montserrat", sans-serif;
+ padding: 10px 20px;
+  background-color: #2d4056;
+  color: #fff;
+  border: 2px solid #2d4056;
+  cursor: pointer;
+  
+  border-radius: 5px;
+  font-size: small;
+  }
+
+  .verMenos:hover {
+    font-family: "Montserrat", sans-serif;
+  background-color: rgb(167, 23, 23);
+  border-color: rgb(167, 23, 23);
+  transform: scale(1.05);
+  }
+
+.mainInfo li{
+    list-style: none;
+
+}
+
+
+
+ 

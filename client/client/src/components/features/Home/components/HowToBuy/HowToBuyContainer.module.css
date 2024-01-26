@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   height: 300px;
-  background-color: #F2E3A5;
+  background-color: #E2DCE1;
   border-radius: 10px;
   margin-top: 140px;
   align-items: center;
@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 25%;
   font-weight: 500;
   margin: 20px;
