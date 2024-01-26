@@ -9,23 +9,23 @@ const MySales = () => {
   const dispatch = useDispatch();
   const [sales, setSales] = useState([]);
   const [visibleSaleDetails, setVisibleSaleDetails] = useState({});
+  const [loading, setLoading] = useState(true);  // Nuevo estado para el indicador de carga
   const idUser = localStorage.getItem('userId');
-  console.log(idUser);
   const cartItemsJSON = localStorage.getItem('cartItems');
-
   const listProducts = JSON.parse(cartItemsJSON) || [];
-  console.log(listProducts);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);  // Indicar que la carga está en curso
+
         const response = await axios.get('https://surf-4i7c.onrender.com/surf/sale');
         const { data } = response;
         console.log('Sales data:', data);
-  
+
         const filteredSales = data.data ? data.data.filter(sale => sale.idUser === parseInt(idUser)) : [];
         console.log('Filtered Sales:', filteredSales);
-  
+
         if (filteredSales.length > 0) {
           await Promise.all(filteredSales.map(async sale => {
             try {
@@ -41,8 +41,11 @@ const MySales = () => {
         setSales(filteredSales);
       } catch (error) {
         console.error('Error fetching sales:', error);
+      } finally {
+        setLoading(false);  // Indicar que la carga ha terminado
       }
     };
+
     
     fetchData();
     
@@ -83,8 +86,10 @@ const MySales = () => {
 
   return (
     <div className={styles.fuente}>
-      <h1>My Sales</h1>
-      {sales.length === 0 ? (
+       <h1>My Sales</h1>
+      {loading ? (
+        <p>Cargando Sales...</p>
+      ) : sales.length === 0 ? (
         <p>No hay ventas disponibles</p>
       ) : (
         <div className={styles.mainInfo}>
