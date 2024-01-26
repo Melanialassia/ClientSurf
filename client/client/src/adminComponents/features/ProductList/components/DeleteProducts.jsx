@@ -75,3 +75,4 @@ const DeleteProducts = () => {
 };
 
 export default DeleteProducts;
+
