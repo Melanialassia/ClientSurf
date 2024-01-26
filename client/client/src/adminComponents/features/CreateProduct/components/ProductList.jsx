@@ -1,55 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { List, Typography, Skeleton, Avatar, Divider } from "antd";
+import { List, Typography, Skeleton, Avatar, Divider, message } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteProduct,
   getAllProducts,
 } from "../../../../redux/actions/action";
+import ProductSearchBar from "./ProductSearchBar";
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const [reload, setReload] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
-  //Traemos estado global de allCategory
   const allProducts = useSelector((s) => s.allProducts);
 
-  const [loading, setLoading] = useState(false);
-  // const [data, setData] = useState([]);
-
-  //const data = allProducts.map((product) => product.name);
-
-  const loadMoreData = () => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-    fetch(
-      "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
-    )
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.results]);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  };
-
   useEffect(() => {
-    //loadMoreData();
-    console.log("allProducts ANTES", allProducts);
-
     dispatch(getAllProducts());
-    console.log("allProducts DESPUES", allProducts);
-
     setReload(true);
   }, [reload]);
 
   const handleDelete = (idProduct) => {
-    dispatch(deleteProduct(idProduct));
+    try {
+      dispatch(deleteProduct(idProduct));
+      messageApi.open({
+        type: "success",
+        content: "Producto eliminado con éxito!",
+      });
+    } catch (error) {
+      messageApi.open({
+        type: "error",
+        content: "No se pudo borrar el usuario",
+      });
+      throw Error("No se pudo borrar el usuario", error);
+    }
   };
+
+  const handleOnClickProduct = () => {
+
+  }
 
   return (
     <div
@@ -62,10 +51,11 @@ const ProductList = () => {
         minWidth: "600px",
       }}
     >
+      {contextHolder}
       <InfiniteScroll
         dataLength={allProducts.length}
         /* next={loadMoreData} */
-        hasMore={allProducts.length < 5}
+        /* hasMore={allProducts.length < 5} */
         loader={
           <Skeleton
             avatar
@@ -79,13 +69,17 @@ const ProductList = () => {
         scrollableTarget="scrollableDiv"
       >
         <List
-          header={<div>Lista de productos</div>}
+          header={
+            <div>
+              <p>Lista de productos</p> <ProductSearchBar />
+            </div>
+          }
           dataSource={allProducts}
           renderItem={(item) => (
             <List.Item key={item.idProduct}>
               <List.Item.Meta
                 avatar={<Avatar src={item.image} />}
-                title={<a>{item.name}</a>}
+                title={<a onClick={() => handleOnClickProduct()}>{item.name}</a>}
                 description={
                   <p>
                     Precio: ${item.priceProduct} || Stock: {item.stock}
