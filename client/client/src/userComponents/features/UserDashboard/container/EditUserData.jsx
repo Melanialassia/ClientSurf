@@ -123,25 +123,12 @@ const EditUserData = () => {
 
   return (
 
-    // <Card
-    // hoverable
-    // style={{
-    //   width: 550,
-    //   height: 400,
-    //   margin: "10px",
-    //   padding: "0",
-    //   borderRadius: "2rem",
-    //   marginRight: "150px"
-    // }}
-    // className={styles.firstHeadline}
-
-    // >
-    <div>
+    <div   className={styles.container}>
       <h4 className={styles.text}>{editPersonalData}</h4>
       <Form
         initialValues={userData}
         {...layout}
-        className={styles.container}
+      
         name="nest-messages"
         onFinish={handleSubmit}
         style={{
@@ -216,7 +203,7 @@ const EditUserData = () => {
 
 
     </div>
-    // </Card>
+
   );
 };
 

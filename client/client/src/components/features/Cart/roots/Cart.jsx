@@ -23,6 +23,7 @@ const Cart = () => {
     try {
 
       const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
+
       console.log(response.data);
 
       setCartData(response.data);

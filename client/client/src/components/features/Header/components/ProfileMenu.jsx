@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { logOut, getIdUser } from "../../../../redux/actions/action";
 //LIBRARY
 import { Menu } from "antd";
+import { UserOutlined } from '@ant-design/icons';
 //STYLE-SHEETS
 import styles from './ProfileMenu.module.css'
 
@@ -23,13 +24,13 @@ function getItem(label, key, children, type) {
 const ProfileMenu = () => {
   
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.userData);
+  const dataUser = JSON.parse(localStorage.getItem("dataUser"));
 
   
   const navigate = useNavigate();
   
   const items = [
-      getItem(`Hola, ${data.nameUser}`, "sub1", [
+      getItem(`Hola ${dataUser.nameUser}!`, "sub1", [
       getItem("Mi cuenta", "1"),
       getItem("Mis Favoritos", "2"),
       getItem("Mis compras", "3"),
@@ -37,10 +38,10 @@ const ProfileMenu = () => {
     ]),
   ];
     useEffect(() => {
-    if (data.idUser) {
-      dispatch(getIdUser(data.idUser));
+    if (dataUser.idUser) {
+      dispatch(getIdUser(dataUser.idUser));
     }
-  }, [dispatch, data.idUser]);
+  }, [dispatch, dataUser.idUser]);
 
   const handleLogOut = () => {
     localStorage.removeItem('access');
@@ -70,19 +71,24 @@ const ProfileMenu = () => {
   };
   return (
     <div >
+      <UserOutlined 
+      style={{ fontSize: '24px', marginLeft: "-20px" }}
+      />
       <Menu
         className={styles['ant-menu']}
         style={{
-          width: 180,
+          width: 200,
           height: 50,
-          marginTop: "0px",
-          marginRight: "80px",
-          borderRadius: "20px"
+          marginTop: "-34px",
+          marginBottom: "-10px",
+          borderRadius: "20px",
+          backgroundColor: "#e2dcd1"
         }}
         selectedKeys={[]} 
         defaultOpenKeys={["sub1"]}
         items={items}
         onSelect={handleMenuClick}
+        
       />
     </div>
   );

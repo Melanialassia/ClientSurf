@@ -1,0 +1,3 @@
+export const firstP ="La Ola Urbana nace a partir del deseo de fomentar y enriquecer la experiencia del Surfing a la comunidad de Rosario y alrededores.. 🤙🤙"
+export const secondP = "Por eso, nuestro compromiso está enfocado en equiparte y asesorarte, pero también en facilitar y resolver todo lo que necesitas al momento de emprender ruta hacia el mar. 🌊"
+export const thirdP = "El mar está lejos, pero nosotros te acercamos... Somos la Ola Urbana!"
