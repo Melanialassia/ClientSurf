@@ -58,11 +58,11 @@ const Home = () => {
 
       <div>
         <Link to={"/products"}>
-          <img onClick={() => HandleFilterTable()} src="/assets/images/Proximamente.png" alt="Imagen 1" />
+          <img onClick={() => HandleFilterTable()} src="/assets/images/tablas.png" alt="Imagen 1" className={styles.imagenFiltrotabla}/>
         </Link>
 
         <Link to={"/products"}>
-          <img onClick={() => HandleFilterAccesories()} src="/assets/images/Proximamente.png" alt="Imagen 1" />
+          <img onClick={() => HandleFilterAccesories()} src="/assets/images/accesorios.png" alt="Imagen 1" className={styles.imagenFiltroaccesorio}/>
         </Link>
       </div>
 
