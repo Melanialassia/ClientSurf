@@ -33,7 +33,7 @@ const MyProfile = () => {
 
   return (
     <div className={styles.container}>
-      <Card
+      {/* <Card
         hoverable
         style={{
           width: 500,
@@ -43,7 +43,7 @@ const MyProfile = () => {
           borderRadius: "2rem",
         }}
         className={styles.firstHeadline}
-      >
+      > */}
         <div className={styles.profileInfo}>
           <h3 className={styles.textt}>{myAccount}</h3>
           <h4 className={styles.text}>{personalInfo}</h4>
@@ -53,7 +53,7 @@ const MyProfile = () => {
             {editLink}
           </button>
         </div>
-      </Card>
+      {/* </Card> */}
       <div className={styles.editSection}>
         {isEditing && <EditUserData onCancel={() => setIsEditing(false)} />}
       </div>
