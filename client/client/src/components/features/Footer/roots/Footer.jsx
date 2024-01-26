@@ -40,7 +40,7 @@ const Footer = () => {
         </Link>
       </div>
       <div className={styles.policies}>
-        <p>{contact}</p>
+        <p className={styles.contact}>{contact}</p>
         <p className={styles.policis}>{celNumber}</p>
         <p className={styles.policis}>{email}</p>
         <p className={styles.policis}>{opneningHs}</p>
