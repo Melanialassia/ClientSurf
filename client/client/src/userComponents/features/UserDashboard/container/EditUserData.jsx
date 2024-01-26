@@ -69,18 +69,33 @@ const EditUserData = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    if (flag === "password") {
-      
+  // const handleSubmit = async () => {
+  //   if (flag === "password") {
+  //     await dispatch(updateUser(dataUnique));
+  //   } else if (flag === "unique") {
+  //     await dispatch(updateUser(dataPassword));
+  //   }
+  //   dispatch(getIdUser(userData.idUser));
+  // };
 
-      
-      await dispatch(updateUser(dataUnique));
-      
-    } else if (flag === "unique") {
-      console.log("orto",dataPassword);
-      await dispatch(updateUser(dataPassword));
+  const handleSubmit = async () => {
+    try {
+      if (flag === "password") {
+        await dispatch(updateUser(dataUnique));
+      } else if (flag === "unique") {
+        await dispatch(updateUser(dataPassword));
+      }
+  
+      dispatch(getIdUser(userData.idUser));
+  
+      // Agrega un alert para cambios realizados con éxito
+      window.alert("Cambios realizados con éxito");
+    } catch (error) {
+      console.error("No se pudieron realizar los cambios:", error);
+  
+      // Agrega un alert para informar sobre el error
+      window.alert("No se pudieron actualizar los datos del usuario");
     }
-    dispatch(getIdUser(userData.idUser));
   };
 
 
