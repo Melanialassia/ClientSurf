@@ -5,13 +5,15 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 //ACTION
 import {
+  addToCart,
   addToFavorites,
   deleteFavorite,
+  getAllFavoriteProducts
 } from "../../../../redux/actions/action";
 import LoginModal from "../../LoginModal/root/LoginModal";
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 //LIBRARY
-import { Card, Button, Space } from "antd";
+import { Card, Button, Space, message} from "antd";
 import {
   HeartOutlined,
   HeartFilled,
@@ -20,22 +22,42 @@ import {
 const { Meta } = Card;
 
 const Cards = ({ product }) => {
-  const dispatch = useDispatch();
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
+  const logedUser = JSON.parse(localStorage.getItem("logedUser"));
+  const dataUser = JSON.parse(localStorage.getItem("dataUser"));
+  const userId = localStorage.getItem("userId");
+  const dispatch = useDispatch();
+  const [messageApi, contextHolder] = message.useMessage();
+  
   const isProductInFavorites = favoriteProducts.some(
     (favProduct) => favProduct.idProduct === product.idProduct
   );
 
   const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
+    //MESSAGE
+    const openMessage = () => {
+      messageApi.open({
+        key: 'addToFavoritesMessage', // Asegúrate de tener una clave única para cada mensaje
+        type: 'success',
+        content: 'Producto agregado a favoritos',
+        duration: 2,
+      });
+    };
 
-  const logedUser = JSON.parse(localStorage.getItem("logedUser"));
-  const dataUser = JSON.parse(localStorage.getItem("dataUser"));
+  //FAVORITES
+  
+  useEffect(() => {
+    if(logedUser === true){
+
+      dispatch(getAllFavoriteProducts(dataUser.idUser))
+    }
+  }, [])
+
 
   useEffect(() => {
-    console.log("allFavs", favoriteProducts);
     setIsInFavorites(isProductInFavorites);
   }, [isProductInFavorites]);
-  //FAVORITES
+
   const addToFavoritesHandler = () => {
     if (logedUser === false || logedUser === null) {
       handleOpenModal();
@@ -44,11 +66,16 @@ const Cards = ({ product }) => {
       setIsInFavorites(!isInFavorites);
     }
   };
-
   const removeFromFavoritesHandler = () => {
     dispatch(deleteFavorite(dataUser.idUser, product.idProduct));
     setIsInFavorites(!isInFavorites);
   };
+
+  useEffect(() => {
+    if (isInFavorites) {
+      openMessage(); // Llama a la función openMessage dentro del efecto
+    }
+  }, [isInFavorites]);
 
   const handleOpenModal = () => {
     dispatch({ type: OPEN_MODAL });
@@ -61,7 +88,7 @@ const Cards = ({ product }) => {
     } else {
       try {
         await dispatch(
-          addToCart(product.idProduct, userId, quantity, product.description)
+          addToCart(product.idProduct, userId, 1, product.description)
         );
 
         navigate("/cart");
@@ -70,7 +97,6 @@ const Cards = ({ product }) => {
       }
     }
   };
-
   return (
     <div style={{ marginBottom: "20px", position: "relative" }}>
       <Card

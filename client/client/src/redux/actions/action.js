@@ -1,5 +1,6 @@
 import {
   //PRODUCTS
+  POST_PRODUCT_STATUS,
   GET_ALL_BRANDS,
   FILTER_PRODUCTS,
   FILTER_BY_NAME,
@@ -38,7 +39,7 @@ import {
   DELETE_COLOR,
   DELETE_BRAND,
   DELETE_SIZE,
-  CREATE_DETAIL
+  CREATE_DETAIL,
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -78,6 +79,18 @@ export const deleteProduct = (idProduct) => {
       });
     } catch (error) {
       throw Error("No se pudo borrar el producto", error);
+    }
+  };
+};
+
+export const putProductStatus = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(`${SERVER_URL}/product/update`, data);
+      dispatch({ type: POST_PRODUCT_STATUS, payload: response.data });
+      return response;
+    } catch (error) {
+      console.log(error);
     }
   };
 };
@@ -273,7 +286,6 @@ export const getIdUser = (idUser) => {
   };
 };
 
-
 export const updateUser = (userData) => {
   return async function (dispatch) {
     try {
@@ -283,7 +295,6 @@ export const updateUser = (userData) => {
         type: PUT_USER,
         payload: response.data.data,
       });
-
     } catch (error) {
       console.log("Error durante el inicio de sesión:", error);
     }
@@ -502,7 +513,7 @@ export const deleteSize = (idSize) => {
   return async (dispatch) => {
     try {
       const response = await axios.delete(`${SERVER_URL}/size/${idSize}`);
-      console.log("Response deleteSize", response)
+      console.log("Response deleteSize", response);
       dispatch({
         type: DELETE_SIZE,
         payload: response.data.data,
@@ -513,12 +524,14 @@ export const deleteSize = (idSize) => {
   };
 };
 
-
 export const createDetail = (idSale, idUser, listProducts) => {
-  
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:3001/surf/detail', { idSale, idUser, listProducts });
+      const response = await axios.post("http://localhost:3001/surf/detail", {
+        idSale,
+        idUser,
+        listProducts,
+      });
       console.log(response.data);
       dispatch({
         type: CREATE_DETAIL,
