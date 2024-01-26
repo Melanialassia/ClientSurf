@@ -19,7 +19,7 @@ const MySales = () => {
       try {
         setLoading(true);  // Indicar que la carga está en curso
 
-        const response = await axios.get('http://localhost:3001/surf/sale');
+        const response = await axios.get('https://surf-4i7c.onrender.com/surf/sale');
         const { data } = response;
         console.log('Sales data:', data);
 
