@@ -37,8 +37,8 @@ const MyProfile = () => {
         <div className={styles.profileInfo}>
           <h3 className={styles.textt}>{myAccount}</h3>
           <h4 className={styles.text}>{personalInfo}</h4>
-          <p className={styles.texto}>{dataUser.nameUser}</p>
-          <p className={styles.texto}>{dataUser.emailUser}</p>
+          <p className={styles.texto}>{userData.nameUser}</p>
+          <p className={styles.texto}>{userData.emailUser}</p>
           <Button
             style={{
               width: "100px",
