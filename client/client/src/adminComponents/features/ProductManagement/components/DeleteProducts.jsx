@@ -1,76 +1,98 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //ACTIONS
 import {
   getAllProducts,
+  getInactiveProducts,
   putProductStatus,
 } from "../../../../redux/actions/action";
 //LIBRARY
-import { List, Skeleton, Avatar, Divider } from "antd";
+import { List, Skeleton, Avatar, Divider, message } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
+import InactiveProductSearchBar from "./InactiveProductSearchBar";
 
 const DeleteProducts = () => {
-  const allProducts = useSelector((s) => s.allProducts);
+  const inactiveProducts = useSelector((s) => s.inactiveProducts);
   const dispatch = useDispatch();
+  const [reload, setReload] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, []);
+    dispatch(getInactiveProducts());
+    setReload(true);
+  }, [reload]);
 
-  const falseStatus = allProducts.filter((product) => product.status === false);
   const handleBack = async (idProduct) => {
-    const data = {
-      idProduct: idProduct,
-      status: true,
-    };
-    await dispatch(putProductStatus(data));
-    await dispatch(getAllProducts());
+    try {
+      const data = {
+        idProduct: idProduct,
+        status: true,
+      };
+      await dispatch(putProductStatus(data));
+      await dispatch(getAllProducts());
+      await dispatch(getInactiveProducts());
+      messageApi.open({
+        type: "success",
+        content: "Producto restaurado con éxito!",
+      });
+    } catch (error) {
+      messageApi.open({
+        type: "error",
+        content: "No se pudo restaurar el producto",
+      });
+      throw Error("No se pudo restaurar el producto", error);
+    }
   };
 
   return (
-      <div
-        style={{
-          height: 400,
-          overflow: "auto",
-          padding: "0 16px",
-          border: "1px solid rgba(140, 140, 140, 0.35)",
+    <div
+      style={{
+        height: 400,
+        overflow: "auto",
+        padding: "0 16px",
+        border: "1px solid rgba(140, 140, 140, 0.35)",
         //   width: "48%",
-        }}
-      >
-        <InfiniteScroll
-          dataLength={falseStatus ? falseStatus.length : 0}
-          loader={
-            <Skeleton
-              avatar
-              paragraph={{
-                rows: 1,
-              }}
-              active
-            />
-          }
-          endMessage={<Divider plain>No existen más productos 🏄‍♀️</Divider>}
-          scrollableTarget="scrollableDivRight"
-        >
-          <List
-            header={<div>Productos inactivos</div>}
-            dataSource={falseStatus}
-            renderItem={(item) => (
-              <List.Item key={item.idProduct}>
-                <List.Item.Meta
-                  avatar={<Avatar src={item.image} />}
-                  title={<a>{item.name}</a>}
-                  description={
-                    <p>
-                      Precio: ${item.priceProduct} || Stock: {item.stock}
-                    </p>
-                  }
-                />
-                <a onClick={() => handleBack(item.idProduct)}>Recuperar</a>
-              </List.Item>
-            )}
+      }}
+    >
+      {contextHolder}
+      <InfiniteScroll
+        dataLength={inactiveProducts ? inactiveProducts.length : 0}
+        loader={
+          <Skeleton
+            avatar
+            paragraph={{
+              rows: 1,
+            }}
+            active
           />
-        </InfiniteScroll>
-      </div>
+        }
+        endMessage={<Divider plain>No existen más productos 🏄‍♀️</Divider>}
+        scrollableTarget="scrollableDivRight"
+      >
+        <List
+          header={
+            <div>
+              <p>Productos inactivos</p> <InactiveProductSearchBar />
+            </div>
+          }
+          dataSource={inactiveProducts}
+          renderItem={(item) => (
+            <List.Item key={item.idProduct}>
+              <List.Item.Meta
+                avatar={<Avatar src={item.image} />}
+                title={<a>{item.name}</a>}
+                description={
+                  <p>
+                    Precio: ${item.priceProduct} || Stock: {item.stock}
+                  </p>
+                }
+              />
+              <a onClick={() => handleBack(item.idProduct)}>Recuperar</a>
+            </List.Item>
+          )}
+        />
+      </InfiniteScroll>
+    </div>
   );
 };
 

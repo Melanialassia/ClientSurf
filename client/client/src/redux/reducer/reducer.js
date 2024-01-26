@@ -1,7 +1,7 @@
 import {
   //PRODUCTS
   GET_ALL_BRANDS,
-  FILTER_PRODUCTS ,
+  FILTER_PRODUCTS,
   FILTER_BY_NAME,
   ALL_CATEGORYS,
   ALL_PRODUCTS,
@@ -9,6 +9,9 @@ import {
   FILTER_PRICE,
   DELETE_PRODUCT,
   POST_PRODUCT,
+  FILTER_ACTIVE_PRODUCT_BY_NAME,
+  FILTER_INACTIVE_PRODUCT,
+  FILTER_INACTIVE_PRODUCT_BY_NAME,
   //CART
   ADD_TO_CART,
   //FAVORITE
@@ -25,6 +28,8 @@ import {
   PUT_USER,
   DELETE_USER,
   GET_USER_BY_NAME,
+  FILTER_INACTIVE_USERS_BY_NAME,
+  FILTER_INACTIVE_USERS,
   //PAGINATE
   PAGINATE,
   OPEN_MODAL,
@@ -38,7 +43,7 @@ import {
   DELETE_COLOR,
   DELETE_BRAND,
   DELETE_SIZE,
-  CREATE_DETAIL
+  CREATE_DETAIL,
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -57,7 +62,9 @@ const initialState = {
   dataUser: null,
   userData: [],
   openModal: false,
-  details: []
+  details: [],
+  inactiveProducts: [],
+  inactiveUsers: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -182,6 +189,30 @@ const reducer = (state = initialState, action) => {
         allProducts: action.payload,
       };
 
+    case FILTER_INACTIVE_USERS:
+      return {
+        ...state,
+        inactiveUsers: action.payload,
+      };
+
+    case FILTER_INACTIVE_USERS_BY_NAME:
+      return {
+        ...state,
+        inactiveUsers: action.payload,
+      };
+
+    case FILTER_INACTIVE_PRODUCT:
+      return {
+        ...state,
+        inactiveProducts: action.payload,
+      };
+
+    case FILTER_INACTIVE_PRODUCT_BY_NAME:
+      return {
+        ...state,
+        inactiveProducts: action.payload,
+      };
+
     case ADD_TO_CART:
       return {
         ...state,
@@ -251,7 +282,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         logedUser: true,
       };
-      case CREATE_DETAIL:
+    case CREATE_DETAIL:
       return {
         ...state,
         details: [...state.details, action.payload],
