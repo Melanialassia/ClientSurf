@@ -2,7 +2,7 @@
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 //COMPONENTS
 import NavBar from "../components/NavBar";
 import ProfileMenu from "../components/ProfileMenu";
@@ -19,20 +19,25 @@ import {
 
 //STYLE-SHEETS
 import styles from "./Header.module.css";
+import { getCartProducts } from "../../../../redux/actions/action";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.dataUser);
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
+  const [reload, setReload] = useState(false);
 
   const cartProducts = useSelector((state) => state.cart);
-  console.log("cartProducts", cartProducts);
-  console.log("cartProducts.lenght", cartProducts.length);
 
   const open = useSelector((state) => state.openModal);
 
   const location = useLocation();
+
+  useEffect(() => {
+    dispatch(getCartProducts())
+    setReload(true);
+  }, [reload]);
 
   useEffect(() => {
     // Check if access is in localStorage and set logedUser accordingly
