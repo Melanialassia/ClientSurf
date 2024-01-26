@@ -12,3 +12,35 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
 }
+
+.imageone {
+    width: 250px;
+    margin-left: 700px;
+    margin-top: -300px;
+    border-radius: 50%;
+}
+
+.imagetwo {
+    width: 250px;
+    margin-left: 30px;
+    margin-top: -300px;
+    border-radius: 50%;
+}
+
+.imagethree {
+    width: 250px;
+    margin-left: 700px;
+    margin-top: -150px;
+    border-radius: 50%;
+}
+
+.secondtext {
+    margin-left: 600px;
+    margin-top: 200px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.thirdtext {
+    margin-top: 200px;
+}

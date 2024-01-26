@@ -14,7 +14,6 @@ import { getIdUser } from "../../../../redux/actions/action";
 // STYLE-SHEETS
 import styles from "./MyProfile.module.css";
 
-const { Meta } = Card;
 
 const MyProfile = () => {
   const dispatch = useDispatch();
@@ -33,17 +32,6 @@ const MyProfile = () => {
 
   return (
     <div className={styles.container}>
-      {/* <Card
-        hoverable
-        style={{
-          width: 500,
-          height: 400,
-          margin: "10px",
-          padding: "0",
-          borderRadius: "2rem",
-        }}
-        className={styles.firstHeadline}
-      > */}
         <div className={styles.profileInfo}>
           <h3 className={styles.textt}>{myAccount}</h3>
           <h4 className={styles.text}>{personalInfo}</h4>
@@ -53,7 +41,7 @@ const MyProfile = () => {
             {editLink}
           </button>
         </div>
-      {/* </Card> */}
+ 
       <div className={styles.editSection}>
         {isEditing && <EditUserData onCancel={() => setIsEditing(false)} />}
       </div>

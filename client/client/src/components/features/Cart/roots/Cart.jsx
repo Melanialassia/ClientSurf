@@ -22,7 +22,7 @@ const Cart = () => {
   
   const fetchCartData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/surf/cart/1`);
+      const response = await axios.get(`https://surf-4i7c.onrender.com/surf/1`);
       console.log(response.data);
       setCartData(response.data);
     } catch (error) {

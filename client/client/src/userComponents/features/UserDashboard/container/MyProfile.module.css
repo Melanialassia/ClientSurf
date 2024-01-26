@@ -1,9 +1,22 @@
 @import url('https://fonts.cdnfonts.com/css/montserrat');
 
-.container {
-    font-family: 'Montserrat', sans-serif;
-    margin-left: 150px;
+.profileInfo {
+    color: black;
+    width: 570px;
+    height: 500px;
     margin-top: 150px;
+    margin-bottom: 5px;
+    background-color: white;
+    margin-left: 460px;
+    margin-right: -10px;
+    padding: 20px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
 }
 
 h3 {
