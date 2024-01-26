@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import axios from 'axios';
 import { createDetail } from '../../../../redux/actions/action';
 import styles from "./MySales.module.css";
-
+import surferLoaderImage from "../../../../images/loader.gif";
 
 const MySales = () => {
   const dispatch = useDispatch();
@@ -86,9 +86,16 @@ const MySales = () => {
 
   return (
     <div className={styles.fuente}>
-       <h1>My Sales</h1>
+       <h1>Mis Compras</h1>
       {loading ? (
-        <p>Cargando Sales...</p>
+       <div className={styles.loaderContainer}>
+        <img
+        className={styles.loaderImage}
+        src={surferLoaderImage}
+        alt="Surfer Loader"
+      />
+        <p>Cargando Compras...</p>
+        </div>
       ) : sales.length === 0 ? (
         <p>No hay ventas disponibles</p>
       ) : (
