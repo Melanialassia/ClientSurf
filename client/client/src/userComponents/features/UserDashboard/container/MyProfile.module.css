@@ -2,8 +2,8 @@
 
 .profileInfo {
     color: black;
-    width: 570px;
-    height: 500px;
+    width: 500px;
+    height: 430px;
     margin-top: 150px;
     margin-bottom: 5px;
     background-color: white;
@@ -17,6 +17,7 @@
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     justify-content: center;
     font-family: "Montserrat", sans-serif;
+    text-align: center;
 }
 
 h3 {
@@ -28,3 +29,7 @@ h4 {
     margin-top: 30px;
 }
 
+/* .flexContainer {
+    display: flex;
+    justify-content: space-between;
+} */

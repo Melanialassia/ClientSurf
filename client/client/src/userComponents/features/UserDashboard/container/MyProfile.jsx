@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { Card } from 'antd';
+import { useDispatch } from 'react-redux';
+import { Button} from 'antd';
 
 // COMPONENTS
 import EditUserData from "./EditUserData";
@@ -32,17 +32,24 @@ const MyProfile = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.flexContainer}>
         <div className={styles.profileInfo}>
           <h3 className={styles.textt}>{myAccount}</h3>
           <h4 className={styles.text}>{personalInfo}</h4>
           <p className={styles.texto}>{dataUser.nameUser}</p>
           <p className={styles.texto}>{dataUser.emailUser}</p>
-          <button onClick={handleEditClick} className={styles.editButton}>
+          <Button
+            style={{
+              width: "100px",
+              backgroundColor: "#2d4056",
+              color: "white",
+              marginLeft: "180px"
+            }}
+            onClick={handleEditClick}
+          >
             {editLink}
-          </button>
+          </Button>
         </div>
- 
-      <div className={styles.editSection}>
         {isEditing && <EditUserData onCancel={() => setIsEditing(false)} />}
       </div>
     </div>

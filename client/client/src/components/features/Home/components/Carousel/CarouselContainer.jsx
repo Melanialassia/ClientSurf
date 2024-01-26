@@ -23,7 +23,7 @@ const CarouselContainer = () => {
       <div className={styles.carouselItem}>
         <img
           className={styles.carouselImage}
-          src="/assets/images/carousel2.png"
+          src="/assets/images/tiposdetablas.jpg"
           alt="Imagen Carousel 2"
         />
       </div>

@@ -103,7 +103,7 @@ const RegisterUsersContainer = () => {
         onFinish={handleSubmit}
         style={{
           marginTop: "-130px",
-          marginLeft: "-0px",
+          marginLeft: "-50px",
           maxWidth: 400,
           fontSize: "200px",
         }}
@@ -144,7 +144,10 @@ const RegisterUsersContainer = () => {
             offset: 8,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit"
+          style={{
+            marginLeft: "30px"
+          }}>
             {login}
           </Button>
         </Form.Item>

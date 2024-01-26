@@ -72,7 +72,7 @@ const ProfileMenu = () => {
   return (
     <div >
       <UserOutlined 
-      style={{ fontSize: '24px', marginLeft: "-20px" }}
+      style={{ fontSize: '24px', marginLeft: "-20px", color: "#2d4056" }}
       />
       <Menu
         className={styles['ant-menu']}
@@ -82,7 +82,8 @@ const ProfileMenu = () => {
           marginTop: "-34px",
           marginBottom: "-10px",
           borderRadius: "20px",
-          backgroundColor: "#e2dcd1"
+          backgroundColor: "#e2dcd1",
+          color: "#2d4056"
         }}
         selectedKeys={[]} 
         defaultOpenKeys={["sub1"]}
