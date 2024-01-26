@@ -1,6 +1,6 @@
 //HOOKS
 import React from 'react';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 //ACTIONS
@@ -24,9 +24,9 @@ function getItem(label, key, children, type) {
   const ProfileMenuAdmin = () => {
     
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.userData);
+    const dataUser = JSON.parse(localStorage.getItem("dataUser"));
     const items = [
-        getItem(`Hola, ${data.nameUser}`, "sub1", [
+        getItem(`Hola, ${dataUser.nameUser}`, "sub1", [
         getItem("Mi cuenta", "1"),
         getItem("Dashboard", "2"),
         getItem("Cerrar sesión", "3")
@@ -36,10 +36,10 @@ function getItem(label, key, children, type) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (data.idUser) {
-      dispatch(getIdUser(data.idUser));
+    if (dataUser.idUser) {
+      dispatch(getIdUser(dataUser.idUser));
     }
-  }, [dispatch, data.idUser]);
+  }, [dispatch, dataUser.idUser]);
 
   const handleLogOut = () => {
     localStorage.removeItem('access');
