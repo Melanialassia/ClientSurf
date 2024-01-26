@@ -136,12 +136,12 @@ const EditUserData = () => {
     // className={styles.firstHeadline}
 
     // >
-    <div>
+    <div   className={styles.container}>
       <h4 className={styles.text}>{editPersonalData}</h4>
       <Form
         initialValues={userData}
         {...layout}
-        className={styles.container}
+      
         name="nest-messages"
         onFinish={handleSubmit}
         style={{
