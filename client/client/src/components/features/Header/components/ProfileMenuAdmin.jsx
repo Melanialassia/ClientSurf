@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { logOut, getIdUser } from "../../../../redux/actions/action";
 //LIBRARY
 import { Menu } from "antd";
+import { UserOutlined } from '@ant-design/icons';
 //STYLE-SHEETS
 import styles from './ProfileMenu.module.css';
 
@@ -64,14 +65,19 @@ function getItem(label, key, children, type) {
   };
   return (
     <div >
+            <UserOutlined 
+      style={{ fontSize: '24px', marginLeft: "-20px", color: "#2d4056" }}
+      />
     <Menu
       className={styles['ant-menu']}
       style={{
-        width: 180,
+        width: 200,
         height: 50,
-        marginTop: "0px",
-        marginRight: "80px",
-        borderRadius: "20px"
+        marginTop: "-34px",
+        marginBottom: "-10px",
+        borderRadius: "20px",
+        backgroundColor: "#e2dcd1",
+        color: "#2d4056"
       }}
       selectedKeys={[]} 
       defaultOpenKeys={["sub1"]}
