@@ -1,7 +1,22 @@
-.image {
+/* .image {
   bottom: 130px;
   margin-right: -20px; 
   width: 60px; 
   margin-left: 1423px;
   position: fixed;
+} */
+
+.image {
+  bottom: 5%; /* Ajusta la distancia desde la parte inferior usando un porcentaje */
+  margin-right: -20px; 
+  width: 60px; 
+  right: 5%; /* Ajusta la distancia desde el lado derecho usando un porcentaje */
+  position: fixed;
+}
+
+/* Media query para ajustes específicos en pantallas más grandes */
+@media screen and (min-width: 768px) {
+  .image {
+    width: 50px; /* Ajusta el tamaño del botón para pantallas más grandes si es necesario */
+  }
 }
