@@ -1,13 +1,14 @@
 import React from "react";
 import { Collapse } from "antd";
+import ProductsManager from "../../ProductManagement/roots/ProductsManager";
 import CategoryManager from "../../CategoryManager/root/CategoryManager";
 import ProductManager from "../../CreateProduct/roots/ProductManager";
-import ColorManager from "../../CreateColor/root/ColorManager";
-import BrandManager from "../../CreateBrand/roots/BrandManager";
-import SizeManager from "../../CreateSize/roots/SizeManager";
-import UserManager from "../../UserManagement/roots/UserManager"
-import styles from "./AdminDashboard.module.css";
 import SalesManager from "../../SalesManager/roots/SalesManager";
+import UserManager from "../../UserManagement/roots/UserManager";
+import BrandManager from "../../CreateBrand/roots/BrandManager";
+import ColorManager from "../../CreateColor/root/ColorManager";
+import SizeManager from "../../CreateSize/roots/SizeManager";
+import styles from "./AdminDashboard.module.css";
 
 
 const text = `
@@ -21,31 +22,36 @@ const items = [
   },
   {
     key: "2",
+    label: "Gestionar los productos",
+    children: <ProductsManager></ProductsManager>,
+  },
+  {
+    key: "3",
     label: "Registro de ventas",
     children: <SalesManager/>,
   },
   {
-    key: "3",
+    key: "4",
     label: "Agregar un nuevo producto a la tienda",
     children: <ProductManager></ProductManager>,
   },
   {
-    key: "4",
+    key: "5",
     label: "Gestionar las categorias",
     children: <CategoryManager />,
   },
   {
-    key: "5",
+    key: "6",
     label: "Gestionar las marcas",
     children: <BrandManager></BrandManager>,
   },
   {
-    key: "6",
+    key: "7",
     label: "Gestionar los colores",
     children: <ColorManager></ColorManager>,
   },
   {
-    key: "7",
+    key: "8",
     label: "Gestionar las tallas",
     children: <SizeManager></SizeManager>,
   },

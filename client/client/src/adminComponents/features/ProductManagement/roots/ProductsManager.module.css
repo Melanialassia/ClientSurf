@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  
+  .childList {
+    text-align: center;
+    min-width: 500px;
+    width: auto;
+  }
+  
