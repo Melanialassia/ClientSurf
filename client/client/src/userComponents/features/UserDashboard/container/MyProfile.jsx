@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button} from 'antd';
 
 // COMPONENTS
@@ -18,6 +18,7 @@ import styles from "./MyProfile.module.css";
 const MyProfile = () => {
   const dispatch = useDispatch();
   const dataUser = JSON.parse(localStorage.getItem("dataUser"));
+  const userData = useSelector((state) => state.userData)
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {
@@ -28,7 +29,7 @@ const MyProfile = () => {
     if (dataUser.idUser) {
       dispatch(getIdUser(dataUser.idUser));
     }
-  }, [dispatch, dataUser.idUser]);
+  }, [dispatch, userData.idUser]);
 
   return (
     <div className={styles.container}>

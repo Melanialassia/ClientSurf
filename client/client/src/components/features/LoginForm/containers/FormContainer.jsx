@@ -35,7 +35,6 @@ const validateMessages = {
 const FormContainer = () => {
   const [userData, setUserData] = useState({
     nameUser: "",
-    //lastName: "",
     emailUser: "",
     password: "",
   });
@@ -58,13 +57,13 @@ const FormContainer = () => {
   const handleSubmit = async () => {
     try {
       dispatch(postUser(userData));
-      dispatch(userLogin(userData))
+      // dispatch(userLogin(userData))
       setIsUserCreated(true);
       messageApi.open({
         type: "success",
         content: "Usuario creado con éxito!",
       });
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.error("No se pudo crear la cuenta de usuario con éxito:", error);
     }
