@@ -44,8 +44,10 @@ const FormContainer = () => {
   const [isUserCreated, setIsUserCreated] = useState(false);
 
   const navigate = useNavigate();
-   //MESSAGE
-   const [messageApi, contextHolder] = message.useMessage();
+  //MESSAGE
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const [messagee, setMessagee] = useState("");
 
   const handleChange = (name, value) => {
     setUserData({
@@ -56,16 +58,21 @@ const FormContainer = () => {
 
   const handleSubmit = async () => {
     try {
-      dispatch(postUser(userData));
-      // dispatch(userLogin(userData))
-      setIsUserCreated(true);
+      await Promise.all([
+        dispatch(postUser(userData)),
+        dispatch(userLogin(userData)),
+      ]);
+      setMessagee("Usuario creado con éxito");
       messageApi.open({
         type: "success",
         content: "Usuario creado con éxito!",
       });
-      navigate("/login");
+      setIsUserCreated(true);
+      navigate("/");
+      window.alert('Usuario creado con éxito!')
     } catch (error) {
       console.error("No se pudo crear la cuenta de usuario con éxito:", error);
+      setMessagee("Error al crear usuario");
     }
   };
 
@@ -73,7 +80,7 @@ const FormContainer = () => {
     <div className={styles.container}>
       <h2 className={styles.textt}>{infoLogin}</h2>
       <h4 className={styles.text}>{text}</h4>
-  
+
       <Form
         {...layout}
         name="nest-messages"
@@ -92,7 +99,7 @@ const FormContainer = () => {
           rules={[
             {
               required: true,
-              pattern: 20
+              pattern: 20,
             },
             {
               max: 20,
@@ -151,10 +158,13 @@ const FormContainer = () => {
             offset: 8,
           }}
         >
-          <Button type="primary" htmlType="submit"
-          style={{
-            marginLeft: "30px"
-          }}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{
+              marginLeft: "30px",
+            }}
+          >
             {createAccount}
           </Button>
         </Form.Item>
