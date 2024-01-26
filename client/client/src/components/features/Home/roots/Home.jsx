@@ -1,15 +1,16 @@
-import CarrouselContainer from "../components/Carousel/CarouselContainer";
-import HowToBuyContainer from "../components/HowToBuy/HowToBuyContainer";
-import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";
-import PhotoBannerContainer from "../components/PhotoBanner/PhotoBannerContainer";
-import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
-import styles from "./Home.module.css";
-
+//HOOKS
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { filterProducts, getIdUser } from "../../../../redux/actions/action";
-import ProductFilter from "../components/ProductFilter/ProductFilter";
 import { Link } from "react-router-dom";
+//COMPONENTS
+import CarrouselContainer from "../components/Carousel/CarouselContainer";
+import HowToBuyContainer from "../components/HowToBuy/HowToBuyContainer";
+import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";
+import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
+//STYLE-SHEETS
+import styles from "./Home.module.css";
+
 
 const Home = () => {
   const dispatch = useDispatch();

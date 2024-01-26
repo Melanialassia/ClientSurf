@@ -81,7 +81,7 @@ const FormContainer = () => {
         onFinish={handleSubmit}
         style={{
           marginTop: "-80px",
-          marginLeft: "-10px",
+          marginLeft: "-50px",
           maxWidth: 450,
           fontSize: "200px",
         }}
@@ -152,7 +152,10 @@ const FormContainer = () => {
             offset: 8,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit"
+          style={{
+            marginLeft: "30px"
+          }}>
             {createAccount}
           </Button>
         </Form.Item>
