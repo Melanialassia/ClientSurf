@@ -6,7 +6,7 @@ import {
   deleteProduct,
   getAllProducts,
 } from "../../../../redux/actions/action";
-import ProductSearchBar from "./ProductSearchBar";
+//import ProductSearchBar from "./ProductSearchBar";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -71,7 +71,7 @@ const ProductList = () => {
         <List
           header={
             <div>
-              <p>Lista de productos</p> <ProductSearchBar />
+              {/* <p>Lista de productos</p> <ProductSearchBar /> */}
             </div>
           }
           dataSource={allProducts}

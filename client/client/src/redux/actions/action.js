@@ -11,6 +11,9 @@ import {
   FILTER_PRICE,
   ALL_COLORS,
   DELETE_PRODUCT,
+  FILTER_ACTIVE_PRODUCT_BY_NAME,
+  FILTER_INACTIVE_PRODUCT,
+  FILTER_INACTIVE_PRODUCT_BY_NAME,
   //FAVORITE
   ADD_TO_FAVORITES,
   DELETE_FAVORITES,
@@ -26,6 +29,8 @@ import {
   PUT_USER,
   DELETE_USER,
   GET_USER_BY_NAME,
+  FILTER_INACTIVE_USERS_BY_NAME,
+  FILTER_INACTIVE_USERS,
   //PAGINADO
   PAGINATE,
   OPEN_MODAL,
@@ -165,13 +170,76 @@ export const getProductsByName = (name) => {
   };
 };
 
+export const getInactiveUsers = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/user`);
+      const result = data.data;
+      console.log("data del inactive user", data.data);
+      const falseStatus = result.filter((user) => user.activeUser === false);
+      dispatch({
+        type: FILTER_INACTIVE_USERS,
+        payload: falseStatus,
+      });
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+};
+
+export const getInactiveUsersByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/user?name=${name}`);
+      const result = data.data;
+      const falseStatus = result.filter((user) => user.activeUser === false);
+      dispatch({
+        type: FILTER_INACTIVE_USERS_BY_NAME,
+        payload: falseStatus,
+      });
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+};
+
+export const getInactiveProducts = () => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/product`);
+      const result = data.listProducts;
+      const falseStatus = result.filter((product) => product.status === false);
+      dispatch({
+        type: FILTER_INACTIVE_PRODUCT,
+        payload: falseStatus,
+      });
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+};
+
+export const getInactiveProductsByName = (name) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/product?name=` + name);
+      const result = data.listProducts;
+      const falseStatus = result.filter((product) => product.status === false);
+      dispatch({
+        type: FILTER_INACTIVE_PRODUCT_BY_NAME,
+        payload: falseStatus,
+      });
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+};
+
 export const getUserByName = (name) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/user?name=${name}`);
       const result = data.data;
-      console.log("data", data);
-      console.log("result.data", result.data);
       dispatch({
         type: GET_USER_BY_NAME,
         payload: result,
@@ -306,7 +374,6 @@ export const getAllUsers = () => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/user`);
       const result = data.data;
-      //console.log("result", result);
       return dispatch({ type: GET_ALL_USERS, payload: result });
     } catch (error) {
       throw Error("No se pudo traer los usuarios con exito", error);
