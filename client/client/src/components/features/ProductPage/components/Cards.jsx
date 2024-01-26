@@ -8,12 +8,12 @@ import {
   addToCart,
   addToFavorites,
   deleteFavorite,
-  getAllFavoriteProducts
+  getAllFavoriteProducts,
 } from "../../../../redux/actions/action";
 import LoginModal from "../../LoginModal/root/LoginModal";
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 //LIBRARY
-import { Card, Button, Space, message} from "antd";
+import { Card, Button, Space, message } from "antd";
 import {
   HeartOutlined,
   HeartFilled,
@@ -28,31 +28,29 @@ const Cards = ({ product }) => {
   const userId = localStorage.getItem("userId");
   const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
-  
+
   const isProductInFavorites = favoriteProducts.some(
     (favProduct) => favProduct.idProduct === product.idProduct
   );
 
   const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
-    //MESSAGE
-    const openMessage = () => {
-      messageApi.open({
-        key: 'addToFavoritesMessage', // Asegúrate de tener una clave única para cada mensaje
-        type: 'success',
-        content: 'Producto agregado a favoritos',
-        duration: 2,
-      });
-    };
+  //MESSAGE
+  const openMessage = () => {
+    messageApi.open({
+      key: "addToFavoritesMessage", // Asegúrate de tener una clave única para cada mensaje
+      type: "success",
+      content: "Producto agregado a favoritos",
+      duration: 2,
+    });
+  };
 
   //FAVORITES
-  
+
   useEffect(() => {
-    if(logedUser === true){
-
-      dispatch(getAllFavoriteProducts(dataUser.idUser))
+    if (logedUser === true) {
+      dispatch(getAllFavoriteProducts(dataUser.idUser));
     }
-  }, [])
-
+  }, []);
 
   useEffect(() => {
     setIsInFavorites(isProductInFavorites);
@@ -127,7 +125,12 @@ const Cards = ({ product }) => {
             />
             <div style={{ padding: "16px" }}>
               <Meta
-                title={<strong>{product.name}</strong>}
+                title={
+                  <strong>
+                    {product.name.charAt(0).toUpperCase() +
+                      product.name.slice(1)}
+                  </strong>
+                }
                 description={
                   <>
                     <p style={{ margin: "8px 0", fontWeight: "bold" }}>
@@ -154,7 +157,7 @@ const Cards = ({ product }) => {
                     color: "#E89038",
                     fontSize: "20px",
                     marginLeft: "10px",
-                    marginTop: "20px"
+                    marginTop: "20px",
                   }}
                 />
               ) : (
@@ -164,7 +167,7 @@ const Cards = ({ product }) => {
                     color: "#E89038",
                     fontSize: "20px",
                     marginLeft: "10px",
-                    marginTop: "20px"
+                    marginTop: "20px",
                   }}
                 />
               )}
