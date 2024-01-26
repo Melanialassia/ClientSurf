@@ -27,7 +27,7 @@ import style from "./ProductPage.module.css";
 import { Button } from "antd";
 
 const ProductPage = () => {
-  const allProducts = useSelector((s) => s.allProducts);
+  const productsTrue = useSelector((s) => s.allProducts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //FILTROS
@@ -45,6 +45,8 @@ const ProductPage = () => {
     maxPrice: "",
   });
 
+  //STATUS TRUE
+  const allProducts = productsTrue.filter((product) => product.status === true);
   //PAGINADO
   const currentPage = useSelector((state) => state.currentPage);
   const productPerPage = useSelector((state) => state.productPerPage);

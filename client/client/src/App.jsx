@@ -24,6 +24,7 @@ import EditUserData from "./userComponents/features/UserDashboard/container/Edit
 import Faq from "./components/features/Faq/components/Faq";
 import AdminDashboard from "./adminComponents/features/AdminDashboard/roots/AdminDashboard";
 import MySales from "./userComponents/features/UserDashboard/roots/MySales";
+import BorradoLogico from "./adminComponents/features/CreateProduct/components/BorradoLogico";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/borradoLogico" element={<BorradoLogico/>}/> //CAMBIAR
         <Route path="/account/create" element={<LoginForm />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/products" element={<ProductPage />} />
@@ -39,7 +41,7 @@ const App = () => {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/services" element={<Services />} />
-        <Route path="/admin/dashboard" element={<CreateProducts />} />
+        <Route path="/admin/dashboard" element={<CreateProducts />} /> //CAMBIAR
         <Route path="/my-account" element={<MyAccount />} />
         <Route path="/change-policy" element={<ChangePolicy />} />
         <Route path="/edit-personaldata" element={<EditUserData />} />
