@@ -55,14 +55,21 @@
   border-radius: 20px;
   margin-left: 50px;
   margin-top: 100px;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .imagenFiltroaccesorio {
   width: 600px;
   border-radius: 20px;
   margin-left: 100px;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-
+.imagenFiltrotabla:hover{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.imagenFiltroaccesorio:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+}
 
 
