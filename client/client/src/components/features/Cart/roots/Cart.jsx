@@ -26,8 +26,10 @@ const Cart = () => {
       const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
 
       console.log(response.data);
-
+      console.log(response.data.cartList.length);
       setCartData(response.data);
+      localStorage.setItem('cartBadge', (response.data.cartList.length));
+
     } catch (error) {
       console.error('Error al cargar el carrito:', error);
     }
