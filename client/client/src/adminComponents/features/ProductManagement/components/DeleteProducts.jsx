@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+//HOOKS
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //ACTIONS
 import {
@@ -6,14 +7,16 @@ import {
   getInactiveProducts,
   putProductStatus,
 } from "../../../../redux/actions/action";
+//COMPONENT
+import InactiveProductSearchBar from "./InactiveProductSearchBar";
 //LIBRARY
 import { List, Skeleton, Avatar, Divider, message } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import InactiveProductSearchBar from "./InactiveProductSearchBar";
 
 const DeleteProducts = () => {
   const inactiveProducts = useSelector((s) => s.inactiveProducts);
   const dispatch = useDispatch();
+
   const [reload, setReload] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -51,7 +54,6 @@ const DeleteProducts = () => {
         overflow: "auto",
         padding: "0 16px",
         border: "1px solid rgba(140, 140, 140, 0.35)",
-        //   width: "48%",
       }}
     >
       {contextHolder}

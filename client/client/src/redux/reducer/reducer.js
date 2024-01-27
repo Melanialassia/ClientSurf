@@ -214,7 +214,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         inactiveProducts: action.payload,
       };
-
+      
     case GET_CART_PRODUCTS:
       return {
         ...state,
