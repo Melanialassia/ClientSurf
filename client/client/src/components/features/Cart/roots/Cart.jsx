@@ -6,43 +6,47 @@ import { DeleteOutlined } from '@ant-design/icons';
 import EmptyPage from '../../EmptyPage/roots/EmptyPage';
 import { useSelector, useDispatch } from "react-redux";
 import { InputNumber } from 'antd';
+import { deleteAllProductsFromCart, deleteFromCart, getCartProducts } from '../../../../redux/actions/action';
 
 
 
 const Cart = () => {
+  const dispatch = useDispatch();
+  const cartProducts = useSelector((state) => state.cart);
+  const dataUser =JSON.parse(localStorage.getItem("dataUser"));
+
   const [cartData, setCartData] = useState(null);
   const [refreshCart, setRefreshCart] = useState(false);
-  const dataUser = useSelector((state) => state.dataUser);
+  //const dataUser = useSelector((state) => state.dataUser);
+  
   const userId = localStorage.getItem('userId');
   const storedAccess = localStorage.getItem('access');
   const userAccess = storedAccess ? JSON.parse(storedAccess) : null;
   
  
   
-  const fetchCartData = async () => {
+/*   const fetchCartData = async () => {
     try {
-
       const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
-
-      console.log(response.data);
-
       setCartData(response.data);
     } catch (error) {
       console.error('Error al cargar el carrito:', error);
     }
-  };
+  }; */
 
   
   useEffect(() => {
-    fetchCartData();
+    //fetchCartData();
+    dispatch(getCartProducts(dataUser.idUser));
     setRefreshCart(false);
   }, [refreshCart]); 
   
-  const cartListItems = cartData?.cartList || [];
+  const cartListItems = cartProducts;
   
   const handleRemoveProduct = async (productId) => {
     try {
-      await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${userId}/${productId}`); 
+      await dispatch(deleteFromCart(dataUser.idUser, productId))
+      //await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${userId}/${productId}`); 
       setRefreshCart(true);
     } catch (error) {
       console.error('Error al eliminar el producto del carrito:', error);
@@ -51,7 +55,8 @@ const Cart = () => {
 
   const handleRemoveAllProducts = async () => {
     try {
-      await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
+      await dispatch(deleteAllProductsFromCart(dataUser.idUser))
+      //await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
       setRefreshCart(true);
     } catch (error) {
       console.error('Error al eliminar todos los productos del carrito:', error);
@@ -168,7 +173,7 @@ const Cart = () => {
         )}
         {cartListItems.length > 0 && (
           <div className={styles.totalPriceContainer}>
-            <p>Total de venta: <strong>${cartData?.costSale || 0}</strong></p>
+            <p>Total de venta: <strong>${cartListItems?.costSale || 0}</strong></p>
             <hr></hr>
             <button className={styles.buyButton} onClick={handleFinish}>
               FINALIZAR COMPRA

@@ -66,7 +66,7 @@ function getItem(label, key, children, type) {
   return (
     <div >
             <UserOutlined 
-      style={{ fontSize: '24px', marginLeft: "-20px", color: "#2d4056" }}
+      style={{ fontSize: '24px', marginLeft: "-180px", color: "#2d4056" }}
       />
     <Menu
       className={styles['ant-menu']}

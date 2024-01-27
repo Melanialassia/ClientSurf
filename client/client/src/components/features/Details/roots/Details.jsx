@@ -143,7 +143,7 @@ const Details = () => {
     } else {
       try {
         await dispatch(
-          addToCart(product.idProduct, userId, quantity, product.description)
+          addToCart(product.idProduct, userId, quantity/* , product.description */)
         );
 
         navigate("/cart");

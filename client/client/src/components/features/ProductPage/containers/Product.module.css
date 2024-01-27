@@ -9,8 +9,11 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    
+    
   }
   
   .centeredResult {
     margin-left: 400px; /* Ajusta según sea necesario */
+    margin-bottom: 200px;
   }
