@@ -14,6 +14,7 @@ const Cart = () => {
   const [refreshCart, setRefreshCart] = useState(false);
   const dataUser = useSelector((state) => state.dataUser);
   const userId = localStorage.getItem('userId');
+  console.log(userId);
   const storedAccess = localStorage.getItem('access');
   const userAccess = storedAccess ? JSON.parse(storedAccess) : null;
   
@@ -25,8 +26,10 @@ const Cart = () => {
       const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
 
       console.log(response.data);
-
+      console.log(response.data.cartList.length);
       setCartData(response.data);
+      
+
     } catch (error) {
       console.error('Error al cargar el carrito:', error);
     }

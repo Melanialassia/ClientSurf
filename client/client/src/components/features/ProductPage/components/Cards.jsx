@@ -2,7 +2,7 @@ import React from "react";
 //HOOKS
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //ACTION
 import {
   addToCart,
@@ -22,11 +22,12 @@ import {
 const { Meta } = Card;
 
 const Cards = ({ product }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const favoriteProducts = useSelector((s) => s.favoriteProducts);
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
   const dataUser = JSON.parse(localStorage.getItem("dataUser"));
   const userId = localStorage.getItem("userId");
-  const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
   
   const isProductInFavorites = favoriteProducts.some(
@@ -88,10 +89,13 @@ const Cards = ({ product }) => {
     } else {
       try {
         await dispatch(
-          addToCart(product.idProduct, userId, 1, product.description)
+          addToCart(product.idProduct, dataUser.idUser, 1/* , product.description */)
         );
-
-        navigate("/cart");
+        messageApi.open({
+          type: "success",
+          content: "Producto agregado al carrito!",
+        });
+        //navigate("/cart");
       } catch (error) {
         console.error("Error al agregar al carrito:", error);
       }
@@ -99,6 +103,7 @@ const Cards = ({ product }) => {
   };
   return (
     <div style={{ marginBottom: "20px", position: "relative" }}>
+      {contextHolder} 
       <Card
         hoverable
         style={{

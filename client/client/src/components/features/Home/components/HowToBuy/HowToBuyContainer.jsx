@@ -23,7 +23,7 @@ const HowToBuyContainer = () => {
 
   return (
     <div id="como-comprar" className={styles.container}>
-      <div>TE MOSTRAMOS LOS PASOS A SEGUIR, PARA QUE ADQUIERAS DE NUESTROS PRODUCTOS</div>
+      <div>TE MOSTRAMOS LOS PASOS A SEGUIR PARA QUE ADQUIERAS NUESTROS PRODUCTOS</div>
 
       <div>
         <div>

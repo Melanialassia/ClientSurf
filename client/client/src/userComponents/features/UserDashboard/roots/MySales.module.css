@@ -1,8 +1,16 @@
+@import url("https://fonts.cdnfonts.com/css/montserrat");
 
 .fuente {
     font-family: "Montserrat", sans-serif;
+    margin-top: 100px;
+    margin-bottom: 850px;
 }
 
+.text {
+  font-weight: 450;
+  font-size: 2em;
+  font-family: "Montserrat", sans-serif;
+}
 
 
 .details {
@@ -83,6 +91,14 @@ font-family: "Montserrat", sans-serif;
 
 }
 
+.loaderContainer{
+ 
+  margin-top: 80px;
+}
+
+.loaderImage{
+ 
+}
 
 
  
