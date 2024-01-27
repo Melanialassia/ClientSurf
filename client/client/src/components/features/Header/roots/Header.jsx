@@ -20,14 +20,14 @@ import {
 //STYLE-SHEETS
 import styles from "./Header.module.css";
 import { getCartProducts } from "../../../../redux/actions/action";
-const cart2 = localStorage.getItem("cartBadge");
-console.log(cart2);
+
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.dataUser);
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
   const [reload, setReload] = useState(false);
+  const cart2 = localStorage.getItem("cartBadge");
   
   const cartProducts = useSelector((state) => state.cart);
   
@@ -136,7 +136,7 @@ const Header = () => {
       <div>
         {logedUser ? (
           <a href="#">
-            <Badge count={cartProducts.length}>
+            <Badge count={cart2}>
               <ShoppingCartOutlined
                 onClick={handleCartClick}
                 style={{
