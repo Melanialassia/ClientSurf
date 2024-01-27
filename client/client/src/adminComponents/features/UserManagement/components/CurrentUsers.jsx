@@ -15,7 +15,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 const CurrentUsers = () => {
   const allUsers = useSelector((s) => s.allUsers);
-  console.log("entre", allUsers);
   const dispatch = useDispatch();
 
   const [reload, setReload] = useState(false);
