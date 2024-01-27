@@ -41,7 +41,7 @@ const Cart = () => {
     setRefreshCart(false);
   }, [refreshCart]); 
   
-  const cartListItems = cartProducts;
+  const cartListItems = cartProducts.cartList;
   
   const handleRemoveProduct = async (productId) => {
     try {
