@@ -28,7 +28,7 @@ const Cart = () => {
       console.log(response.data);
       console.log(response.data.cartList.length);
       setCartData(response.data);
-      localStorage.setItem('cartBadge', (response.data.cartList.length));
+      
 
     } catch (error) {
       console.error('Error al cargar el carrito:', error);

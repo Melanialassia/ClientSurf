@@ -27,7 +27,8 @@ const Header = () => {
   const data = useSelector((state) => state.dataUser);
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
   const [reload, setReload] = useState(false);
-  const cart2 = localStorage.getItem("cartBadge");
+  const [cartData, setCartData] = useState(null);
+  const userId = localStorage.getItem('userId');
   
   const cartProducts = useSelector((state) => state.cart);
   
@@ -35,9 +36,23 @@ const Header = () => {
   
   const location = useLocation();
   
+  const fetchCartData = async () => {
+    try {
 
+      const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
+
+      console.log(response.data);
+      console.log(response.data.cartList.length);
+      setCartData(response.data);
+      
+
+    } catch (error) {
+      console.error('Error al cargar el carrito:', error);
+    }
+  };
   useEffect(() => {
     dispatch(getCartProducts())
+    fetchCartData();
     setReload(true);
   }, [reload]);
 
@@ -136,7 +151,7 @@ const Header = () => {
       <div>
         {logedUser ? (
           <a href="#">
-            <Badge count={cart2}>
+            <Badge count={cartData.cartList.length}>
               <ShoppingCartOutlined
                 onClick={handleCartClick}
                 style={{
