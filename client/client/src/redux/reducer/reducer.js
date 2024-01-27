@@ -9,11 +9,13 @@ import {
   FILTER_PRICE,
   DELETE_PRODUCT,
   POST_PRODUCT,
-  FILTER_ACTIVE_PRODUCT_BY_NAME,
   FILTER_INACTIVE_PRODUCT,
   FILTER_INACTIVE_PRODUCT_BY_NAME,
   //CART
   ADD_TO_CART,
+  GET_CART_PRODUCTS,
+  DELETE_FROM_CART,
+  DELETE_ALL_PRODUCTS_FROM_CART,
   //FAVORITE
   DELETE_FAVORITES,
   ADD_TO_FAVORITES,
@@ -213,10 +215,28 @@ const reducer = (state = initialState, action) => {
         inactiveProducts: action.payload,
       };
 
+    case GET_CART_PRODUCTS:
+      return {
+        ...state,
+        cart: action.payload,
+      };
+
     case ADD_TO_CART:
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        cart: action.payload,
+      };
+
+    case DELETE_FROM_CART:
+      return {
+        ...state,
+        cart: action.payload,
+      };
+
+    case DELETE_ALL_PRODUCTS_FROM_CART:
+      return {
+        ...state,
+        cart: action.payload,
       };
 
     case ALL_FAVORITES:

@@ -11,7 +11,6 @@ import {
   FILTER_PRICE,
   ALL_COLORS,
   DELETE_PRODUCT,
-  FILTER_ACTIVE_PRODUCT_BY_NAME,
   FILTER_INACTIVE_PRODUCT,
   FILTER_INACTIVE_PRODUCT_BY_NAME,
   //FAVORITE
@@ -21,6 +20,9 @@ import {
   CREATE_USER,
   //CART
   ADD_TO_CART,
+  DELETE_FROM_CART,
+  GET_CART_PRODUCTS,
+  DELETE_ALL_PRODUCTS_FROM_CART,
   //USER
   GET_ALL_USERS,
   GET_USER_ID,
@@ -396,8 +398,19 @@ export const deleteUser = (idUser) => {
 };
 
 //CART ACTIONS
+export const getCartProducts = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/cart/${idUser}`);
+      const result = data.cartList;
+      return dispatch({ type: GET_CART_PRODUCTS, payload: result });
+    } catch (error) {
+      throw Error("No se pudo traer los objetos del carrito de compras: ", error);
+    }
+  };
+};
+
 export const addToCart = (productId, idUser, amount) => {
-  console.log("idUser in addToCart:", idUser);
   return async (dispatch) => {
     try {
       const response = await axios.post(`${SERVER_URL}/cart`, {
@@ -405,14 +418,44 @@ export const addToCart = (productId, idUser, amount) => {
         idUser,
         amount,
       });
-      console.log(response);
-
       dispatch({
         type: ADD_TO_CART,
-        payload: response.data,
+        payload: response.data.cartList,
       });
     } catch (error) {
-      console.error("Error al agregar al carrito:", error);
+      console.error("Error al agregar al carrito: ", error);
+    }
+  };
+};
+
+export const deleteFromCart = (idUser, idProduct) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `${SERVER_URL}/cart/${idUser}/${idProduct}`
+      );
+      dispatch({
+        type: DELETE_FROM_CART,
+        payload: response.data.cartList,
+      });
+    } catch (error) {
+      throw Error("No se pudo borrar el producto del carrito de compras: ", error);
+    }
+  };
+};
+
+export const deleteAllProductsFromCart = (idUser) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `${SERVER_URL}/cart/${idUser}`
+      );
+      dispatch({
+        type: DELETE_ALL_PRODUCTS_FROM_CART,
+        payload: response.data.cartList,
+      });
+    } catch (error) {
+      throw Error("No se pudo borrar el producto del carrito de compras: ", error);
     }
   };
 };
