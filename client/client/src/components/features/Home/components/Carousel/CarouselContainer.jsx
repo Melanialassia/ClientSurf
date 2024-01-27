@@ -16,7 +16,7 @@ const CarouselContainer = () => {
       <div className={styles.carouselItem}>
         <img
           className={styles.carouselImage}
-          src="https://res.cloudinary.com/dfvebd4zw/image/upload/v1706246090/Products_Surf/kjwjjutrwynlsitcebdm.png"
+          src="https://res.cloudinary.com/dfvebd4zw/image/upload/v1706246046/Products_Surf/ut45y0v8mpea8espwzp2.png"
           alt="Imagen Carousel 1"
         />
       </div>

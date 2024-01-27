@@ -110,16 +110,13 @@ const ProductPage = () => {
           Limpiar filtros
         </Button>
 
-        <CategoryFilter
-          allCategorys={allCategorys}
-          handleChange={handleChange}
-        />
+        <CategoryFilter allCategorys={allCategorys} handleChange={handleChange} selectedValue={filter.idCategory}/>
 
-        <ColorFilter allColors={allColors} handleChange={handleChange} />
+        <ColorFilter allColors={allColors} handleChange={handleChange} selectedValue={filter.idColor}/>
 
-        <BrandFilter allBrands={allBrands} handleChange={handleChange} />
+        <BrandFilter allBrands={allBrands} handleChange={handleChange} selectedValue={filter.idBrand}/>
 
-        <SizeFilter allSize={allSize} handleChange={handleChange} />
+        <SizeFilter allSize={allSize} handleChange={handleChange} selectedValue={filter.idSize}/>
 
         <FilterPrice setFilter={setFilter} filter={filter} />
 
