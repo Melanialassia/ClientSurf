@@ -173,7 +173,7 @@ const Cart = () => {
         )}
         {cartListItems.length > 0 && (
           <div className={styles.totalPriceContainer}>
-            <p>Total de venta: <strong>${cartListItems?.priceProduct || 0}</strong></p>
+            <p>Total de venta: <strong>${cartListItems?.costSale || 0}</strong></p>
             <hr></hr>
             <button className={styles.buyButton} onClick={handleFinish}>
               FINALIZAR COMPRA
