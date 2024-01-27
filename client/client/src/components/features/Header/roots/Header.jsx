@@ -20,19 +20,21 @@ import {
 //STYLE-SHEETS
 import styles from "./Header.module.css";
 import { getCartProducts } from "../../../../redux/actions/action";
-
+const cart2 = localStorage.getItem("cartBadge");
+console.log(cart2);
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const data = useSelector((state) => state.dataUser);
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
   const [reload, setReload] = useState(false);
-
+  
   const cartProducts = useSelector((state) => state.cart);
-
+  
   const open = useSelector((state) => state.openModal);
-
+  
   const location = useLocation();
+  
 
   useEffect(() => {
     dispatch(getCartProducts())
