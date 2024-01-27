@@ -213,6 +213,8 @@ const reducer = (state = initialState, action) => {
         inactiveProducts: action.payload,
       };
 
+      
+
     case ADD_TO_CART:
       return {
         ...state,

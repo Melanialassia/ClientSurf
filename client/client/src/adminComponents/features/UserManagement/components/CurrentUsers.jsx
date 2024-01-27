@@ -1,13 +1,22 @@
+//HOOKS
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Avatar, Divider, List, Skeleton, message } from "antd";
-import { deleteUser, getAllUsers } from "../../../../redux/actions/action";
+//ACTIONS
+import {
+  getInactiveUsers,
+  getAllUsers,
+  updateUser,
+} from "../../../../redux/actions/action";
+//COMPONENT
 import UserSearchBar from "./UserSearchBar";
+//LIBRARY
+import { Avatar, Divider, List, Skeleton, message } from "antd";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const CurrentUsers = () => {
-  const dispatch = useDispatch();
   const allUsers = useSelector((s) => s.allUsers);
+  console.log("entre", allUsers);
+  const dispatch = useDispatch();
 
   const [reload, setReload] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
@@ -17,9 +26,23 @@ const CurrentUsers = () => {
     setReload(true);
   }, [reload]);
 
-  const handleDelete = (idUser) => {
+  const activeUser = allUsers.filter((u) => u.activeUser === true);
+  console.log("nombre?", activeUser);
+  const handleDelete = async (idUser, idLevel) => {
+    const data = {
+      idUser: idUser,
+      idLevel: idLevel,
+      nameUser: "",
+      emailUser: "",
+      password: "",
+      uniqueId: "",
+      activeUser: false,
+    };
     try {
-      dispatch(deleteUser(idUser));
+      console.log("entre");
+      await dispatch(updateUser(data));
+      await dispatch(getAllUsers());
+      await dispatch(getInactiveUsers());
       messageApi.open({
         type: "success",
         content: "Usuario eliminado con éxito!",
@@ -45,9 +68,7 @@ const CurrentUsers = () => {
     >
       {contextHolder}
       <InfiniteScroll
-        dataLength={1}
-        /* next={loadMoreData} */
-        /* hasMore={allUsers.length < 1} */
+        dataLength={activeUser ? activeUser.length : 0}
         loader={
           <Skeleton
             avatar
@@ -57,7 +78,7 @@ const CurrentUsers = () => {
             active
           />
         }
-        endMessage={<Divider plain>No existen mas usuarios 🤐</Divider>}
+        endMessage={<Divider plain>No existen mas usuarios 🏄‍♀️</Divider>}
         scrollableTarget="scrollableDiv"
       >
         <List
@@ -66,7 +87,7 @@ const CurrentUsers = () => {
               <p>Usuarios actuales</p> <UserSearchBar />
             </div>
           }
-          dataSource={allUsers}
+          dataSource={activeUser}
           renderItem={(item) => (
             <List.Item key={item.idUser}>
               <List.Item.Meta
@@ -74,7 +95,7 @@ const CurrentUsers = () => {
                 title={<p>{item.nameUser}</p>}
                 description={item.emailUser}
               />
-              <a onClick={() => handleDelete(item.idUser)}>Eliminar</a>
+              <a onClick={() => handleDelete(item.idUser, item.idLevel)}>Eliminar</a>
             </List.Item>
           )}
         />

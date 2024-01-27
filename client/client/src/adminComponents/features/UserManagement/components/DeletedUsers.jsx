@@ -1,38 +1,55 @@
+//HOOKS
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+//ACCTIONS
+import {
+  getInactiveUsers,
+  getAllUsers,
+  updateUser,
+} from "../../../../redux/actions/action";
+//COMPONENT
+import UserDeleteSearchBar from "./UserDeleteSearchBar";
+//LIBRARY
+import { Avatar, Divider, List, Skeleton, message } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Avatar, Divider, List, Skeleton } from "antd";
-import { deleteUser } from "../../../../redux/actions/action";
 
 const DeletedUsers = () => {
+  const inactiveUsers = useSelector((s) => s.inactiveUsers);
+  const dispatch = useDispatch();
 
+  const [reload, setReload] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
-
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  
-  const loadMoreData = () => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-    fetch(
-      "https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo"
-    )
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.results]);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  };
   useEffect(() => {
-    loadMoreData();
-  }, []);
+    dispatch(getInactiveUsers());
+    setReload(true);
+  }, [reload]);
 
-  const handleDelete = () => {
-    dispatch(deleteUser(allUsers.idUser));
+  const handleBack = async (idUser, idLevel) => {
+    try {
+      const data = {
+        idUser: idUser,
+        idLevel: idLevel,
+        nameUser: "",
+        emailUser: "",
+        password: "",
+        uniqueId: "",
+        activeUser: true,
+      };
+      await dispatch(updateUser(data));
+      await dispatch(getAllUsers());
+      await dispatch(getInactiveUsers());
+      messageApi.open({
+        type: "success",
+        content: "Usuario habilitado con éxito!",
+      });
+    } catch (error) {
+      messageApi.open({
+        type: "error",
+        content: "No se pudo habilitar el usuario",
+      });
+      throw Error("No se pudo habilitar el usuario", error);
+    }
   };
 
   return (
@@ -45,10 +62,9 @@ const DeletedUsers = () => {
         border: "1px solid rgba(140, 140, 140, 0.35)",
       }}
     >
+      {contextHolder}
       <InfiniteScroll
-        dataLength={data.length}
-        next={loadMoreData}
-        hasMore={data.length < 50}
+        dataLength={inactiveUsers ? inactiveUsers.length : 0}
         loader={
           <Skeleton
             avatar
@@ -58,20 +74,23 @@ const DeletedUsers = () => {
             active
           />
         }
-        endMessage={<Divider plain>No existen mas usuarios 🤐</Divider>}
+        endMessage={<Divider plain>No existen mas usuarios 🏄‍♀️</Divider>}
         scrollableTarget="scrollableDiv"
       >
         <List
-          header={<div>Usuarios eliminados</div>}
-          dataSource={data}
+          header={
+          <div>
+             <p>Usuarios eliminados</p> <UserDeleteSearchBar />
+             </div>}
+          dataSource={inactiveUsers}
           renderItem={(item) => (
             <List.Item key={item.email}>
               <List.Item.Meta
-                avatar={<Avatar src={item.picture.large} />}
-                title={<a href="https://ant.design">{item.name.last}</a>}
-                description={item.email}
+                avatar={<Avatar src="/assets/images/Foto2.png" />}
+                title={<p>{item.nameUser}</p>}
+                description={item.emailUser}
               />
-              <a onClick={() => handleDelete()}>Restaurar</a>
+              <a onClick={() => handleBack(item.idUser, item.idLevel)}>Restaurar</a>
             </List.Item>
           )}
         />

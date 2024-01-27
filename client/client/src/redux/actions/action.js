@@ -165,7 +165,7 @@ export const getProductsByName = (name) => {
         payload: result,
       });
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error.result.message);
     }
   };
 };
@@ -175,14 +175,13 @@ export const getInactiveUsers = () => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/user`);
       const result = data.data;
-      console.log("data del inactive user", data.data);
       const falseStatus = result.filter((user) => user.activeUser === false);
       dispatch({
         type: FILTER_INACTIVE_USERS,
         payload: falseStatus,
       });
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error.result.message);
     }
   };
 };
@@ -192,13 +191,15 @@ export const getInactiveUsersByName = (name) => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/user?name=${name}`);
       const result = data.data;
-      const falseStatus = result.filter((user) => user.activeUser === false);
+      console.log("resul", result);
+      const falseStatus = data.data.filter((user) => user.activeUser === false);
+      console.log("abajo", falseStatus);
       dispatch({
         type: FILTER_INACTIVE_USERS_BY_NAME,
         payload: falseStatus,
       });
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error.result.message);
     }
   };
 };
@@ -214,7 +215,7 @@ export const getInactiveProducts = () => {
         payload: falseStatus,
       });
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error.data.message);
     }
   };
 };
@@ -230,7 +231,7 @@ export const getInactiveProductsByName = (name) => {
         payload: falseStatus,
       });
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error.response.message);
     }
   };
 };
@@ -240,6 +241,7 @@ export const getUserByName = (name) => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/user?name=${name}`);
       const result = data.data;
+      console.log("accion", result);
       dispatch({
         type: GET_USER_BY_NAME,
         payload: result,
@@ -355,10 +357,12 @@ export const getIdUser = (idUser) => {
 };
 
 export const updateUser = (userData) => {
+  console.log("data accion", userData);
   return async function (dispatch) {
     try {
       const URL = `${SERVER_URL}/user`;
       const response = await axios.put(URL, userData);
+      console.log("entre");
       dispatch({
         type: PUT_USER,
         payload: response.data.data,

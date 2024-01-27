@@ -16,6 +16,7 @@ const UserSearchBar = () => {
   };
 
   const handleSubmit = () => {
+    console.log("entre", nameUser);
     dispatch(getUserByName(nameUser));
   };
 

@@ -1,3 +1,4 @@
+//HOOKS
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //ACTIONS
@@ -6,10 +7,11 @@ import {
   putProductStatus,
   getInactiveProducts,
 } from "../../../../redux/actions/action";
+//COMPONENT
+import ProductSearchBar from "./ProductSearchBar";
 //LIBRARY
 import { List, Skeleton, Avatar, Divider, message } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ProductSearchBar from "./ProductSearchBar";
 
 const AddProduct = () => {
   const allProducts = useSelector((s) => s.allProducts);
@@ -26,7 +28,7 @@ const AddProduct = () => {
   const handleDelete = async (idProduct) => {
     const data = {
       idProduct: idProduct,
-      status: false,
+      status: false
     };
     try {
       await dispatch(putProductStatus(data));
