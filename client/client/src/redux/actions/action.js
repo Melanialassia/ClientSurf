@@ -402,7 +402,7 @@ export const getCartProducts = (idUser) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/cart/${idUser}`);
-      const result = data.cartList;
+      const result = data
       return dispatch({ type: GET_CART_PRODUCTS, payload: result });
     } catch (error) {
       throw Error("No se pudo traer los objetos del carrito de compras: ", error);
