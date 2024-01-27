@@ -4,7 +4,8 @@
   max-width: 1300px;
   margin: 0 auto;
   padding: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 850px;
+  margin-top: 50px;
   display: flex;
   flex-direction: row;
   font-family: "Montserrat", sans-serif;
@@ -179,6 +180,10 @@
 .emptyPage {
   text-align: center;
   justify-content: center;
+}
+
+.title{
+  margin-left: 510px;
 }
 
 

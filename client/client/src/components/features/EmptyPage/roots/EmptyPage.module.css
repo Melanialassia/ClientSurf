@@ -1,7 +1,14 @@
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
+.container{
+  display: flex;
+  align-items: center;
+  margin-left: 550px;
+}
+
 .errorText {
   font-family: "Montserrat", sans-serif;
+  margin-left: -10px;
 }
 
 .button {
@@ -9,4 +16,5 @@
   background-color: #2d4056;
   color: #e2dcd1;
   font-weight: bold;
+  margin-left: -10px;
 }

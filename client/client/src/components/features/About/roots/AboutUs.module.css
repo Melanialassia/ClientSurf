@@ -1,46 +1,31 @@
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
 .container {
-    margin-top: 150px;
-    margin-bottom: 250px;
-    margin-left: 200px;
-    font-family: "Montserrat", sans-serif;
-    font-size: x-large;
+  margin-top: 200px;
+  margin-bottom: 150px;
+  font-family: "Montserrat", sans-serif;
+  font-size: x-large;
+  display: flex;
+  justify-content: space-around; 
 }
 
 .columncontainer {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+  display: flex;
+  align-items: center;
 }
 
-.imageone {
-    width: 250px;
-    margin-left: 700px;
-    margin-top: -300px;
-    border-radius: 50%;
-}
-
-.imagetwo {
-    width: 250px;
-    margin-left: 30px;
-    margin-top: -300px;
-    border-radius: 50%;
-}
-
+.imageone,
+.imagetwo,
 .imagethree {
-    width: 250px;
-    margin-left: 700px;
-    margin-top: -150px;
-    border-radius: 50%;
+  width: 250px;
+  border-radius: 50%;
+  margin-bottom: 200px; 
 }
 
-.secondtext {
-    margin-left: 600px;
-    margin-top: 200px;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-}
-
+.firsttext,
+.secondtext,
 .thirdtext {
-    margin-top: 200px;
+  text-align: center;
+  margin-bottom: 300px;
+  max-width: 650px;
 }
