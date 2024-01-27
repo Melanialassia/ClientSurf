@@ -29,6 +29,7 @@ const Header = () => {
   const [reload, setReload] = useState(false);
   const [cartData, setCartData] = useState(null);
   const userId = localStorage.getItem('userId');
+  console.log(cartData);
   
   const cartProducts = useSelector((state) => state.cart);
   
@@ -39,10 +40,7 @@ const Header = () => {
   const fetchCartData = async () => {
     try {
 
-      const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
-
-      console.log(response.data);
-      console.log(response.data.cartList.length);
+      const response = await axios.get(`https://surf-4i7c.onrender.com/surf/cart/${userId}`)
       setCartData(response.data);
       
 
@@ -51,9 +49,10 @@ const Header = () => {
     }
   };
   useEffect(() => {
-    dispatch(getCartProducts())
+    if(logedUser){
     fetchCartData();
-    setReload(true);
+  }
+  setReload(true);
   }, [reload]);
 
   useEffect(() => {
