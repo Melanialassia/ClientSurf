@@ -1,14 +1,10 @@
 @import url("https://fonts.cdnfonts.com/css/montserrat");
 
-
 .wrapper {
     display: grid;
     grid-template-columns: 1fr 4fr;  
     font-family: "Montserrat", sans-serif;
-    margin-top: 50px;
 }
-
-
 
 .titulo {
     font-weight: 400;

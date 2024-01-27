@@ -1,8 +1,8 @@
 //HOOKS
-import { useSelector, useDispatch } from "react-redux";
 import { filterProducts, getIdUser } from "../../../../redux/actions/action";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 //COMPONENTS
 import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSubscribe";
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
@@ -19,6 +19,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const dataUser = useSelector((state) => state.dataUser);
+
+  const [isTableImageHovered, setIsTableImageHovered] = useState(false);
+  const [isAccessoriesImageHovered, setIsAccessoriesImageHovered] = useState(false);
 
   let userInfoFistrLogin = null;
   let activeUser = null;
@@ -78,19 +81,23 @@ const Home = () => {
       <div>
         <Link to={"/products"}>
           <img
+            onMouseEnter={() => setIsTableImageHovered(true)}
+            onMouseLeave={() => setIsTableImageHovered(false)}
             onClick={() => HandleFilterTable()}
             src="/assets/images/tablas.png"
             alt="Imagen 1"
-            className={styles.imagenFiltrotabla}
+            className={`${styles.imagenFiltrotabla} ${isTableImageHovered && styles.highlighted}`}
           />
         </Link>
 
         <Link to={"/products"}>
           <img
+            onMouseEnter={() => setIsAccessoriesImageHovered(true)}
+            onMouseLeave={() => setIsAccessoriesImageHovered(false)}
             onClick={() => HandleFilterAccesories()}
             src="/assets/images/accesorios.png"
             alt="Imagen 1"
-            className={styles.imagenFiltroaccesorio}
+            className={`${styles.imagenFiltroaccesorio} ${isAccessoriesImageHovered && styles.highlighted}`}
           />
         </Link>
       </div>
