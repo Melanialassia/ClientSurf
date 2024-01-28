@@ -27,11 +27,11 @@ const Header = () => {
   const data = useSelector((state) => state.dataUser);
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
   const [reload, setReload] = useState(false);
-  const cartData = JSON.parse(localStorage.getItem("cartData"));
+  const cartData = JSON.parse(localStorage.getItem("cartData")) || { cartList: [] };
   console.log(cartData);
   const cartProducts = useSelector((state) => state.cart);
-  const hola = cartData.cartList.length
-  console.log(hola);
+  
+ 
 
   const open = useSelector((state) => state.openModal);
 
