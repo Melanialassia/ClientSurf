@@ -6,40 +6,56 @@ import {
   fixedWetSuits,
   surfLessons,
   garageSurfBoards,
+  fixedWetSuitsText,
+  surfLessonsText,
+  garageSurfBoardsText,
+  fixedSurfBoardsText
 } from "../utils/constants";
 //style-sheets
 import styles from "./ServicesContainer.module.css";
 
 const ServicesContainer = () => {
   return (
-    
+
     <div className={styles.container}>
-      <div className={styles.text}>
+    <div className={styles.text}>
       <h3>NUESTROS SERVICIOS</h3>
-      <h4>Para más información de los servicios que ofrece LA OLA URBANA contactate con nosotros!</h4>
-      </div>
-      <div className={styles.serviceContainer}>
-      <div className={styles.serviceItem}>
-      <p>{fixedSurfBoards}</p>
-      {/* <img src="/assets/images/arreglotablas.jpg" alt="" className={styles.imagen} /> */}
-      </div>
-
-      <div className={styles.serviceItem}>
-      <p>{fixedWetSuits}</p>
-      {/* <img src="/assets/images/arregloneoprenne.jpg" alt="" className={styles.imagen} /> */}
-      </div>
-
-      <div className={styles.serviceItem}>
-      <p>{surfLessons}</p>
-      {/* <img src="/assets/images/clasessurf.jpg" alt="" className={`${styles.imagen} ${styles.largeImage}`}/> */}
-      </div>
-      
-      <div className={styles.serviceItem}>
-      <p>{garageSurfBoards}</p>
-      {/* <img src="/assets/images/guarderíatablas.jpg" alt=""  className={`${styles.imagen} ${styles.largeImagen}`}/> */}
-     </div>
-     </div>
     </div>
+    <div className={styles.serviceColumns}>
+      <div className={styles.serviceColumn}>
+        <br />
+        <br />
+        <p>{fixedSurfBoards}</p>
+        <br />
+        <br />
+        <p >{fixedSurfBoardsText}</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>{surfLessons}</p>
+        <br />
+        <br />
+        <p>{surfLessonsText}</p>
+      </div>
+      <div className={styles.serviceColumn}>
+      <br />
+        <br />
+        <p>{fixedWetSuits}</p>
+        <br />
+        <br />
+        <p>{fixedWetSuitsText}</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>{garageSurfBoards}</p>
+        <br />
+        <br />
+        <p>{garageSurfBoardsText}</p>
+      </div>
+    </div>
+  </div>
   );
 };
 
