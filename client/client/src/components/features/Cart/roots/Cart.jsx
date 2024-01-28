@@ -6,10 +6,12 @@ import { DeleteOutlined } from '@ant-design/icons';
 import EmptyPage from '../../EmptyPage/roots/EmptyPage';
 import { useSelector, useDispatch } from "react-redux";
 import { InputNumber } from 'antd';
+import { deleteFromCart, deleteAllProductsFromCart } from '../../../../redux/actions/action'
 
 
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const [cartData, setCartData] = useState(null);
   const [refreshCart, setRefreshCart] = useState(false);
   const dataUser = useSelector((state) => state.dataUser);
@@ -45,7 +47,8 @@ const Cart = () => {
   
   const handleRemoveProduct = async (productId) => {
     try {
-      await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${userId}/${productId}`); 
+      //await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${userId}/${productId}`); 
+      dispatch(deleteFromCart(userId, productId));
       setRefreshCart(true);
     } catch (error) {
       console.error('Error al eliminar el producto del carrito:', error);
@@ -55,6 +58,7 @@ const Cart = () => {
   const handleRemoveAllProducts = async () => {
     try {
       await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${userId}`);
+      dispatch(deleteAllProductsFromCart(userId));
       setRefreshCart(true);
     } catch (error) {
       console.error('Error al eliminar todos los productos del carrito:', error);

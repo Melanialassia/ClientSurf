@@ -27,7 +27,8 @@ const Header = () => {
   const data = useSelector((state) => state.dataUser);
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
   const [reload, setReload] = useState(false);
-
+  const cartData = JSON.parse(localStorage.getItem("cartData"));
+  console.log(cartData);
   const cartProducts = useSelector((state) => state.cart);
 
   const open = useSelector((state) => state.openModal);
@@ -134,7 +135,7 @@ const Header = () => {
       <div>
         {logedUser ? (
           <a href="#">
-            <Badge count={cartProducts.length}>
+            <Badge count={cartData.cartList.length}>
               <ShoppingCartOutlined
                 onClick={handleCartClick}
                 style={{
