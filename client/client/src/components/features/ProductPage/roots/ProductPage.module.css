@@ -5,21 +5,22 @@
     display: grid;
     grid-template-columns: 1fr 4fr;  
     font-family: "Montserrat", sans-serif;
+    margin-top: 50px;
 }
 
 
 
 .titulo {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    margin-left: -250px;
 }
 
 .filtro {
     margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
-    width: 160px;
-    left: 500%;
+    width: 130px;
+    margin-left: -250px;
 
 }
 
