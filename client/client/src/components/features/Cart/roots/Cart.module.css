@@ -14,12 +14,13 @@
 
 .productListContainer {
   flex-grow: 1;
-
 }
+
 
 .productList {
   list-style: none;
   padding: 0;
+  
   
 }
 
@@ -180,11 +181,14 @@
 .emptyPage {
   text-align: center;
   justify-content: center;
+  
 }
 
-.title{
-  margin-left: 510px;
+.textt {
+  margin-left: 150px;
+  margin-right: -120px;
 }
+
 
 
 

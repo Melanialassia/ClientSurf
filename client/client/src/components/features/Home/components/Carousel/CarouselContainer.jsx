@@ -4,15 +4,17 @@ import styles from "./CarouselContainer.module.css";
 
 const CarouselContainer = () => {
   const contentStyle = {
-    height: "450px",
+    height: "650px",
     color: "#fff",
-    lineHeight: "400px",
     textAlign: "center",
     background: "#364d79",
   };
 
   return (
-    <Carousel autoplay className={styles.customCarousel}>
+    <Carousel autoplay className={styles.customCarousel}
+    style={
+      contentStyle
+  }>
       <div className={styles.carouselItem}>
         <img
           className={styles.carouselImage}

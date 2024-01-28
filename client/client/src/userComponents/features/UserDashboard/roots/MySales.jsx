@@ -86,7 +86,7 @@ const MySales = () => {
 
   return (
     <div className={styles.fuente}>
-       <h1>Mis Compras</h1>
+       <h1 className={styles.text}>Mis Compras</h1>
       {loading ? (
        <div className={styles.loaderContainer}>
         <img

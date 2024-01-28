@@ -105,8 +105,8 @@ const ProductPage = () => {
   return (
     <div className={style.wrapper}>
       <aside>
-        <h2>FILTROS</h2>
-        <Button type="text" onClick={clearFilters}>
+        <h2 className={style.titulo}>FILTROS</h2>
+        <Button type="text" onClick={clearFilters} className={style.filtro}>
           Limpiar filtros
         </Button>
 
@@ -120,7 +120,7 @@ const ProductPage = () => {
 
         <FilterPrice setFilter={setFilter} filter={filter} />
 
-        <Button type="text" onClick={applyFilters}>
+        <Button type="text" onClick={applyFilters} className={style.filtro}>
           Aplicar filtros
         </Button>
       </aside>
