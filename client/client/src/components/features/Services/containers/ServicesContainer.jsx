@@ -21,22 +21,22 @@ const ServicesContainer = () => {
       <div className={styles.serviceContainer}>
       <div className={styles.serviceItem}>
       <p>{fixedSurfBoards}</p>
-      <img src="/assets/images/arreglotablas.jpg" alt="" className={styles.imagen} />
+      {/* <img src="/assets/images/arreglotablas.jpg" alt="" className={styles.imagen} /> */}
       </div>
 
       <div className={styles.serviceItem}>
       <p>{fixedWetSuits}</p>
-      <img src="/assets/images/arregloneoprenne.jpg" alt="" className={styles.imagen} />
+      {/* <img src="/assets/images/arregloneoprenne.jpg" alt="" className={styles.imagen} /> */}
       </div>
 
       <div className={styles.serviceItem}>
       <p>{surfLessons}</p>
-      <img src="/assets/images/clasessurf.jpg" alt="" className={`${styles.imagen} ${styles.largeImage}`}/>
+      {/* <img src="/assets/images/clasessurf.jpg" alt="" className={`${styles.imagen} ${styles.largeImage}`}/> */}
       </div>
       
       <div className={styles.serviceItem}>
       <p>{garageSurfBoards}</p>
-      <img src="/assets/images/guarderíatablas.jpg" alt=""  className={`${styles.imagen} ${styles.largeImagen}`}/>
+      {/* <img src="/assets/images/guarderíatablas.jpg" alt=""  className={`${styles.imagen} ${styles.largeImagen}`}/> */}
      </div>
      </div>
     </div>
