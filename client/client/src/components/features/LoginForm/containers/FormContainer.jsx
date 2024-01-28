@@ -162,7 +162,7 @@ const FormContainer = () => {
             type="primary"
             htmlType="submit"
             style={{
-              marginLeft: "30px",
+              marginLeft: "-30px",
             }}
           >
             {createAccount}

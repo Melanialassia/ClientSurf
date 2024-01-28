@@ -146,7 +146,7 @@ const RegisterUsersContainer = () => {
         >
           <Button type="primary" htmlType="submit"
           style={{
-            marginLeft: "30px"
+            marginLeft: "-30px"
           }}>
             {login}
           </Button>

@@ -8,6 +8,7 @@
   align-items: center;
   margin-bottom: 400px;
   margin-top: 80px;
+  margin-left: -10px;
 }
 
 .text {
@@ -16,24 +17,41 @@
 }
 
 .serviceColumns {
-  display: flex;
-  justify-content: space-around;
   width: 100%;
   font-size: larger;
 }
 
-.serviceColumn {
-  flex: 1;
+.serviceRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
-  text-align: center;
+  margin-bottom: 20px;
+}
+
+.serviceItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.serviceItem p {
+  max-width: 750px;
+  margin: 0 auto;
+  font-weight: 500;
   font-size: larger;
 }
 
-.serviceColumn p {
-  max-width: 750px;
-  margin: 0 auto;
+.imageone,
+.imagetwo,
+.imagethree,
+.imagefour {
+  width: 5%;
+  border-radius: 100%;
+  margin-left: -450px; 
+  margin-right: 520px; 
 }
 
-.texttitle {
-  font-size: xx-large;
+.texto {
+  max-width: 900px;
 }
