@@ -30,6 +30,8 @@ const Header = () => {
   const cartData = JSON.parse(localStorage.getItem("cartData"));
   console.log(cartData);
   const cartProducts = useSelector((state) => state.cart);
+  const hola = cartData.cartList.length
+  console.log(hola);
 
   const open = useSelector((state) => state.openModal);
 
@@ -135,7 +137,7 @@ const Header = () => {
       <div>
         {logedUser ? (
           <a href="#">
-            <Badge count={cartData.cartList.length}>
+            <Badge count={cartData?.cartList?.length || 0}>
               <ShoppingCartOutlined
                 onClick={handleCartClick}
                 style={{
