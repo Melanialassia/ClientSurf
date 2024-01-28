@@ -407,6 +407,7 @@ export const getCartProducts = (idUser) => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/cart/${idUser}`);
       const result = data
+      localStorage.setItem("cartData", JSON.stringify(result));
       return dispatch({ type: GET_CART_PRODUCTS, payload: result });
     } catch (error) {
       throw Error("No se pudo traer los objetos del carrito de compras: ", error);
@@ -422,6 +423,7 @@ export const addToCart = (productId, idUser, amount) => {
         idUser,
         amount,
       });
+      localStorage.setItem("cartData", JSON.stringify(response.data));
       dispatch({
         type: ADD_TO_CART,
         payload: response.data.cartList,
@@ -438,6 +440,7 @@ export const deleteFromCart = (idUser, idProduct) => {
       const response = await axios.delete(
         `${SERVER_URL}/cart/${idUser}/${idProduct}`
       );
+      localStorage.setItem("cartData", JSON.stringify(response.data));
       dispatch({
         type: DELETE_FROM_CART,
         payload: response.data.cartList,
@@ -454,6 +457,7 @@ export const deleteAllProductsFromCart = (idUser) => {
       const response = await axios.delete(
         `${SERVER_URL}/cart/${idUser}`
       );
+      localStorage.setItem("cartData", JSON.stringify(response.data));
       dispatch({
         type: DELETE_ALL_PRODUCTS_FROM_CART,
         payload: response.data.cartList,
