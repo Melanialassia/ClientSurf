@@ -1,0 +1,26 @@
+.productContainer {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  
+  .detailImg {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 130px;
+  }
+  
+  .productInfoTotal p {
+    margin-right: 20px;
+    margin-left: 20px;
+    
+  }
+
+
+.productInfoTotal {
+    display: flex;
+    margin-left: 80px;
+}
+  
