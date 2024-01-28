@@ -25,6 +25,7 @@ import Faq from "./components/features/Faq/components/Faq";
 import AdminDashboard from "./adminComponents/features/AdminDashboard/roots/AdminDashboard";
 import MySales from "./userComponents/features/UserDashboard/roots/MySales";
 import BorradoLogico from "./adminComponents/features/CreateProduct/components/BorradoLogico";
+import ReviewPage from "./userComponents/features/UserDashboard/roots/ReviewPage";
 
 const App = () => {
   return (
@@ -48,6 +49,8 @@ const App = () => {
         <Route path="/faq" element={<Faq />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/my-buys" element={<MySales/>} />
+        <Route path="/reviews" element={<ReviewPage/>} />
+
       </Routes>
       <a href="https://api.whatsapp.com/send?phone=5493415948636" target="_blank">
         <img src="/assets/images/whatsapp.png" alt="" className={styles.image}/>
