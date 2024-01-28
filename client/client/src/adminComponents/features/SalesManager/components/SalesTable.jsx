@@ -1,76 +1,73 @@
-import React from "react";
-import { Space, Table, Tag } from "antd";
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "Tags",
-    key: "tags",
-    dataIndex: "tags",
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? "geekblue" : "green";
-          if (tag === "loser") {
-            color = "volcano";
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: (_, record) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
-    ),
-  },
-];
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
-const SalesTable = () => <Table columns={columns} dataSource={data} />;
+import React, { useEffect, useState } from "react";
+import { Table, Tag, Space } from "antd";
+import axios from "axios";
+
+const SalesTable = () => {
+  const [dataSales, setDataSales] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://surf-4i7c.onrender.com/surf/sale"
+        );
+        setDataSales(response.data.data);
+      } catch (error) {
+        console.error("Error fetching sales data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const deleteSale = async (id) => {
+    try {
+      await axios.delete(`https://surf-4i7c.onrender.com/surf/sale/${id}`);
+      setDataSales(dataSales.filter((sale) => sale.idSale !== id));
+    } catch (error) {
+      console.error(`Error deleting sale ${id}:`, error);
+    }
+  };
+
+  const columns = [
+    {
+      title: "ID",
+      dataIndex: "idSale",
+      key: "idSale",
+    },
+    {
+      title: "User Name",
+      dataIndex: "nameUser",
+      key: "nameUser",
+    },
+    {
+      title: "Email",
+      dataIndex: "emailUser",
+      key: "emailUser",
+    },
+    {
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+    },
+    {
+      title: "Cost",
+      dataIndex: "costSale",
+      key: "costSale",
+    },
+    {
+      
+      render: (_, record) => (
+        <Space size="middle">
+          
+          <a onClick={() => deleteSale(record.idSale)}>Delete</a>
+        </Space>
+      ),
+    },
+  ];
+
+  return <Table columns={columns} dataSource={dataSales} />;
+};
 
 export default SalesTable;
+
