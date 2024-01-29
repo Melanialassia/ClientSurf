@@ -2,6 +2,8 @@
 import Cards from "../components/Cards";
 //STYLE
 import style from "./Product.module.css";
+//IMAGE
+import productNotFound from "../../../../../public/assets/images/productonoencontrado.gif";
 //LIBRARY
 import { SmileOutlined } from "@ant-design/icons";
 import { Button, Result } from "antd";
@@ -38,12 +40,9 @@ const Product = ({ currentPoducts }) => {
           <Cards product={product} key={product.idProduct} />
         ))
       ) : (
-        <div className={style.centeredResultContainer}>
-          <Result
-            className={style.centeredResult}
-            icon={<SmileOutlined />}
-            title="Aun no tenemos ese producto!."
-          />
+        <div className={style.image} >
+          <img src={productNotFound} alt="producto no encontrado"/>
+          <p>¡Lo sentimos, no se encontraron productos que coincidan con tu búsqueda!</p>
         </div>
       )}
     </div>

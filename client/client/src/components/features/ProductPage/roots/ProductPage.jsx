@@ -145,7 +145,7 @@ const ProductPage = () => {
         <div>
           <Product currentPoducts={currentPoducts} />
         </div>
-        <div>
+        <div className={style.paginate}>
           <Paginate
             totalPage={totalPage}
             currentPage={currentPage}
