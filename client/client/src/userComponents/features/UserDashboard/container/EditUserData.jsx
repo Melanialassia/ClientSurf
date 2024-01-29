@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 //LIBRARYS
 
-import { Button, Form, Input, Card } from "antd";
+import { Button, Form, Input, Card, message  } from "antd";
 //REDUX
 import { updateUser, getIdUser } from "../../../../redux/actions/action";
 //CONSTANTS
@@ -89,12 +89,12 @@ const EditUserData = () => {
       dispatch(getIdUser(userData.idUser));
   
       // Agrega un alert para cambios realizados con éxito
-      window.alert("Cambios realizados con éxito");
+      message.success("Cambios realizados con éxito");
     } catch (error) {
       console.error("No se pudieron realizar los cambios:", error);
   
       // Agrega un alert para informar sobre el error
-      window.alert("No se pudieron actualizar los datos del usuario");
+      message.error("No se pudieron actualizar los datos del usuario");
     }
   };
 
