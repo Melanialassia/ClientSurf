@@ -148,8 +148,8 @@ const EditUserData = () => {
         onFinish={handleSubmit}
         style={{
 
-          marginTop: "-20px",
-          marginLeft: "-50px",
+          marginTop: "-50px",
+          marginLeft: "-90px",
           width: 350
 
         }}
@@ -213,8 +213,11 @@ const EditUserData = () => {
           </Button>
         </Form.Item>
       </Form>
-      <button onClick={onChangeOption} name="password" className={styles.button}>Cambiar mi contraseña</button>
-      <button onClick={onChangeOption} name="uniqueId" className={styles.buttonn}>Mantener mi contraseña actual</button>
+          
+                  <div className={styles.divbutton}>
+                      <button onClick={onChangeOption} name="password" className={styles.button}>Cambiar mi contraseña</button>
+                      <button onClick={onChangeOption} name="uniqueId" className={styles.buttonn}>Mantener mi contraseña actual</button>
+                  </div>
 
 
     </div>

@@ -1,6 +1,6 @@
-//hooks
+//HOOKS
 import React from "react";
-//contants
+//CONSTANTS
 import {
   fixedSurfBoards,
   fixedWetSuits,
@@ -11,7 +11,7 @@ import {
   garageSurfBoardsText,
   fixedSurfBoardsText
 } from "../utils/constants";
-//style-sheets
+//STYLE-SHEETS
 import styles from "./ServicesContainer.module.css";
 
 const ServicesContainer = () => {
@@ -22,37 +22,46 @@ const ServicesContainer = () => {
       <h3>NUESTROS SERVICIOS</h3>
     </div>
     <div className={styles.serviceColumns}>
-      <div className={styles.serviceColumn}>
-        <br />
-        <br />
-        <p>{fixedSurfBoards}</p>
-        <br />
-        <br />
-        <p >{fixedSurfBoardsText}</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>{surfLessons}</p>
-        <br />
-        <br />
-        <p>{surfLessonsText}</p>
+
+      <div className={styles.serviceRow}>
+        <div className={styles.serviceItem}>
+          <p>{fixedSurfBoards}</p>
+          <img src="/assets/images/tablaicon.jpg" alt="" className={styles.imageone} />
+        </div>
+        <p className={styles.texto}>{fixedSurfBoardsText}</p>
       </div>
-      <div className={styles.serviceColumn}>
+
       <br />
-        <br />
-        <p>{fixedWetSuits}</p>
-        <br />
-        <br />
-        <p>{fixedWetSuitsText}</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <p>{garageSurfBoards}</p>
-        <br />
-        <br />
-        <p>{garageSurfBoardsText}</p>
+      <br />
+
+      <div className={styles.serviceRow}>
+        <div className={styles.serviceItem}>
+          <p>{surfLessons}</p>
+          <img src="/assets/images/clasesssurf.jpg" alt="" className={styles.imagetwo} />
+        </div>
+        <p className={styles.texto}>{surfLessonsText}</p>
+      </div>
+
+      <br />
+      <br />
+
+      <div className={styles.serviceRow}>
+        <div className={styles.serviceItem}>
+          <p>{fixedWetSuits}</p>
+          <img src="/assets/images/trajesneoprenne.jpg" alt="" className={styles.imagethree} />
+        </div>
+        <p className={styles.texto}>{fixedWetSuitsText}</p>
+      </div>
+
+      <br />
+      <br />
+
+      <div className={styles.serviceRow}>
+        <div className={styles.serviceItem}>
+          <p>{garageSurfBoards}</p>
+          <img src="/assets/images/personwithboardicon.jpg" alt="" className={styles.imagefour} />
+        </div>
+        <p className={styles.texto}>{garageSurfBoardsText}</p>
       </div>
     </div>
   </div>

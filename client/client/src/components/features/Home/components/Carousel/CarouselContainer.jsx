@@ -4,10 +4,12 @@ import styles from "./CarouselContainer.module.css";
 
 const CarouselContainer = () => {
   const contentStyle = {
-    height: "650px",
+    height: "550px",
     color: "#fff",
+    borderRadius: "20px",
     textAlign: "center",
     background: "#364d79",
+  
   };
 
   return (
