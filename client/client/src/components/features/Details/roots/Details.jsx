@@ -208,6 +208,10 @@ const Details = () => {
       19: { colorName: "Rojo", colorValue: "red" },
       23: { colorName: "Azul", colorValue: "blue" },
       28: { colorName: "Amarillo", colorValue: "yellow" },
+      29: { colorName: "Rosa", colorValue: "pink" },
+      30: { colorName: "Verde", colorValue: "green" },
+      31: { colorName: "Violeta", colorValue: "purple" },
+      32: { colorName: "Naranja", colorValue: "orange" },
       // Agrega más mapeos de colores según sea necesario
     };
 
