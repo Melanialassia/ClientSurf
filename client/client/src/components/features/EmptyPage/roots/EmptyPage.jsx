@@ -5,7 +5,7 @@ import styles from "./EmptyPage.module.css"
 
 const EmptyPage = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <Empty
         image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
         imageStyle={{ height: 60 }}

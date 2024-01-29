@@ -97,8 +97,8 @@ const Cart = () => {
   
   if (!userAccess) {
     return (
-      <div>
-        <h2>Carrito de Compras</h2>
+      <div >
+        <h2 >Carrito de Compras</h2>
         <p>No tienes ningún artículo en tu carrito de compras.</p>
       </div>
     );
@@ -123,7 +123,7 @@ const Cart = () => {
       <div className={styles.cartContainer}>
         {cartListItems.length > 0 ? (
           <div className={styles.productListContainer}>
-            <h2>Carrito de Compras</h2>
+            <h2 className={styles.textt}>Carrito de Compras</h2>
             <ul className={styles.productList}>
               {cartListItems.map((product) => (
                 <li key={product.idProduct} className={styles.productItem}>
