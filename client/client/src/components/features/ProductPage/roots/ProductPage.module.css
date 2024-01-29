@@ -24,6 +24,9 @@
     padding: 1px;
     margin-top: 2%;
     left: 65px;
+    flex-grow: 1;
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Agrega una fila adicional para el paginado */
 }
 
 .contenedorproductos{
@@ -73,5 +76,13 @@
   .optionStyle {
     font-family: 'Montserrat', sans-serif;
   }
-  
- 
+
+  .paginateContainer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px; /* Ajusta según sea necesario */
+    border-top: 1px solid #ccc; /* Línea divisoria opcional */
+    z-index: 1;
+}
