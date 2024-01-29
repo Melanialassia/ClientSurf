@@ -3,7 +3,7 @@ import Cards from "../components/Cards";
 //STYLE
 import style from "./Product.module.css";
 //IMAGE
-import productNotFound from "../../../../../public/assets/images/productonoencontrado.gif";
+import productNotFound from "../../../../images/productonoencontrado.gif";
 //LIBRARY
 import { SmileOutlined } from "@ant-design/icons";
 import { Button, Result } from "antd";
