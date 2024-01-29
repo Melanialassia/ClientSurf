@@ -221,7 +221,7 @@ const FormProduct = () => {
               rules={[
                 { required: true, message: "Campo obligatorio!." },
                 {
-                  max: 20,
+                  max: 50,
                   message: "El nombre no debe tener más de 50 caracteres.",
                 },
                 {
