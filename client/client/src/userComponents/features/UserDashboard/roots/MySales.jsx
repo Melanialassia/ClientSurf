@@ -13,42 +13,55 @@ const MySales = () => {
   const idUser = localStorage.getItem('userId');
   const cartItemsJSON = localStorage.getItem('cartItems');
   const listProducts = JSON.parse(cartItemsJSON) || [];
-
+  
+  console.log(sales);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);  // Indicar que la carga está en curso
-
+        setLoading(true);
+  
         const response = await axios.get('https://surf-4i7c.onrender.com/surf/sale');
         const { data } = response;
         console.log('Sales data:', data);
-
+  
         const filteredSales = data.data ? data.data.filter(sale => sale.idUser === parseInt(idUser)) : [];
         console.log('Filtered Sales:', filteredSales);
-
+  
         if (filteredSales.length > 0) {
           await Promise.all(filteredSales.map(async sale => {
             try {
-              console.log(`Dispatching createDetail for sale ${sale.idSale}`);
-              await dispatch(createDetail(sale.idSale, idUser, listProducts));
-              console.log(`createDetail for sale ${sale.idSale} successful`);
+              // Check if the sale already has details before dispatching
+              if (!sale.detailsCreated) {
+                console.log(`Dispatching createDetail for sale ${sale.idSale}`);
+  
+                // Assuming listProducts is not modified asynchronously elsewhere
+                // If listProducts is a state variable, make sure to use the correct value
+                await dispatch(createDetail(sale.idSale, idUser, [...listProducts]));
+                console.log(`createDetail for sale ${sale.idSale} successful`);
+  
+                // Mark the sale as having details created
+                sale.detailsCreated = true;
+              } else {
+                console.log(`Details already created for sale ${sale.idSale}`);
+              }
             } catch (error) {
               console.error(`Error creating detail for sale ${sale.idSale}:`, error);
             }
           }));
         }
+  
         await handleRemoveAllProducts();
         setSales(filteredSales);
       } catch (error) {
         console.error('Error fetching sales:', error);
       } finally {
-        setLoading(false);  // Indicar que la carga ha terminado
+        setLoading(false);
       }
     };
-
-    
+  
     fetchData();
-    
+  
   }, [idUser]);
 
   const handleRemoveAllProducts = async () => {
@@ -64,7 +77,7 @@ const MySales = () => {
     try {
       const response = await axios.get(`https://surf-4i7c.onrender.com/surf/detail/${sale.idSale}`);
       const { data } = response;
-      console.log(data);
+     
       
       if (data && data.data) {
         setVisibleSaleDetails({
