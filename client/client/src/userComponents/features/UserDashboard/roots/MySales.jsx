@@ -14,12 +14,12 @@ const MySales = () => {
   const cartItemsJSON = localStorage.getItem('cartItems');
   const listProducts = JSON.parse(cartItemsJSON) || [];
   
-  console.log(sales);
+  
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
+        setLoading(true);  // Indicar que la carga está en curso
   
         const response = await axios.get('https://surf-4i7c.onrender.com/surf/sale');
         const { data } = response;
@@ -29,40 +29,31 @@ const MySales = () => {
         console.log('Filtered Sales:', filteredSales);
   
         if (filteredSales.length > 0) {
-          await Promise.all(filteredSales.map(async sale => {
-            try {
-              // Check if the sale already has details before dispatching
-              if (!sale.detailsCreated) {
-                console.log(`Dispatching createDetail for sale ${sale.idSale}`);
+          // Ordenar las ventas por idSale y tomar la última
+          const lastSale = filteredSales.sort((a, b) => b.idSale - a.idSale)[0];
   
-                // Assuming listProducts is not modified asynchronously elsewhere
-                // If listProducts is a state variable, make sure to use the correct value
-                await dispatch(createDetail(sale.idSale, idUser, [...listProducts]));
-                console.log(`createDetail for sale ${sale.idSale} successful`);
-  
-                // Mark the sale as having details created
-                sale.detailsCreated = true;
-              } else {
-                console.log(`Details already created for sale ${sale.idSale}`);
-              }
-            } catch (error) {
-              console.error(`Error creating detail for sale ${sale.idSale}:`, error);
-            }
-          }));
+          try {
+            console.log(`Dispatching createDetail for sale ${lastSale.idSale}`);
+            await dispatch(createDetail(lastSale.idSale, idUser, listProducts));
+            console.log(`createDetail for sale ${lastSale.idSale} successful`);
+          } catch (error) {
+            console.error(`Error creating detail for sale ${lastSale.idSale}:`, error);
+          }
         }
-  
         await handleRemoveAllProducts();
         setSales(filteredSales);
       } catch (error) {
         console.error('Error fetching sales:', error);
       } finally {
-        setLoading(false);
+        setLoading(false);  // Indicar que la carga ha terminado
       }
     };
   
     fetchData();
   
   }, [idUser]);
+  
+  
 
   const handleRemoveAllProducts = async () => {
     try {
