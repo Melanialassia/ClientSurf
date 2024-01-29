@@ -26,6 +26,7 @@ const Details = () => {
 
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  console.log(product);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const imgRef = useRef(null);
@@ -173,36 +174,45 @@ const Details = () => {
   };
 
   const getColorButtons = () => {
-    if (product.nameColor) {
-      const colors = product.nameColor.split("/");
-
+    if (product.idColor) {
+      const colorID = product.idColor;
+  
       return (
         <div className={styles.colorButtons}>
           <strong>Color: </strong>
-          {colors.map((color) => (
-            <button
-              key={color}
-              style={{
-                backgroundColor: translateColor(color),
-                marginRight: "5px",
-                width: "30px",
-                height: "30px",
-                border: `2px solid ${
-                  translateColor(color) === selectedColor
-                    ? "lightblue"
-                    : "transparent"
-                }`,
-                borderRadius: "100px",
-              }}
-              onClick={() => handleColorSelect(translateColor(color))}
-            />
-          ))}
+          <button
+            style={{
+              backgroundColor: getColorById(colorID).colorValue,
+              marginRight: "5px",
+              width: "30px",
+              height: "30px",
+              border: `2px solid ${
+                selectedColor === colorID ? "lightblue" : "transparent"
+              }`,
+              borderRadius: "100px",
+            }}
+            onClick={() => handleColorSelect(colorID)}
+          />
         </div>
       );
     }
-
+  
     return null;
   };
+  
+
+  const getColorById = (colorID) => {
+    const colorMap = {
+      17: { colorName: "Blanco", colorValue: "white" },
+      18: { colorName: "Negro", colorValue: "black" },
+      19: { colorName: "Rojo", colorValue: "red" },
+      23: { colorName: "Azul", colorValue: "blue" },
+      28: { colorName: "Amarillo", colorValue: "yellow" },
+      // Agrega más mapeos de colores según sea necesario
+    };
+
+    return colorMap[colorID] || { colorName: "Desconocido", colorValue: "transparent" };
+};
 
   return (
     <div>
