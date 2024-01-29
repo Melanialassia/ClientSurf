@@ -8,6 +8,7 @@
   margin-top: 50px;
   display: flex;
   flex-direction: row;
+  text-align: center;
   font-family: "Montserrat", sans-serif;
   justify-content: space-between;
 }
@@ -20,8 +21,6 @@
 .productList {
   list-style: none;
   padding: 0;
-  
-  
 }
 
 .productItem {
@@ -181,13 +180,10 @@
 .emptyPage {
   text-align: center;
   justify-content: center;
-  
 }
 
-.text {
-  margin-left: 150px;
-  margin-right: -120px;
-}
+
+
 
 
 
