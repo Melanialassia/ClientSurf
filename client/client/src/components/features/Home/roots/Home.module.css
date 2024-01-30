@@ -1,4 +1,4 @@
-.homeContainer {
+/* .homeContainer {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -70,6 +70,125 @@
 }
 .imagenFiltroaccesorio:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+} */
+
+
+.homeContainer {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+
+.carousel,
+.productFilter,
+.highlights,
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 3px solid white;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.carousel,
+.productFilter,
+.highlights {
+  height: 300px; /* Ajustar altura según sea necesario para pantallas pequeñas */
+}
+
+.newsletter {
+  height: 200px; /* Ajustar altura según sea necesario para pantallas pequeñas */
+}
+
+.footer {
+  margin-top: 10px;
+}
+
+.imagenFiltrotabla,
+.imagenFiltroaccesorio {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 20px;
+  margin: 20px 0; 
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 
+@media (min-width: 768px) {
+  .carousel,
+  .productFilter,
+  .highlights,
+  .newsletter {
+    flex-direction: row;
+    height: auto;
+  }
+
+  .carousel,
+  .productFilter,
+  .highlights {
+    height: 400px; 
+  }
+
+  .newsletter {
+    height: 250px; 
+  }
+
+  .imagenFiltrotabla,
+  .imagenFiltroaccesorio {
+    max-width: 700px; 
+  }
+}
+
+
+@media (min-width: 1440px) {
+  .carousel,
+  .productFilter,
+  .highlights,
+  .newsletter {
+    margin-top: 30px; 
+    padding: 20px; 
+    border-width: 5px; 
+  }
+
+  .imagenFiltrotabla{
+    max-width: 600px; 
+    margin-left: 20px;
+  }
+  .imagenFiltroaccesorio {
+    max-width: 530px; 
+    margin-left: 20px;
+  }
+}
+
+@media (min-width: 1900px) {
+  .carousel,
+  .productFilter,
+  .highlights,
+  .newsletter {
+    margin-top: 50px; 
+    padding: 30px; 
+    border-width: 8px;
+  }
+
+  .imagenFiltrotabla{
+    max-width: 900px; 
+    margin-left: 20px;
+    width: 900px;
+  }
+  .imagenFiltroaccesorio {
+    max-width: 770px; 
+    margin-left: 20px;
+    width: 900px;
+  }
+}
+
+
+.imagenFiltrotabla:hover,
+.imagenFiltroaccesorio:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

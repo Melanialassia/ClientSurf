@@ -1,5 +1,15 @@
-import React from "react";
-import { Collapse } from "antd";
+import React, { useState } from "react";
+import { Layout, Menu } from "antd";
+import {
+  UserOutlined,
+  AppstoreOutlined,
+  LineChartOutlined,
+  PlusOutlined,
+  BarsOutlined,
+  TagOutlined,
+  HighlightOutlined,
+  GoldOutlined,
+} from "@ant-design/icons";
 import ProductsManager from "../../ProductManagement/roots/ProductsManager";
 import CategoryManager from "../../CategoryManager/root/CategoryManager";
 import ProductManager from "../../CreateProduct/roots/ProductManager";
@@ -10,58 +20,80 @@ import ColorManager from "../../CreateColor/root/ColorManager";
 import SizeManager from "../../CreateSize/roots/SizeManager";
 import styles from "./AdminDashboard.module.css";
 
+const { Sider, Content } = Layout;
 
-const text = `
-  Esta pestaña se encuentra en proceso.
-`;
-const items = [
-  {
-    key: "1",
-    label: "Gestionar los usuarios",
-    children: <UserManager></UserManager>,
-  },
-  {
-    key: "2",
-    label: "Gestionar los productos",
-    children: <ProductsManager></ProductsManager>,
-  },
-  {
-    key: "3",
-    label: "Registro de ventas",
-    children: <SalesManager/>,
-  },
-  {
-    key: "4",
-    label: "Agregar un nuevo producto a la tienda",
-    children: <ProductManager></ProductManager>,
-  },
-  {
-    key: "5",
-    label: "Gestionar las categorias",
-    children: <CategoryManager />,
-  },
-  {
-    key: "6",
-    label: "Gestionar las marcas",
-    children: <BrandManager></BrandManager>,
-  },
-  {
-    key: "7",
-    label: "Gestionar los colores",
-    children: <ColorManager></ColorManager>,
-  },
-  {
-    key: "8",
-    label: "Gestionar las tallas",
-    children: <SizeManager></SizeManager>,
-  },
-];
 const AdminDashboard = () => {
-  const onChange = (key) => {
-    console.log(key);
+  const [selectedKey, setSelectedKey] = useState("1");
+
+  const handleMenuClick = (key) => {
+    setSelectedKey(key);
   };
+
+  const renderContent = () => {
+    switch (selectedKey) {
+      case "1":
+        return <UserManager />;
+      case "2":
+        return <ProductsManager />;
+      case "3":
+        return <SalesManager />;
+      case "4":
+        return <ProductManager />;
+      case "5":
+        return <CategoryManager />;
+      case "6":
+        return <BrandManager />;
+      case "7":
+        return <ColorManager />;
+      case "8":
+        return <SizeManager />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <Collapse className={styles.container} defaultActiveKey={["1"]} onChange={onChange} items={items} />
+    <Layout className={styles.container}>
+      <Sider width={300} theme="light">
+        <Menu
+          theme="light"
+          mode="vertical"
+          selectedKeys={[selectedKey]}
+          onClick={({ key }) => handleMenuClick(key)}
+        >
+          <Menu.Item key="1" icon={<UserOutlined />} title="Gestionar Usuarios" style={{ marginBottom: '30px' }}>
+            Gestionar Usuarios
+          </Menu.Item>
+          <Menu.Item key="2" icon={<AppstoreOutlined />} title="Gestionar Productos" style={{ marginBottom: '30px' }}>
+            Gestionar Productos
+          </Menu.Item>
+          <Menu.Item key="3" icon={<LineChartOutlined />} title="Registro de Ventas" style={{ marginBottom: '30px' }}>
+            Registro de Ventas
+          </Menu.Item>
+          <Menu.Item key="4" icon={<PlusOutlined />} title="Agregar Nuevo Producto" style={{ marginBottom: '30px'}}>
+            Agregar Nuevo Producto
+          </Menu.Item>
+          <Menu.Item key="5" icon={<BarsOutlined />} title="Gestionar Categorías" style={{ marginBottom: '30px' }}>
+            Gestionar Categorías
+          </Menu.Item>
+          <Menu.Item key="6" icon={<TagOutlined />} title="Gestionar Marcas" style={{ marginBottom: '30px' }}>
+            Gestionar Marcas
+          </Menu.Item>
+          <Menu.Item key="7" icon={<HighlightOutlined />} title="Gestionar Colores" style={{ marginBottom: '30px' }}>
+            Gestionar Colores
+          </Menu.Item>
+          <Menu.Item key="8" icon={<TagOutlined  />} title="Gestionar Tallas" style={{ marginBottom: '30px' }}>
+            Gestionar Tallas
+          </Menu.Item>
+        </Menu>
+      </Sider>
+      <Layout>
+        <Content style={{ background: "#fff", padding: "auto", minHeight: 400 }}>
+          {renderContent()}
+        </Content>
+      </Layout>
+    </Layout>
   );
 };
+
 export default AdminDashboard;
