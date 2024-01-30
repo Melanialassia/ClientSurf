@@ -152,3 +152,21 @@ body {
   margin-left: 160px;
   margin-bottom: 30px;
 }
+
+.rate {
+  display: flex;
+  align-items: center;
+}
+
+.rateText {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-left: 15px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.rateMessage {
+  font-size: 1em;
+  margin-left: 15px;
+  font-family: "Montserrat", sans-serif;
+}
