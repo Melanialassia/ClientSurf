@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import ReviewCard from "../container/ReviewCard";
 import { useParams } from 'react-router-dom';
 import styles from "./ReviewPage.module.css";
-//import { getSaleDetails } from "../../../../redux/actions/action";
 import axios from "axios";
 
 const ReviewPage = () => {
@@ -14,7 +13,7 @@ const ReviewPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await handlerGetSaleDetails(idSale); //TODO: cambiar por idSale
+        await handlerGetSaleDetails(idSale);
       } catch (error) {
         throw Error("No se pudo traer los objetos de la compra: ", error);
       }
@@ -38,7 +37,7 @@ const ReviewPage = () => {
         <ReviewCard
           key={item.idProduct}
           idProduct={item.idProduct}
-          idUser={idUser} /* TODO: cambiar por idUser */
+          idUser={idUser}
         />
       ))}
       </div>

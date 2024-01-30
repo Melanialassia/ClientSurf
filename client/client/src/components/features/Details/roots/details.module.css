@@ -177,3 +177,19 @@ body {
     margin-top: -10%;
   }
 }
+
+
+.rate {
+  display: flex;
+  align-items: center;
+}
+
+.rateText {
+  font-size: 1.1em;
+  margin-left: 10px;
+}
+
+.rateMessage {
+  font-size: 0.9em;
+  margin-left: 10px;
+}
