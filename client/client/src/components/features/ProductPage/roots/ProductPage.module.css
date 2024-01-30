@@ -8,17 +8,16 @@
 }
 
 .titulo {
-    font-weight: 400;
-    font-size: 2rem;
-    margin-left: -150px;
+  font-weight: 400;
+  font-size: 2rem;
+  margin-left: -150px;
 }
 
 .filtro {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    width: 130px;
-    margin-left: -150px;
-
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  width: 130px;
+  margin-left: -150px;
 }
 
 .main {
@@ -27,7 +26,7 @@
   left: 65px;
   flex-grow: 1;
   display: grid;
-  grid-template-rows: auto 1fr auto; /* Agrega una fila adicional para el paginado */
+  grid-template-rows: auto 1fr auto;
 }
 
 .contenedorproductos {
@@ -63,26 +62,24 @@
   transition: border-color 0.3s;
 }
 
-.selectStyle:hover {
-  border-color: #e8903b;
-  box-shadow: 0 0 5px rgba(232, 144, 59, 0.5);
-}
-
-.selectStyle:focus {
-  outline: none;
-  border-color: #ccc;
-}
-
-.optionStyle {
-  font-family: "Montserrat", sans-serif;
-}
-
 .paginateContainer {
   position: sticky;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 20px; /* Ajusta según sea necesario */
-  border-top: 1px solid #ccc; /* Línea divisoria opcional */
+  padding: 20px;
+  border-top: 1px solid #ccc;
   z-index: 1;
+}
+
+@media only screen and (min-width: 1920px) {
+  .titulo {
+    font-size: 2.5rem; /* Ajusta el tamaño de la fuente para pantallas más grandes */
+    margin-left: -55%; /* Ajusta el margen izquierdo para pantallas más grandes */
+  }
+
+  .filtro {
+    width: 8%; /* Ajusta el ancho para pantallas más grandes */
+    margin-left: -80%; /* Ajusta el margen izquierdo para pantallas más grandes */
+  }
 }
