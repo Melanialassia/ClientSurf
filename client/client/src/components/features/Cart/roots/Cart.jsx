@@ -19,7 +19,7 @@ const Cart = () => {
   console.log(userId);
   const storedAccess = localStorage.getItem('access');
   const userAccess = storedAccess ? JSON.parse(storedAccess) : null;
-  
+  console.log(cartData);
  
   
   const fetchCartData = async () => {
@@ -64,7 +64,7 @@ const Cart = () => {
       console.error('Error al eliminar todos los productos del carrito:', error);
     }
   };
-
+ 
   const handleFinish = async () => {
     let listCart = cartListItems.map((item) => {
       return {
@@ -78,16 +78,16 @@ const Cart = () => {
         userId: userId
       };
     });
+    const cartItemsJSON = JSON.stringify(listCart);
+    localStorage.setItem('cartItems', cartItemsJSON);
     
-      const cartItemsJSON = JSON.stringify(listCart);
-      localStorage.setItem('cartItems', cartItemsJSON);
-   
     
-    console.log(listCart);
+    
     
     
     try {
       const response = await axios.post('https://surf-4i7c.onrender.com/surf/mecado', listCart);
+      console.log(listCart);
 
       const data = response.data;
       
