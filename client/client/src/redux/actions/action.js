@@ -701,7 +701,6 @@ export const getProductById = (idProduct) => {
 export const AddRating = (data) => {
   return async (dispatch) => {
     try {
-      console.log(data);
       const response = await axios.post(`${SERVER_URL}/qualification`, data);
       dispatch({ type: ADD_RATING, payload: response.data });
       return response.data;
