@@ -5,12 +5,33 @@ import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import styles from "./FavoriteCard.module.css";
 import { Link } from "react-router-dom";
+import {
+  addToCart,
+  } from "../../../../../redux/actions/action";
+
+
+const logedUser = JSON.parse(localStorage.getItem("logedUser"));
+const userId = localStorage.getItem("userId");
 
 const FavoriteCard = ({ product, user }) => {
   const dispatch = useDispatch();
-
+console.log(product);
   const handleDelete = () => {
     dispatch(deleteFavorite(user.idUser, product.idProduct));
+  };
+
+  const addToCartHandler = async () => {
+    if (logedUser === null || logedUser === false) {
+      
+    } else {
+      try {
+        await dispatch(
+          addToCart(product.idProduct, user.idUser, 1)
+        );
+      } catch (error) {
+        console.error("Error al agregar al carrito:", error);
+      }
+    }
   };
 
   return (
@@ -26,7 +47,7 @@ const FavoriteCard = ({ product, user }) => {
       </div>
 
       <div className={styles.buttons}>
-        <Button type="primary" icon={<ShoppingCartOutlined />}>
+        <Button onClick={addToCartHandler} type="primary" icon={<ShoppingCartOutlined />}>
           Agregar al carrito
         </Button>
 

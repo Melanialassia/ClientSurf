@@ -4,6 +4,7 @@ import axios from 'axios';
 import { createDetail } from '../../../../redux/actions/action';
 import styles from "./MySales.module.css";
 import surferLoaderImage from "../../../../images/loader.gif";
+import { deleteAllProductsFromCart } from '../../../../redux/actions/action'
 
 const MySales = () => {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const MySales = () => {
   const handleRemoveAllProducts = async () => {
     try {
       await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${idUser}`);
+      dispatch(deleteAllProductsFromCart(idUser));
       
     } catch (error) {
       console.error('Error al eliminar todos los productos del carrito:', error);
