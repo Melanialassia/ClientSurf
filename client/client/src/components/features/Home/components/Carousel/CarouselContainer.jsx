@@ -19,28 +19,28 @@ const CarouselContainer = () => {
   }>
       <div className={styles.carouselItem}>
         <img
-          className={styles.carouselImage}
+          className={styles.carouselImageone}
           src="https://res.cloudinary.com/dfvebd4zw/image/upload/v1706488092/cfsnbaladaou5kzyhg9x.jpg"
           alt="Imagen Carousel 1"
         />
       </div>
       <div className={styles.carouselItem}>
         <img
-          className={styles.carouselImage}
+          className={styles.carouselImagetwo}
           src="https://res.cloudinary.com/dfvebd4zw/image/upload/v1706299699/Products_Surf/fqolk3979kswkd4eyvqp.jpg"
           alt="Imagen Carousel 2"
         />
       </div>
       <div className={styles.carouselItem}>
         <img
-          className={styles.carouselImage}
+          className={styles.carouselImagethree}
           src="https://res.cloudinary.com/dfvebd4zw/image/upload/v1706245985/Products_Surf/vw30gu8wgsdv3wwm1w7w.png"
           alt="Imagen Carousel 3"
         />
       </div>
       <div className={styles.carouselItem}>
         <img
-          className={styles.carouselImage}
+          className={styles.carouselImagefour}
           src="https://res.cloudinary.com/dfvebd4zw/image/upload/v1706245917/Products_Surf/nn8upa1gpvay7brdj3jt.png"
           alt="Imagen Carousel 4"
         />

@@ -18,8 +18,8 @@ const ServicesContainer = () => {
   return (
 
     <div className={styles.container}>
-    <div className={styles.text}>
-      <h3>NUESTROS SERVICIOS</h3>
+    <div >
+      <h3 className={styles.text}>NUESTROS SERVICIOS</h3>
     </div>
     <div className={styles.serviceColumns}>
 

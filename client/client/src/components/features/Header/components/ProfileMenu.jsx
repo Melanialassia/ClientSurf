@@ -1,7 +1,7 @@
 //HOOKS
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 //REDUX
 import { logOut, getIdUser } from "../../../../redux/actions/action";
@@ -25,6 +25,7 @@ const ProfileMenu = () => {
   
   const dispatch = useDispatch();
   const dataUser = JSON.parse(localStorage.getItem("dataUser"));
+ 
 
   
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ const ProfileMenu = () => {
     dispatch(logOut());
     navigate('/login');
   }
+
 
   const handleMenuClick = (event) => {
     switch (event.key) {
@@ -77,17 +79,18 @@ const ProfileMenu = () => {
       <Menu
         className={styles['ant-menu']}
         style={{
-          width: 200,
+          width: 210,
           height: 50,
           marginTop: "-34px",
           marginBottom: "-10px",
           borderRadius: "20px",
           backgroundColor: "#e2dcd1",
-          color: "#2d4056"
+          color: "#2d4056",
         }}
         selectedKeys={[]} 
         defaultOpenKeys={["sub1"]}
         items={items}
+        mode = "inline"
         onSelect={handleMenuClick}
         
       />

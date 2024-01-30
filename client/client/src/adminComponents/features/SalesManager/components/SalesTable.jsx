@@ -7,6 +7,7 @@
     const [dataSales, setDataSales] = useState([]);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [saleDetails, setSaleDetails] = useState(null);
+    const idUser = localStorage.getItem('userId');
     console.log(saleDetails);
     useEffect(() => {
       const fetchData = async () => {
@@ -23,9 +24,9 @@
       fetchData();
     }, []);
 
-    const deleteSale = async (id) => {
+    const deleteSale = async (id , idUser) => {
       try {
-        await axios.delete(`https://surf-4i7c.onrender.com/surf/sale/${id}`);
+        await axios.delete(`https://surf-4i7c.onrender.com/surf/sale/${id}/${idUser}`);
         setDataSales(dataSales.filter((sale) => sale.idSale !== id));
       } catch (error) {
         console.error(`Error deleting sale ${id}:`, error);
@@ -80,7 +81,7 @@
         render: (_, record) => (
           <Space size="middle">
             
-            <a onClick={() => deleteSale(record.idSale)}>Eliminar</a>
+            <a onClick={() => deleteSale(record.idSale, idUser )}>Eliminar</a>
             <a onClick={() => showSaleDetails(record.idSale)}>Ver Detalles</a>
           </Space>
         ),

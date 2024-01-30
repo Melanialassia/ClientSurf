@@ -80,13 +80,13 @@ const DeletedUsers = () => {
         <List
           header={
           <div>
-             <p>Usuarios eliminados</p> <UserDeleteSearchBar />
+             <p>Usuarios eliminados 👥</p> <UserDeleteSearchBar />
              </div>}
           dataSource={inactiveUsers}
           renderItem={(item) => (
             <List.Item key={item.email}>
               <List.Item.Meta
-                avatar={<Avatar src="/assets/images/Foto2.png" />}
+                avatar={<Avatar src="https://res.cloudinary.com/dfvebd4zw/image/upload/v1706143636/Products_Surf/jifmqpky9pazx2qgd8tn.png" />}
                 title={<p>{item.nameUser}</p>}
                 description={item.emailUser}
               />

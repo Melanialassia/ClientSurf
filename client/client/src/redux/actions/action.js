@@ -654,6 +654,7 @@ export const deleteSize = (idSize) => {
 };
 
 export const createDetail = (idSale, idUser, listProducts) => {
+ 
   return async (dispatch) => {
     try {
       const response = await axios.post(`${SERVER_URL}/detail`, {
