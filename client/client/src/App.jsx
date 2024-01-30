@@ -49,7 +49,7 @@ const App = () => {
         <Route path="/faq" element={<Faq />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/my-buys" element={<MySales/>} />
-        <Route path="/reviews" element={<ReviewPage/>} />
+        <Route path="/reviews/:idSale/:idUser" element={<ReviewPage/>} />
 
       </Routes>
       <a href="https://api.whatsapp.com/send?phone=5493415948636" target="_blank">
