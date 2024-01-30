@@ -25,7 +25,7 @@ const ProfileMenu = () => {
   
   const dispatch = useDispatch();
   const dataUser = JSON.parse(localStorage.getItem("dataUser"));
-  const [menuVisible, setMenuVisible] = useState(false);
+ 
 
   
   const navigate = useNavigate();
@@ -52,13 +52,6 @@ const ProfileMenu = () => {
     navigate('/login');
   }
 
-  const handleMenuHover = () => {
-    setMenuVisible(true);
-  };
-
-  const handleMenuLeave = () => {
-    setMenuVisible(false);
-  };
 
   const handleMenuClick = (event) => {
     switch (event.key) {
@@ -79,10 +72,7 @@ const ProfileMenu = () => {
     }
   };
   return (
-    <div 
-    onMouseEnter={handleMenuHover}
-    onMouseLeave={handleMenuLeave}
-    >
+    <div >
       <UserOutlined 
       style={{ fontSize: '24px', marginLeft: "-180px", color: "#2d4056" }}
       />
