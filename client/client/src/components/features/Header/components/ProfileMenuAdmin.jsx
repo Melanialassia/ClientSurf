@@ -71,7 +71,7 @@ function getItem(label, key, children, type) {
     <Menu
       className={styles['ant-menu']}
       style={{
-        width: 200,
+        width: 230,
         height: 50,
         marginTop: "-34px",
         marginBottom: "-10px",
@@ -82,6 +82,7 @@ function getItem(label, key, children, type) {
       selectedKeys={[]} 
       defaultOpenKeys={["sub1"]}
       items={items}
+      mode= "inline"
       onSelect={handleMenuClick}
     />
   </div>
