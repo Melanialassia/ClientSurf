@@ -74,7 +74,7 @@ const AddProduct = () => {
         <List
           header={
             <div>
-              <p>Productos activos</p> <ProductSearchBar />
+              <p>Productos activos 🌊</p> <ProductSearchBar />
             </div>
           }
           dataSource={trueStatus}

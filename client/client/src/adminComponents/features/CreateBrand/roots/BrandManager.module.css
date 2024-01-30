@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: flex;
   justify-content: space-around;
 }
@@ -11,4 +11,47 @@
 .childList {
   text-align: center;
   min-width: 200px;
+} */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.childCard, .childList {
+  text-align: center;
+  width: 100%;
+  min-width: 200px;
+  max-width: 50%;
+  margin: 10px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    justify-content: space-around;
+  }
+
+  .childCard,
+  .childList {
+    width:fit-content;
+  }
+}
+
+
+@media (min-width: 1440px) {
+  .container {
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+}
+
+
+@media (min-width: 1900px) {
+  .container {
+    max-width: 1900px;
+  }
+
+  .childCard, .childList {
+    width: auto;
+  }
 }

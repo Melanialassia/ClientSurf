@@ -74,7 +74,7 @@ const DeleteProducts = () => {
         <List
           header={
             <div>
-              <p>Productos inactivos</p> <InactiveProductSearchBar />
+              <p>Productos inactivos 🌊</p> <InactiveProductSearchBar />
             </div>
           }
           dataSource={inactiveProducts}

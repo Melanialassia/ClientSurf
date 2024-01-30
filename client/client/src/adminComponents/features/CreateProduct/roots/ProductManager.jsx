@@ -6,9 +6,9 @@ import ProductList from "../components/ProductList";
 const ProductManager = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.childList}>
+      {/* <div className={styles.childList}>
         <ProductList />
-      </div>
+      </div> */}
       <div className={styles.childCard}>
         <CreateProducts/>
       </div>
