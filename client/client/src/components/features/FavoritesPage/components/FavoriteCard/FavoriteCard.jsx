@@ -5,9 +5,6 @@ import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Button, message } from "antd";
 import styles from "./FavoriteCard.module.css";
 import { Link } from "react-router-dom";
-import {
-  addToCart,
-  } from "../../../../../redux/actions/action";
 
 
 const logedUser = JSON.parse(localStorage.getItem("logedUser"));
@@ -31,20 +28,6 @@ const FavoriteCard = ({ product, user }) => {
       type: "success",
       content: "Producto agregado al carrito!",
     });
-  };
-
-  const addToCartHandler = async () => {
-    if (logedUser === null || logedUser === false) {
-      
-    } else {
-      try {
-        await dispatch(
-          addToCart(product.idProduct, user.idUser, 1)
-        );
-      } catch (error) {
-        console.error("Error al agregar al carrito:", error);
-      }
-    }
   };
 
   return (
