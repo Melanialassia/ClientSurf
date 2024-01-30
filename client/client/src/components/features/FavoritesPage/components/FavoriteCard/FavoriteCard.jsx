@@ -1,13 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteFavorite } from "../../../../../redux/actions/action";
+import { deleteFavorite, addToCart } from "../../../../../redux/actions/action";
 import { DeleteOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import styles from "./FavoriteCard.module.css";
 import { Link } from "react-router-dom";
-import {
-  addToCart,
-  } from "../../../../../redux/actions/action";
 
 
 const logedUser = JSON.parse(localStorage.getItem("logedUser"));
@@ -15,23 +12,22 @@ const userId = localStorage.getItem("userId");
 
 const FavoriteCard = ({ product, user }) => {
   const dispatch = useDispatch();
-console.log(product);
+  const [messageApi, contextHolder] = message.useMessage();
+
   const handleDelete = () => {
     dispatch(deleteFavorite(user.idUser, product.idProduct));
+    messageApi.open({
+      type: "success",
+      content: "Producto eliminado de favoritos!",
+    });
   };
 
-  const addToCartHandler = async () => {
-    if (logedUser === null || logedUser === false) {
-      
-    } else {
-      try {
-        await dispatch(
-          addToCart(product.idProduct, user.idUser, 1)
-        );
-      } catch (error) {
-        console.error("Error al agregar al carrito:", error);
-      }
-    }
+  const handleAddToCart = () => {
+    dispatch(addToCart(product.idProduct, user.idUser, 1));
+    messageApi.open({
+      type: "success",
+      content: "Producto agregado al carrito!",
+    });
   };
 
   return (
@@ -47,7 +43,7 @@ console.log(product);
       </div>
 
       <div className={styles.buttons}>
-        <Button onClick={addToCartHandler} type="primary" icon={<ShoppingCartOutlined />}>
+        <Button onClick={handleAddToCart} icon={<ShoppingCartOutlined />}>
           Agregar al carrito
         </Button>
 

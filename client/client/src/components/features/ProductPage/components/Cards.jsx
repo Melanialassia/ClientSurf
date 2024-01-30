@@ -36,20 +36,19 @@ const Cards = ({ product }) => {
 
   const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
     //MESSAGE
-    const openMessage = () => {
+/*     const openMessage = () => {
       messageApi.open({
         key: 'addToFavoritesMessage', // Asegúrate de tener una clave única para cada mensaje
         type: 'success',
         content: 'Producto agregado a favoritos',
         duration: 2,
       });
-    };
+    }; */
 
   //FAVORITES
   
   useEffect(() => {
     if(logedUser === true){
-
       dispatch(getAllFavoriteProducts(dataUser.idUser))
     }
   }, [])
@@ -72,11 +71,11 @@ const Cards = ({ product }) => {
     setIsInFavorites(!isInFavorites);
   };
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (isInFavorites) {
       openMessage(); // Llama a la función openMessage dentro del efecto
     }
-  }, [isInFavorites]);
+  }, [isInFavorites]); */
 
   const handleOpenModal = () => {
     dispatch({ type: OPEN_MODAL });

@@ -46,6 +46,8 @@ import {
   DELETE_BRAND,
   DELETE_SIZE,
   CREATE_DETAIL,
+  //SALES
+  GET_USER_SALES,
 } from "../actions-types/actions-types";
 
 const initialState = {
@@ -67,6 +69,7 @@ const initialState = {
   details: [],
   inactiveProducts: [],
   inactiveUsers: [],
+  UserSales: [],
 };
 
 const reducer = (state = initialState, action) => {

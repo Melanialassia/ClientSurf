@@ -17,6 +17,7 @@ import {
   HeartFilled,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
+import { Rate } from "antd";
 
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
 
@@ -45,11 +46,10 @@ const Details = () => {
   const [isInFavorites, setIsInFavorites] = useState(isProductInFavorites);
 
   useEffect(() => {
-    if(logedUser === true){
-
-      dispatch(getAllFavoriteProducts(dataUser.idUser))
+    if (logedUser === true) {
+      dispatch(getAllFavoriteProducts(dataUser.idUser));
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     setIsInFavorites(isProductInFavorites);
@@ -144,7 +144,11 @@ const Details = () => {
     } else {
       try {
         await dispatch(
-          addToCart(product.idProduct, userId, quantity/* , product.description */)
+          addToCart(
+            product.idProduct,
+            userId,
+            quantity /* , product.description */
+          )
         );
 
         navigate("/cart");
@@ -158,7 +162,6 @@ const Details = () => {
     if (logedUser === false || logedUser === null) {
       handleOpenModal();
     } else {
-      
       dispatch(addToFavorites(dataUser.idUser, product.idProduct));
       setIsInFavorites(!isInFavorites);
     }
@@ -176,7 +179,7 @@ const Details = () => {
   const getColorButtons = () => {
     if (product.idColor) {
       const colorID = product.idColor;
-  
+
       return (
         <div className={styles.colorButtons}>
           <strong>Color: </strong>
@@ -196,10 +199,9 @@ const Details = () => {
         </div>
       );
     }
-  
+
     return null;
   };
-  
 
   const getColorById = (colorID) => {
     const colorMap = {
@@ -215,8 +217,13 @@ const Details = () => {
       // Agrega más mapeos de colores según sea necesario
     };
 
-    return colorMap[colorID] || { colorName: "Desconocido", colorValue: "transparent" };
-};
+    return (
+      colorMap[colorID] || {
+        colorName: "Desconocido",
+        colorValue: "transparent",
+      }
+    );
+  };
 
   return (
     <div>
@@ -235,6 +242,15 @@ const Details = () => {
             <div className={styles.price}>
               <h2>${product.priceProduct}</h2>
             </div>
+          </div>
+
+          <div className={styles.rate}>
+            <Rate disabled value={3.5} />{" "}
+            {product.points != 0 ? (
+              <p className={styles.rateText}>product.points</p>
+            ) : (
+              <p className={styles.rateMessage}>No cuenta con calificaciones</p>
+            )}
           </div>
 
           <div className={styles.description}>

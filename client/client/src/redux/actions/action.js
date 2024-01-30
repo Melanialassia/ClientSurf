@@ -13,6 +13,7 @@ import {
   DELETE_PRODUCT,
   FILTER_INACTIVE_PRODUCT,
   FILTER_INACTIVE_PRODUCT_BY_NAME,
+  GET_PRODUCT_BY_ID,
   //FAVORITE
   ADD_TO_FAVORITES,
   DELETE_FAVORITES,
@@ -47,6 +48,9 @@ import {
   DELETE_BRAND,
   DELETE_SIZE,
   CREATE_DETAIL,
+  //SALES
+  GET_USER_SALES,
+  ADD_RATING,
 } from "../actions-types/actions-types";
 import axios from "axios";
 
@@ -406,11 +410,14 @@ export const getCartProducts = (idUser) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(`${SERVER_URL}/cart/${idUser}`);
-      const result = data
+      const result = data;
       localStorage.setItem("cartData", JSON.stringify(result));
       return dispatch({ type: GET_CART_PRODUCTS, payload: result });
     } catch (error) {
-      throw Error("No se pudo traer los objetos del carrito de compras: ", error);
+      throw Error(
+        "No se pudo traer los objetos del carrito de compras: ",
+        error
+      );
     }
   };
 };
@@ -446,7 +453,10 @@ export const deleteFromCart = (idUser, idProduct) => {
         payload: response.data.cartList,
       });
     } catch (error) {
-      throw Error("No se pudo borrar el producto del carrito de compras: ", error);
+      throw Error(
+        "No se pudo borrar el producto del carrito de compras: ",
+        error
+      );
     }
   };
 };
@@ -454,16 +464,17 @@ export const deleteFromCart = (idUser, idProduct) => {
 export const deleteAllProductsFromCart = (idUser) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(
-        `${SERVER_URL}/cart/${idUser}`
-      );
+      const response = await axios.delete(`${SERVER_URL}/cart/${idUser}`);
       localStorage.setItem("cartData", JSON.stringify(response.data));
       dispatch({
         type: DELETE_ALL_PRODUCTS_FROM_CART,
         payload: response.data.cartList,
       });
     } catch (error) {
-      throw Error("No se pudo borrar el producto del carrito de compras: ", error);
+      throw Error(
+        "No se pudo borrar el producto del carrito de compras: ",
+        error
+      );
     }
   };
 };
@@ -646,7 +657,11 @@ export const createDetail = (idSale, idUser, listProducts) => {
  
   return async (dispatch) => {
     try {
-      const response = await axios.post(`${SERVER_URL}/detail`, { idSale, idUser, listProducts });
+      const response = await axios.post(`${SERVER_URL}/detail`, {
+        idSale,
+        idUser,
+        listProducts,
+      });
       console.log(response.data);
       dispatch({
         type: CREATE_DETAIL,
@@ -654,6 +669,44 @@ export const createDetail = (idSale, idUser, listProducts) => {
       });
     } catch (error) {
       throw Error("No se pudo crear el detalle", error);
+    }
+  };
+};
+
+//USER PURCHASES
+export const getSaleDetails = (idSale) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/detail/${idSale}`);
+      const result = data;
+      return dispatch({ type: GET_USER_SALES, payload: result });
+    } catch (error) {
+      throw Error("No se pudo traer los objetos de la compra: ", error);
+    }
+  };
+};
+
+export const getProductById = (idProduct) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`${SERVER_URL}/product/${idProduct}`);
+      const result = data.listProducts;
+      return dispatch({ type: GET_CART_PRODUCTS, payload: result });
+    } catch (error) {
+      throw Error("No se pudo traer los objetos de la compra: ", error);
+    }
+  };
+};
+
+export const AddRating = (data) => {
+  return async (dispatch) => {
+    try {
+      console.log(data);
+      const response = await axios.post(`${SERVER_URL}/qualification`, data);
+      dispatch({ type: ADD_RATING, payload: response.data });
+      return response.data;
+    } catch (error) {
+      throw Error("No se pudo agregar la calificacion: ", error);
     }
   };
 };
