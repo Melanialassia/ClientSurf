@@ -12,7 +12,7 @@ const ReviewPage = ({ idSale, idUser }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await handlerGetSaleDetails(35); //TODO: cambiar por idSale
+        await handlerGetSaleDetails(47); //TODO: cambiar por idSale
       } catch (error) {
         throw Error("No se pudo traer los objetos de la compra: ", error);
       }
