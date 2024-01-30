@@ -168,9 +168,9 @@ const Cart = () => {
             </button>
           </div>
         ) : (
-          <div>
-            <h2>Carrito de Compras</h2>
-            <EmptyPage className={styles.emptyPage}/>
+          <div className={styles.emptyPage}>
+            <h2 className={styles.carttitle}>Carrito de Compras</h2>
+            <EmptyPage />
           </div>
         )}
         {cartListItems.length > 0 && (

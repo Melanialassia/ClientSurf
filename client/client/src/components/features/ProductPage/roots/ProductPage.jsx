@@ -105,7 +105,7 @@ const ProductPage = () => {
   return (
     <div className={style.wrapper}>
       <aside>
-        <h2 className={style.titulo}>FILTROS</h2>
+        <h2 className={style.titulo}>Filtros</h2>
         <Button type="text" onClick={clearFilters} className={style.filtro}>
           Limpiar filtros
         </Button>
