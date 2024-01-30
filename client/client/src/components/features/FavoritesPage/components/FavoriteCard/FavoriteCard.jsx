@@ -60,11 +60,7 @@ const FavoriteCard = ({ product, user }) => {
       </div>
 
       <div className={styles.buttons}>
-<<<<<<< HEAD
         <Button onClick={handleAddToCart} icon={<ShoppingCartOutlined />}>
-=======
-        <Button onClick={addToCartHandler} type="primary" icon={<ShoppingCartOutlined />}>
->>>>>>> Develop
           Agregar al carrito
         </Button>
 

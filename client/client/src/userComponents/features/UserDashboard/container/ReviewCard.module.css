@@ -28,20 +28,3 @@
   width: fit-content;
   margin-bottom: 10px;
 }
-
-.textContainer {
-/*   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  align-items: center;
-  flex-grow: 1;
-  width: max-content; */
-}
-
-.nameRate {
-/*   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  min-height: fit-content; */
-}
