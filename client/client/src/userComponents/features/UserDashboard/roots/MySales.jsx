@@ -4,6 +4,7 @@ import axios from 'axios';
 import { createDetail } from '../../../../redux/actions/action';
 import styles from "./MySales.module.css";
 import surferLoaderImage from "../../../../images/loader.gif";
+import { deleteAllProductsFromCart } from '../../../../redux/actions/action'
 
 const MySales = () => {
   const dispatch = useDispatch();
@@ -13,29 +14,32 @@ const MySales = () => {
   const idUser = localStorage.getItem('userId');
   const cartItemsJSON = localStorage.getItem('cartItems');
   const listProducts = JSON.parse(cartItemsJSON) || [];
-
+  
+  
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);  // Indicar que la carga está en curso
-
+  
         const response = await axios.get('https://surf-4i7c.onrender.com/surf/sale');
         const { data } = response;
         console.log('Sales data:', data);
-
+  
         const filteredSales = data.data ? data.data.filter(sale => sale.idUser === parseInt(idUser)) : [];
         console.log('Filtered Sales:', filteredSales);
-
+  
         if (filteredSales.length > 0) {
-          await Promise.all(filteredSales.map(async sale => {
-            try {
-              console.log(`Dispatching createDetail for sale ${sale.idSale}`);
-              await dispatch(createDetail(sale.idSale, idUser, listProducts));
-              console.log(`createDetail for sale ${sale.idSale} successful`);
-            } catch (error) {
-              console.error(`Error creating detail for sale ${sale.idSale}:`, error);
-            }
-          }));
+          // Ordenar las ventas por idSale y tomar la última
+          const lastSale = filteredSales.sort((a, b) => b.idSale - a.idSale)[0];
+  
+          try {
+            console.log(`Dispatching createDetail for sale ${lastSale.idSale}`);
+            await dispatch(createDetail(lastSale.idSale, idUser, listProducts));
+            console.log(`createDetail for sale ${lastSale.idSale} successful`);
+          } catch (error) {
+            console.error(`Error creating detail for sale ${lastSale.idSale}:`, error);
+          }
         }
         await handleRemoveAllProducts();
         setSales(filteredSales);
@@ -45,15 +49,17 @@ const MySales = () => {
         setLoading(false);  // Indicar que la carga ha terminado
       }
     };
-
-    
+  
     fetchData();
-    
+  
   }, [idUser]);
+  
+  
 
   const handleRemoveAllProducts = async () => {
     try {
       await axios.delete(`https://surf-4i7c.onrender.com/surf/cart/${idUser}`);
+      dispatch(deleteAllProductsFromCart(idUser));
       
     } catch (error) {
       console.error('Error al eliminar todos los productos del carrito:', error);
@@ -64,7 +70,7 @@ const MySales = () => {
     try {
       const response = await axios.get(`https://surf-4i7c.onrender.com/surf/detail/${sale.idSale}`);
       const { data } = response;
-      console.log(data);
+     
       
       if (data && data.data) {
         setVisibleSaleDetails({

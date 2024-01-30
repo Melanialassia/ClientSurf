@@ -208,6 +208,10 @@ const Details = () => {
       19: { colorName: "Rojo", colorValue: "red" },
       23: { colorName: "Azul", colorValue: "blue" },
       28: { colorName: "Amarillo", colorValue: "yellow" },
+      29: { colorName: "Rosa", colorValue: "pink" },
+      30: { colorName: "Verde", colorValue: "green" },
+      31: { colorName: "Violeta", colorValue: "purple" },
+      32: { colorName: "Naranja", colorValue: "orange" },
       // Agrega más mapeos de colores según sea necesario
     };
 
@@ -227,27 +231,6 @@ const Details = () => {
         </div>
         <div className={styles.infoContainer}>
           <div className={styles.subInfoContainer1}>
-            <div className={styles.heartButton}>
-              {isInFavorites ? (
-                <HeartFilled
-                  onClick={removeFromFavoritesHandler}
-                  style={{
-                    color: "#E89038",
-                    fontSize: "35px",
-                    marginLeft: "10px",
-                  }}
-                />
-              ) : (
-                <HeartOutlined
-                  onClick={addToFavoritesHandler}
-                  style={{
-                    color: "#E89038",
-                    fontSize: "35px",
-                    marginLeft: "10px",
-                  }}
-                />
-              )}
-            </div>
             <h2>{product.name}</h2>
             <div className={styles.price}>
               <h2>${product.priceProduct}</h2>
@@ -291,6 +274,27 @@ const Details = () => {
             <button disabled={product.stock === 0} onClick={addToCartHandler}>
               Añadir al carrito <ShoppingCartOutlined />
             </button>
+            <div className={styles.heartButton}>
+              {isInFavorites ? (
+                <HeartFilled
+                  onClick={removeFromFavoritesHandler}
+                  style={{
+                    color: "#E89038",
+                    fontSize: "35px",
+                    marginLeft: "10px",
+                  }}
+                />
+              ) : (
+                <HeartOutlined
+                  onClick={addToFavoritesHandler}
+                  style={{
+                    color: "#E89038",
+                    fontSize: "35px",
+                    marginLeft: "10px",
+                  }}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>

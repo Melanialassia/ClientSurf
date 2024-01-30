@@ -8,8 +8,11 @@ body {
   display: flex;
   flex-direction: row;
   height: 100vh;
-  width: 80vw;
+  text-align: left;
+  width: 90vw;
+
   padding-bottom: 20px;
+  text-align: left;
   margin-left: 300px;
   font-family: "Montserrat", sans-serif;
 }
@@ -31,7 +34,7 @@ body {
 .infoContainer {
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  margin-top: 140px;
   margin-right: 380px;
   margin-left: 50px;
   height: 90vh;
@@ -41,10 +44,15 @@ body {
 }
 
 .imgContainer {
-  margin-top: 30px;
+
+  position: relative;
+  margin-top: 120px;
   width: 80%;
+
   height: 700px; 
   overflow: hidden;
+  border-radius: 20px;
+  z-index: 0;
 }
 
 .imgContainer img {
@@ -52,6 +60,7 @@ body {
   height: 600px;
   transition: transform 0.3s ease;
   cursor: zoom-in;
+  border-radius: 20px;
 }
 
 .imgContainer img:hover {
@@ -149,6 +158,8 @@ body {
 }
 
 .heartButton {
-  margin-left: 160px;
-  margin-bottom: 30px;
+  position: absolute;
+  margin-left:-120px;
+  margin-top: -490px;
+  z-index: 1;
 }
