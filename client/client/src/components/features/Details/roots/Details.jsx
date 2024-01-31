@@ -249,7 +249,7 @@ const Details = () => {
             {product.points != 0 ? (
               <p className={styles.rateText}>{product.promedioQualification}</p>
             ) : (
-              <p className={styles.rateMessage}>No cuenta con calificaciones</p>
+              <p className={styles.rateMessage}>Sin calificaciones</p>
             )}
           </div>
 

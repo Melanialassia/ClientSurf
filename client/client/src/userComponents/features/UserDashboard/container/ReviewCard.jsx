@@ -12,7 +12,6 @@ function ReviewCard({ idProduct, idUser }) {
   const [rate, setRate] = useState(0);
   const [rateStatus, setRateStatus] = useState(false);
   const [product, setProduct] = useState({});
-  //const { TextArea } = Input;
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -20,6 +19,13 @@ function ReviewCard({ idProduct, idUser }) {
     const fetchData = async () => {
       try {
         await handlerProductDetails(idProduct);
+
+        const savedRate = localStorage.getItem(`rate_${idProduct}`);
+        if (savedRate !== null) {
+          setRate(JSON.parse(savedRate));
+          setRateStatus(true);
+        }
+
       } catch (error) {
         throw Error("No se pudo traer los objetos de la compra: ", error);
       }
@@ -34,17 +40,17 @@ function ReviewCard({ idProduct, idUser }) {
     const response = data.listProducts[0];
     setProduct(response);
   };
-
+ 
   const handleAddRating = () => {
     const data = {
       idUser: idUser,
       idProduct: idProduct,
       points: rate,
     };
+    localStorage.setItem(`rate_${idProduct}`, JSON.stringify(data.points));
     dispatch(AddRating(data));
     setRateStatus(true);
-    console.log("rate", rate);
-    console.log("rateStatus", rateStatus);
+    
     messageApi.open({
       type: "success",
       content: "Calificacion enviada! 🏄🏼",

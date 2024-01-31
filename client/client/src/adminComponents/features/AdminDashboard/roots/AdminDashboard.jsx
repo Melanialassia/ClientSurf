@@ -54,13 +54,21 @@ const AdminDashboard = () => {
 
   return (
     <Layout className={styles.container}>
-      <Sider width={300} theme="light">
-        <Menu
-          theme="light"
-          mode="vertical"
-          selectedKeys={[selectedKey]}
-          onClick={({ key }) => handleMenuClick(key)}
-        >
+    <Sider
+      width={300}
+      theme="light"
+      style={{
+        left: 0, // Ajusta según sea necesario
+        height: "100vh", // Ajusta según sea necesario
+      }}
+    >
+      <Menu
+        theme="light"
+        mode="vertical"
+        selectedKeys={[selectedKey]}
+        onClick={({ key }) => handleMenuClick(key)}
+        style={{ marginTop: "10px" }}
+      >
           <Menu.Item key="1" icon={<UserOutlined />} title="Gestionar Usuarios" style={{ marginBottom: '30px' }}>
             Gestionar Usuarios
           </Menu.Item>
