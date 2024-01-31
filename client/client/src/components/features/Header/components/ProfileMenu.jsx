@@ -88,10 +88,11 @@ const ProfileMenu = () => {
           color: "#2d4056",
         }}
         selectedKeys={[]} 
-        defaultOpenKeys={["sub1"]}
+       /*  defaultOpenKeys={["sub1"]} */
         items={items}
         mode = "inline"
         onSelect={handleMenuClick}
+        subMenuCloseDelay={0.01}
         
       />
     </div>
