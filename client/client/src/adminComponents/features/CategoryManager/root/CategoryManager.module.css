@@ -25,7 +25,7 @@
   width: 100%;
   min-width: 200px;
   max-width: 50%;
-  margin-top: -340px;
+  margin-top: -250px;
 } 
 
 .childList {
@@ -33,8 +33,9 @@
   width: 100%;
   min-width: 200px;
   max-width: 50%;
-  margin-top: -300px;
+  margin-top: -200px;
 }
+
 
 
 @media (min-width: 768px) {
