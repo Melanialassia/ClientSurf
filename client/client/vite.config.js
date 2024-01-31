@@ -9,6 +9,7 @@ export default defineConfig({
       "/socket.io": {
         target: "https://surf-4i7c.onrender.com",
         ws: true,
+        secure: false,
       },
     },
   },
