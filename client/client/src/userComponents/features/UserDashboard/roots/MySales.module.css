@@ -1,9 +1,9 @@
-@import url("https://fonts.cdnfonts.com/css/montserrat");
+/* @import url("https://fonts.cdnfonts.com/css/montserrat");
 
 .fuente {
-    font-family: "Montserrat", sans-serif;
-    margin-top: 100px;
-    margin-bottom: 850px;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 100px;
+  margin-bottom: 850px;
 }
 
 .text {
@@ -12,93 +12,191 @@
   font-family: "Montserrat", sans-serif;
 }
 
-
 .details {
-    
-    display: flex;
-    flex-direction: row;
-    
+  display: flex;
+  flex-direction: row;
 }
 
 .details li {
-    
-    margin-right: 120px; 
-    
-    
-  }
-  
-  .details img {
-    
-    max-width: 100px;
-    margin-right: 10px; 
-  }
+  margin-right: 120px;
+}
 
-  .details ul {
-    display: flex;  
-    flex-direction: row; 
-    list-style: none; 
-    padding: 0; 
-    align-items: center;
-    
-  }
+.details img {
+  max-width: 100px;
+  margin-right: 10px;
+}
 
-  .details p {
-    margin-top: 25px;
-  }
+.details ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  align-items: center;
+}
 
-  .verMas {
-margin-left: 1730px;
-font-family: "Montserrat", sans-serif;
- padding: 10px 20px;
+.details p {
+  margin-top: 25px;
+}
+
+.verMas {
+  margin-left: 1730px;
+  font-family: "Montserrat", sans-serif;
+  padding: 10px 20px;
   background-color: #2d4056;
   color: #fff;
   border: 2px solid #2d4056;
   cursor: pointer;
-  
+
   border-radius: 5px;
   font-size: small;
-  }
+}
 
-  .verMas:hover {
-    font-family: "Montserrat", sans-serif;
+.verMas:hover {
+  font-family: "Montserrat", sans-serif;
   background-color: rgb(44, 182, 88);
   border-color: rgb(44, 182, 88);
   transform: scale(1.05);
-  }
+}
 
-  .verMenos {
-    margin-left: 1715px;
-font-family: "Montserrat", sans-serif;
- padding: 10px 20px;
+.verMenos {
+  margin-left: 1715px;
+  font-family: "Montserrat", sans-serif;
+  padding: 10px 20px;
   background-color: #2d4056;
   color: #fff;
   border: 2px solid #2d4056;
   cursor: pointer;
-  
+
   border-radius: 5px;
   font-size: small;
-  }
+}
 
-  .verMenos:hover {
-    font-family: "Montserrat", sans-serif;
+.verMenos:hover {
+  font-family: "Montserrat", sans-serif;
   background-color: rgb(167, 23, 23);
   border-color: rgb(167, 23, 23);
   transform: scale(1.05);
-  }
-
-.mainInfo li{
-    list-style: none;
-
 }
 
-.loaderContainer{
- 
+.mainInfo li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  /* border: 1px solid #e2dcd1; */
+/* Margen entre las tarjetas */
+/* }
+
+.mainInfo strong{
+  text-align: left;
+}
+
+.loaderContainer {
   margin-top: 80px;
+} */
+
+/* .loaderImage {
+} */ 
+
+/* .saleItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  border: 1px solid #e2dcd1;
+  width: 90%;
+  height: 300px;
+  padding: 10px;
+  margin-bottom: 20px; /* Ajusta el margen inferior según tu preferencia */
+/* }
+
+.saleInfo {
+  flex-grow: 1;
+} */ 
+
+/* .card {
+
 }
 
-.loaderImage{
- 
+.card strong {
+  text-align: left;
+} */
+@import url("https://fonts.cdnfonts.com/css/montserrat");
+
+.fuente {
+  font-family: "Montserrat", sans-serif;
+  margin-top: 100px;
+  margin-bottom: 850px;
 }
 
+.text {
+  font-weight: 400;
+  font-size: 2em;
+  font-family: "Montserrat", sans-serif;
+}
 
- 
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 190px;
+}
+
+.details li {
+  margin-bottom: 10px;
+
+}
+
+.details img {
+  max-width: 100px;
+  margin-right: 10px;
+}
+
+.details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-left: 70px;
+}
+
+.details p {
+  margin-top: 5px;
+}
+
+.verMas,
+.verMenos {
+  margin-left: auto;
+  margin-right: 20px; /* Ajusta el margen derecho */
+  font-family: "Montserrat", sans-serif;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: small;
+  background-color: #2d4056;
+  color: white;
+}
+
+.verMas:hover,
+.verMenos:hover {
+  transform: scale(1.05);
+}
+
+.mainInfo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra las tarjetas */
+  margin-left: 20px; /* Ajusta el margen izquierdo */
+}
+
+.card {
+  flex: 0 0 48%;
+  margin-bottom: 20px;
+  border: 1px solid #e2dcd1;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.card hr {
+  margin: 10px 0;
+}

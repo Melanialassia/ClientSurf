@@ -1,5 +1,6 @@
 //HOOKS
 import React from "react";
+import { useEffect } from "react";
 //CONSTANTS
 import {
   fixedSurfBoards,
@@ -13,20 +14,32 @@ import {
 } from "../utils/constants";
 //STYLE-SHEETS
 import styles from "./ServicesContainer.module.css";
+import { logOut } from "../../../../redux/actions/action";
+
+
+
 
 const ServicesContainer = () => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1500,
+    });
+    AOS.refresh();
+  }, []);
+
   return (
 
-    <div className={styles.container}>
-    <div >
+    <div className={styles.container}  >
+    <div data-aos="fade-down">
       <h3 className={styles.text}>NUESTROS SERVICIOS</h3>
-    </div>
-    <div className={styles.serviceColumns}>
+    </div >
+    <div className={styles.serviceColumns} >
 
-      <div className={styles.serviceRow}>
-        <div className={styles.serviceItem}>
+      <div className={styles.serviceRow} data-aos="fade-down">
+        <div className={styles.serviceItem} >
           <p>{fixedSurfBoards}</p>
-          <img src="/assets/images/tablaicon.jpg" alt="" className={styles.imageone} />
+          <img src="/assets/images/tablaicon.jpg" alt="" className={styles.imageone}  />
         </div>
         <p className={styles.texto}>{fixedSurfBoardsText}</p>
       </div>
@@ -34,7 +47,7 @@ const ServicesContainer = () => {
       <br />
       <br />
 
-      <div className={styles.serviceRow}>
+      <div className={styles.serviceRow} data-aos="fade-down">
         <div className={styles.serviceItem}>
           <p>{surfLessons}</p>
           <img src="/assets/images/clasesssurf.jpg" alt="" className={styles.imagetwo} />
@@ -45,7 +58,7 @@ const ServicesContainer = () => {
       <br />
       <br />
 
-      <div className={styles.serviceRow}>
+      <div className={styles.serviceRow} data-aos="fade-down">
         <div className={styles.serviceItem}>
           <p>{fixedWetSuits}</p>
           <img src="/assets/images/trajesneoprenne.jpg" alt="" className={styles.imagethree} />
@@ -56,7 +69,7 @@ const ServicesContainer = () => {
       <br />
       <br />
 
-      <div className={styles.serviceRow}>
+      <div className={styles.serviceRow} data-aos="fade-down">
         <div className={styles.serviceItem}>
           <p>{garageSurfBoards}</p>
           <img src="/assets/images/personwithboardicon.jpg" alt="" className={styles.imagefour} />
@@ -65,6 +78,7 @@ const ServicesContainer = () => {
       </div>
     </div>
   </div>
+  
   );
 };
 

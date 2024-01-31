@@ -42,6 +42,12 @@ const Home = () => {
     dispatch(logOut());
     navigate('/login');
   }
+  useEffect(() => {
+    AOS.init({
+      duration: 1500,
+    });
+    AOS.refresh();
+  }, []);
 
   useEffect(() => {
     if (dataUser && activeUser === true) {
@@ -82,7 +88,7 @@ const Home = () => {
         <CarrouselContainer />
       </div>
 
-      <div>
+      <div data-aos="fade-down">
         <Link to={"/products"}>
           <img
             onMouseEnter={() => setIsTableImageHovered(true)}
@@ -106,11 +112,11 @@ const Home = () => {
         </Link>
       </div>
 
-      <div>
-        <HowToBuyContainer />
+      <div >
+        <HowToBuyContainer data-aos="fade-down"/>
       </div>
 
-      <div className={styles.highlights}>
+      <div className={styles.highlights} >
         <ProductHighlights />
       </div>
 

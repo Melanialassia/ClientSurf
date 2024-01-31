@@ -1,6 +1,6 @@
 //HOOKS
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 //LIBRARYS
@@ -49,6 +49,13 @@ const FormContainer = () => {
 
   const [messagee, setMessagee] = useState("");
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1500,
+    });
+    AOS.refresh();
+  }, []);
+
   const handleChange = (name, value) => {
     setUserData({
       ...userData,
@@ -58,10 +65,14 @@ const FormContainer = () => {
 
   const handleSubmit = async () => {
     try {
-      await Promise.all([
-        dispatch(postUser(userData)),
-        dispatch(userLogin(userData)),
-      ]);
+
+       
+    await dispatch(postUser(userData));
+    await dispatch(userLogin(userData));
+      // await Promise.all([
+      //   dispatch(postUser(userData)),
+      //   dispatch(userLogin(userData)),
+      // ]);
       setMessagee("Usuario creado con éxito");
       messageApi.open({
         type: "success",
@@ -69,7 +80,6 @@ const FormContainer = () => {
       });
       setIsUserCreated(true);
       navigate("/");
-      window.alert('Usuario creado con éxito!')
     } catch (error) {
       console.error("No se pudo crear la cuenta de usuario con éxito:", error);
       setMessagee("Error al crear usuario");
@@ -77,7 +87,8 @@ const FormContainer = () => {
   };
 
   return (
-    <div className={styles.container}>
+    
+    <div className={styles.container} data-aos="fade-down">
       <h2 className={styles.textt}>{infoLogin}</h2>
       <h4 className={styles.text}>{text}</h4>
 
