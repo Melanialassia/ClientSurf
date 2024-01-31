@@ -9,7 +9,7 @@ body {
   flex-direction: row;
   height: 100vh;
   text-align: left;
-  width: 90vw;
+  width: 70%;
   padding-bottom: 20px;
   text-align: left;
   margin-left: 300px;
@@ -34,12 +34,11 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 140px;
-  margin-right: 380px;
   margin-left: 50px;
-  height: 90vh;
+  height: 90%;
   align-items: flex-start;
   color: black;
-  width: 50%;
+  width: 70%;
 }
 
 .imgContainer {
@@ -51,6 +50,7 @@ body {
   overflow: hidden;
   border-radius: 20px;
   z-index: 0;
+
 }
 
 .imgContainer img {
@@ -59,6 +59,7 @@ body {
   transition: transform 0.3s ease;
   cursor: zoom-in;
   border-radius: 20px;
+  margin-left: 100px;
 }
 
 .imgContainer img:hover {
@@ -103,9 +104,6 @@ body {
 }
 
 .characteristics {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -165,17 +163,18 @@ body {
 @media only screen and (min-width: 1920px) {
   .heartButton {
       margin-left: -8%;
-      margin-top: -25%; 
+      margin-top: -23%; 
   }
   .imgContainer {
     margin-left: 10%;
   }
   .infoContainer {
-    margin-right: 35%;
+    margin-right: -15%;
   }
   .politicas p {
-    margin-left: 30%; 
+    margin-left: 30%; /* Ajusta el margen izquierdo para pantallas más grandes */
     max-width: 60%;
     margin-top: -18%;
 }
 }
+

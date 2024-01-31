@@ -65,6 +65,12 @@ const RegisterUsersContainer = () => {
     password: "",
   });
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1500,
+    });
+    AOS.refresh();
+  }, []);
   const handleSubmit = () => {
     dispatch(userLogin(userData));
     navigate("/");
@@ -93,7 +99,7 @@ const RegisterUsersContainer = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-aos = "fade-down">
       <h2>{registerCustomers}</h2>
       <h4 className={styles.text}>{textRegisterCustomers}</h4>
       <hr className={styles.hr} />
