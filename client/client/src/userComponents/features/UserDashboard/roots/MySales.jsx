@@ -176,6 +176,7 @@ const MySales = () => {
                   >
                     Ver Menos
                   </button>
+                  <button className={styles.verMenos}  onClick={() => redirectToReviews(sale.idSale, idUser)}></button>
                 </div>
               )}
             </div>

@@ -245,9 +245,9 @@ const Details = () => {
           </div>
 
           <div className={styles.rate}>
-            <Rate disabled value={product.points} />
-            {product.points > 0 ? (
-              <p className={styles.rateText}>{product.points}</p>
+            <Rate disabled value={3.5} />{" "}
+            {product.points != 0 ? (
+              <p className={styles.rateText}>{product.promedioQualification}</p>
             ) : (
               <p className={styles.rateMessage}>Sin calificaciones</p>
             )}
