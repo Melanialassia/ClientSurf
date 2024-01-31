@@ -25,7 +25,6 @@ function ReviewCard({ idProduct, idUser }) {
           setRate(JSON.parse(savedRate));
           setRateStatus(true);
         }
-
       } catch (error) {
         throw Error("No se pudo traer los objetos de la compra: ", error);
       }
@@ -40,18 +39,21 @@ function ReviewCard({ idProduct, idUser }) {
     const response = data.listProducts[0];
     setProduct(response);
   };
- 
+
   const handleAddRating = () => {
     const data = {
       idUser: idUser,
       idProduct: idProduct,
       points: rate,
-      comment: ""
+      comment: "",
     };
     localStorage.setItem(`rate_${idProduct}`, JSON.stringify(data.points));
     dispatch(AddRating(data));
     setRateStatus(true);
-    localStorage.setItem(`rateStatus_${idProduct}`, JSON.stringify(rate.points));
+    localStorage.setItem(
+      `rateStatus_${idProduct}`,
+      JSON.stringify(rate.points)
+    );
     console.log(rate);
     messageApi.open({
       type: "success",
@@ -76,7 +78,7 @@ function ReviewCard({ idProduct, idUser }) {
   return (
     <Card className={styles.container}>
       {contextHolder}
-      <div >
+      <div>
         <div className={styles.nameRate}>
           <p>{product.name}</p>
 
@@ -101,6 +103,7 @@ function ReviewCard({ idProduct, idUser }) {
             </Button>
           ) : (
             <Button
+              className={styles.button}
               onClick={() => handleAddRating()}
               type="primary"
               icon={<SendOutlined />}
