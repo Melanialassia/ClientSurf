@@ -46,6 +46,7 @@ function ReviewCard({ idProduct, idUser }) {
       idUser: idUser,
       idProduct: idProduct,
       points: rate,
+      comment: ""
     };
     localStorage.setItem(`rate_${idProduct}`, JSON.stringify(data.points));
     dispatch(AddRating(data));
