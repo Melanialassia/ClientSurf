@@ -8,6 +8,7 @@ import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSub
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
 import CarrouselContainer from "../components/Carousel/CarouselContainer";
 import HowToBuyContainer from "../components/HowToBuy/HowToBuyContainer";
+import LiveChat from "../../LiveChat/roots/LiveChat"
 //ACTION
 import { logOut } from "../../../../redux/actions/action";
 //STYLE-SHEETS
@@ -19,13 +20,14 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const dataUser = useSelector((state) => state.dataUser);
-
   const [isTableImageHovered, setIsTableImageHovered] = useState(false);
   const [isAccessoriesImageHovered, setIsAccessoriesImageHovered] = useState(false);
-
+  
   let userInfoFistrLogin = null;
   let activeUser = null;
-
+  // MIGUEL PASO POR AQUI *************
+  const userData = JSON.parse(localStorage.getItem("dataUser"));
+  //************* */
   if (dataUser) {
     userInfoFistrLogin = dataUser.idUser;
     activeUser = dataUser.activeUser;
@@ -46,12 +48,12 @@ const Home = () => {
       dispatch(getIdUser(dataUser.idUser));
     }
 
-    if(dataUser && activeUser === false){
+    if (dataUser && activeUser === false) {
       Modal.error({
         title: "Usuario inhabilitado",
         content: "Tu cuenta se encuentra inhabilitada. ¡Para activar tu cuenta mandanos un mensaje a laolaurbana@gmail.com !",
         onOk: () => {
-           handleLogOut();
+          handleLogOut();
         },
       });
     }
@@ -71,9 +73,11 @@ const Home = () => {
     };
     dispatch(filterProducts(obj));
   };
-
   return (
     <div className={styles.homeContainer}>
+      {/* MIGUEL PASO POR ACA */}
+      { userData && <LiveChat user={userData.nameUser} />}
+      {/* ******** */}
       <div>
         <CarrouselContainer />
       </div>
