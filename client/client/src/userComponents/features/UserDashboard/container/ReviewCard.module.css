@@ -1,24 +1,24 @@
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  align-items: stretch;
   border-radius: 10px;
-  border: 1px solid #e2dcd1;
-  height: 290px;
+  height: fit-content;
+  width: 240px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
+/*   margin-bottom: 10px;
   margin-left: 30px;
-  margin-right: 30px;
+  margin-right: 30px; */
 }
 
 .image {
-  width: 20%;
-  height: 100%;
+  width: 180px;
+  height: 220px;
   object-fit: cover;
   border-radius: 10px;
   border: 1px solid #e2dcd1;
-  margin: 5px;
 }
 
 .buttonContainer {
@@ -26,27 +26,5 @@
   align-items: center;
   justify-content: space-between;
   width: fit-content;
-}
-
-.textContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  align-items: center;
-  flex-grow: 1;
-  width: max-content;
-}
-
-.nameRate {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  min-height: fit-content;
-  min-width: 900px;
-}
-
-.textarea {
-  width: 900px;
-  flex-grow: 1; /* Permite que el textarea ocupe todo el espacio restante */
+  margin-bottom: 10px;
 }

@@ -106,7 +106,7 @@ const FormProduct = () => {
 
   const layout = {
     labelCol: {
-      span: 8,
+      span: 6,
     },
     wrapperCol: {
       span: 16,
@@ -148,7 +148,15 @@ const FormProduct = () => {
   };
 
   const cleanLocalStorage = () => {
-    localStorage.clear();
+    localStorage.removeItem("formData_idCategory")
+    localStorage.removeItem("formData_name")
+    localStorage.removeItem("formData_idSize")
+    localStorage.removeItem("formData_image") 
+    localStorage.removeItem("formData_idColor")
+    localStorage.removeItem("formData_idBrand")
+    localStorage.removeItem("formData_priceProduct") 
+    localStorage.removeItem("formData_stock") 
+   localStorage.removeItem("formData_description")
   };
 
   const handleSubmit = async () => {
@@ -204,14 +212,14 @@ const FormProduct = () => {
         Agrega un nuevo producto
       </h4>} */}
 
-      <Space irection="vertical" size={16}>
+      <Space irection="vertical" >
         {contextHolder}
-        <Card title="Crear una nuevo producto" style={{ width: "auto" }}>
+        <Card title="Crear una nuevo producto" >
           <Form
             form={form}
             onFinish={handleSubmit}
             initialValues={loadedData()}
-            /* {...layout} */
+             {...layout} 
             /* style={{ maxWidth: 600, marginLeft: "700px" }} */
           >
             <Form.Item

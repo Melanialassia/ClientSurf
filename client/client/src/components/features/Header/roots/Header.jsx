@@ -28,7 +28,6 @@ const Header = () => {
   const logedUser = JSON.parse(localStorage.getItem("logedUser"));
   const [reload, setReload] = useState(false);
   const cartData = JSON.parse(localStorage.getItem("cartData")) || { cartList: [] };
-  console.log(cartData);
   const cartProducts = useSelector((state) => state.cart);
   
  

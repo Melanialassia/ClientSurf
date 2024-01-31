@@ -21,12 +21,12 @@
   justify-content: center;
 }
 
-.childList {
+.childCard {
   text-align: center;
   width: 100%;
   min-width: 200px;
   max-width: 50%;
-  margin: 30px;
+  margin-top: -350px;
 }
 
 

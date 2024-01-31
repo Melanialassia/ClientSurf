@@ -4,10 +4,14 @@ import axios from "axios";
 import { createDetail } from "../../../../redux/actions/action";
 import styles from "./MySales.module.css";
 import surferLoaderImage from "../../../../images/loader.gif";
-import { deleteAllProductsFromCart } from "../../../../redux/actions/action";
+
+import { deleteAllProductsFromCart } from '../../../../redux/actions/action'
+import { useNavigate } from 'react-router-dom';
+
 
 const MySales = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [sales, setSales] = useState([]);
   const [visibleSaleDetails, setVisibleSaleDetails] = useState({});
   const [loading, setLoading] = useState(true); // Nuevo estado para el indicador de carga
@@ -94,6 +98,10 @@ const MySales = () => {
       [sale.idSale]: null,
     });
   };
+  const redirectToReviews = (idSale, idUser) => {
+    const path = `/reviews/${idSale}/${idUser}`;
+    navigate(path);
+  };
 
   return (
 
@@ -125,6 +133,7 @@ const MySales = () => {
                 <strong>Fecha:</strong> {new Date(sale.date).toLocaleString()}
                 <br />
                 <strong>Costo:</strong> ${sale.costSale.toFixed(2)}
+
               </div>
               <button
                 className={styles.verMas}
@@ -171,6 +180,7 @@ const MySales = () => {
               )}
             </div>
           ))}
+
         </div>
       )}
     </div>

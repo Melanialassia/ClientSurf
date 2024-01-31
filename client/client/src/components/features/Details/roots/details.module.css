@@ -34,19 +34,23 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 140px;
+
   margin-left: 50px;
   height: 90%;
+
+  margin-right: 380px;
+ 
+
   align-items: flex-start;
   color: black;
   width: 70%;
 }
 
 .imgContainer {
-
   position: relative;
   margin-top: 120px;
   width: 80%;
-  height: 700px; 
+  height: 600px;
   overflow: hidden;
   border-radius: 20px;
   z-index: 0;
@@ -63,7 +67,7 @@ body {
 }
 
 .imgContainer img:hover {
-  transform: scale(1.0);
+  transform: scale(1);
 }
 
 .cartButton button {
@@ -96,8 +100,7 @@ body {
 }
 
 .color {
-  margin-left: 0px
-
+  margin-left: 0px;
 }
 .size {
   margin-bottom: 20px;
@@ -108,7 +111,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   padding-left: 0;
- }
+}
 
 .characteristics li {
   margin-bottom: 8px;
@@ -122,7 +125,7 @@ body {
 }
 
 .politicas {
-  margin-top: 40px
+  margin-top: 40px;
 }
 
 .politicas p {
@@ -146,24 +149,26 @@ body {
 
 .cartButton button:disabled {
   font-family: "Montserrat", sans-serif;
-  background-color: #bdc3c7; 
-  color: #7f8c8d; 
-  border-color: #bdc3c7; 
-  cursor: not-allowed; 
-  transform: none; 
+  background-color: #bdc3c7;
+  color: #7f8c8d;
+  border-color: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .heartButton {
   position: absolute;
-  margin-left:-120px;
+  margin-left: -120px;
   margin-top: -490px;
   z-index: 1;
 }
 
 @media only screen and (min-width: 1920px) {
   .heartButton {
+
       margin-left: -8%;
       margin-top: -23%; 
+
   }
   .imgContainer {
     margin-left: 10%;
@@ -172,9 +177,30 @@ body {
     margin-right: -15%;
   }
   .politicas p {
+
     margin-left: 30%; /* Ajusta el margen izquierdo para pantallas más grandes */
+
     max-width: 60%;
-    margin-top: -18%;
+    margin-top: -10%;
+  }
 }
+
+
+
+
+
+.rate {
+  display: flex;
+  align-items: center;
+}
+
+.rateText {
+  font-size: 1.1em;
+  margin-left: 10px;
+}
+
+.rateMessage {
+  font-size: 0.9em;
+  margin-left: 10px;
 }
 
