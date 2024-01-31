@@ -702,7 +702,9 @@ export const AddRating = (data) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(`${SERVER_URL}/qualification`, data);
+      console.log(response);
       dispatch({ type: ADD_RATING, payload: response.data });
+      
       return response.data;
     } catch (error) {
       throw Error("No se pudo agregar la calificacion: ", error);
