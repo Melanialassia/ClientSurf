@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/socket.io": {
-        target: "https://surf-4i7c.onrender.com",
+        target: "https://surf-4i7c.onrender.com/surf",
         ws: true,
       },
     },
