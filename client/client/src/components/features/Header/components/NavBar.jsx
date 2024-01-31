@@ -18,7 +18,7 @@ const NavBar = () => {
               <Link to="/products">PRODUCTOS</Link>
             </li>
             <li className={pathname === "/services" ? style.active : ""}>
-              <Link to="/services">SERVICOS</Link>
+              <Link to="/services">SERVICIOS</Link>
             </li>
             <li>
               <a href="/#como-comprar">COMO COMPRAR</a>
