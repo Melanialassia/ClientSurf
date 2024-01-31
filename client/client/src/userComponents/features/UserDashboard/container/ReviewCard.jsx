@@ -48,10 +48,10 @@ function ReviewCard({ idProduct, idUser }) {
       comment: "",
       points: rate
     };
-    localStorage.setItem(`rate_${idProduct}`, JSON.stringify(data.points));
+    console.log(data);
     dispatch(AddRating(data));
-    setRateStatus(true);
-    console.log(rate);
+    localStorage.setItem(`rate_${idProduct}`, JSON.stringify(data.points));
+    setRateStatus(true); 
     messageApi.open({
       type: "success",
       content: "Calificacion enviada! 🏄🏼",
