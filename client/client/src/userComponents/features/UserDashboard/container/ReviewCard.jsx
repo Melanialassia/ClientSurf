@@ -45,10 +45,12 @@ function ReviewCard({ idProduct, idUser }) {
     const data = {
       idUser: idUser,
       idProduct: idProduct,
+
       points: rate,
       comment: ""
+
     };
-    localStorage.setItem(`rate_${idProduct}`, JSON.stringify(data.points));
+    localStorage.setItem(`rate_${idProduct}`, JSON.stringify(data.promedioQualification));
     dispatch(AddRating(data));
     setRateStatus(true);
     
