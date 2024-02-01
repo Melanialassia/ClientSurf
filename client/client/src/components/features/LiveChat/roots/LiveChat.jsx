@@ -1,19 +1,19 @@
-//HOOKS
-import React from "react";
+// //HOOKS
+// import React from "react";
 
-//LIBRARYS
+// //LIBRARYS
 
-//COMPONENTS
-import ChatContainer from "../containers/ChatContainer";
+// //COMPONENTS
+// import ChatContainer from "../containers/ChatContainer";
 
-//REDUX
+// //REDUX
 
-//CONSTANTS
+// //CONSTANTS
 
-//STYLE-SHEETS
+// //STYLE-SHEETS
 
-function LiveChat({ user }) {
-  return <ChatContainer user={user} />
-};
+// function LiveChat({ user }) {
+//   return <ChatContainer user={user} />
+// };
 
-export default LiveChat;
+// export default LiveChat;
