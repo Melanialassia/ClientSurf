@@ -76,7 +76,7 @@
 }
 
 .contact {
-  margin-left: -180px;
+  margin-left: -170px;
 }
 
 @media screen and (max-width: 768px) {
@@ -117,12 +117,12 @@
   }
 
   .policiess a {
-    margin-bottom: 20px;
+    margin-bottom: 2px;
   }
 
   .policis {
-    font-size: 14px;
-    margin-top: 10px;
+    font-size: 13px;
+    margin-top: 2px;
     margin-left: 0;
   }
 

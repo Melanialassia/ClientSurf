@@ -12,8 +12,8 @@ import ChatContainer from "../containers/ChatContainer";
 
 //STYLE-SHEETS
 
-function LiveChat({ user }) {
-  return <ChatContainer user={user} />
-};
+// function LiveChat({ user }) {
+//   return <ChatContainer user={user} />
+// };
 
 export default LiveChat;
