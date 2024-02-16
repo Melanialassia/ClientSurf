@@ -20,6 +20,7 @@ import {
 import { Rate } from "antd";
 
 import { OPEN_MODAL } from "../../../../redux/actions-types/actions-types";
+import ChangePolicy from "../../ChangePolicy/components/ChangePolicy";
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -255,7 +256,6 @@ const Details = () => {
 
           <div className={styles.description}>
             <h3>Descripcion:</h3>
-
             <p>{product.description}</p>
             <p>
               <div className={styles.color}>{getColorButtons()}</div>
@@ -268,10 +268,7 @@ const Details = () => {
                 <strong>Stock:</strong>{" "}
                 {product.stock > 0 ? "Disponible" : "Agotado"}
               </div>
-            </p>
-          </div>
-          <div className={styles.cartButton}>
-            <label htmlFor="quantityInput">Cantidad:</label>
+              <strong >Cantidad:</strong>
 
             <select
               className={styles.quantityLabel}
@@ -286,8 +283,12 @@ const Details = () => {
                 </option>
               ))}
             </select>
+            </p>
+          </div>
 
-            <button disabled={product.stock === 0} onClick={addToCartHandler}>
+          <div className={styles.cartButton}>
+
+            <button disabled={product.stock === 0} onClick={addToCartHandler} className={styles.carritoButton}>
               Añadir al carrito <ShoppingCartOutlined />
             </button>
             <div className={styles.heartButton}>
@@ -314,26 +315,7 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <div className={styles.politicas}>
-        <p>
-          En LA OLA URBANA tenés 15 días para cambiar luego de haber realizado
-          la compra. El cambio puede ser por talle o color y se respeta el
-          precio que pagaste. PASO A PASO: Envíanos un mail a
-          laolaurbana@gmail.com con el asunto “Cambio/Devolución” indicando en
-          el cuerpo del mail las siguientes informaciones: * Nombre completo *
-          DNI * Número de pedido * Producto para devolver * Nuevo producto que
-          quiero recibir * Motivo del cambio/devolución Vas a recibir nuestra
-          respuesta con los pasos a seguir y la información necesaria para
-          realizar el envío. IMPORTANTE! Los productos deben ser enviados en
-          perfecto estado, sin uso, sin perfumes, sin manchas y sin haberse
-          lavado. Cada prenda debe contar con su etiqueta adherida y encontrarse
-          en su paquete correspondiente. El cargo de envío por cambios o
-          devoluciones correrá por tu cuenta. Gracias! LA OLA URBANA
-        </p>
-      </div>
-
-      <br></br>
-
+      
       <div>
         <LoginModal open={open} />
       </div>

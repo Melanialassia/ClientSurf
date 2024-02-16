@@ -9,6 +9,7 @@ import ProductHighlights from "../components/ProductHighlights/ProductHighlights
 import CarrouselContainer from "../components/Carousel/CarouselContainer";
 import HowToBuyContainer from "../components/HowToBuy/HowToBuyContainer";
 // import LiveChat from "../../LiveChat/roots/LiveChat"
+
 //ACTION
 import { logOut } from "../../../../redux/actions/action";
 //STYLE-SHEETS

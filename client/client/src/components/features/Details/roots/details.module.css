@@ -12,7 +12,7 @@ body {
   width: 70%;
   padding-bottom: 20px;
   text-align: left;
-  margin-left: 300px;
+  margin-left: 250px;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -37,10 +37,7 @@ body {
 
   margin-left: 50px;
   height: 90%;
-
-  margin-right: 380px;
  
-
   align-items: flex-start;
   color: black;
   width: 70%;
@@ -49,25 +46,17 @@ body {
 .imgContainer {
   position: relative;
   margin-top: 120px;
-  width: 80%;
-  height: 600px;
+  width: 100%;
   overflow: hidden;
-  border-radius: 20px;
   z-index: 0;
-
 }
 
 .imgContainer img {
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   transition: transform 0.3s ease;
   cursor: zoom-in;
   border-radius: 20px;
-  margin-left: 100px;
-}
-
-.imgContainer img:hover {
-  transform: scale(1);
 }
 
 .cartButton button {
@@ -77,8 +66,8 @@ body {
   color: #fff;
   border: 2px solid #2d4056;
   cursor: pointer;
-  margin-left: 100px;
-  margin-top: 60px;
+  margin-left: 80px;
+  margin-top: 20px;
   border-radius: 5px;
   font-size: medium;
 }
@@ -89,6 +78,7 @@ body {
   border-color: rgb(44, 182, 88);
   transform: scale(1.05);
 }
+
 
 .description {
   text-align: left;
@@ -124,18 +114,25 @@ body {
   color: black;
 }
 
-.politicas {
-  margin-top: 40px;
+
+/* .politicasContainer {
+  background-color: rgba(255, 255, 255, 0.9); 
+  border: 2px solid transparent; 
+  border-radius: 10px; 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+  padding: 20px; 
+  width: 82%;
+  margin-top: 150px;
+  margin-left: 100px;
 }
 
 .politicas p {
   color: black;
-  margin-left: 500px;
-  align-items: center;
-  width: 900px;
+  text-align: right;
+  width: 100px;
   font-size: small;
   font-family: "Montserrat", sans-serif;
-}
+} */
 
 .zoom img {
   transition: transform 0.5s ease;
@@ -158,31 +155,37 @@ body {
 
 .heartButton {
   position: absolute;
-  margin-left: -120px;
-  margin-top: -490px;
+  margin-left: -130px;
+  margin-top: -530px;
   z-index: 1;
 }
 
 @media only screen and (min-width: 1920px) {
   .heartButton {
-
-      margin-left: -8%;
-      margin-top: -23%; 
+      margin-left: -11.5%;
+      margin-top: -19.5%; 
 
   }
-  .imgContainer {
-    margin-left: 10%;
+  .imgContainer img {
+    width: 700px; 
+    height: 700px;
+    margin-left: 300px;
   }
+
   .infoContainer {
     margin-right: -15%;
   }
-  .politicas p {
+  /* .politicas p {
+    font-size:medium;
+    margin-left: 30%; 
 
-    margin-left: 30%; /* Ajusta el margen izquierdo para pantallas más grandes */
-
-    max-width: 60%;
+    max-width: 100%;
     margin-top: -10%;
+  } */
+  .detailsContainer {
+    margin-bottom: -430px;
   }
+
 }
 
 
