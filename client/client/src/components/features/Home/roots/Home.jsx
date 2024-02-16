@@ -8,7 +8,8 @@ import NewsletterSubscribe from "../components/NewsletterSubscribe/NewsletterSub
 import ProductHighlights from "../components/ProductHighlights/ProductHighlights";
 import CarrouselContainer from "../components/Carousel/CarouselContainer";
 import HowToBuyContainer from "../components/HowToBuy/HowToBuyContainer";
-// import LiveChat from "../../LiveChat/roots/LiveChat";
+// import LiveChat from "../../LiveChat/roots/LiveChat"
+
 //ACTION
 import { logOut } from "../../../../redux/actions/action";
 //STYLE-SHEETS
@@ -26,7 +27,7 @@ const Home = () => {
   let userInfoFistrLogin = null;
   let activeUser = null;
   // MIGUEL PASO POR AQUI *************
-  const userData = JSON.parse(localStorage.getItem("dataUser"));
+  // const userData = JSON.parse(localStorage.getItem("dataUser"));
   //************* */
   if (dataUser) {
     userInfoFistrLogin = dataUser.idUser;
@@ -82,7 +83,7 @@ const Home = () => {
   return (
     <div className={styles.homeContainer}>
       {/* MIGUEL PASO POR ACA */}
-      {/* userData && <LiveChat user={userData.nameUser} />*/}
+    {/* { userData && <LiveChat user={userData.nameUser} />} */}
       {/* ******** */}
       <div>
         <CarrouselContainer />
